@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GitHub Pages ガイド</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --border: #2a2a3a;
+    --text: #e8e6f0;
+    --text-muted: #8a8a9a;
+    --accent: #7c6ff7;
+    --accent2: #f76fa1;
+    --green: #4ade80;
+    --gold: #f5c842;
+    --orange: #fb923c;
+    --red: #f87171;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, #1a1030 0%, #0f0f14 50%, #0f1420 100%);
+    padding: 48px 20px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(124,111,247,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(247,111,161,0.06) 0%, transparent 50%);
+  }
+  .header h1 {
+    font-size: 26px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  .header .sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 8px;
+    position: relative;
+  }
+
+  /* ===== MAIN ===== */
+  .main { max-width: 720px; margin: 0 auto; padding: 24px 16px 80px; }
+
+  /* ===== SECTION ===== */
+  .section { margin-bottom: 40px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(90deg, var(--text), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .section-num {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 900;
+    margin-right: 6px;
+  }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 10px;
+    color: var(--accent);
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card.accent {
+    border-color: rgba(124,111,247,0.3);
+    background: linear-gradient(135deg, rgba(124,111,247,0.06), var(--surface));
+  }
+  .card.pink {
+    border-color: rgba(247,111,161,0.3);
+    background: linear-gradient(135deg, rgba(247,111,161,0.06), var(--surface));
+  }
+  .card.gold {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.06), var(--surface));
+  }
+  .card.green {
+    border-color: rgba(74,222,128,0.3);
+    background: linear-gradient(135deg, rgba(74,222,128,0.06), var(--surface));
+  }
+
+  /* ===== WHAT IS BOX ===== */
+  .what-is {
+    text-align: center;
+    padding: 24px 16px;
+    margin-bottom: 24px;
+  }
+  .what-is .big {
+    font-size: 18px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+  .what-is p { color: var(--text-muted); font-size: 14px; }
+
+  /* ===== FLOW ===== */
+  .flow { display: flex; flex-direction: column; gap: 0; margin: 16px 0; }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 0;
+  }
+  .flow-num {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 900; color: #fff;
+    flex-shrink: 0;
+  }
+  .flow-body { flex: 1; }
+  .flow-body strong { color: #fff; }
+  .flow-body p { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+  .flow-arrow {
+    text-align: center;
+    color: var(--accent);
+    font-size: 16px;
+    line-height: 1;
+    margin: -4px 0;
+    padding-left: 8px;
+  }
+
+  /* ===== CODE ===== */
+  .code {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 13px;
+    overflow-x: auto;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    margin: 10px 0;
+    color: var(--text);
+  }
+  .code .comment { color: var(--text-muted); }
+  .code .cmd { color: var(--green); }
+  .code .url { color: var(--gold); }
+  .code .flag { color: var(--accent); }
+
+  /* ===== TABLE ===== */
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ===== COMPARE ===== */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 12px 0;
+  }
+  @media (max-width: 500px) { .compare { grid-template-columns: 1fr; } }
+  .compare .card { margin: 0; }
+  .compare .card h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .compare .card ul { padding-left: 16px; font-size: 13px; }
+  .compare .card li { margin: 4px 0; color: var(--text-muted); }
+
+  /* ===== TAGS ===== */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .tag.free { background: rgba(74,222,128,0.15); color: var(--green); }
+  .tag.easy { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .tag.limit { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag.warn { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  /* ===== TIPS ===== */
+  .tip {
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+    background: rgba(124,111,247,0.06);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .tip strong { color: var(--accent); }
+
+  /* ===== DIAGRAM ===== */
+  .diagram {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+    padding: 20px 12px;
+  }
+  .diagram-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    text-align: center;
+    min-width: 100px;
+  }
+  .diagram-box.active {
+    border-color: rgba(124,111,247,0.5);
+    background: linear-gradient(135deg, rgba(124,111,247,0.1), var(--surface));
+  }
+  .diagram-box .icon { font-size: 24px; margin-bottom: 4px; }
+  .diagram-box .label { font-size: 12px; font-weight: 700; }
+  .diagram-box .sub { font-size: 10px; color: var(--text-muted); }
+  .diagram-arrow { color: var(--accent); font-size: 20px; font-weight: 900; }
+
+  ul, ol { padding-left: 20px; }
+  li { margin: 4px 0; }
+  p { margin: 6px 0; }
+  strong { color: #fff; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 24px 16px;
+    color: var(--text-muted);
+    font-size: 11px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>GitHub Pages 完全ガイド</h1>
+  <div class="sub">無料でWebサイトを公開する最速の方法</div>
+</div>
+
+<div class="main">
+
+<!-- ==================== SECTION 1 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">01</span> GitHub Pages とは？</div>
+
+  <div class="card accent">
+    <div class="what-is">
+      <div class="big">GitHubリポジトリ = Webサイト</div>
+      <p>リポジトリにHTMLファイルを置いてpushするだけで<br>世界中に公開されるWebサイトになる、無料のホスティング機能</p>
+    </div>
+  </div>
+
+  <div class="diagram">
+    <div class="diagram-box active">
+      <div class="icon">💻</div>
+      <div class="label">ローカル</div>
+      <div class="sub">HTMLを編集</div>
+    </div>
+    <div class="diagram-arrow">&rarr;</div>
+    <div class="diagram-box">
+      <div class="icon">📦</div>
+      <div class="label">git push</div>
+      <div class="sub">GitHubに送信</div>
+    </div>
+    <div class="diagram-arrow">&rarr;</div>
+    <div class="diagram-box active">
+      <div class="icon">🌐</div>
+      <div class="label">公開!</div>
+      <div class="sub">username.github.io</div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <div class="card green">
+      <h4 style="color:var(--green);">できること</h4>
+      <ul>
+        <li>HTML / CSS / JavaScript の静的サイト</li>
+        <li>ポートフォリオ、ブログ、ドキュメント</li>
+        <li>独自ドメインの設定</li>
+        <li>HTTPS 自動対応</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(248,113,113,0.3);">
+      <h4 style="color:var(--red);">できないこと</h4>
+      <ul>
+        <li>サーバーサイド処理（PHP, Python等）</li>
+        <li>データベース接続</li>
+        <li>ユーザー認証（サーバー側）</li>
+        <li>動的API</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 2 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">02</span> 始め方（3ステップ）</div>
+
+  <div class="card accent">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <strong>GitHubにリポジトリを作成</strong>
+          <p>公開用のリポジトリを作る。Public でも Private でもOK。</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <strong>HTMLファイルをpush</strong>
+          <p>index.html をルートに置いてpushする。これがトップページになる。</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <strong>GitHub Pages を有効化</strong>
+          <p>Settings &gt; Pages で公開ブランチを選択。数分後にURLが発行される。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>実際のコマンド</h3>
+  <div class="code"><span class="comment"># 1. リポジトリ作成 &amp; push</span>
+<span class="cmd">git init</span>
+<span class="cmd">git add index.html</span>
+<span class="cmd">git commit -m</span> "initial commit"
+<span class="cmd">gh repo create</span> my-site <span class="flag">--public</span> <span class="flag">--source=.</span> <span class="flag">--push</span>
+
+<span class="comment"># 2. GitHub Pages を有効化（CLIから）</span>
+<span class="cmd">gh api</span> repos/{owner}/{repo}/pages <span class="flag">-X POST</span> \
+  <span class="flag">-f</span> source[branch]=main <span class="flag">-f</span> source[path]=/
+
+<span class="comment"># 3. 公開URL</span>
+<span class="url">https://{username}.github.io/{repo-name}/</span></div>
+
+  <div class="tip">
+    <strong>GUI派の場合:</strong> GitHub.com でリポジトリを開き、Settings &gt; Pages &gt; Source で「Deploy from a branch」を選び、main / root を指定するだけ。
+  </div>
+</div>
+
+<!-- ==================== SECTION 3 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">03</span> URL の仕組み</div>
+
+  <div class="table-wrap"><table>
+    <tr><th>種類</th><th>URL形式</th><th>説明</th></tr>
+    <tr>
+      <td><strong>ユーザーサイト</strong></td>
+      <td style="color:var(--gold); font-family:monospace; font-size:12px;">username.github.io</td>
+      <td>リポジトリ名を<code style="color:var(--accent);">username.github.io</code>にすると、ルートURLになる。1アカウント1つだけ。</td>
+    </tr>
+    <tr>
+      <td><strong>プロジェクトサイト</strong></td>
+      <td style="color:var(--gold); font-family:monospace; font-size:12px;">username.github.io/repo</td>
+      <td>通常のリポジトリ。URLはリポジトリ名がパスになる。いくつでも作れる。</td>
+    </tr>
+    <tr>
+      <td><strong>独自ドメイン</strong></td>
+      <td style="color:var(--gold); font-family:monospace; font-size:12px;">www.example.com</td>
+      <td>DNS設定で独自ドメインを紐付け可能。HTTPS も自動で対応。</td>
+    </tr>
+  </table></div>
+
+  <div class="card gold">
+    <strong>例: 今回の診断ページ</strong>
+    <div class="code" style="margin-top:8px; margin-bottom:0;"><span class="comment"># リポジトリ</span>
+github.com/<span class="cmd">sol-111</span>/<span class="cmd">entj-intj-diagnosis</span>
+           ~~~~~~~~  ~~~~~~~~~~~~~~~~~~~~~~
+           ユーザー名    リポジトリ名
+
+<span class="comment"># 公開URL（自動生成）</span>
+<span class="url">https://sol-111.github.io/entj-intj-diagnosis/</span></div>
+  </div>
+</div>
+
+<!-- ==================== SECTION 4 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">04</span> ファイル構成のルール</div>
+
+  <div class="card">
+    <div class="code" style="margin:0;"><span class="comment"># 基本構成</span>
+my-repo/
+├── <span class="cmd">index.html</span>        <span class="comment">&larr; トップページ（必須）</span>
+├── about.html          <span class="comment">&larr; /about.html でアクセス</span>
+├── css/
+│   └── style.css       <span class="comment">&larr; /css/style.css</span>
+├── js/
+│   └── main.js         <span class="comment">&larr; /js/main.js</span>
+└── images/
+    └── logo.png        <span class="comment">&larr; /images/logo.png</span></div>
+  </div>
+
+  <div class="table-wrap"><table>
+    <tr><th>ルール</th><th>内容</th></tr>
+    <tr><td><strong>トップページ</strong></td><td><code style="color:var(--accent);">index.html</code> がルートURLに対応。必ずルート直下に置く。</td></tr>
+    <tr><td><strong>パス = URL</strong></td><td>ファイルの配置がそのままURLのパスになる。</td></tr>
+    <tr><td><strong>大文字小文字</strong></td><td>URLは大文字小文字を区別する。ファイル名は小文字推奨。</td></tr>
+    <tr><td><strong>404ページ</strong></td><td><code style="color:var(--accent);">404.html</code> をルートに置くとカスタムエラーページになる。</td></tr>
+  </table></div>
+</div>
+
+<!-- ==================== SECTION 5 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">05</span> デプロイ方法の比較</div>
+
+  <div class="table-wrap"><table>
+    <tr><th>方式</th><th>仕組み</th><th>おすすめ度</th></tr>
+    <tr>
+      <td><strong>Deploy from branch</strong><br><span class="tag easy">簡単</span></td>
+      <td>指定ブランチの内容をそのまま公開。pushするだけで自動反映。今回使っている方式。</td>
+      <td style="color:var(--gold);">★★★★★</td>
+    </tr>
+    <tr>
+      <td><strong>GitHub Actions</strong><br><span class="tag limit">中級</span></td>
+      <td>ビルド処理（React, Next.js 等）を挟んでからデプロイ。フレームワーク利用時に必要。</td>
+      <td style="color:var(--gold);">★★★★☆</td>
+    </tr>
+  </table></div>
+
+  <div class="tip">
+    <strong>今の構成（HTML直置き）なら「Deploy from branch」で十分。</strong>フレームワークを使い始めたらGitHub Actionsに切り替える。
+  </div>
+</div>
+
+<!-- ==================== SECTION 6 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">06</span> 更新の流れ</div>
+
+  <div class="card accent">
+    <div class="flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-body">
+          <strong>ローカルでHTMLを編集</strong>
+          <p>好きなエディタで index.html を修正。ブラウザで確認。</p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-body">
+          <strong>コミット &amp; プッシュ</strong>
+          <p><code style="color:var(--green);">git add . && git commit -m "update" && git push</code></p>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-body">
+          <strong>自動デプロイ（1〜2分）</strong>
+          <p>pushしたら GitHub が自動でサイトを更新。何もしなくてOK。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3>デプロイ状態の確認</h3>
+  <div class="code"><span class="comment"># デプロイ状況をCLIで確認</span>
+<span class="cmd">gh api</span> repos/{owner}/{repo}/pages <span class="flag">--jq</span> '.status'
+
+<span class="comment"># "built" と出れば公開済み</span></div>
+</div>
+
+<!-- ==================== SECTION 7 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">07</span> 制限と注意点</div>
+
+  <div class="table-wrap"><table>
+    <tr><th>項目</th><th>制限</th></tr>
+    <tr><td><strong>リポジトリサイズ</strong></td><td>推奨 1GB 以下 <span class="tag limit">注意</span></td></tr>
+    <tr><td><strong>サイトサイズ</strong></td><td>公開サイトは 1GB 以下</td></tr>
+    <tr><td><strong>帯域制限</strong></td><td>月間 100GB のソフトリミット</td></tr>
+    <tr><td><strong>ビルド回数</strong></td><td>1時間に 10回 まで</td></tr>
+    <tr><td><strong>禁止用途</strong></td><td>ECサイト、SaaS、商用ホスティング等は規約違反 <span class="tag warn">注意</span></td></tr>
+  </table></div>
+
+  <div class="tip">
+    <strong>個人プロジェクトやポートフォリオなら全く問題なし。</strong>アクセスが増えてきたら Vercel や Netlify への移行を検討。
+  </div>
+</div>
+
+<!-- ==================== SECTION 8 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">08</span> 他のホスティングとの比較</div>
+
+  <div class="table-wrap"><table>
+    <tr><th>サービス</th><th>料金</th><th>難易度</th><th>特徴</th></tr>
+    <tr>
+      <td><strong>GitHub Pages</strong></td>
+      <td><span class="tag free">無料</span></td>
+      <td><span class="tag easy">簡単</span></td>
+      <td>git pushだけ。静的サイト専用。</td>
+    </tr>
+    <tr>
+      <td><strong>Vercel</strong></td>
+      <td><span class="tag free">無料枠あり</span></td>
+      <td><span class="tag easy">簡単</span></td>
+      <td>Next.js / React に最適。サーバーレス関数も使える。</td>
+    </tr>
+    <tr>
+      <td><strong>Netlify</strong></td>
+      <td><span class="tag free">無料枠あり</span></td>
+      <td><span class="tag easy">簡単</span></td>
+      <td>フォーム機能あり。ビルド設定が柔軟。</td>
+    </tr>
+    <tr>
+      <td><strong>Firebase Hosting</strong></td>
+      <td><span class="tag free">無料枠あり</span></td>
+      <td><span class="tag limit">普通</span></td>
+      <td>Google製。認証・DBと組み合わせやすい。</td>
+    </tr>
+    <tr>
+      <td><strong>レンタルサーバー</strong></td>
+      <td><span class="tag warn">月額有料</span></td>
+      <td><span class="tag limit">普通</span></td>
+      <td>PHP等サーバーサイドも動く。自由度高い。</td>
+    </tr>
+  </table></div>
+</div>
+
+<!-- ==================== SECTION 9 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">09</span> よく使うコマンドまとめ</div>
+
+  <div class="code"><span class="comment"># リポジトリ作成 &amp; Pages有効化</span>
+<span class="cmd">gh repo create</span> my-site <span class="flag">--public --source=. --push</span>
+<span class="cmd">gh api</span> repos/{owner}/my-site/pages <span class="flag">-X POST</span> \
+  <span class="flag">-f</span> source[branch]=main <span class="flag">-f</span> source[path]=/
+
+<span class="comment"># 更新してデプロイ</span>
+<span class="cmd">git add</span> index.html
+<span class="cmd">git commit -m</span> "update"
+<span class="cmd">git push</span>
+
+<span class="comment"># デプロイ状態を確認</span>
+<span class="cmd">gh api</span> repos/{owner}/my-site/pages <span class="flag">--jq</span> '.status'
+
+<span class="comment"># Pages情報を見る</span>
+<span class="cmd">gh api</span> repos/{owner}/my-site/pages <span class="flag">--jq</span> '.html_url'
+
+<span class="comment"># 独自ドメインを設定</span>
+<span class="cmd">gh api</span> repos/{owner}/my-site/pages <span class="flag">-X PUT</span> \
+  <span class="flag">-f</span> cname=www.example.com</div>
+</div>
+
+<!-- ==================== SECTION 10 ==================== -->
+<div class="section">
+  <div class="section-title"><span class="section-num">10</span> 次のステップ</div>
+
+  <div class="compare">
+    <div class="card accent">
+      <h4 style="color:var(--accent);">今すぐできること</h4>
+      <ul>
+        <li>404.html を追加してカスタムエラーページ</li>
+        <li>OGP metaタグでSNSシェア時の見た目を設定</li>
+        <li>Google Analytics を埋め込んでアクセス解析</li>
+        <li>favicon を設定してブラウザタブにアイコン表示</li>
+      </ul>
+    </div>
+    <div class="card pink">
+      <h4 style="color:var(--accent2);">スケールアップ</h4>
+      <ul>
+        <li>独自ドメインを取得して紐付け</li>
+        <li>React / Next.js に移行 + GitHub Actions</li>
+        <li>Vercel に移行してサーバーレス関数を活用</li>
+        <li>CMS（Notion等）と連携して管理を楽に</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  GitHub Pages Guide &mdash; Created for learning purposes
+</div>
+
+</body>
+</html>
