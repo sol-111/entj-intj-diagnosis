@@ -307,6 +307,141 @@
     color: var(--text-muted);
   }
 
+  /* ===== FIGHT SIM ===== */
+  .fight-scenario {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .fight-scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+  .fight-scenario-header:hover { background: var(--surface2); }
+  .fight-scenario-header .scenario-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+  .fight-scenario-header .scenario-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .fight-scenario-header .scenario-arrow {
+    font-size: 11px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+  }
+  .fight-scenario-header.open .scenario-arrow { transform: rotate(180deg); }
+  .fight-scenario-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .fight-scenario-body.open { max-height: 4000px; }
+  .fight-scenario-inner { padding: 0 16px 16px; }
+
+  /* chat bubbles */
+  .chat { margin: 6px 0; display: flex; flex-direction: column; }
+  .bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .bubble.entj {
+    background: rgba(124,111,247,0.15);
+    border: 1px solid rgba(124,111,247,0.25);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+  .bubble.intj {
+    background: rgba(247,111,161,0.15);
+    border: 1px solid rgba(247,111,161,0.25);
+    border-bottom-right-radius: 4px;
+    align-self: flex-end;
+    text-align: right;
+  }
+  .bubble.thought {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .bubble.thought.entj { border-color: rgba(124,111,247,0.3); }
+  .bubble.thought.intj {
+    border-color: rgba(247,111,161,0.3);
+    align-self: flex-end;
+    text-align: right;
+  }
+  .bubble-name {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .bubble-name.entj { color: var(--accent); }
+  .bubble-name.intj { color: var(--accent2); align-self: flex-end; }
+  .chat-divider {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin: 10px 0;
+  }
+
+  /* mechanism flow */
+  .flow-step {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin: 4px 0;
+  }
+  .flow-step.entj { background: rgba(124,111,247,0.1); border-left: 3px solid var(--accent); }
+  .flow-step.intj { background: rgba(247,111,161,0.1); border-left: 3px solid var(--accent2); }
+  .flow-step.both { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
+  .flow-arrow { text-align: center; color: var(--text-muted); font-size: 16px; margin: 2px 0; }
+
+  /* magic words */
+  .magic-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 6px 0;
+  }
+  .magic-bad {
+    padding: 8px 12px;
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .magic-good {
+    padding: 8px 12px;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .magic-bad strong { color: #f87171; }
+  .magic-good strong { color: var(--green); }
+
   /* ===== ABOUT BOX ===== */
   .about-box {
     background: linear-gradient(135deg, rgba(124,111,247,0.06), rgba(247,111,161,0.04));
@@ -464,6 +599,8 @@
   <button class="tab-btn" data-tab="intj-ranking">INTJ相性TOP5</button>
   <button class="tab-btn" data-tab="entj-worst">ENTJ相性WORST5</button>
   <button class="tab-btn" data-tab="intj-worst">INTJ相性WORST5</button>
+  <button class="tab-btn" data-tab="stress-map">ストレスマップ</button>
+  <button class="tab-btn" data-tab="fight-sim">喧嘩シュミレーション</button>
 </nav>
 <div class="scroll-hint">← タブをスワイプ →</div>
 
@@ -2098,6 +2235,805 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
   </blockquote>
 </div>
 
+<!-- FIGHT SIMULATION TAB -->
+<div id="fight-sim" class="tab-content">
+
+  <div class="about-box">
+    <div class="about-title">喧嘩シュミレーション</div>
+    <p>ふたりが実際に喧嘩になりやすい5パターンを、台詞・内心・メカニズム・修復の一言まで完全解剖。「なぜこうなるのか」がわかると、止められる。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップでシナリオを展開 ↓</p>
+
+  <!-- SCENARIO A -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シナリオA ：批判の地雷</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">タイプ1の善意指摘 × タイプ4の存在否定</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">最頻発</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>台詞シミュレーション</h4>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「そのやり方、効率悪くない？もっとこうすれば早いのに」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「……そうだね」</div>
+          <div class="bubble thought intj">（また批判された。私のやり方が間違ってるって言いたいんでしょ）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「なんで黙ってんの？ 別に責めてるわけじゃないし」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「わかってる」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「なんで不機嫌になってんの。言ってることは正しいでしょ」</div>
+          <div class="bubble thought entj">（論理的に正しいことを言っただけ。なぜ怒る？）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj" style="color:#f87171;font-weight:700;">「……もういい」</div>
+          <div class="bubble thought intj">（正しいかどうかの問題じゃない。傷ついてる）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「は？ なにが『もういい』なの。話にならない」</div>
+        </div>
+        <div class="chat-divider">— 冷戦突入 —</div>
+
+        <h4>メカニズム</h4>
+        <div class="flow-step entj"><strong>ENTJ男（タイプ1）</strong>：「正しくすること」が愛情表現 ← 本人は善意</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj"><strong>INTJ女（タイプ4）</strong>：批判 = 「あなたの存在が間違い」と受け取る</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj">女が黙る（Fe苦手・言語化できない）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step entj">男が「論理で問い詰める」（なぜ黙ってるの？）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">「もういい」爆発 or 完全沈黙 → 冷戦</div>
+
+        <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+          <strong style="color:var(--gold);">本質：</strong><span style="color:var(--text-muted);">批判の「内容」ではなく「批判された」という事実が傷になる</span>
+        </div>
+
+        <h4>この一言で変わる</h4>
+        <div class="magic-row">
+          <div class="magic-bad"><strong>❌ やりがち</strong><br>「効率悪くない？」<br>「正しいでしょ」<br>「なんで不機嫌なの」</div>
+          <div class="magic-good"><strong>✅ 言い換え</strong><br>「こういうやり方もあるけど、どう思う？」<br>（言わない）<br>「なんか傷つけた？」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO B -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シナリオB ：突然の消滅</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">回避型の「引く」× 不安型の「見捨てられ恐怖」</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(251,146,60,0.15);color:#fb923c;">頻発</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>台詞シミュレーション</h4>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「今日どうだった？」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「まあまあ」（4時間後）</div>
+          <div class="bubble thought entj">（疲れてる。充電が必要。それだけ）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「……なんかあった？」</div>
+          <div class="bubble thought intj">（なんで素っ気ない？何かした？嫌われた？）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「疲れてる。また後で」（2時間後、既読スルーあり）</div>
+        </div>
+        <div class="chat-divider">— 翌日 —</div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「ねえ、私なんかした？」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「してないよ。ただ疲れてただけ。なんでそんなに気にするの」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「急に連絡来なくなったから不安だった」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「一人の時間がほしかっただけ。それの何が問題なの」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj" style="color:#f87171;">「いちいちそんなこと言わなきゃいけないの？ 大人でしょ」</div>
+          <div class="bubble thought entj">（合理的な指摘のつもり）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble thought intj">（「大人でしょ」——私がおかしいってこと？）</div>
+          <div class="bubble intj" style="color:#f87171;font-weight:700;">「……もう、いいよ」</div>
+        </div>
+
+        <h4>メカニズム</h4>
+        <div class="flow-step entj"><strong>回避型（ENTJ男）</strong>：ストレス時に一人の時間が必要。でも「理由を言わずに消える」</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj"><strong>不安型（INTJ女）</strong>：突然の沈黙 = 見捨てられ恐怖が起動。「何かした？」確認行動が増える</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step entj">「追いかけられている」と感じてさらに引く</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">「なんでそんなに気にするの」→「大人でしょ」→ 女が「私がおかしいの？」と思わされる</div>
+
+        <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+          <strong style="color:var(--gold);">本質：</strong><span style="color:var(--text-muted);">どちらも悪くない。でもやり方が合わさると最悪になる</span>
+        </div>
+
+        <h4>この一言で変わる</h4>
+        <div class="magic-row">
+          <div class="magic-bad"><strong>❌ やりがち</strong><br>黙って消える<br>「なんで気にするの」<br>「大人でしょ」</div>
+          <div class="magic-good"><strong>✅ 言い換え</strong><br>「今日は疲れてる。明日また連絡する」<br>「心配させてごめん。一人の時間が必要だっただけだよ」<br>（絶対に言わない）</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO C -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シナリオC ：溜め込みの爆発</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">言えない女の蓄積 × 突然の爆発に対処できない男</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">最大爆発</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>台詞シミュレーション</h4>
+        <p style="font-size:12px;color:var(--text-muted);font-style:italic;">（数週間、小さな傷が積み重なっていた）</p>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「そのレストラン、なんで予約してないの？ もっとちゃんと計画立てようよ」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「……ごめん」</div>
+          <div class="bubble thought intj">（また批判された。でも言えない）</div>
+        </div>
+        <div class="chat-divider">— 翌週 —</div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「その考え方、ちょっと甘くない？」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble thought intj">（また。また同じだ）</div>
+          <div class="bubble intj">「…そうかもね」</div>
+        </div>
+        <div class="chat-divider">— さらに翌週、限界点 —</div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「なんでそんな時間かかってるの？」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj" style="color:#f87171;font-weight:700;">「ねえ、ずっと思ってたんだけど——私のこと、バカだと思ってるでしょ。ずっと批判されてる気がして、一緒にいるのが怖い」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「……え？ いつの話？ なんでそんなに溜めてたの？ 言ってくれればよかったじゃん」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj" style="color:#f87171;font-weight:700;">「言えないから言えなかったんでしょ！！」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「それは俺のせいなの？ 意味わからない」</div>
+        </div>
+
+        <h4>メカニズム</h4>
+        <div class="flow-step intj"><strong>INTJ女（Fe苦手・内向80%）</strong>：傷ついても表に出せない → 内側で処理しようとする</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj">タイプ9の影響：衝突を避けるために「まあいいか」で蓋をする</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj">タイプ4の欠乏感：傷が積み重なるたびに「やっぱり理解されない」が強化される</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">処理しきれない → 限界点で爆発（文脈ゼロ）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step entj"><strong>ENTJ男</strong>：突然の爆発に対処できない → 「なんで溜めてたの」（善意の問い）</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">「言えないから言えない」→ 男が「論理的矛盾」を指摘 → さらに傷つく</div>
+
+        <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+          <strong style="color:var(--gold);">本質：</strong><span style="color:var(--text-muted);">溜め込みは「言いたくない」のではなく「言えない」。「なんで言わなかった」は責めと同じ</span>
+        </div>
+
+        <h4>この一言で変わる</h4>
+        <div class="magic-row">
+          <div class="magic-bad"><strong>❌ やりがち</strong><br>「なんで溜めてたの」<br>「言ってくれれば」<br>「意味わからない」</div>
+          <div class="magic-good"><strong>✅ 言い換え</strong><br>「言えなかったんだね。ごめん、気づかなかった」<br>（言えない人への責めになる）<br>「わかろうとするから、もう少し聞かせて」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO D -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シナリオD ：意思決定の衝突</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Seの即決 × Niの熟考。プロセスを奪うと存在否定になる</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(251,146,60,0.15);color:#fb923c;">構造的</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>台詞シミュレーション</h4>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「来月の旅行、どこにする？ もう予約しないと間に合わないよ」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「うーん……まだちゃんと考えてない」</div>
+          <div class="bubble thought intj">（Niはまだ熟考中。邪魔しないで）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「もう2週間経ってるよ。どこでもいいから決めようよ」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「どこでもよくない。ちゃんと考えたい」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「じゃあ俺が決めるよ。京都でいい？」</div>
+          <div class="bubble thought entj">（合理的判断。前進すること）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble thought intj">（京都が嫌なわけじゃない。でも私のNi処理が「無価値」扱いされた）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「何か不満なの？ 早く決めてって言ったじゃん」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「不満じゃないけど……私が決めたかった」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「え？ 決めないから俺が決めたんでしょ。どっちなの」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj" style="color:#f87171;">「……もういい。京都でいいよ」</div>
+        </div>
+
+        <h4>メカニズム</h4>
+        <div class="flow-step entj"><strong>SLE（Se主導）</strong>：即決・前進が本能。決まらないことへの苛立ち</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj"><strong>ILI（Ni主導）</strong>：「早く決めて」= Ni処理への干渉 = 存在価値への攻撃</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj">「俺が決める」= ILIのSe（最も求めるもの）を奪う行為 → 「あなたは必要ない」に聞こえる</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">女が「もういい」でシャットダウン → 常に男が決める関係へ固定化</div>
+
+        <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+          <strong style="color:var(--gold);">本質：</strong><span style="color:var(--text-muted);">「決めない」のではなく「処理する時間が必要」。プロセスを奪われると、存在を否定された感覚になる</span>
+        </div>
+
+        <h4>この一言で変わる</h4>
+        <div class="magic-row">
+          <div class="magic-bad"><strong>❌ やりがち</strong><br>「俺が決める」<br>「どっちなの」<br>「早く決めてって言ったじゃん」</div>
+          <div class="magic-good"><strong>✅ 言い換え</strong><br>「何日までに決めたい？ 一緒に考えようか」<br>「どこが決めにくい？」<br>「急かしてごめん。○日までには決めたいんだけど」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENARIO E -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シナリオE ：社交場のすれ違い</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">外向73%のプラス × 内向80%のマイナス。同じ4時間が別世界</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(124,111,247,0.15);color:var(--accent);">根本的</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>台詞シミュレーション</h4>
+        <p style="font-size:12px;color:var(--text-muted);font-style:italic;">（4時間の友人グループの集まりから帰宅後）</p>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「今日楽しかったね！ また企画しようよ」</div>
+          <div class="bubble thought entj">（楽しかった。エネルギーが増えた）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「……うん」</div>
+          <div class="bubble thought intj">（ぐったり。もう喋れない。限界）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj">「なんで溶け込もうとしないの？ ○○も気にしてたよ」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「…別に、そういう気分じゃなかっただけ」</div>
+          <div class="bubble thought intj">（溶け込もうとしてた。あれが私の限界だった）</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj" style="color:#f87171;">「俺の友達なんだから、もう少し頑張ってくれると助かるんだけど」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj" style="font-size:12px;">「頑張って……た」</div>
+        </div>
+        <div class="chat-divider">— 沈黙 —</div>
+        <div class="chat">
+          <span class="bubble-name intj" style="align-self:flex-end;">INTJ女</span>
+          <div class="bubble intj">「4時間、知らない人の話を聞き続けて、笑って、合わせて。あれが私の精一杯だった。頑張ってなかったわけじゃない」</div>
+        </div>
+        <div class="chat">
+          <span class="bubble-name entj">ENTJ男</span>
+          <div class="bubble entj" style="color:var(--green);">「……そっか。そうか、ごめん」</div>
+        </div>
+
+        <h4>メカニズム</h4>
+        <div class="flow-step entj"><strong>外向性73%（ENTJ男）</strong>：社交でエネルギーが増える。4時間は楽しい時間</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj"><strong>内向性80%（INTJ女）</strong>：社交でエネルギーが激減する。4時間は消耗の限界</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step both">「もっと頑張って」= 女にとっては「あなたの限界はおかしい」</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step intj">「4時間精一杯だった」が出るまで男には見えない（感情言語化の遅さ）</div>
+        <div class="flow-arrow" style="color:var(--green);">↓</div>
+        <div class="flow-step" style="background:rgba(74,222,128,0.08);border-left:3px solid var(--green);">男が「そっか、ごめん」と気づいた瞬間 → 修復のチャンス</div>
+
+        <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+          <strong style="color:var(--gold);">本質：</strong><span style="color:var(--text-muted);">外向と内向では「社交のコスト」が根本的に違う。「頑張りが足りない」と言うと傷つく</span>
+        </div>
+
+        <h4>この一言で変わる</h4>
+        <div class="magic-row">
+          <div class="magic-bad"><strong>❌ やりがち</strong><br>「もっと溶け込んでくれると」<br>「頑張ってくれると助かる」<br>「また企画しようよ」</div>
+          <div class="magic-good"><strong>✅ 言い換え</strong><br>（言わない）<br>帰宅後は「疲れたね、ありがとう」だけでいい<br>「今日はゆっくり休んで。お疲れ様」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- COMMON LAWS -->
+  <h2>喧嘩の共通法則</h2>
+  <div class="table-wrap"><table>
+    <tr><th>構造的原因</th><th>内容</th></tr>
+    <tr><td><strong>タイプ1の批判 × タイプ4の傷つき</strong></td><td>男の「善意の指摘」が女に「存在否定」として届く</td></tr>
+    <tr><td><strong>回避型 × 不安型</strong></td><td>男が引くと女が追う → 男がさらに引く</td></tr>
+    <tr><td><strong>Fe / Fi の逆転</strong></td><td>互いが相手の苦手な感情機能を求めている</td></tr>
+    <tr><td><strong>Ni（熟考）× Se（即決）</strong></td><td>処理速度が根本的に違う。急かすと女のNiを壊す</td></tr>
+    <tr><td><strong>外向 × 内向のコスト差</strong></td><td>同じ4時間で男はプラス、女はマイナス</td></tr>
+    <tr><td><strong>どちらも感情を言語化しない</strong></td><td>男は気づかず、女は言えない → 溜まる一方</td></tr>
+  </table></div>
+
+  <h2>喧嘩を止める魔法の一言</h2>
+  <div class="vs">
+    <div style="background:rgba(124,111,247,0.06);border:1px solid rgba(124,111,247,0.2);border-radius:12px;padding:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:12px;">ENTJ男から</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「傷つけた？」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「わかろうとするから、聞かせて」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「急かしてごめん」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「少し時間がほしい。○日に話せる」</div>
+      </div>
+    </div>
+    <div style="background:rgba(247,111,161,0.06);border:1px solid rgba(247,111,161,0.2);border-radius:12px;padding:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:1px;margin-bottom:12px;">INTJ女から</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「今の言葉、傷ついた」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「不安になってた」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「一人で処理しようとしてた」</div>
+        <div style="padding:8px 12px;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:8px;font-size:13px;color:var(--green);">「引く＝嫌いじゃないって、頭ではわかってる」</div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote style="margin-top:24px;">
+    「この2人の喧嘩のほとんどは、どちらも悪意がないのに起きる。」<br><br>
+    男は「正しいことをしている」つもり。女は「傷ついている」のに言えない。<br>
+    男は「論理で解決しようとする」。女は「感情で受け取っている」。<br><br>
+    この構造的な「ズレ」を知ることが、喧嘩の最大の予防になる。<br>
+    「なぜそうなるのか」がわかれば、責める気持ちが<strong>「そうか、そういう仕組みか」</strong>に変わる。<br>
+    それが、この2人が喧嘩を乗り越えるための最も強い武器。
+  </blockquote>
+
+</div>
+
+<!-- STRESS MAP TAB -->
+<div id="stress-map" class="tab-content">
+
+  <div class="about-box">
+    <div class="about-title">STRESS MAP</div>
+    <p>ふたりが「何にストレスを感じるか」「ストレス時にどう変化するか」「互いにどう影響し合うか」を統合した分析。エニアグラム・ソシオニクス・ビッグファイブ・愛着スタイルから導出。</p>
+  </div>
+
+  <!-- ENTJ男 -->
+  <h2>ENTJ男（shoki）のストレスマップ</h2>
+
+  <div class="card highlight">
+    <h3>基本構造</h3>
+    <p><strong>情動安定性90%。普段は「揺るがない岩」。</strong><br>だからこそ、ストレスが溜まっていても気づかない。気づいた時には臨界点を超えている。</p>
+  </div>
+
+  <h3>ストレストリガー</h3>
+  <div style="margin:12px 0;">
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">「正しい」と信じたことを否定される</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">タイプ1のコア。存在価値が揺らぐ</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">感情的な訴えに論理で返せない状況</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">SLE-Fi役割機能の消耗。感情の受け取り自体が疲弊</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">長期ビジョンを求められる・未来が見えない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Ni示唆機能。SLEの最も弱い領域</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">計画が狂う・結果が出ない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Se主導×タイプ1完璧主義。「進んでいない」状態が耐えられない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">批判を「受ける」側になる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">タイプ1は批判する側の習慣。受ける側の対処法を持っていない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">関係の停滞・成長を感じない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">タイプ7ウィングの退屈嫌い。意味のない時間が苦痛</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">「察して」を求められる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">Fi役割機能。暗黙の期待に気づけない構造的限界</p>
+    </div>
+  </div>
+
+  <h3>ストレス時の変容：タイプ1 → タイプ4</h3>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;">
+      <div style="padding:14px;background:rgba(124,111,247,0.06);border-right:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:1px;">平常時（タイプ1）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          実行力・行動的<br>自信・自己肯定感高い<br>明確な意見を言う<br>他者を引っ張る<br>連絡マメ
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;padding:8px;color:var(--text-muted);font-size:18px;">→</div>
+      <div style="padding:14px;background:rgba(248,113,113,0.05);">
+        <div style="font-size:11px;font-weight:700;color:#f87171;margin-bottom:10px;letter-spacing:1px;">ストレス時（タイプ4化）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          引きこもる・動けない<br>自己批判「自分はダメか」<br>沈黙・感情の言語化困難<br>孤独の中に閉じこもる<br>連絡が急に減る・既読スルー
+        </div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:var(--surface2);border-top:1px solid var(--border);font-size:12px;color:var(--orange);">
+      ⚠️ このタイプ4化は「突然」来る。本人も気づかないうちに蓄積し、ある日「引く」。
+    </div>
+  </div>
+
+  <h3>回復パターン</h3>
+  <div class="table-wrap"><table>
+    <tr><th>回復方法</th><th>理由</th></tr>
+    <tr><td><strong>一人の時間・空間</strong></td><td>Se主導の実行力を充電する必要</td></tr>
+    <tr><td><strong>「達成」体験</strong></td><td>タイプ1は成果で自己肯定が回復する</td></tr>
+    <tr><td><strong>肯定の言葉</strong></td><td>「あなたは正しい」「信頼している」が心の安定に直結</td></tr>
+    <tr><td><strong>新しい刺激・体験</strong></td><td>タイプ7ウィングが復活するきっかけ</td></tr>
+    <tr><td><strong>深い知的議論</strong></td><td>タイプ5スコア8。頭を使うことで整理される</td></tr>
+  </table></div>
+
+  <hr>
+
+  <!-- INTJ女 -->
+  <h2>INTJ女（ゆう）のストレスマップ</h2>
+
+  <div class="card pink">
+    <h3 style="color:var(--accent2);">基本構造</h3>
+    <p><strong>情動性73%。INTJ-T。さそり座の月。</strong><br>内側は嵐。でも外に出さない。出してはいけないと思っている。だから溜まり続ける。</p>
+  </div>
+
+  <h3 style="color:var(--accent2);">ストレストリガー</h3>
+  <div style="margin:12px 0;">
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">批判・指摘を受ける</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">タイプ4のコア。自己価値への直撃と受け取る</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">突然の沈黙・連絡途絶</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">不安型アタッチメント×見捨てられ恐怖が爆発</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">「普通」「特別じゃない」扱いをされる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">タイプ4の欠乏感。唯一性の否定は存在否定に等しい</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">即決・即行動を求められる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Se最弱機能（ILI）。完璧な答えが出るまで動けない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">感情を言語化・表現するよう求められる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Fe役割機能の消耗。「感情を演じる」ことが疲弊</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">内面世界を理解しようとされない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">タイプ4の核心欲求「唯一の理解者」が満たされない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">身体的な疲労・不快</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">Si最弱機能。疲れたら最初に体が音を上げる</p>
+    </div>
+  </div>
+
+  <h3 style="color:var(--accent2);">ストレス時の変容：タイプ4 → タイプ2</h3>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;">
+      <div style="padding:14px;background:rgba(247,111,161,0.06);border-right:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:10px;letter-spacing:1px;">平常時（タイプ4）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          独立・自律的<br>自分の世界観を大切に<br>距離感を保つ<br>感情を内に秘める<br>自己完結しようとする
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;padding:8px;color:var(--text-muted);font-size:18px;">→</div>
+      <div style="padding:14px;background:rgba(248,113,113,0.05);">
+        <div style="font-size:11px;font-weight:700;color:#f87171;margin-bottom:10px;letter-spacing:1px;">ストレス時（タイプ2化）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          過度に相手の顔色を窺う<br>「必要とされたい」が前面に<br>執着・確認行動が増える<br>感情が行動として漏れ出す<br>孤独に耐えられなくなる
+        </div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:var(--surface2);border-top:1px solid var(--border);font-size:12px;color:var(--orange);">
+      ⚠️ 外見は「クール」を保とうとするが、内側でタイプ2的な不安が渦を巻く。気づかないうちに「試し行動」が増える。
+    </div>
+  </div>
+
+  <h3 style="color:var(--accent2);">回復パターン</h3>
+  <div class="table-wrap"><table>
+    <tr><th>回復方法</th><th>理由</th></tr>
+    <tr><td><strong>一人でいられる時間と空間</strong></td><td>内向80%。エネルギー再充電に不可欠</td></tr>
+    <tr><td><strong>「あなたは特別だ」という言葉</strong></td><td>タイプ4の欠乏感を満たす唯一の薬</td></tr>
+    <tr><td><strong>知的な探求・一人での思索</strong></td><td>Ni主導。頭の中で整理することで感情も整理される</td></tr>
+    <tr><td><strong>信頼できる人との深い一対一の対話</strong></td><td>「この人にだけは話せる」安全地帯が必要</td></tr>
+    <tr><td><strong>哲学・芸術・美しいものへの没入</strong></td><td>さそり座の月9H。深い探求が感情の出口になる</td></tr>
+  </table></div>
+
+  <hr>
+
+  <!-- COUPLE STRESS CYCLES -->
+  <h2>ふたりの間で起きるストレスサイクル</h2>
+
+  <div class="card" style="border-color:rgba(248,113,113,0.3);background:linear-gradient(135deg,rgba(248,113,113,0.05),var(--surface));margin-bottom:16px;">
+    <h3 style="color:#f87171;">サイクル① 回避型 × 不安型の追いかけっこ</h3>
+    <div style="font-size:13px;line-height:1.8;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="padding:8px 12px;background:rgba(124,111,247,0.1);border-radius:8px;border-left:3px solid var(--accent);">
+          <strong>ENTJ男</strong>にストレスが溜まる → 「一人の時間が必要」→ <span style="color:#f87171;">何も言わず引く</span>
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(247,111,161,0.1);border-radius:8px;border-left:3px solid var(--accent2);">
+          <strong>INTJ女</strong>の不安型が起動 → 「嫌われた？見捨てられる？」→ <span style="color:#f87171;">確認・試し行動が増える</span>
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(124,111,247,0.1);border-radius:8px;border-left:3px solid var(--accent);">
+          <strong>ENTJ男</strong>「なんで追いかけてくるんだ」→ <span style="color:#f87171;">さらに引く</span>
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(247,111,161,0.1);border-radius:8px;border-left:3px solid var(--accent2);">
+          <strong>INTJ女</strong>の不安がさらに爆発 → 繰り返し → 関係の亀裂
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding:8px 12px;background:var(--surface2);border-radius:8px;font-size:12px;color:var(--orange);">
+      ⚠️ 最悪なのは「二人ともストレスを抱えている時に同時に起きること」。最も危険な瞬間。
+    </div>
+  </div>
+
+  <div class="card" style="border-color:rgba(251,146,60,0.3);background:linear-gradient(135deg,rgba(251,146,60,0.05),var(--surface));margin-bottom:16px;">
+    <h3 style="color:var(--orange);">サイクル② タイプ1の批判 × タイプ4の傷つき</h3>
+    <div style="font-size:13px;line-height:1.8;">
+      <div style="display:flex;flex-direction:column;gap:6px;">
+        <div style="padding:8px 12px;background:rgba(124,111,247,0.1);border-radius:8px;border-left:3px solid var(--accent);">
+          <strong>ENTJ男</strong>（タイプ1）：「正しくすべき」という使命感から指摘・批判 → <span style="color:var(--text-muted);">本人は愛情のつもり</span>
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(247,111,161,0.1);border-radius:8px;border-left:3px solid var(--accent2);">
+          <strong>INTJ女</strong>（タイプ4）：批判を「自己価値への攻撃」として受け取る → 傷つく → <span style="color:#f87171;">外に出さない・沈黙で処理</span>
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(124,111,247,0.1);border-radius:8px;border-left:3px solid var(--accent);">
+          <strong>ENTJ男</strong>：「なんで急に静かになった？」気づかない → さらに論理で問い詰め or 気にせず次の話題へ
+        </div>
+        <div style="text-align:center;color:var(--text-muted);font-size:18px;">↓</div>
+        <div style="padding:8px 12px;background:rgba(247,111,161,0.1);border-radius:8px;border-left:3px solid var(--accent2);">
+          <strong>INTJ女</strong>：「やっぱり理解されない」孤独が深まる → <span style="color:#f87171;">溜め込みが限界で爆発 or 静かに離れる</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card gold" style="margin-bottom:16px;">
+    <h3 style="color:var(--gold);">サイクル③ Fe / Fi の構造的すれ違い</h3>
+    <div class="vs">
+      <div class="vs-card left">
+        <div class="vs-name entj">ENTJ男（SLE）が求めるもの</div>
+        <p style="font-size:13px;color:var(--text-muted);text-align:left;margin-top:8px;"><strong style="color:#fff;">Fe（外向感情）</strong><br>場の雰囲気・感情の共有・盛り上がり<br><span style="color:#f87171;font-size:12px;">→ INTJ女のFeは役割機能（苦手・消耗）</span></p>
+      </div>
+      <div class="vs-card right">
+        <div class="vs-name intj">INTJ女（ILI）が求めるもの</div>
+        <p style="font-size:13px;color:var(--text-muted);text-align:left;margin-top:8px;"><strong style="color:#fff;">Fi（内向感情）</strong><br>個人的な深い感情的理解・価値観の共鳴<br><span style="color:#f87171;font-size:12px;">→ ENTJ男のFiは役割機能（苦手・消耗）</span></p>
+      </div>
+    </div>
+    <div style="text-align:center;padding:10px;background:var(--surface2);border-radius:8px;font-size:13px;margin-top:8px;">
+      お互いが「相手が最も苦手なもの」を求めている——<strong>与えようとするほど消耗する</strong>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- COMBINED STRESS TABLE -->
+  <h2>共同ストレスマップ</h2>
+  <div class="table-wrap"><table>
+    <tr>
+      <th>状況</th>
+      <th style="color:var(--accent);">ENTJ男</th>
+      <th style="color:var(--accent2);">INTJ女</th>
+      <th>結果</th>
+    </tr>
+    <tr>
+      <td>男が引く</td>
+      <td>「一人時間が必要」（正常）</td>
+      <td>見捨てられ不安爆発</td>
+      <td><span class="tag bad">追う→逃げるループ</span></td>
+    </tr>
+    <tr>
+      <td>女が沈黙する</td>
+      <td>「なんで黙ってる？」論理で問い詰め</td>
+      <td>傷ついて処理中</td>
+      <td><span class="tag bad">さらに追い詰められる</span></td>
+    </tr>
+    <tr>
+      <td>男が批判する</td>
+      <td>愛情・改善のつもり</td>
+      <td>存在否定に聞こえる</td>
+      <td><span class="tag bad">女が孤立化</span></td>
+    </tr>
+    <tr>
+      <td>女が試し行動する</td>
+      <td>「意味がわからない」論理で返す</td>
+      <td>「やっぱりわかってない」</td>
+      <td><span class="tag bad">相互不信の深まり</span></td>
+    </tr>
+    <tr>
+      <td>両者ストレスMax</td>
+      <td>タイプ4化（引きこもり）</td>
+      <td>不安型爆発（追いかける）</td>
+      <td><span class="tag bad">最悪の衝突 or 冷戦</span></td>
+    </tr>
+    <tr>
+      <td><strong>両者安定の時</strong></td>
+      <td>実行力×肯定の言葉</td>
+      <td>Niビジョン×質の高い時間</td>
+      <td><span class="tag ok">最強の同志関係</span></td>
+    </tr>
+  </table></div>
+
+  <hr>
+
+  <!-- PREVENTION GUIDE -->
+  <h2>ストレス予防のための行動指針</h2>
+
+  <div class="vs" style="margin:0;">
+    <div style="background:rgba(124,111,247,0.06);border:1px solid rgba(124,111,247,0.2);border-radius:12px;padding:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);letter-spacing:1px;margin-bottom:12px;">ENTJ男がやること</div>
+      <ol style="padding-left:16px;font-size:13px;line-height:1.9;color:var(--text-muted);">
+        <li><strong style="color:#fff;">引く前に一言</strong><br>「少し時間がほしい。○日に話せる」だけで不安型は大幅に安定する</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">批判より問いかけ</strong><br>「そこは違う」→「どう思う？」に変えるだけで受け取り方が根本から変わる</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">肯定の言葉を定期的に</strong><br>行動だけでは女のタイプ4欠乏感は埋まらない。言葉にする習慣を作る</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">ストレス蓄積に早めに気づく</strong><br>情動安定90%なのに気づいたら臨界点になりやすい。週1セルフチェックを</li>
+      </ol>
+    </div>
+    <div style="background:rgba(247,111,161,0.06);border:1px solid rgba(247,111,161,0.2);border-radius:12px;padding:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:1px;margin-bottom:12px;">INTJ女がやること</div>
+      <ol style="padding-left:16px;font-size:13px;line-height:1.9;color:var(--text-muted);">
+        <li><strong style="color:#fff;">傷ついたらその場でシンプルに</strong><br>「今の言葉は傷ついた」だけで十分。溜め込まない</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">「不安」を早めに言語化</strong><br>「なんかモヤモヤする」でいい。責める形にしない</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">身体のサインを無視しない</strong><br>Si最弱なので身体が先にダウンする。「なんとなくしんどい」は溜め込みの最初のサイン</li>
+        <li style="margin-top:8px;"><strong style="color:#fff;">「引く」＝嫌いではない</strong><br>ENTJ男の沈黙は性質上の回避パターン。愛情の消失ではない</li>
+      </ol>
+    </div>
+  </div>
+
+  <blockquote style="margin-top:24px;">
+    「ENTJ男は感じにくいが、感じると急に深く沈む。INTJ女は常に感じているが、出せないから溜まる一方。」<br><br>
+    ふたりのストレスパターンは真逆に見えるが、実は同じ問題の表裏——<strong>「感情を言語化しない」という共通点が、それぞれ異なる爆発の形を生む。</strong><br><br>
+    ENTJ男の「言う前に引く」と、INTJ女の「言えずに溜める」が重なった時、最も傷つく瞬間が生まれる。<br><br>
+    この2人に必要なのは感情の「表出力」ではなく、<strong>「最低限の言語化への意志」</strong>。<br>
+    「引く前の一言」と「傷ついたときの一言」——たったその2つが、関係全体を守る盾になる。
+  </blockquote>
+
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   統合分析日: 2026-04-06<br>
@@ -2107,6 +3043,13 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
 
 <!-- JS -->
 <script>
+  function toggleScenario(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+
   const tabs = document.querySelectorAll('.tab-btn');
   const contents = document.querySelectorAll('.tab-content');
 
