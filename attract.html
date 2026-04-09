@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>惹かれ分析 - shoki × ゆかり</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --border: #2a2a3a;
+    --text: #e8e6f0;
+    --text-muted: #8a8a9a;
+    --accent: #7c6ff7;
+    --accent2: #f76fa1;
+    --accent-glow: rgba(124,111,247,0.15);
+    --gold: #f5c842;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fb923c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #1a1030 0%, #0f0f14 50%, #0f1420 100%);
+    padding: 40px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(124,111,247,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(247,111,161,0.06) 0%, transparent 50%);
+    animation: headerGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes headerGlow {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-5%,3%); }
+  }
+  .header h1 {
+    font-size: 20px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+  }
+  .header .sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    position: relative;
+  }
+  .content { padding: 20px 16px 100px; max-width: 720px; margin: 0 auto; }
+  h2 {
+    font-size: 20px; font-weight: 800;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(90deg, var(--text), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 16px; font-weight: 700; margin: 24px 0 10px; color: var(--accent); }
+  h4 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; color: var(--text); }
+  p { margin: 8px 0; }
+  strong { color: #fff; font-weight: 700; }
+  ul, ol { margin: 8px 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card.highlight {
+    border-color: rgba(124,111,247,0.3);
+    background: linear-gradient(135deg, rgba(124,111,247,0.06), var(--surface));
+  }
+  .card.pink {
+    border-color: rgba(247,111,161,0.3);
+    background: linear-gradient(135deg, rgba(247,111,161,0.06), var(--surface));
+  }
+  .card.gold {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.06), var(--surface));
+  }
+  .table-wrap { overflow-x: auto; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 300px; }
+  th {
+    background: var(--surface2); color: var(--accent); font-weight: 700;
+    text-align: left; padding: 10px 12px; white-space: nowrap;
+    border-bottom: 2px solid var(--border);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+    background: var(--accent-glow);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+  }
+  .flow-step {
+    padding: 10px 14px; border-radius: 8px; margin: 6px 0;
+    font-size: 13px; line-height: 1.6;
+  }
+  .flow-step.entj { background: rgba(124,111,247,0.1); border-left: 3px solid var(--accent); }
+  .flow-step.intj { background: rgba(247,111,161,0.1); border-left: 3px solid var(--accent2); }
+  .flow-step.both { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
+  .flow-step.highlight { background: rgba(124,111,247,0.06); border-left: 3px solid var(--accent); }
+  .flow-arrow {
+    text-align: center; color: var(--text-muted); font-size: 14px;
+    padding: 2px 0; font-weight: 700;
+  }
+  .about-box {
+    background: linear-gradient(135deg, rgba(124,111,247,0.08), rgba(247,111,161,0.05));
+    border: 1px solid rgba(124,111,247,0.2);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .about-box .about-title {
+    font-size: 15px; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 8px;
+  }
+  .about-box p { font-size: 13px; color: var(--text-muted); }
+  .footer {
+    text-align: center; padding: 20px; font-size: 11px;
+    color: var(--text-muted); border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>shokiはゆかりのどこに惹かれているのか</h1>
+  <div class="sub">LINE + 全診断データ + 本人の言葉から導出</div>
+</div>
+
+<div class="content">
+
+  <div class="about-box">
+    <div class="about-title">この分析でわかること</div>
+    <p>shoki本人が書き出した「好きなところ」を起点に、診断データとLINEの行動から、本人が言語化できていない惹かれの深層構造まで解剖する。</p>
+  </div>
+
+  <h2>shokiの言葉（原文）</h2>
+  <div class="card highlight">
+    <ul style="font-size:13px;line-height:2.2;">
+      <li>普段緊張しないのに、電話も会うのもすごく緊張する</li>
+      <li>意外と社会不適合者</li>
+      <li>口悪い</li>
+      <li>論理的、知的な会話できる</li>
+      <li>遅刻するおっちょこちょい → お世話してあげたい、守ってあげたい</li>
+      <li>一緒に高め合っていける</li>
+    </ul>
+  </div>
+
+  <h2>惹かれの構造</h2>
+
+  <h3>1. 自分のシステムを超えた存在</h3>
+  <div class="card">
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「普段緊張しないのに緊張する」</p>
+    <p>情動安定90%・Se主導のENTJは「コントロールできる状況」では無敵。緊張しないのは感情が薄いからではなく、大抵の状況はコントロール下に置けるから。</p>
+    <div style="padding:10px 12px;background:rgba(124,111,247,0.08);border:1px solid rgba(124,111,247,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
+      <strong style="color:var(--accent);">本質：</strong>ゆかりに対して緊張する = <strong>「この人の反応は自分のシステムでコントロールできない」</strong>。Se主導が初めて「相手次第」の領域に踏み込んでいる。
+    </div>
+  </div>
+
+  <h3>2. 「普通じゃない」に惹かれている</h3>
+  <div class="card">
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「意外と社会不適合者」「口悪い」</p>
+    <p>タイプ7ウィング（スコア9）は退屈を嫌う。タイプ6最低スコアは「空気を読んで従う人」に魅力を感じないことを意味する。</p>
+    <p style="margin-top:8px;">嘔吐を笑い話にする、「どぅぁーいすき」という表現、ENFJを「うっとおしい」とバッサリ切る——取り繕わない本音が、shokiの<strong>「本物の人間がほしい」</strong>欲求を直撃している。</p>
+  </div>
+
+  <h3>3. 知的に対等な相手をやっと見つけた</h3>
+  <div class="card">
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「論理的、知的な会話できる」</p>
+    <p>ENTJの理想パートナー像の筆頭は「知性で対等に議論でき、本質を見抜く目を持つ人」。</p>
+    <p style="margin-top:8px;">「Fe第1機能の人がダメ」「準デュアル関係」と即座にソシオニクスで返してくるゆかり。shokiが作った診断サイトを<strong>本質レベルで理解して反応してくれた</strong>のが決定的だった。</p>
+    <div class="flow-step intj" style="margin-top:12px;"><strong>ゆかりのNi主導</strong>がshokiのNi示唆（足りないもの）を補完 →「この人は自分が見えないものを見ている」</div>
+  </div>
+
+  <h3>4. 「守りたい」が発動——ENTJの愛情の本体</h3>
+  <div class="card">
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「遅刻するおっちょこちょい → お世話してあげたい、守ってあげたい」</p>
+    <p>shokiはこれを「おっちょこちょいだから」と表面的に説明しているが、構造はもっと深い。</p>
+
+    <div class="table-wrap" style="margin-top:12px;">
+      <table>
+        <tr><th>関わっている機能</th><th>内容</th></tr>
+        <tr><td style="white-space:nowrap;">愛情言語「奉仕」</td><td style="font-size:12px;">相手のために何かをしてあげることが愛情表現の本体</td></tr>
+        <tr><td style="white-space:nowrap;">タイプ1の使命感</td><td style="font-size:12px;">「正しく守る」衝動</td></tr>
+        <tr><td style="white-space:nowrap;">タイプ2スコア7</td><td style="font-size:12px;">助けることで自分の存在価値を感じる</td></tr>
+        <tr><td style="white-space:nowrap;">太陽7ハウス</td><td style="font-size:12px;">パートナーシップの中で自分を最も強く表現する配置</td></tr>
+        <tr><td style="white-space:nowrap;">さそり座の月8H</td><td style="font-size:12px;">深い親密さの中で相手を守ること＝自分の安らぎ</td></tr>
+      </table>
+    </div>
+
+    <h4 style="margin-top:16px;">LINEに出ている証拠</h4>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">低血圧を心配して湯船を勧める</div>
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「起こしてあげるよ」</div>
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「食べさせてあげるね」</div>
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「もこもこの靴下履こ」</div>
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「気をつけるんだよお」</div>
+      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">仕事サボって診断サイトを作った</div>
+    </div>
+
+    <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:16px 0 0;font-size:12px;">
+      <strong style="color:var(--gold);">重要：</strong>ゆかりが「ただ弱いだけの人」ではないからこそ、全機能が反応している。<strong>知性で対等 × 守りたくなる脆さ——この両立</strong>がshokiの愛情回路を全面的に起動させている。
+    </div>
+  </div>
+
+  <h3>5. 「この人と組めば完成する」という直感</h3>
+  <div class="card">
+    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「一緒に高め合っていける」</p>
+    <p>「高め合える」の正体は<strong>「互いが互いを完成させる」</strong>という無意識の確信。</p>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+      <div class="card" style="margin:0;border-color:rgba(124,111,247,0.3);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:8px;">shokiに足りないもの → ゆかりが持つ</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:2;">
+          Ni（長期ビジョン・深い意味）<br>
+          Fi（感情の深い理解）<br>
+          感情の言語化
+        </div>
+      </div>
+      <div class="card" style="margin:0;border-color:rgba(247,111,161,0.3);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:8px;">ゆかりに足りないもの → shokiが持つ</div>
+        <div style="font-size:12px;color:var(--text-muted);line-height:2;">
+          Se（行動力・即決・存在感）<br>
+          情動の安定（90%）<br>
+          甘えられる相手
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>shokiが言語化できていない惹かれ</h2>
+
+  <h3 style="color:var(--accent2);">6. 「感情を見せてくれる」ことへの渇望</h3>
+  <div class="card pink">
+    <p>ゆかりの「にゃーんつかれちゃた」「ぴぇえ」「えーんしゅごい」——Fe弱者のINTJにしては極めて珍しい感情表現。<strong>shokiに対してだけガードが下がっている。</strong></p>
+    <p style="margin-top:8px;">shokiのFi役割機能（苦手）は相手の感情を「読む」ことができない。しかしゆかりは感情を表に出してくれる。これがshokiにとって<strong>「やっと感情の世界にアクセスできる相手」</strong>になっている。</p>
+  </div>
+
+  <h3 style="color:var(--accent2);">7. さそり座の月同士の共鳴</h3>
+  <div class="card pink">
+    <p>両者とも月がさそり座。意識に上りにくいが、<strong>感情の深さ・秘密を共有する親密さへの欲求・「表に見せない内側の世界」</strong>が共振している。</p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">shokiが「なんかわからないけど惹かれる」と感じている部分の正体。月はホロスコープにおいて「本能・無意識の欲求」を司る。同じさそり座の月は、言語化不能なレベルで共鳴する。</p>
+  </div>
+
+  <h3 style="color:var(--accent2);">8. 「認めてもらえた」体験</h3>
+  <div class="card pink">
+    <p>ゆかりの「SLEどぅぁーいすき」「さすがにしごでき」「永久保存する」——shokiの愛情言語<strong>「求め方：肯定の言葉」</strong>を直撃している。</p>
+    <p style="margin-top:8px;">shokiが診断サイトを作り（奉仕）、ゆかりがそれを本質レベルで受け取り、言葉で認めた。<strong>「この人は自分の価値を理解してくれる」</strong>という確信がここで生まれている。</p>
+  </div>
+
+  <h2>惹かれの構造図</h2>
+
+  <div class="card gold">
+    <div class="flow-step highlight" style="text-align:center;"><strong>① 知的に対等</strong><br><span style="font-size:11px;color:var(--text-muted);">Ni補完 × 心理学の共通言語</span></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step highlight" style="text-align:center;"><strong>② 退屈じゃない</strong><br><span style="font-size:11px;color:var(--text-muted);">タイプ7を刺激する「普通じゃなさ」</span></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step highlight" style="text-align:center;"><strong>③ 強さと脆さの同居</strong><br><span style="font-size:11px;color:var(--text-muted);">知性で対等 × 守りたい衝動</span></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step highlight" style="text-align:center;"><strong>④ 感情を見せてくれる</strong><br><span style="font-size:11px;color:var(--text-muted);">Fi苦手なENTJに感情世界の入口を開く存在</span></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step highlight" style="text-align:center;"><strong>⑤ 自分の価値を認めてくれる</strong><br><span style="font-size:11px;color:var(--text-muted);">奉仕への感謝 × 肯定の言葉</span></div>
+    <div class="flow-arrow">+</div>
+    <div class="flow-step highlight" style="text-align:center;"><strong>⑥ 「この人と組めば完成する」直感</strong><br><span style="font-size:11px;color:var(--text-muted);">Se×Ni の完全な補完構造</span></div>
+  </div>
+
+  <blockquote>
+    <strong>shokiが言語化できなかった答え：</strong><br><br>
+    「知性で対等に戦えて、でも守りたくなる脆さがあって、自分の行動をちゃんと見て言葉で返してくれて、一緒にいて退屈じゃなくて、自分が見えないものを見せてくれる。<br><br>
+    そして何より、自分のシステムを超えてくる。<br><br>
+    ——そういう人に、今まで出会ったことがなかった。」
+  </blockquote>
+
+</div>
+
+<div class="footer">
+  分析日: 2026-04-10<br>
+  参照: LINE会話ログ / ENTJ男まとめ / INTJ女まとめ / 全診断データ
+</div>
+
+</body>
+</html>
