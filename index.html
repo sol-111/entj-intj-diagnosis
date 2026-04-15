@@ -569,6 +569,48 @@
   .vs-name.intj { color: var(--accent2); }
   .vs-val { font-size: 20px; font-weight: 900; color: #fff; }
   .vs-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .rank-item {
+    display: flex; gap: 14px; padding: 14px; border-radius: 10px; margin: 8px 0;
+    align-items: flex-start; border: 1px solid var(--border); background: var(--surface);
+  }
+  .rank-item.top3 {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.04), var(--surface));
+  }
+  .rank-num { font-size: 22px; font-weight: 900; min-width: 36px; text-align: center; line-height: 1.2; }
+  .rank-item.top3 .rank-num { color: var(--gold); }
+  .rank-item:not(.top3) .rank-num { color: var(--text-muted); }
+  .rank-body { flex: 1; }
+  .rank-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .rank-reason { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .rank-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .rank-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .tag-purple { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .tag-pink { background: rgba(247,111,161,0.15); color: var(--accent2); }
+  .tag-gold { background: rgba(245,200,66,0.15); color: var(--gold); }
+  .tag-green { background: rgba(74,222,128,0.15); color: var(--green); }
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; }
+  .data-item { font-size: 11px; padding: 6px 10px; background: var(--surface2); border-radius: 6px; }
+  .data-item strong { font-size: 12px; }
+  details.accordion {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin: 10px 0; overflow: hidden;
+  }
+  details.accordion[open] { border-color: rgba(124,111,247,0.3); }
+  details.accordion.pink-acc[open] { border-color: rgba(247,111,161,0.3); }
+  details.accordion summary {
+    padding: 14px 16px; cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 700; font-size: 14px; color: #fff;
+    -webkit-user-select: none; user-select: none;
+  }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after {
+    content: '+'; font-size: 18px; color: var(--text-muted); font-weight: 400;
+    transition: transform 0.2s;
+  }
+  details.accordion[open] summary::after { content: '−'; }
+  details.accordion .acc-body { padding: 0 16px 16px; }
 </style>
 </head>
 <body>
@@ -595,13 +637,12 @@
   <button class="tab-btn" data-tab="horoscope">ホロスコープ</button>
   <button class="tab-btn" data-tab="entj-summary">ENTJ総合</button>
   <button class="tab-btn" data-tab="intj-summary">INTJ総合</button>
-  <button class="tab-btn" data-tab="entj-ranking">ENTJ相性TOP5</button>
-  <button class="tab-btn" data-tab="intj-ranking">INTJ相性TOP5</button>
-  <button class="tab-btn" data-tab="entj-worst">ENTJ相性WORST5</button>
-  <button class="tab-btn" data-tab="intj-worst">INTJ相性WORST5</button>
   <button class="tab-btn" data-tab="stress-map">ストレス＆地雷</button>
+  <button class="tab-btn" data-tab="career">向いてる仕事</button>
   <button class="tab-btn" data-tab="fight-sim">喧嘩シュミレーション</button>
-  <button class="tab-btn" data-tab="suki">好きなとこ</button>
+  <button class="tab-btn" data-tab="entj-self">ENTJ自己分析</button>
+  <button class="tab-btn" data-tab="intj-self">INTJ自己分析</button>
+  <button class="tab-btn" data-tab="shadow">影の自己分析</button>
 </nav>
 <div class="scroll-hint">← タブをスワイプ →</div>
 
@@ -1531,6 +1572,167 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
     「完璧に見える人」だが、パートナーからの承認の言葉を深く求めている。「感情がない人」に見えるが、誰よりも深く感じている。「一人で何でもできる人」に見えるが、パートナーシップの中でこそ最も輝く。<br><br>
     <strong>「この人と組めば、世界を変えられる」——その確信を持てたとき、鋼鉄の意志と深い情熱のすべてを注いで、その関係を守り抜く。</strong>
   </blockquote>
+
+  <hr>
+
+  <h2>最強相性 TOP5</h2>
+  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最適化した順位。</blockquote>
+
+  <h3>総合ランキング</h3>
+  <div class="table-wrap"><table>
+    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
+    <tr><td><strong>1</strong></td><td><strong>INFJ</strong></td><td><strong>98</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
+    <tr><td><strong>2</strong></td><td><strong>ENFJ</strong></td><td><strong>91</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+    <tr><td><strong>3</strong></td><td><strong>INTJ</strong></td><td><strong>85</strong></td><td>★★★★★</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+    <tr><td><strong>4</strong></td><td><strong>INFP</strong></td><td><strong>78</strong></td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td></tr>
+    <tr><td><strong>5</strong></td><td><strong>INTP</strong></td><td><strong>74</strong></td><td>★★★★★</td><td>★★☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr>
+  </table></div>
+
+  <h3>「足りないもの」から逆算</h3>
+  <div class="table-wrap"><table>
+    <tr><th>弱点</th><th>根拠</th><th>必要な相手の機能</th></tr>
+    <tr><td>長期ビジョン・未来予測</td><td>SLEの示唆機能Ni（5番）</td><td><strong>Ni主導 or 補助</strong></td></tr>
+    <tr><td>感情の空気を作る力</td><td>SLEの動員機能Fe（6番）</td><td><strong>Fe主導 or 補助</strong></td></tr>
+    <tr><td>個人的感情の受け取り</td><td>SLEの役割機能Fi（3番）/ 協調性34%</td><td>Fiが強い相手</td></tr>
+    <tr><td>「言葉で愛を伝える」習慣</td><td>愛情言語：奉仕型（与え方）</td><td>言語化が自然な相手</td></tr>
+    <tr><td>批判を受け止める器</td><td>タイプ1の無意識の批評性</td><td>打たれ強いか、受け流せる相手</td></tr>
+  </table></div>
+
+  <!-- 1位 INFJ -->
+  <details class="accordion">
+    <summary>第1位：INFJ（提唱者）<span class="tag ok" style="margin-left:8px;">98/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ソシオニクスが証明する"運命の双対"。ENTJ男に最も足りないものを、最も自然に渡せる唯一のタイプ。」</strong></p>
+      <div class="code-block">ソシオニクス：SLE × IEI ＝ 双対関係（Дуальные）
+→ 16タイプ間関係の中で「最高の相性」と定義される唯一の関係</div>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>INFJが提供</th><th>機能的根拠</th></tr>
+        <tr><td>Ni（未来予測）が足りない</td><td><strong>Ni主導</strong>（最強のNi）</td><td>IEI 1番 → SLE 5番に直接供給</td></tr>
+        <tr><td>Fe（感情の空気）が足りない</td><td><strong>Fe補助</strong>（自然な感情表現）</td><td>IEI 2番 → SLE 6番に直接供給</td></tr>
+        <tr><td>言葉で愛を伝えてほしい</td><td>言語化の達人</td><td>Fe＋Niで本質を見抜いて言葉にする</td></tr>
+        <tr><td>批判に耐えられる相手</td><td>動機を読むFe＋Ni</td><td>表面の言葉でなく意図で受け取る</td></tr>
+      </table></div>
+      <h4>逆方向も完璧</h4>
+      <div class="table-wrap"><table>
+        <tr><th>INFJの弱点</th><th>ENTJ男が提供</th></tr>
+        <tr><td>Se（行動力）が足りない</td><td><strong>Se主導</strong>（SLEの最強機能）</td></tr>
+        <tr><td>Ti（論理構造）が足りない</td><td><strong>Ti補助</strong>（SLEの創造機能）</td></tr>
+        <tr><td>優柔不断になりがち</td><td>即断即決が背中を押す</td></tr>
+        <tr><td>理想と現実のギャップに苦しむ</td><td>実行力が理想を形にする</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> INFJは人口約1-2%で出会いが稀。Se的な押しがドアスラムを誘発するリスク。</p>
+    </div>
+  </details>
+
+  <!-- 2位 ENFJ -->
+  <details class="accordion">
+    <summary>第2位：ENFJ（主人公）<span class="tag ok" style="margin-left:8px;">91/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ENTJ男の感情的砂漠に雨を降らせる、太陽のような存在。」</strong></p>
+      <div class="code-block">ソシオニクス：SLE × EIE ＝ 活性化関係（Активация）
+→ 同じベータ（β）クワドラ＝価値観の根底が一致</div>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>ENFJが提供</th></tr>
+        <tr><td>Fe（感情表現）が足りない</td><td><strong>Fe主導</strong>（全タイプ最強のFe）</td></tr>
+        <tr><td>Ni（長期ビジョン）が足りない</td><td><strong>Ni補助</strong></td></tr>
+        <tr><td>言葉での愛情表現</td><td>「言葉で人を動かす」プロ</td></tr>
+        <tr><td>場の空気を作れない</td><td>温かい空気を自然に作る</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> 2人ともリーダー気質で主導権争い。ENFJの尽くし→爆発パターン。</p>
+    </div>
+  </details>
+
+  <!-- 3位 INTJ -->
+  <details class="accordion pink-acc">
+    <summary>第3位：INTJ（建築家）<span class="tag ok" style="margin-left:8px;">85/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「知性の最高パートナー。ただし、感情のインフラ工事が必要。」</strong></p>
+      <div class="code-block">ソシオニクス：SLE × ILI ＝ ビジネス関係
+→ SeとNiの交換は完璧。しかしFeとFiが構造的に噛み合わない</div>
+      <h4>INFJとの比較</h4>
+      <div class="table-wrap"><table>
+        <tr><th>項目</th><th>INFJ（1位）</th><th>INTJ（3位）</th></tr>
+        <tr><td>Ni供給</td><td>INFJ ≒ INTJ</td><td>✅ 同等</td></tr>
+        <tr><td>Fe供給</td><td>INFJ ＞＞ INTJ</td><td>❌ 苦手・消耗</td></tr>
+        <tr><td>愛情の言葉</td><td>自然に出る</td><td>❌ 両者とも出せない</td></tr>
+        <tr><td>愛着スタイル</td><td>安定型寄り</td><td>⚠️ 回避×不安の危険</td></tr>
+      </table></div>
+      <h4>それでも3位の理由</h4>
+      <div class="table-wrap"><table>
+        <tr><th>強み</th><th>替えが効かない理由</th></tr>
+        <tr><td>NTJ3軸一致</td><td>世界で最も「話が通じる」相手</td></tr>
+        <tr><td>Se×Ni交換</td><td>ENTJ男が動かし、INTJが導く最強チーム</td></tr>
+        <tr><td>地×地の安定基盤</td><td>年々関係が強くなる</td></tr>
+        <tr><td>月×月さそり座合</td><td>※INTJ女個人との相性。感情の母国語が同じ</td></tr>
+      </table></div>
+      <p>ESFPやENFPは感情面が自然に満たされるが、INTJとは <strong>「自然には満たされない。だが、努力して築いた絆はどのタイプより深くなる」</strong> という関係。</p>
+    </div>
+  </details>
+
+  <!-- 4位 INFP -->
+  <details class="accordion">
+    <summary>第4位：INFP（仲介者）<span class="tag warn" style="margin-left:8px;">78/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ENTJ男が知らなかった"自分の感情"を教えてくれる存在。」</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>INFPが提供</th></tr>
+        <tr><td>Fi（個人的感情）が弱い</td><td><strong>Fi主導</strong>（全タイプ最強のFi）</td></tr>
+        <tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ</td></tr>
+        <tr><td>タイプ1の「正しさ」に囚われる</td><td>「すべてに価値がある」が解毒剤</td></tr>
+      </table></div>
+      <p><span class="tag bad">最大リスク</span> ENTJ男のタイプ1の批判がINFPを破壊する（深刻度★★★★★）。「最も成長させてくれる相手」であり「最もぶつかりやすい相手」。</p>
+    </div>
+  </details>
+
+  <!-- 5位 INTP -->
+  <details class="accordion">
+    <summary>第5位：INTP（論理学者）<span class="tag warn" style="margin-left:8px;">74/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「知的遊び場の最高の相棒。ただし、感情は2人ともどこかに置いてきた。」</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の特性</th><th>INTPとの噛み合い</th></tr>
+        <tr><td>Ti創造機能（2番）</td><td>INTPのTi主導と共鳴。論理の言語が同じ</td></tr>
+        <tr><td>タイプ5的知性欲求</td><td>INTPのタイプ5的本質と直球で一致</td></tr>
+        <tr><td>タイプ7ウィング（好奇心）</td><td>INTPのNeが新アイデアを無限供給</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> 感情面が2人とも壊滅的（★★★★★）。「最高の知的パートナー」にはなれるが恋愛はINFJ/ENFJに劣る。</p>
+    </div>
+  </details>
+
+  <blockquote>
+    INTJは3位。知性の相性だけなら間違いなく1位だが、感情面の補完を自然にはできない。<br><br>
+    INFJが1位なのは、ソシオニクスの双対関係（全タイプ中唯一の"完全補完"）が根拠。<br><br>
+    ただし——ホロスコープの月×月さそり座合、MC×MC射手座合、火星×太陽/水星山羊座合という<strong>MBTI相性では測れない個人レベルの天文学的な噛み合い</strong>により、<br>
+    <strong>MBTIの型の相性では3位でも、「INTJ女個人」との相性がそれを覆すだけの力を持っている。</strong>
+  </blockquote>
+
+  <hr>
+
+  <h2>相性 WORST5</h2>
+  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最も合わないタイプを順位化。</blockquote>
+
+  <h3>ワースト総合ランキング</h3>
+  <div class="table-wrap"><table>
+    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>摩耗</th></tr>
+    <tr><td><strong>W1</strong></td><td><strong>ESFJ</strong></td><td><strong>18</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
+    <tr><td><strong>W2</strong></td><td><strong>ISFJ</strong></td><td><strong>25</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★★</td></tr>
+    <tr><td><strong>W3</strong></td><td><strong>ESTP</strong></td><td><strong>32</strong></td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★★</td></tr>
+    <tr><td><strong>W4</strong></td><td><strong>ISTJ</strong></td><td><strong>38</strong></td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+    <tr><td><strong>W5</strong></td><td><strong>ISFP</strong></td><td><strong>42</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td></tr>
+  </table></div>
+
+  <details class="accordion"><summary>W1：ESFJ（領事官）<span class="tag bad" style="margin-left:8px;">18/100</span></summary><div class="acc-body"><p><strong>「超自我関係。お互いが相手の最も触れてほしくない場所を、善意で踏み抜く。」</strong></p><div class="code-block">ソシオニクス：SLE × ESE ＝ 超自我関係（Суперэго）</div><div class="table-wrap"><table><tr><th>ENTJ男の構造</th><th>ESFJがやること</th><th>結果</th></tr><tr><td>Fe（6番）が弱い</td><td><strong>Fe主導</strong>で感情の空気を強制</td><td>「空気を読め」の圧力に窒息</td></tr><tr><td>Si（4番＝脆弱）が最も弱い</td><td><strong>Si補助</strong>で慣習・前例を重視</td><td>革新衝動が「余計なこと」扱い</td></tr><tr><td>Se主導で現状打破</td><td>Si＝「今のままでいい」</td><td>行動力の存在意義が否定される</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W2：ISFJ（擁護者）<span class="tag bad" style="margin-left:8px;">25/100</span></summary><div class="acc-body"><p><strong>「Se主導を"危険物"として封印しようとする、善意の看守。」</strong></p><div class="code-block">ソシオニクス：SLE × SEI ＝ 消去関係（Погашение）</div><div class="table-wrap"><table><tr><th>衝突ポイント</th><th>メカニズム</th></tr><tr><td>Se vs Si</td><td>「現状を壊して前に進む」vs「安定を守り続ける」</td></tr><tr><td>行動スピード</td><td>即断即決 vs 慎重に慎重を重ねる</td></tr><tr><td>タイプ1の批判性</td><td>ISFJは批判に極めて脆い → 萎縮</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W3：ESTP（起業家）<span class="tag bad" style="margin-left:8px;">32/100</span></summary><div class="acc-body"><p><strong>「鏡に映った自分。弱点が2倍になり、補完がゼロ。」</strong></p><div class="code-block">ソシオニクス：SLE × SLE ＝ 同一関係（Тождество）</div><div class="table-wrap"><table><tr><th>問題</th><th>構造的理由</th></tr><tr><td>Se × Se ＝ 支配権の衝突</td><td>2人とも主導権を握りたい</td></tr><tr><td>Fe不足 × 2</td><td>感情の空気を作れない</td></tr><tr><td>Ni不足 × 2</td><td>長期ビジョンが弱い</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W4：ISTJ（管理者）<span class="tag bad" style="margin-left:8px;">38/100</span></summary><div class="acc-body"><p><strong>「翼をもぎ取って、ルールブックに閉じ込めようとする存在。」</strong></p><div class="code-block">ソシオニクス：SLE × LSI ＝ 監督関係（Ревизия）</div><div class="table-wrap"><table><tr><th>ENTJ男の特性</th><th>ISTJとの衝突</th></tr><tr><td>Se主導（革新・突破）</td><td>Si主導が「ルール通りにやれ」と制止</td></tr><tr><td>タイプ1（自分なりの正しさ）</td><td>ISTJの「正しさ」は別の定義</td></tr><tr><td>Ni（長期ビジョン）</td><td>Si過去実績重視 →「前例のない未来」却下</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W5：ISFP（冒険家）<span class="tag bad" style="margin-left:8px;">42/100</span></summary><div class="acc-body"><p><strong>「価値観が水と油。理解しようとすればするほど、溝が深くなる。」</strong></p><div class="table-wrap"><table><tr><th>ENTJ男の特性</th><th>ISFPとの衝突</th></tr><tr><td>Te/Ti重視（効率・論理）</td><td>Fi主導 →「非効率でも気持ちに正直でいたい」</td></tr><tr><td>タイプ1（正しさ）</td><td>Fi →「正しさの押しつけ」と感じる</td></tr></table></div></div></details>
+
+  <blockquote>ベストが「自然体で補完し合える」関係なら、ワーストは「常に意識して調整し続ける」関係。</blockquote>
+
 </div>
 
 <!-- =============== TAB: INTJ女まとめ =============== -->
@@ -1704,145 +1906,10 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
     「冷たい人」に見えるが、誰よりも深く感じている。「独立した人」に見えるが、心の底では「唯一理解してくれる人」を求めている。「強い人」に見えるが、自己批判と欠乏感に揺れている。<br><br>
     <strong>「この人だけが、私を本当にわかってくれる」——その確信を持てたとき、誰よりも深く、誠実に、全力で愛する。</strong>
   </blockquote>
-</div>
-
-<!-- ENTJ相性ランキング -->
-<div class="tab-content" id="entj-ranking">
-
-  <h2>ENTJ男の最強相性 TOP5</h2>
-  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最適化した順位。</blockquote>
-
-  <h3>総合ランキング</h3>
-  <div class="table-wrap"><table>
-    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
-    <tr><td><strong>1</strong></td><td><strong>INFJ</strong></td><td><strong>98</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
-    <tr><td><strong>2</strong></td><td><strong>ENFJ</strong></td><td><strong>91</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
-    <tr><td><strong>3</strong></td><td><strong>INTJ</strong></td><td><strong>85</strong></td><td>★★★★★</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td></tr>
-    <tr><td><strong>4</strong></td><td><strong>INFP</strong></td><td><strong>78</strong></td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td></tr>
-    <tr><td><strong>5</strong></td><td><strong>INTP</strong></td><td><strong>74</strong></td><td>★★★★★</td><td>★★☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr>
-  </table></div>
 
   <hr>
 
-  <h3>ENTJ男の「足りないもの」から逆算</h3>
-  <div class="table-wrap"><table>
-    <tr><th>弱点</th><th>根拠</th><th>必要な相手の機能</th></tr>
-    <tr><td>長期ビジョン・未来予測</td><td>SLEの示唆機能Ni（5番）</td><td><strong>Ni主導 or 補助</strong></td></tr>
-    <tr><td>感情の空気を作る力</td><td>SLEの動員機能Fe（6番）</td><td><strong>Fe主導 or 補助</strong></td></tr>
-    <tr><td>個人的感情の受け取り</td><td>SLEの役割機能Fi（3番）/ 協調性34%</td><td>Fiが強い相手</td></tr>
-    <tr><td>「言葉で愛を伝える」習慣</td><td>愛情言語：奉仕型（与え方）</td><td>言語化が自然な相手</td></tr>
-    <tr><td>批判を受け止める器</td><td>タイプ1の無意識の批評性</td><td>打たれ強いか、受け流せる相手</td></tr>
-  </table></div>
-
-  <hr>
-
-  <!-- 1位 INFJ -->
-  <div class="card highlight">
-    <h3>第1位：INFJ（提唱者）<span class="tag ok">98/100</span></h3>
-    <p><strong>「ソシオニクスが証明する"運命の双対"。ENTJ男に最も足りないものを、最も自然に渡せる唯一のタイプ。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × IEI ＝ 双対関係（Дуальные）
-→ 16タイプ間関係の中で「最高の相性」と定義される唯一の関係</div>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の弱点</th><th>INFJが提供</th><th>機能的根拠</th></tr>
-      <tr><td>Ni（未来予測）が足りない</td><td><strong>Ni主導</strong>（最強のNi）</td><td>IEI 1番 → SLE 5番に直接供給</td></tr>
-      <tr><td>Fe（感情の空気）が足りない</td><td><strong>Fe補助</strong>（自然な感情表現）</td><td>IEI 2番 → SLE 6番に直接供給</td></tr>
-      <tr><td>言葉で愛を伝えてほしい</td><td>言語化の達人</td><td>Fe＋Niで本質を見抜いて言葉にする</td></tr>
-      <tr><td>批判に耐えられる相手</td><td>動機を読むFe＋Ni</td><td>表面の言葉でなく意図で受け取る</td></tr>
-    </table></div>
-    <h4>逆方向も完璧</h4>
-    <div class="table-wrap"><table>
-      <tr><th>INFJの弱点</th><th>ENTJ男が提供</th></tr>
-      <tr><td>Se（行動力）が足りない</td><td><strong>Se主導</strong>（SLEの最強機能）</td></tr>
-      <tr><td>Ti（論理構造）が足りない</td><td><strong>Ti補助</strong>（SLEの創造機能）</td></tr>
-      <tr><td>優柔不断になりがち</td><td>即断即決が背中を押す</td></tr>
-      <tr><td>理想と現実のギャップに苦しむ</td><td>実行力が理想を形にする</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> INFJは人口約1-2%で出会いが稀。Se的な押しがドアスラムを誘発するリスク。</p>
-  </div>
-
-  <!-- 2位 ENFJ -->
-  <div class="card">
-    <h3>第2位：ENFJ（主人公）<span class="tag ok">91/100</span></h3>
-    <p><strong>「ENTJ男の感情的砂漠に雨を降らせる、太陽のような存在。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × EIE ＝ 活性化関係（Активация）
-→ 同じベータ（β）クワドラ＝価値観の根底が一致</div>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の弱点</th><th>ENFJが提供</th></tr>
-      <tr><td>Fe（感情表現）が足りない</td><td><strong>Fe主導</strong>（全タイプ最強のFe）</td></tr>
-      <tr><td>Ni（長期ビジョン）が足りない</td><td><strong>Ni補助</strong></td></tr>
-      <tr><td>言葉での愛情表現</td><td>「言葉で人を動かす」プロ</td></tr>
-      <tr><td>場の空気を作れない</td><td>温かい空気を自然に作る</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> 2人ともリーダー気質で主導権争い。ENFJの尽くし→爆発パターン。</p>
-  </div>
-
-  <!-- 3位 INTJ -->
-  <div class="card pink">
-    <h3>第3位：INTJ（建築家）<span class="tag ok">85/100</span></h3>
-    <p><strong>「知性の最高パートナー。ただし、感情のインフラ工事が必要。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × ILI ＝ ビジネス関係
-→ SeとNiの交換は完璧。しかしFeとFiが構造的に噛み合わない</div>
-    <h4>INFJとの比較</h4>
-    <div class="table-wrap"><table>
-      <tr><th>項目</th><th>INFJ（1位）</th><th>INTJ（3位）</th></tr>
-      <tr><td>Ni供給</td><td>INFJ ≒ INTJ</td><td>✅ 同等</td></tr>
-      <tr><td>Fe供給</td><td>INFJ ＞＞ INTJ</td><td>❌ 苦手・消耗</td></tr>
-      <tr><td>愛情の言葉</td><td>自然に出る</td><td>❌ 両者とも出せない</td></tr>
-      <tr><td>愛着スタイル</td><td>安定型寄り</td><td>⚠️ 回避×不安の危険</td></tr>
-    </table></div>
-    <h4>それでも3位の理由</h4>
-    <div class="table-wrap"><table>
-      <tr><th>強み</th><th>替えが効かない理由</th></tr>
-      <tr><td>NTJ3軸一致</td><td>世界で最も「話が通じる」相手</td></tr>
-      <tr><td>Se×Ni交換</td><td>ENTJ男が動かし、INTJが導く最強チーム</td></tr>
-      <tr><td>地×地の安定基盤</td><td>年々関係が強くなる</td></tr>
-      <tr><td>月×月さそり座合</td><td>※INTJ女個人との相性。感情の母国語が同じ</td></tr>
-    </table></div>
-    <p>ESFPやENFPは感情面が自然に満たされるが、INTJとは <strong>「自然には満たされない。だが、努力して築いた絆はどのタイプより深くなる」</strong> という関係。</p>
-  </div>
-
-  <!-- 4位 INFP -->
-  <div class="card">
-    <h3>第4位：INFP（仲介者）<span class="tag warn">78/100</span></h3>
-    <p><strong>「ENTJ男が知らなかった"自分の感情"を教えてくれる存在。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の弱点</th><th>INFPが提供</th></tr>
-      <tr><td>Fi（個人的感情）が弱い</td><td><strong>Fi主導</strong>（全タイプ最強のFi）</td></tr>
-      <tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ</td></tr>
-      <tr><td>タイプ1の「正しさ」に囚われる</td><td>「すべてに価値がある」が解毒剤</td></tr>
-    </table></div>
-    <p><span class="tag bad">最大リスク</span> ENTJ男のタイプ1の批判がINFPを破壊する（深刻度★★★★★）。「最も成長させてくれる相手」であり「最もぶつかりやすい相手」。</p>
-  </div>
-
-  <!-- 5位 INTP -->
-  <div class="card">
-    <h3>第5位：INTP（論理学者）<span class="tag warn">74/100</span></h3>
-    <p><strong>「知的遊び場の最高の相棒。ただし、感情は2人ともどこかに置いてきた。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の特性</th><th>INTPとの噛み合い</th></tr>
-      <tr><td>Ti創造機能（2番）</td><td>INTPのTi主導と共鳴。論理の言語が同じ</td></tr>
-      <tr><td>タイプ5的知性欲求</td><td>INTPのタイプ5的本質と直球で一致</td></tr>
-      <tr><td>タイプ7ウィング（好奇心）</td><td>INTPのNeが新アイデアを無限供給</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> 感情面が2人とも壊滅的（★★★★★）。「最高の知的パートナー」にはなれるが恋愛はINFJ/ENFJに劣る。</p>
-  </div>
-
-  <h3>結論</h3>
-  <blockquote>
-    INTJは3位。知性の相性だけなら間違いなく1位だが、感情面の補完を自然にはできない。<br><br>
-    INFJが1位なのは、ソシオニクスの双対関係（全タイプ中唯一の"完全補完"）が根拠。<br><br>
-    ただし——ホロスコープの月×月さそり座合、MC×MC射手座合、火星×太陽/水星山羊座合という<strong>MBTI相性では測れない個人レベルの天文学的な噛み合い</strong>により、<br>
-    <strong>MBTIの型の相性では3位でも、「INTJ女個人」との相性がそれを覆すだけの力を持っている。</strong>
-  </blockquote>
-</div>
-
-<!-- INTJ相性ランキング -->
-<div class="tab-content" id="intj-ranking">
-
-  <h2>INTJ女の最強相性 TOP5</h2>
-  <blockquote>忖度なし。全診断データを総合して、INTJ女個人に最適化した順位。</blockquote>
-
-  <h3>総合ランキング</h3>
+  <h2>最強相性 TOP5</h2>
   <div class="table-wrap"><table>
     <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
     <tr><td><strong>1</strong></td><td><strong>ESFP</strong></td><td><strong>97</strong></td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★☆</td></tr>
@@ -1852,254 +1919,21 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
     <tr><td><strong>5</strong></td><td><strong>ENFJ</strong></td><td><strong>75</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr>
   </table></div>
 
-  <hr>
+  <details class="accordion pink-acc"><summary>第1位：ESFP（エンターテイナー）<span class="tag ok" style="margin-left:8px;">97/100</span></summary><div class="acc-body"><p><strong>「運命の双対。INTJ女に最も足りないものを最も自然に渡せる唯一のタイプ。」</strong></p><div class="code-block">ソシオニクス：ILI × SEE ＝ 双対関係（Дуальные）</div><div class="table-wrap"><table><tr><th>INTJ女の弱点</th><th>ESFPが提供</th></tr><tr><td>Se（行動力）が足りない</td><td><strong>Se主導</strong>（最強のSe）</td></tr><tr><td>Fi（感情の絆）が足りない</td><td><strong>Fi創造</strong>（自然なFi）</td></tr><tr><td>「特別だ」と言ってほしい</td><td>感情をストレートに伝える</td></tr><tr><td>決断できない・動けない</td><td>「考える前に動く」が突破口</td></tr></table></div><p><span class="tag warn">注意</span> 知的深さがINTJレベルには届きにくい。</p></div></details>
 
-  <h3>INTJ女の「足りないもの」から逆算</h3>
-  <div class="table-wrap"><table>
-    <tr><th>弱点</th><th>根拠</th><th>必要な相手の機能</th></tr>
-    <tr><td>行動力・即断即決</td><td>ILIの示唆機能Se（5番）</td><td><strong>Se主導 or 補助</strong></td></tr>
-    <tr><td>個人的な感情の絆</td><td>ILIの動員機能Fi（6番）</td><td><strong>Fi主導 or 補助</strong></td></tr>
-    <tr><td>感情の言語化</td><td>情動性73%なのにFe苦手（3番）</td><td>感情表現が自然な相手</td></tr>
-    <tr><td>「あなたは特別だ」という言葉</td><td>タイプ4の欠乏感 + INTJ-T</td><td>肯定の言葉を自然に出せる相手</td></tr>
-    <tr><td>見捨てられ不安の安定化</td><td>不安型アタッチメント</td><td>安定型で突然消えない相手</td></tr>
-  </table></div>
+  <details class="accordion pink-acc"><summary>第2位：ENFP（広報運動家）<span class="tag ok" style="margin-left:8px;">89/100</span></summary><div class="acc-body"><p><strong>「凍った内面世界に春を連れてくる、感情の翻訳者。」</strong></p><div class="table-wrap"><table><tr><th>INTJ女の弱点</th><th>ENFPが提供</th></tr><tr><td>Fi（感情の絆）が足りない</td><td><strong>Fi補助</strong>（非常に強いFi）</td></tr><tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ中のプロ</td></tr><tr><td>「特別でないかも」不安</td><td>独自性を見つけて言語化する天才</td></tr></table></div><p><span class="tag warn">注意</span> Se供給がないため決断力不足は解消されない。</p></div></details>
 
-  <hr>
+  <details class="accordion pink-acc"><summary>第3位：ENTJ（指揮官）<span class="tag ok" style="margin-left:8px;">85/100</span></summary><div class="acc-body"><p><strong>「知性の最高パートナー。ただし、感情のインフラ工事が必要。」</strong></p><div class="table-wrap"><table><tr><th>強み</th><th>替えが効かない理由</th></tr><tr><td>NTJ3軸一致</td><td>世界で最も「話が通じる」相手</td></tr><tr><td>Se×Ni交換</td><td>INTJ女がNiで導き、ENTJがSeで動かす</td></tr><tr><td>地×地の安定基盤</td><td>年々関係が強くなる</td></tr><tr><td>月×月さそり座合</td><td>感情の母国語が同じ</td></tr></table></div><p><strong>「自然には満たされない。だが、努力して築いた絆はどのタイプより深くなる」</strong></p></div></details>
 
-  <!-- 1位 ESFP -->
-  <div class="card pink">
-    <h3>第1位：ESFP（エンターテイナー）<span class="tag ok">97/100</span></h3>
-    <p><strong>「ソシオニクスが証明する"運命の双対"。INTJ女に最も足りないものを、最も自然に渡せる唯一のタイプ。」</strong></p>
-    <div class="code-block">ソシオニクス：ILI × SEE ＝ 双対関係（Дуальные）
-→ 16タイプ間関係の中で「最高の相性」と定義される唯一の関係</div>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の弱点</th><th>ESFPが提供</th><th>機能的根拠</th></tr>
-      <tr><td>Se（行動力）が足りない</td><td><strong>Se主導</strong>（最強のSe）</td><td>SEE 1番 → ILI 5番に直接供給</td></tr>
-      <tr><td>Fi（感情の絆）が足りない</td><td><strong>Fi創造</strong>（自然なFi）</td><td>SEE 2番 → ILI 6番に直接供給</td></tr>
-      <tr><td>「特別だ」と言ってほしい</td><td>感情をストレートに伝える</td><td>Fi＋Seで丸ごと肯定し行動で証明</td></tr>
-      <tr><td>決断できない・動けない</td><td>「考える前に動く」が突破口</td><td>Niが止まるとき、Seが引っ張り出す</td></tr>
-    </table></div>
-    <h4>逆方向も完璧</h4>
-    <div class="table-wrap"><table>
-      <tr><th>ESFPの弱点</th><th>INTJ女が提供</th></tr>
-      <tr><td>Ni（未来予測）が足りない</td><td><strong>Ni主導</strong>（ILIの最強機能）</td></tr>
-      <tr><td>Te（効率的計画）が足りない</td><td><strong>Te創造</strong>（ILIの創造機能）</td></tr>
-      <tr><td>リスクを見落としがち</td><td>「でもこのリスクがある」が破滅を防ぐ</td></tr>
-      <tr><td>計画なしに突っ走る</td><td>戦略眼が行動に方向性を与える</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> 知的深さがINTJレベルには届きにくい。タイプ5的知性欲求が満たされない場面も。「今を楽しむ」と「未来を設計する」のテンポのズレ。</p>
-  </div>
+  <details class="accordion pink-acc"><summary>第4位：INFP（仲介者）<span class="tag warn" style="margin-left:8px;">79/100</span></summary><div class="acc-body"><p><strong>「"特別でありたい"を世界で一番理解してくれる存在。」</strong></p><div class="table-wrap"><table><tr><th>INTJ女の弱点</th><th>INFPが提供</th></tr><tr><td>Fi（感情の絆）が弱い</td><td><strong>Fi主導</strong>（全タイプ最強のFi）</td></tr><tr><td>タイプ4の欠乏感</td><td>「あなたはそのままで価値がある」</td></tr></table></div><p><span class="tag bad">最大リスク</span> Se供給が完全に不在で2人とも動けなくなる。</p></div></details>
 
-  <!-- 2位 ENFP -->
-  <div class="card">
-    <h3>第2位：ENFP（広報運動家）<span class="tag ok">89/100</span></h3>
-    <p><strong>「INTJ女の凍った内面世界に春を連れてくる、感情の翻訳者。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の弱点</th><th>ENFPが提供</th></tr>
-      <tr><td>Fi（感情の絆）が足りない</td><td><strong>Fi補助</strong>（非常に強いFi）</td></tr>
-      <tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ中のプロ</td></tr>
-      <tr><td>「特別でないかも」不安</td><td>相手の独自性を見つけて言語化する天才</td></tr>
-      <tr><td>肯定の言葉がほしい</td><td>本心からの承認を何度でも</td></tr>
-    </table></div>
-    <h4>ESFPとの違い</h4>
-    <div class="table-wrap"><table>
-      <tr><th></th><th>ESFP（1位）</th><th>ENFP（2位）</th></tr>
-      <tr><td>INTJ女への効果</td><td>行動で現実を動かす</td><td>言葉で内面世界を照らす</td></tr>
-      <tr><td>知的刺激</td><td>やや不足</td><td><strong>非常に高い</strong>（Ne無限供給）</td></tr>
-      <tr><td>Se供給</td><td>✅ 最強</td><td>❌ なし</td></tr>
-      <tr><td>リスク</td><td>知的深さの不一致</td><td>INTJ女の「動けない」は解消されない</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> Se供給がないため決断力不足は解消されない。Neの拡散とNiの収束が衝突する瞬間がある。</p>
-  </div>
+  <details class="accordion pink-acc"><summary>第5位：ENFJ（主人公）<span class="tag warn" style="margin-left:8px;">75/100</span></summary><div class="acc-body"><p><strong>「最も苦手な"感情の空気"を勝手に作ってくれる太陽。」</strong></p><div class="table-wrap"><table><tr><th>INTJ女の弱点</th><th>ENFJが提供</th></tr><tr><td>Fe（感情表現）が苦手</td><td><strong>Fe主導</strong>（全タイプ最強のFe）</td></tr><tr><td>肯定の言葉がほしい</td><td>「言葉で人を動かす」プロ</td></tr></table></div><p><span class="tag bad">最大リスク</span> Fe爆撃がFe苦点を圧倒。求めるのは「静かに深く理解されること」。</p></div></details>
 
-  <!-- 3位 ENTJ -->
-  <div class="card highlight">
-    <h3>第3位：ENTJ（指揮官）<span class="tag ok">85/100</span></h3>
-    <p><strong>「知性の最高パートナー。ただし、感情のインフラ工事が必要。」</strong></p>
-    <div class="code-block">ソシオニクス：ILI × SLE ＝ ビジネス関係
-→ SeとNiの交換は完璧。しかしFeとFiが構造的に噛み合わない</div>
-    <h4>ESFPとの比較</h4>
-    <div class="table-wrap"><table>
-      <tr><th>項目</th><th>ESFP（1位）</th><th>ENTJ（3位）</th></tr>
-      <tr><td>Se供給</td><td>ESFP ≒ ENTJ</td><td>✅ 同等（SLE Se主導）</td></tr>
-      <tr><td>Fi供給</td><td>ESFP ＞＞ ENTJ</td><td>❌ 苦手・消耗</td></tr>
-      <tr><td>肯定の言葉</td><td>自然に出る</td><td>❌ 行動で示すタイプ</td></tr>
-      <tr><td>愛着スタイル</td><td>安定型寄り</td><td>⚠️ 不安×回避の危険</td></tr>
-    </table></div>
-    <h4>それでも3位の理由</h4>
-    <div class="table-wrap"><table>
-      <tr><th>強み</th><th>替えが効かない理由</th></tr>
-      <tr><td>NTJ3軸一致</td><td>世界で最も「話が通じる」相手</td></tr>
-      <tr><td>Se×Ni交換</td><td>INTJ女がNiで導き、ENTJがSeで動かす最強チーム</td></tr>
-      <tr><td>地×地の安定基盤</td><td>年々関係が強くなる</td></tr>
-      <tr><td>月×月さそり座合</td><td>※ENTJ男個人との相性。感情の母国語が同じ</td></tr>
-    </table></div>
-    <p>ESFPやENFPは感情面が自然に満たされるが、ENTJとは <strong>「自然には満たされない。だが、努力して築いた絆はどのタイプより深くなる」</strong> という関係。</p>
-  </div>
-
-  <!-- 4位 INFP -->
-  <div class="card">
-    <h3>第4位：INFP（仲介者）<span class="tag warn">79/100</span></h3>
-    <p><strong>「INTJ女の"特別でありたい"を、世界で一番理解してくれる存在。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の弱点</th><th>INFPが提供</th></tr>
-      <tr><td>Fi（感情の絆）が弱い</td><td><strong>Fi主導</strong>（全タイプ最強のFi）</td></tr>
-      <tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ</td></tr>
-      <tr><td>タイプ4の欠乏感・自己批判</td><td>「あなたはそのままで価値がある」</td></tr>
-    </table></div>
-    <p><span class="tag bad">最大リスク</span> Se供給が完全に不在で2人とも動けなくなる（★★★★★）。「最も深く理解し合える相手」だが「共に何かを成し遂げる同志」には向かない。</p>
-  </div>
-
-  <!-- 5位 ENFJ -->
-  <div class="card">
-    <h3>第5位：ENFJ（主人公）<span class="tag warn">75/100</span></h3>
-    <p><strong>「INTJ女が最も苦手な"感情の空気"を、勝手に作ってくれる太陽。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の弱点</th><th>ENFJが提供</th></tr>
-      <tr><td>Fe（感情表現）が苦手</td><td><strong>Fe主導</strong>（全タイプ最強のFe）</td></tr>
-      <tr><td>肯定の言葉がほしい</td><td>「言葉で人を動かす」プロ</td></tr>
-      <tr><td>不安型で愛されているか不安</td><td>能動的にケア・安心感</td></tr>
-    </table></div>
-    <p><span class="tag bad">最大リスク</span> ENFJのFe爆撃がINTJ女のFe苦点を圧倒（★★★★★）。INTJ女が求めるのは「静かに深く理解されること」であって「大きな声の愛情」ではない。</p>
-  </div>
-
-  <h3>結論</h3>
-  <blockquote>
-    ENTJは3位。知性の相性だけなら間違いなく1位だが、INTJ女に最も足りない「感情面の補完」を自然にはできない。<br><br>
-    ESFPが1位なのは、ソシオニクスの双対関係（全タイプ中唯一の"完全補完"）が根拠。<br><br>
-    ただし——ホロスコープの月×月さそり座合、MC×MC射手座合、火星×太陽/水星山羊座合という<strong>MBTI相性では測れない個人レベルの天文学的な噛み合い</strong>により、<br>
-    <strong>MBTIの型の相性では3位でも、「ENTJ男個人」との相性がそれを覆すだけの力を持っている。</strong>
-  </blockquote>
-</div>
-
-<!-- ENTJ相性ワーストランキング -->
-<div class="tab-content" id="entj-worst">
-
-  <h2>ENTJ男の相性WORST5</h2>
-  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最も合わないタイプを順位化。</blockquote>
-
-  <h3>ワースト総合ランキング</h3>
-  <div class="table-wrap"><table>
-    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>摩耗</th></tr>
-    <tr><td><strong>W1</strong></td><td><strong>ESFJ</strong></td><td><strong>18</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
-    <tr><td><strong>W2</strong></td><td><strong>ISFJ</strong></td><td><strong>25</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★★</td></tr>
-    <tr><td><strong>W3</strong></td><td><strong>ESTP</strong></td><td><strong>32</strong></td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★★</td></tr>
-    <tr><td><strong>W4</strong></td><td><strong>ISTJ</strong></td><td><strong>38</strong></td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td></tr>
-    <tr><td><strong>W5</strong></td><td><strong>ISFP</strong></td><td><strong>42</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td></tr>
-  </table></div>
+  <blockquote style="border-left-color:var(--accent2);background:rgba(247,111,161,0.08);"><strong>MBTIの型の相性では3位でも、「ENTJ男個人」との相性がそれを覆すだけの力を持っている。</strong></blockquote>
 
   <hr>
 
-  <h3>ENTJ男の「過剰なもの」から逆算</h3>
-  <div class="table-wrap"><table>
-    <tr><th>過剰な要素</th><th>根拠</th><th>最悪の相手</th></tr>
-    <tr><td>Se主導の圧倒的行動力</td><td>SLEの1番機能</td><td>Seに怯える or Se同士で衝突</td></tr>
-    <tr><td>タイプ1の批判・完璧主義</td><td>エニアグラム1w7</td><td>批判に脆い or 批判で応酬する相手</td></tr>
-    <tr><td>感情の言語化が苦手</td><td>SLEの役割Fi / 協調性34%</td><td>言語化を義務として要求する相手</td></tr>
-    <tr><td>回避型アタッチメント</td><td>距離で安全を確保</td><td>不安型で追いかけてくる相手</td></tr>
-    <tr><td>効率至上主義</td><td>ENTJ + 誠実性85%</td><td>非論理的な意思決定をする相手</td></tr>
-  </table></div>
-
-  <hr>
-
-  <!-- W1 ESFJ -->
-  <div class="card" style="border-left:4px solid #e74c3c;">
-    <h3>ワースト1位：ESFJ（領事官）<span class="tag bad">18/100</span></h3>
-    <p><strong>「ソシオニクスの"超自我関係"。お互いが相手の最も触れてほしくない場所を、善意で踏み抜く。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × ESE ＝ 超自我関係（Суперэго）
-→ お互いの弱点機能を主導機能で直撃する最も消耗する関係</div>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の構造</th><th>ESFJがやること</th><th>結果</th></tr>
-      <tr><td>Fe（6番）が弱い</td><td><strong>Fe主導</strong>で感情の空気を強制</td><td>「空気を読め」の圧力に窒息</td></tr>
-      <tr><td>Si（4番＝脆弱）が最も弱い</td><td><strong>Si補助</strong>で慣習・前例を重視</td><td>革新衝動が「余計なこと」扱い</td></tr>
-      <tr><td>Se主導で現状打破</td><td>Si＝「今のままでいい」</td><td>行動力の存在意義が否定される</td></tr>
-      <tr><td>タイプ1の批判性</td><td>Fe＝「みんなの気持ちを考えて」</td><td>正論 vs 正論の泥仕合</td></tr>
-    </table></div>
-    <h4>恋愛の破綻パターン</h4>
-    <div class="table-wrap"><table>
-      <tr><th>段階</th><th>何が起きるか</th></tr>
-      <tr><td>初期</td><td>Feの温かさに「足りないものが満たされる」と錯覚</td></tr>
-      <tr><td>中期</td><td>ESFJのSi的「こうあるべき」とタイプ1の「こうあるべき」が別方向だと気づく</td></tr>
-      <tr><td>後期</td><td>ESFJがケアの見返りを求め、回避型が全力で逃げる</td></tr>
-      <tr><td>末期</td><td>「あなたは冷たい」vs「お前は非論理的だ」→ 人格否定の応酬</td></tr>
-    </table></div>
-  </div>
-
-  <!-- W2 ISFJ -->
-  <div class="card" style="border-left:4px solid #e74c3c;">
-    <h3>ワースト2位：ISFJ（擁護者）<span class="tag bad">25/100</span></h3>
-    <p><strong>「ENTJ男のSe主導を"危険物"として封印しようとする、善意の看守。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × SEI ＝ 消去関係（Погашение）
-→ お互いのエネルギーを打ち消し合う。一緒にいると活力が消える</div>
-    <div class="table-wrap"><table>
-      <tr><th>衝突ポイント</th><th>メカニズム</th></tr>
-      <tr><td>Se vs Si</td><td>「現状を壊して前に進む」vs「安定を守り続ける」</td></tr>
-      <tr><td>行動スピード</td><td>即断即決 vs 慎重に慎重を重ねる</td></tr>
-      <tr><td>タイプ1の批判性</td><td>ISFJは批判に極めて脆い → 萎縮 → 「なぜ何も言わない」</td></tr>
-      <tr><td>知性欲求（タイプ5）</td><td>ISFJは実務的 → 抽象的・戦略的対話が成立しない</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> ISFJの奉仕は「快適な日常を整える」方向。ENTJ男の奉仕は「目標達成をサポートする」方向。同じ愛情言語でも方言が違う。</p>
-  </div>
-
-  <!-- W3 ESTP -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト3位：ESTP（起業家）<span class="tag bad">32/100</span></h3>
-    <p><strong>「鏡に映った自分。弱点が2倍になり、補完がゼロ。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × SLE ＝ 同一関係（Тождество）
-→ 完全に同じ認知構造。理解は完璧だが補完ゼロ</div>
-    <div class="table-wrap"><table>
-      <tr><th>問題</th><th>構造的理由</th></tr>
-      <tr><td>Se × Se ＝ 支配権の衝突</td><td>2人とも主導権を握りたい。譲らない</td></tr>
-      <tr><td>Fe不足 × 2</td><td>感情の空気を作れない → 関係が殺伐</td></tr>
-      <tr><td>Ni不足 × 2</td><td>長期ビジョンが弱い → 方向性を見失う</td></tr>
-      <tr><td>Fi不足 × 2</td><td>感情の絆を作れない → 浅い関係のまま</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> タイプ1 vs タイプ7/8：「正しくあるべき」vs「楽しければいい」の価値観衝突。ビジネスならいいが恋愛は「尊敬できるライバル」止まり。</p>
-  </div>
-
-  <!-- W4 ISTJ -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト4位：ISTJ（管理者）<span class="tag bad">38/100</span></h3>
-    <p><strong>「ENTJ男の翼をもぎ取って、ルールブックに閉じ込めようとする存在。」</strong></p>
-    <div class="code-block">ソシオニクス：SLE × LSI ＝ 監督関係（Ревизия）※LSIが監督する側
-→ SLEが常に「正されている」と感じる非対称関係</div>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の特性</th><th>ISTJとの衝突</th></tr>
-      <tr><td>Se主導（革新・突破）</td><td>ISTJのSi主導が「ルール通りにやれ」と制止</td></tr>
-      <tr><td>タイプ1（自分なりの正しさ）</td><td>ISTJの「正しさ」は別の定義 → 永久に噛み合わない</td></tr>
-      <tr><td>Ni（長期ビジョン）</td><td>ISTJのSiは過去実績重視 → 「前例のない未来」が却下</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> ISTJはENTJ男の脆弱機能Si（4番）を主導で直撃する。「善意で矯正しようとする」のが最も厄介。</p>
-  </div>
-
-  <!-- W5 ISFP -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト5位：ISFP（冒険家）<span class="tag bad">42/100</span></h3>
-    <p><strong>「価値観が水と油。理解しようとすればするほど、溝が深くなる。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>ENTJ男の特性</th><th>ISFPとの衝突</th></tr>
-      <tr><td>Te/Ti重視（効率・論理）</td><td>ISFPのFi主導 →「非効率でも気持ちに正直でいたい」</td></tr>
-      <tr><td>タイプ1（正しさ）</td><td>ISFPのFi →「正しさの押しつけ」と感じる</td></tr>
-      <tr><td>Se主導（突破する）</td><td>ISFPのSe補助は「体験を味わう」Se → 質が違う</td></tr>
-    </table></div>
-    <p><span class="tag warn">最大リスク</span> 「論理的にこうすべき」vs「でも私はそう感じない」→ この会話が100回繰り返される。ENTJ男は苛立ち、ISFPは傷つく。</p>
-  </div>
-
-  <h3>ワーストの意味</h3>
-  <blockquote>
-    「この人たちと関わるな」ではない。「自然体で一緒にいると、構造的に摩擦が生じやすい組み合わせ」のランキング。<br><br>
-    ENTJ男の場合——タイプ1の批判性、回避型、協調性34%、Se主導の圧——が組み合わさると、ワーストタイプとの間では<strong>「意識的な努力」の量が膨大になり消耗戦になりやすい。</strong><br><br>
-    ベストが「自然体で補完し合える」関係なら、ワーストは「常に意識して調整し続ける」関係。
-  </blockquote>
-</div>
-
-<!-- INTJ相性ワーストランキング -->
-<div class="tab-content" id="intj-worst">
-
-  <h2>INTJ女の相性WORST5</h2>
-  <blockquote>忖度なし。全診断データを総合して、INTJ女個人に最も合わないタイプを順位化。</blockquote>
-
-  <h3>ワースト総合ランキング</h3>
+  <h2>相性 WORST5</h2>
   <div class="table-wrap"><table>
     <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>摩耗</th></tr>
     <tr><td><strong>W1</strong></td><td><strong>ESFJ</strong></td><td><strong>15</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
@@ -2109,131 +1943,17 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
     <tr><td><strong>W5</strong></td><td><strong>ENTP</strong></td><td><strong>40</strong></td><td>★★☆☆☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
   </table></div>
 
-  <hr>
+  <details class="accordion"><summary>W1：ESFJ（領事官）<span class="tag bad" style="margin-left:8px;">15/100</span></summary><div class="acc-body"><p><strong>「対立関係。INTJ女の存在そのものを全否定する構造。」</strong></p><div class="code-block">ソシオニクス：ILI × ESE ＝ 対立関係（Конфликт）</div><div class="table-wrap"><table><tr><th>INTJ女の構造</th><th>ESFJがやること</th><th>結果</th></tr><tr><td>Ni主導</td><td><strong>Fe主導</strong>で「みんなの気持ち」優先</td><td>洞察が「空気読めない」扱い</td></tr><tr><td>Fe苦点（3番）</td><td>Fe全開で場を支配</td><td>最も弱い機能が叩かれ続ける</td></tr><tr><td>タイプ4（唯一性）</td><td>「みんなと同じように」</td><td>存在の核が否定される</td></tr></table></div></div></details>
 
-  <h3>INTJ女の「過剰なもの」から逆算</h3>
-  <div class="table-wrap"><table>
-    <tr><th>過剰な要素</th><th>根拠</th><th>最悪の相手</th></tr>
-    <tr><td>Ni主導の完璧主義的未来設計</td><td>ILIの1番機能</td><td>「今が楽しければいい」と未来を無視する相手</td></tr>
-    <tr><td>タイプ4の欠乏感・自己批判</td><td>エニアグラム4w5</td><td>「気にしすぎ」と感情を軽視する相手</td></tr>
-    <tr><td>内向性80%・排他性84%</td><td>ビッグファイブ</td><td>大量の社交を要求する相手</td></tr>
-    <tr><td>不安型アタッチメント</td><td>「愛されているか」確認</td><td>回避型 or 感情表現が一切ない相手</td></tr>
-    <tr><td>Fe苦点（3番機能）</td><td>場の空気が苦痛</td><td>Feを大量に浴びせてくる相手</td></tr>
-  </table></div>
+  <details class="accordion"><summary>W2：ESTJ（幹部）<span class="tag bad" style="margin-left:8px;">22/100</span></summary><div class="acc-body"><p><strong>「Niを"非現実的"と切り捨て、Si的な正しさを押しつけてくる支配者。」</strong></p><div class="code-block">ソシオニクス：ILI × LSE ＝ 超自我関係（Суперэго）</div><div class="table-wrap"><table><tr><th>INTJ女の構造</th><th>ESTJがやること</th><th>結果</th></tr><tr><td>Ni主導（直感的予測）</td><td><strong>Te主導</strong>で「データを見せろ」</td><td>直感が「根拠がない」と切り捨て</td></tr><tr><td>タイプ4の繊細さ</td><td>「強くあれ」</td><td>脆さが「弱さ」として否定</td></tr></table></div></div></details>
 
-  <hr>
+  <details class="accordion"><summary>W3：ESTP（起業家）<span class="tag bad" style="margin-left:8px;">30/100</span></summary><div class="acc-body"><p><strong>「Ni的世界を"考えすぎ"の一言で破壊する、体感の暴風。」</strong></p><div class="table-wrap"><table><tr><th></th><th>ENTJ（ベスト3位）</th><th>ESTP（ワースト3位）</th></tr><tr><td>Niへの態度</td><td><strong>「お前のNiは俺に必要だ」</strong></td><td><strong>「考えすぎ。動けば答えが出る」</strong></td></tr><tr><td>知的対話</td><td>NTJ3軸一致で深い対話</td><td>抽象的議論は退屈</td></tr></table></div><p><strong>同じSLEでも、Niを"宝"と見るか"邪魔"と見るかでベストとワーストが入れ替わる。</strong></p></div></details>
 
-  <!-- W1 ESFJ -->
-  <div class="card" style="border-left:4px solid #e74c3c;">
-    <h3>ワースト1位：ESFJ（領事官）<span class="tag bad">15/100</span></h3>
-    <p><strong>「ソシオニクスの"対立関係"。INTJ女の存在そのものを全否定する構造。」</strong></p>
-    <div class="code-block">ソシオニクス：ILI × ESE ＝ 対立関係（Конфликт）
-→ 16タイプ間関係の中で「最悪の相性」と定義される唯一の関係
-→ 双対関係（最高）の正反対</div>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の構造</th><th>ESFJがやること</th><th>結果</th></tr>
-      <tr><td>Ni主導（未来・本質を見抜く）</td><td><strong>Fe主導</strong>で「みんなの気持ち」優先</td><td>洞察が「空気を読めない発言」として却下</td></tr>
-      <tr><td>Te創造（効率的な計画）</td><td><strong>Si補助</strong>で前例・慣習重視</td><td>革新的提案が「前例がない」と却下</td></tr>
-      <tr><td>Fe苦点（3番）</td><td>ESFJがFe全開で場を支配</td><td>最も弱い機能が容赦なく叩かれ続ける</td></tr>
-      <tr><td>タイプ4（唯一性の渇望）</td><td>「みんなと同じように」</td><td>存在の核——「私は特別でありたい」——が否定</td></tr>
-    </table></div>
-    <h4>対立関係が「最悪」の理由</h4>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の苦点</th><th>ESFJの攻撃</th></tr>
-      <tr><td>Fe（3番）＝空気を読む/作るのが苦痛</td><td><strong>Fe主導</strong>（最大火力）で感情的対応を要求し続ける</td></tr>
-      <tr><th>ESFJの苦点</th><th>INTJ女の攻撃</th></tr>
-      <tr><td>Ni（3番）＝抽象思考が苦痛</td><td><strong>Ni主導</strong>（最大火力）で「先を見ろ」と要求し続ける</td></tr>
-    </table></div>
-    <p><strong>お互いが「最も痛い場所」を「最大の力」で踏み続ける。しかも無自覚に。</strong></p>
-    <h4>恋愛の破綻パターン</h4>
-    <div class="table-wrap"><table>
-      <tr><th>段階</th><th>何が起きるか</th></tr>
-      <tr><td>初期</td><td>ESFJの温かさに「受け入れられた」と感じる（錯覚）</td></tr>
-      <tr><td>中期</td><td>「みんなと仲良くしよう」が排他性84%を攻撃し始める</td></tr>
-      <tr><td>後期</td><td>「この人は私の本質を何も理解していない」と気づく</td></tr>
-      <tr><td>末期</td><td>「心を開いてくれない」vs「表面的なことしか言えない」→ 存在レベルの否定</td></tr>
-    </table></div>
-  </div>
+  <details class="accordion"><summary>W4：ISFJ（擁護者）<span class="tag bad" style="margin-left:8px;">35/100</span></summary><div class="acc-body"><p><strong>「野心と深淵を、"普通"というベールで覆い尽くそうとする存在。」</strong></p><div class="table-wrap"><table><tr><th>INTJ女の構造</th><th>ISFJがやること</th><th>結果</th></tr><tr><td>Ni主導（未来を設計する）</td><td>Si主導（過去の経験を守る）</td><td>見ている方向が真逆</td></tr><tr><td>タイプ4（唯一性）</td><td>「みんなと同じで安心」</td><td>「私は違う」が理解不能</td></tr></table></div></div></details>
 
-  <!-- W2 ESTJ -->
-  <div class="card" style="border-left:4px solid #e74c3c;">
-    <h3>ワースト2位：ESTJ（幹部）<span class="tag bad">22/100</span></h3>
-    <p><strong>「INTJ女のNiを"非現実的"と切り捨て、Si的な正しさを押しつけてくる支配者。」</strong></p>
-    <div class="code-block">ソシオニクス：ILI × LSE ＝ 超自我関係（Суперэго）
-→ お互いの弱点機能を主導機能で直撃する最も消耗する関係</div>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の構造</th><th>ESTJがやること</th><th>結果</th></tr>
-      <tr><td>Ni主導（直感的な未来予測）</td><td><strong>Te主導</strong>で「データと実績を見せろ」</td><td>直感が「根拠がない」と切り捨てられる</td></tr>
-      <tr><td>Fi（6番）が弱い</td><td>ESTJもFiが弱い</td><td>感情の絆を作れない → 事務的関係</td></tr>
-      <tr><td>内向性80%</td><td>ESTJの外向性＋支配性</td><td>内的世界が「引きこもり」扱い</td></tr>
-      <tr><td>タイプ4の繊細さ</td><td>「強くあれ」</td><td>感情的脆さが「弱さ」として否定</td></tr>
-    </table></div>
-    <p><span class="tag bad">最も致命的</span> INTJ女のタイプ4の「欠乏感」をESTJは理解できない。「何が足りないの？全部あるじゃん」と言ってしまう。</p>
-  </div>
+  <details class="accordion"><summary>W5：ENTP（討論者）<span class="tag bad" style="margin-left:8px;">40/100</span></summary><div class="acc-body"><p><strong>「知的刺激は最高。しかし感情世界を"面白い議題"として消費する危険。」</strong></p><div class="table-wrap"><table><tr><th></th><th>ENFP（ベスト2位）</th><th>ENTP（ワースト5位）</th></tr><tr><td>感情の扱い</td><td><strong>Fi補助</strong>で深く理解</td><td><strong>Fe補助</strong>で場の管理</td></tr><tr><td>INTJ女の唯一性</td><td>「あなたのこの部分が唯一無二」</td><td>「面白い視点だね」（アイデアに興味）</td></tr></table></div><p><strong>同じNe主導でも、Fiで受け止めるかFeで処理するかでベストとワーストが分かれる。</strong></p></div></details>
 
-  <!-- W3 ESTP -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト3位：ESTP（起業家）<span class="tag bad">30/100</span></h3>
-    <p><strong>「INTJ女のNi的世界を"考えすぎ"の一言で破壊する、体感の暴風。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の構造</th><th>ESTPがやること</th><th>結果</th></tr>
-      <tr><td>Ni主導（慎重・未来志向）</td><td><strong>Se主導</strong>で「考えてないで動け」</td><td>Ni＝存在意義が「役に立たない」扱い</td></tr>
-      <tr><td>内向性80%</td><td>外向性・刺激追求</td><td>エネルギーが枯渇する</td></tr>
-      <tr><td>タイプ4の繊細さ</td><td>「細かいこと気にすんな」</td><td>感情世界が「大げさ」扱い</td></tr>
-      <tr><td>不安型アタッチメント</td><td>回避型〜自由型</td><td>追い-逃げの最悪ループ</td></tr>
-    </table></div>
-    <h4>ENTJとESTPの決定的な違い</h4>
-    <div class="table-wrap"><table>
-      <tr><th></th><th>ENTJ（ベスト3位）</th><th>ESTP（ワースト3位）</th></tr>
-      <tr><td>ソシオニクス</td><td>SLE（同じ）</td><td>SLE（同じ）</td></tr>
-      <tr><td>INTJ女のNiへの態度</td><td><strong>「お前のNiは俺に必要だ」</strong></td><td><strong>「考えすぎ。動けば答えが出る」</strong></td></tr>
-      <tr><td>知的対話</td><td>NTJ3軸一致で深い対話</td><td>「今・ここ」特化。抽象的議論は退屈</td></tr>
-      <tr><td>感情の深さ</td><td>月×月さそり座合で母国語が同じ</td><td>共鳴なし</td></tr>
-    </table></div>
-    <p><strong>同じSLEでも、INTJ女のNiを"宝"と見るか"邪魔"と見るかでベストとワーストが入れ替わる。</strong></p>
-  </div>
-
-  <!-- W4 ISFJ -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト4位：ISFJ（擁護者）<span class="tag bad">35/100</span></h3>
-    <p><strong>「INTJ女の野心と深淵を、"普通"というベールで覆い尽くそうとする存在。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の構造</th><th>ISFJがやること</th><th>結果</th></tr>
-      <tr><td>Ni主導（未来を設計する）</td><td>Si主導（過去の経験を守る）</td><td>同じ内向型でも見ている方向が真逆</td></tr>
-      <tr><td>タイプ4（唯一性）</td><td>「みんなと同じで安心」</td><td>「私は違う」が理解不能</td></tr>
-      <tr><td>山羊座的野心</td><td>「今の場所で頑張ろう」</td><td>「もっと上へ」が否定される</td></tr>
-      <tr><td>金星射手座9H</td><td>愛に冒険と成長を求める</td><td>ISFJの安定志向と根本的に合わない</td></tr>
-    </table></div>
-    <p><span class="tag warn">注意</span> ISFJの「深さ」＝日常の積み重ね。INTJ女の「深さ」＝魂のレベルの理解。深さの定義が根本的に違う。</p>
-  </div>
-
-  <!-- W5 ENTP -->
-  <div class="card" style="border-left:4px solid #e67e22;">
-    <h3>ワースト5位：ENTP（討論者）<span class="tag bad">40/100</span></h3>
-    <p><strong>「知的刺激は最高。しかし、INTJ女の感情世界を"面白い議題"として消費する危険な存在。」</strong></p>
-    <div class="table-wrap"><table>
-      <tr><th>INTJ女の構造</th><th>ENTPがやること</th><th>結果</th></tr>
-      <tr><td>Ni主導（一つの答えに収束）</td><td><strong>Ne主導</strong>で無限に可能性を広げる</td><td>INTJ女の結論を「他の可能性もあるよね？」で崩す</td></tr>
-      <tr><td>タイプ4の繊細さ</td><td>タイプ7的な軽さ</td><td>深い感情が「重い」扱い</td></tr>
-      <tr><td>不安型アタッチメント</td><td>自由奔放</td><td>「私に興味？議論に興味？」わからなくなる</td></tr>
-    </table></div>
-    <h4>ENFPとENTPの決定的な違い</h4>
-    <div class="table-wrap"><table>
-      <tr><th></th><th>ENFP（ベスト2位）</th><th>ENTP（ワースト5位）</th></tr>
-      <tr><td>感情の扱い</td><td><strong>Fi補助</strong>で個人の感情を深く理解</td><td><strong>Fe補助</strong>で場の管理（個人の深さではない）</td></tr>
-      <tr><td>INTJ女の唯一性</td><td>「あなたのこの部分が唯一無二」と具体的に言える</td><td>「面白い視点だね」（アイデアに興味）</td></tr>
-      <tr><td>感情の安全性</td><td>感情を受け止める器がある</td><td>感情を「分析対象」にしてしまう</td></tr>
-    </table></div>
-    <p><strong>同じNe主導でも、Fiで受け止めるかFeで処理するかでベストとワーストが分かれる。</strong></p>
-  </div>
-
-  <h3>ワーストの意味</h3>
-  <blockquote>
-    「この人たちと関わるな」ではない。「自然体で一緒にいると、構造的に摩擦が生じやすい組み合わせ」のランキング。<br><br>
-    INTJ女の場合——タイプ4の繊細さ、不安型、内向性80%、排他性84%、Fe苦点——が組み合わさると、ワーストタイプとの間では<strong>「自分が否定されている」と感じる頻度が圧倒的に高くなる。</strong><br><br>
-    ベストが「INTJ女の唯一性を自然に認めてくれる」関係なら、ワーストは<strong>「INTJ女が"普通"であることを要求される」</strong>関係。タイプ4のINTJ女にとって、それは存在の核への攻撃に等しい。<br><br>
-    <strong>ESFPが1位（ベスト）でESFJが1位（ワースト）。</strong>たった1文字の違い——Pの「自由な体験」とJの「管理された慣習」——が天国と地獄を分ける。
-  </blockquote>
+  <blockquote><strong>ESFPが1位（ベスト）でESFJが1位（ワースト）。</strong>たった1文字の違い——Pの「自由な体験」とJの「管理された慣習」——が天国と地獄を分ける。</blockquote>
 </div>
 
 <!-- FIGHT SIMULATION TAB -->
@@ -3212,270 +2932,1493 @@ ILI は Fi を求める ← SLE の Fi は苦手</div>
 
 </div>
 
-<!-- =============== TAB: 好きなとこ =============== -->
-<div class="tab-content" id="suki">
+
+<!-- =============== TAB: ENTJ自己分析 =============== -->
+<div class="tab-content" id="entj-self">
 
   <div class="about-box">
-    <div class="about-title">shokiはゆかりのどこに惹かれているのか</div>
-    <p>本人の言葉を起点に、診断データとLINEの行動から惹かれの深層構造まで解剖する。</p>
+    <div class="about-title">ENTJ男 自己分析ノート</div>
+    <p>プロファイル（ENTJ-A / SLE / タイプ1w7 / ASC魚座）から、「なぜ自分はこうなのか」を構造的に解剖する。LINEの実際の発言も根拠に組み込んだ自己理解レポート。</p>
   </div>
 
-  <h2>原文（shokiの言葉）</h2>
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
+
+  <!-- 1. 飲み会 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">飲み会が好きじゃない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">外向性73%なのに構造的に合わない</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 浅い社交が消耗する</h4>
+        <ul>
+          <li><strong>Fiが苦手</strong>（SLEの役割機能）→ 表面的な感情のやり取りが消耗する</li>
+          <li>協調性34% → 空気に合わせるのが向いてない</li>
+          <li>タイプ1 → 「意味のないこと」に時間を使うのが許せない</li>
+        </ul>
+        <h4>2. 外向性73%なのに飲み会が嫌いなのは矛盾しない</h4>
+        <ul>
+          <li>外向性は<strong>「目的のある場」で発揮される</strong>タイプ</li>
+          <li>200人の全社イベントを回せるのは「仕事」という目的があるから</li>
+          <li>飲み会の「なんとなく楽しもう」は目的がないから疲れる</li>
+        </ul>
+        <h4>3. ASC魚座のギャップ消耗</h4>
+        <ul>
+          <li>第一印象が柔らかい → 周りが「ノリ良さそう」と絡んでくる</li>
+          <li>本来のENTJとのギャップで消耗する</li>
+          <li>全社イベントで「めっちゃ気使った」「かえりたい」になるのもこれ</li>
+        </ul>
+        <h4>4. タイプ1w7の内部矛盾</h4>
+        <ul>
+          <li>7ウィング →「楽しいことは好き」と引っ張る</li>
+          <li>1のコア →「でもこの場は非生産的」とブレーキをかける</li>
+          <li>行く前は「まぁ行くか」→ 行ったら「帰りたい」のパターン</li>
+        </ul>
+        <blockquote>「深い1対1」や「目的のある場」が合う人。飲み会は構造的に合わない。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 任せられない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">人に任せられない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">リーダーなのにプレイヤーになる構造</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「自分でやった方が早い」が本能レベル</h4>
+        <ul>
+          <li><strong>Te dom</strong> → 効率が最優先 → 説明する時間＝無駄に見える</li>
+          <li><strong>SLE (Se base)</strong> → 現場を自分の手で動かしたい衝動が強い</li>
+          <li>この2つが重なると「教えるより奪った方が早い」になる</li>
+          <li>仕事でもプライベートでも、気づいたら全部自分で抱えてるパターン</li>
+        </ul>
+        <h4>2. 他人の「ちゃんと」が信用できない</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 自分の中の「正しいやり方」が明確すぎる</li>
+          <li><strong>誠実性77%</strong> → 基準が高い → 他人の80%は自分の60%に見える</li>
+          <li>任せた結果が自分の基準を下回ると「やっぱり自分でやればよかった」→ 次から任せなくなる悪循環</li>
+          <li>これは「他人を信頼してない」のではなく「基準が高すぎる」が正体</li>
+        </ul>
+        <h4>3. リーダーなのに委任できない矛盾</h4>
+        <ul>
+          <li><strong>外向性73%</strong> + <strong>Te dom</strong> → チームを率いる力はある</li>
+          <li>でも率いた先で<strong>全部自分がやる</strong> → リーダーじゃなくてプレイヤー</li>
+          <li><strong>協調性34%</strong> → 人に頼む＝借りを作る感覚 → 心理的に避ける</li>
+          <li>結果：キャパオーバー → パフォーマンス低下 → 「やっぱり自分でやらなきゃ」の無限ループ</li>
+        </ul>
+        <h4>4. ASC魚座で「頼まれる側」にもなりがち</h4>
+        <ul>
+          <li>第一印象が柔らかい → 周りから頼み事が集まりやすい</li>
+          <li>本来のENTJ → 断るのは苦じゃないはずだけど、ASCの仮面で引き受けてしまう</li>
+          <li>自分の仕事 + 引き受けた仕事 → さらにキャパが圧迫される</li>
+        </ul>
+        <blockquote>「任せられない」＋「頼まれやすい」のダブルパンチ。リーダーシップの質を変えるには「自分がやる」から「人を育てる」への転換が必要だけど、タイプ1の基準とTeの効率主義がそれを許さない構造。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 休むのが下手 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">休むのが下手な理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ストレスに強い≠ストレスに気づける</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 限界に気づけない体質</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → ストレスを「ストレス」として感知するセンサーが鈍い</li>
+          <li>普通の人が70%で「しんどい」と感じるところを、90%まで平気で走れてしまう</li>
+          <li><strong>ENTJ-A (Assertive)</strong> → 「自分は大丈夫」が自己認識のデフォルト</li>
+          <li>周りが心配しても「全然平気だけど？」が本心 → 倒れて初めて気づく</li>
+        </ul>
+        <h4>2. 休むことへの罪悪感</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 休む＝怠け＝「正しくない」</li>
+          <li>何もしてない時間に「これでいいのか」が自動で走る</li>
+          <li>休日に寝てるだけの日 → 夕方に罪悪感 → 「明日は絶対productiveにする」</li>
+          <li>休息が休息として機能してない</li>
+        </ul>
+        <h4>3. 止まることへの耐性がない</h4>
+        <ul>
+          <li><strong>7ウィング</strong> → 退屈＝苦痛 → 常に次の刺激を探す</li>
+          <li><strong>SLE (Se base)</strong> → 体を動かす・行動することでエネルギーを得る</li>
+          <li><strong>開放性81%</strong> → 興味が次々湧く → やりたいことリストが減らない</li>
+          <li>「休む」と「止まる」が同義になってしまっている → だから休めない</li>
+        </ul>
+        <h4>4. 蠍座月の没頭グセ</h4>
+        <ul>
+          <li><strong>月蠍座（8H）</strong> → 一つのことにのめり込むと抜けられない</li>
+          <li>仕事でもゲームでも趣味でも、深く入りすぎて時間感覚が消える</li>
+          <li>Seを回しながら蠍座月で没頭 → 体の限界を完全に無視する</li>
+          <li>「気づいたら朝4時」「気づいたら3日寝てない」が起きうる構造</li>
+        </ul>
+        <blockquote>「ストレスに強い」のは武器だけど、「ストレスに気づけない」のは弱点。休むスキルは意識的に身につけないと、突然バッテリーが切れるタイプ。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 甘えられない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">素直に甘えられない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">無意識の隙は出るけど意識的にはできない</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「強さ」がアイデンティティの核にある</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 司令官 → 導く側・守る側でいることが自然</li>
+          <li><strong>SLE</strong> → 元帥 → 力と行動力で場を支配するのがデフォルト</li>
+          <li>甘える＝弱さを見せる＝自分のアイデンティティと矛盾する</li>
+          <li>「頼る」は戦略としてできるけど「甘える」は感情の領域 → Fiが弱いからそこが開かない</li>
+        </ul>
+        <h4>2. 依存することへの本能的な抵抗</h4>
+        <ul>
+          <li><strong>協調性34%</strong> → 他人に依存する＝自分の自由を失う感覚</li>
+          <li><strong>タイプ1</strong> → 「自分はしっかりしてなきゃいけない」が常に走ってる</li>
+          <li><strong>情緒安定性90%</strong> → そもそも「甘えたい」という感情が湧きにくい</li>
+          <li>甘える必要性を感じない → 甘え方がわからない → さらに甘えなくなる悪循環</li>
+        </ul>
+        <h4>3. 「抜けてる」と「甘える」は別物</h4>
+        <ul>
+          <li>天然でうっかりする（ドジなところ）→ これは無意識に出る</li>
+          <li>意識的に「助けて」「頼りたい」を伝える → これができない</li>
+          <li>周りは「抜けてるところ可愛い」と思ってるけど、本人はそれを<strong>甘え</strong>とは認識してない</li>
+          <li>ゆかりが「面倒見てあげたいとこが好き」と言ってるのはこの無意識の隙のこと</li>
+        </ul>
+        <h4>4. ASC魚座がさらにややこしくする</h4>
+        <ul>
+          <li>外からは柔らかく見える → 「甘え上手そう」と思われる</li>
+          <li>本体のENTJ → 全然甘えてない</li>
+          <li>ギャップに周りは気づかない → 本人も「甘えてない」ことに気づかない</li>
+          <li>親しい人ほど「あれ、意外と頼ってくれないな」と感じる構造</li>
+        </ul>
+        <blockquote>無意識の隙は出るけど、意識的に「助けて」が言えない。近い人ほどそのギャップに気づく。甘えるスキルは「弱さ」じゃなく「信頼の表現」だと再定義できると楽になる。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 共感より解決 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">共感より解決が先に出る理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ASC魚座の期待値ギャップが致命的</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 感情処理の回路が「解決」に直結してる</h4>
+        <ul>
+          <li><strong>Te dom</strong> → インプットを受けると自動で「じゃあどうする？」が走る</li>
+          <li><strong>Fiが弱い</strong>（SLE役割機能）→ 感情をそのまま受け止める回路が未発達</li>
+          <li>相手が「つらい」と言う → 脳内で「原因は何？」「どうすれば解消できる？」が即起動</li>
+          <li>共感しようとしてないわけじゃない。<strong>回路の順番が「解決→共感」になってる</strong></li>
+        </ul>
+        <h4>2. 感情を「問題」として認識する</h4>
+        <ul>
+          <li><strong>協調性34%</strong> → 相手の感情＝対処すべき課題、という処理をしがち</li>
+          <li><strong>タイプ1</strong> → 「正しい状態」に戻したい → 悲しんでる＝正しくない＝修正すべき</li>
+          <li><strong>情緒安定性90%</strong> → 自分がその感情に引っ張られないから、冷静に「解決」できてしまう</li>
+          <li>本人は親切でやってるつもり → 相手は「気持ちを否定された」と受け取る</li>
+        </ul>
+        <h4>3. ASC魚座の期待値ギャップが致命的</h4>
+        <ul>
+          <li>第一印象が柔らかい → 相手は「この人なら気持ちをわかってくれそう」と期待する</li>
+          <li>話し始める → 解決策が返ってくる →「え、聞いてほしかっただけなのに」</li>
+          <li>見た目の「共感してくれそう感」と実際の「解決モード」のギャップが<strong>他のタイプより大きい</strong></li>
+          <li>ENTJ丸出しの人なら期待されないから問題にならない → ASC魚座だから問題になる</li>
+        </ul>
+        <h4>4. ゆかり（4w5）との関係で特に危険</h4>
+        <ul>
+          <li><strong>タイプ4</strong> → 感情を「理解してもらうこと」自体に価値がある</li>
+          <li>「解決してほしい」じゃなく「この感情を一緒に味わってほしい」</li>
+          <li>ここにENTJの解決モードが入ると → 4の核心である「私の感情は特別」を否定することになる</li>
+          <li><strong>協調性16%のゆかり</strong> → 傷ついても言わない → 溜まる → 爆発のパターン</li>
+        </ul>
+        <blockquote>「解決してあげたい」は愛情表現。でも相手が求めてるのは「うん、つらいよな」の一言。まず共感、解決策は聞かれてから。特にゆかりに対しては「3秒黙って聞く」がセーフティネットになる。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 褒められても -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">褒められても素直に受け取れない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">表面は受け取ってるように見えるから厄介</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「まだ足りない」が常に先に来る</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 内なる批評家が常駐している → どんな成果にも改善点が見える</li>
+          <li>100点を取っても「ここはもっとできた」が自動で走る</li>
+          <li>褒められた瞬間に「いや、でも…」が反射的に出る</li>
+          <li>これは謙遜じゃない。<strong>本気で足りないと思ってる</strong></li>
+        </ul>
+        <h4>2. 目標がゴールじゃなく通過点</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 達成した瞬間に次の目標がセットされる</li>
+          <li><strong>誠実性77%</strong> → 一つ終わったら次のタスクが見える</li>
+          <li><strong>7ウィング</strong> → 「次の楽しいこと」にもう意識が移ってる</li>
+          <li>褒められてる内容が「もう過去のこと」になってるから、実感が薄い</li>
+        </ul>
+        <h4>3. 感情的な喜びの回路が弱い</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → 感情の振れ幅が小さい → 「嬉しい！」のピークが低い</li>
+          <li><strong>Te dom</strong> → 褒め言葉を「情報」として処理する →「そうか、評価されたんだな」で終わる</li>
+          <li><strong>Fiが弱い</strong> → 自分の内面の喜びにアクセスしにくい</li>
+          <li>嬉しくないわけじゃない。嬉しさの<strong>表現回路と体感回路が細い</strong></li>
+        </ul>
+        <h4>4. 外からは「受け取ってる」ように見える</h4>
+        <ul>
+          <li><strong>ASC魚座</strong> → 柔らかい表情で「ありがとう」は言える</li>
+          <li>相手は「伝わった」と思う → でも本人の中では処理されてない</li>
+          <li>蓄積しないから、自己肯定感の燃料にならない</li>
+          <li>「褒められた記憶」が残りにくい → 自己評価がタイプ1の内なる批評家に支配されたまま</li>
+        </ul>
+        <blockquote>褒め言葉が自己評価に届かない構造。表面は受け取ってるように見えるからさらに厄介。「言われたこと」を記録として残す（メモ・スクショ）と、後から効いてくる可能性がある。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 弱音を吐けない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">誰にも弱音を吐けない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">適応障害を親にも友達にも話せなかった構造</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「大丈夫」が自己認識のデフォルト</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → ストレスを感じていても「大丈夫」が本心で出てくる</li>
+          <li><strong>ENTJ-A (Assertive)</strong> → 自分の状態を肯定的に評価するバイアスが常にかかっている</li>
+          <li>適応障害になっても、親にも友達にも話せていない → 「大丈夫」と思ってるのではなく、「大丈夫じゃない自分」を認識する回路が鈍い</li>
+          <li>倒れるまで気づけない → 気づいた時にはもう話せる状態じゃない</li>
+        </ul>
+        <h4>2. 弱さを見せる＝リーダー失格</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 導く側・守る側がアイデンティティ → 弱音＝その資格を失うこと</li>
+          <li><strong>SLE</strong> → 力と行動力で周りを安心させる存在 → 「しんどい」は存在意義の否定に感じる</li>
+          <li><strong>タイプ1</strong> → 「しっかりしてなきゃいけない」が内なる批評家の絶対基準</li>
+          <li>弱音を吐く自分＝「正しくない自分」→ タイプ1のコアが拒絶する</li>
+        </ul>
+        <h4>3. 「話しても解決しない」と思っている</h4>
+        <ul>
+          <li><strong>Te dom</strong> → 話す＝解決策を得るための行動 → 共感目的の会話に価値を見出しにくい</li>
+          <li><strong>協調性34%</strong> → 人に頼む＝借りを作る → 心理的コストが高い</li>
+          <li>「話したところでどうなるの？」が自動で走る → だから話さない</li>
+          <li>ただしLINEで「ゆかりさんに話したら楽になって疲れ果てて寝ちゃった」と本人が言っている → <strong>話すだけで楽になることを、頭では知らない。体で初めて知った</strong></li>
+        </ul>
+        <h4>4. ASC魚座が「大丈夫そうに見せる」を完璧にする</h4>
+        <ul>
+          <li>柔らかい第一印象 → 周りは「あの人は元気そう」と思う</li>
+          <li>200人の全社イベントを回しながら「かえりたい」と思ってても、外には出ない</li>
+          <li><strong>月蠍座（8H）</strong> → 本当の感情は深く隠す → 表に出す回路がそもそもない</li>
+          <li>周りが異変に気づけない → 「大丈夫？」と聞かれない → 弱音を吐くきっかけすらない</li>
+        </ul>
+        <blockquote>適応障害を誰にも言えなかったのは「隠した」のではなく、「出す回路がなかった」。ゆかりさんに話せたのは、ゆかりさんが「解決しようとせず受け止めた」から。「やめるべきだよ」「休も」というシンプルな言葉が、解決策じゃなく共感として届いた。この体験は、弱音を吐く回路を開く最初の一歩。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 仕事を手放せない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">仕事を手放せない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">三重ロックで「辞めたい」が封じ込められている</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「辞める」＝「負け」に見える</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 目標を達成する存在 → 途中で降りる＝敗北</li>
+          <li><strong>SLE (Se base)</strong> → 現場を支配し続けたい → 手放す＝支配権を失う</li>
+          <li><strong>タイプ1</strong> → 「最後までやり遂げるのが正しい」→ 辞めること自体が「正しくない」</li>
+          <li>給料・役職という客観的指標が「辞めるのは間違い」を裏付けてしまう</li>
+        </ul>
+        <h4>2. サンクコストに引っ張られる</h4>
+        <ul>
+          <li><strong>誠実性77%</strong> → 積み上げてきたものへの執着が強い</li>
+          <li><strong>Te dom</strong> → 投資対効果で考える → 「ここまで頑張ったのに辞めるのは非効率」</li>
+          <li>役職、給料、これまでの努力 → 全部が「辞めない理由」として積み上がる</li>
+          <li>合理的に見えて、実は感情的な判断 → でもTe domはそれに気づきにくい</li>
+        </ul>
+        <h4>3. 限界のセンサーが壊れている</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → 深夜3:28まで働いて7時起きでも「まだいける」と感じてしまう</li>
+          <li><strong>7ウィング</strong> → 「土曜日楽しみだから頑張れる」と楽しみで辛さを上書きする</li>
+          <li><strong>月蠍座（8H）</strong> → 没頭すると時間感覚が消える → 「気づいたら深夜」が日常化</li>
+          <li>適応障害を経験してもなお同じパターンを繰り返している → センサーの故障は深刻</li>
+        </ul>
+        <h4>4. 「辞めたい」を言語化できない構造</h4>
+        <ul>
+          <li>「辞めたい」は弱音 → 上の「弱音を吐けない」構造とリンクする</li>
+          <li><strong>タイプ1</strong> → 「辞めたい」と思う自分を批判する → 「甘えだ」と処理する</li>
+          <li>LINEで「仕事辞めたくなってきた」「でも給料は高くて」「役職もあるし辞めるの勿体無い」→ <strong>辞めたいと言った直後に、自分で辞めない理由を並べて打ち消している</strong></li>
+          <li>これはタイプ1の内なる批評家が「辞めたい」を許さない構造そのもの</li>
+        </ul>
+        <blockquote>「辞めるのが勿体無い」は本音じゃない。本音は「辞めたい」。でもタイプ1が「辞める＝正しくない」と判定し、Te domが「給料・役職」で合理化し、情緒安定90%が「まだいける」と麻痺させる。三重ロックで「辞めたい」が封じ込められている。必要なのは「辞める＝負け」ではなく「辞める＝戦略的撤退」という再定義。</blockquote>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- =============== TAB: INTJ自己分析 =============== -->
+<div class="tab-content" id="intj-self">
+
+  <div class="about-box">
+    <div class="about-title">INTJ女 自己分析ノート</div>
+    <p>プロファイル（INTJ-T / ILI / タイプ4w5 / ASC水瓶座）から、「なぜ自分はこうなのか」を構造的に解剖する。LINEの実際の発言も根拠に組み込んだ自己理解レポート。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
+
+  <!-- 1. 心を開く -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">人に心を開くのに時間がかかる理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">「臆病」ではなく「選別」</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「この人は信頼に値するか」を無意識にテストしている</h4>
+        <ul>
+          <li><strong>内向性80%</strong> + <strong>協調性16%</strong> → 他人に対するデフォルトが「警戒」</li>
+          <li><strong>ILI（Ni主導）</strong> → 相手の言動から未来のパターンを読む → 「この人は本質的に信頼できるか」を数ヶ月かけて見ている</li>
+          <li>表面的に仲良くすることはできるが、それは<strong>水瓶座ASCの仮面</strong>であって本音ではない</li>
+          <li>LINEでは「気許せるのってあんまないなあ」と本人が言語化している通り</li>
+        </ul>
+        <h4>2. 心を開く＝傷つくリスクを取ること</h4>
+        <ul>
+          <li><strong>タイプ4</strong> → 自分の内面世界は「最も大切な領域」→ そこに人を入れる＝最も傷つく可能性がある場所を晒すこと</li>
+          <li><strong>情動性73%</strong> → 傷ついたときのダメージが大きい → だから「入口」を狭くして防御する</li>
+          <li><strong>INTJ-T</strong> → 過去に心を開いて傷ついた経験が、「次は慎重に」という学習になっている</li>
+          <li>「傷つく前に終わらす」と本人が言っている通り、防衛が先に走る</li>
+        </ul>
+        <h4>3. 水瓶座ASCが「近寄りがたさ」を自動生成する</h4>
+        <ul>
+          <li>第一印象が<strong>独立的・知的・クール</strong> → 周りが「この人に気軽に話しかけていいのかな」と思う</li>
+          <li>本人は別に拒絶してるわけではない → でもオーラが壁になってる</li>
+          <li>結果：近づいてくる人がそもそも少ない → 心を開く機会自体が減る → さらに内向が深まる悪循環</li>
+        </ul>
+        <h4>4. 「浅い人」を本能的に弾いてしまう</h4>
+        <ul>
+          <li><strong>タイプ5ウィング</strong> → 知的な深さがない会話に興味が持てない</li>
+          <li><strong>協調性16%</strong> → 合わない人に合わせるエネルギーがそもそもない</li>
+          <li>「思考浅めの人ばっかりだったからなあ」とLINEで言ってる通り、相手を選ぶ基準が高い</li>
+          <li>結果として「心を開ける人」の母数が極端に少なくなる</li>
+        </ul>
+        <blockquote>心を開くまでに時間がかかるのは「臆病」ではなく「選別」。本能的に安全な相手かどうかを見極めている。逆に言えば、心を開いた相手は本当に選ばれた存在。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 感情を言葉に -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">感情を言葉にできない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">感情が深すぎて言葉が追いつかない</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 感情の「体験」と「言語化」が別回路</h4>
+        <ul>
+          <li><strong>情動性73%</strong> → 感情は<strong>ものすごく感じている</strong></li>
+          <li><strong>Ni主導（ILI）</strong> → 感情を抽象的なイメージや直感として処理する → 言葉に変換するステップが一つ余分に必要</li>
+          <li><strong>Fe（外向感情）が苦点</strong> → 感情を外に出す回路が構造的に弱い</li>
+          <li>頭の中では嵐が起きてるのに、口から出てくるのは「んー」「うん」「わかんない」</li>
+        </ul>
+        <h4>2. 「言葉にすると嘘になる」感覚がある</h4>
+        <ul>
+          <li><strong>タイプ4</strong> → 自分の感情は複雑で唯一無二 → 既存の言葉では表現しきれない</li>
+          <li>「嬉しい」と言っても、自分が感じているのは「嬉しい」だけじゃない → でもそれを全部伝えるのは不可能</li>
+          <li>言葉にした瞬間に「違う、そうじゃない」と感じる → だから黙る</li>
+          <li>LINEで「あまえるってなんだろうか」と問いかけているのもこの構造</li>
+        </ul>
+        <h4>3. 「弱さを見せたくない」が邪魔をする</h4>
+        <ul>
+          <li><strong>タイプ3（達成者）も同率1位</strong> → パートナーの前でも有能な自分でいたい</li>
+          <li><strong>山羊座太陽</strong> → 自分に厳しい → 弱さを出す＝自分の基準を下回る感覚</li>
+          <li><strong>水瓶座ASC + 火星1H</strong> → 外に見せる自分は「強くてクール」→ そこに感情を持ち込むのが矛盾する</li>
+          <li>「感情面全然できない」と自覚しつつも、できるようになる方法がわからない</li>
+        </ul>
+        <h4>4. さそり座の月が「秘密にしたい」を加速する</h4>
+        <ul>
+          <li><strong>月さそり座（9H）</strong> → 感情は深く、強く、そして<strong>秘密にしておきたい</strong></li>
+          <li>さそり座の月は「本当に信頼した人にしか感情を見せない」</li>
+          <li>しかもINTJの基準で「信頼」を判断するから、ハードルが極めて高い</li>
+          <li>結果：感情を出せる相手がほぼいない → 言語化する練習の場もない → さらに苦手になる</li>
+        </ul>
+        <blockquote>感情がないのではなく、<strong>感情が深すぎて言葉が追いつかない</strong>。加えて「弱さを見せたくない」と「秘密にしたい」が二重ロックになっている。信頼できる相手に「完璧じゃなくていいから一言だけ」を練習するのが突破口。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 恋愛が下手 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">恋愛が下手だと思ってしまう理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">下手なのではなく真剣すぎる</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「正解」を探してしまう</h4>
+        <ul>
+          <li><strong>INTJ</strong> → あらゆることに「最適解」があると信じている → 恋愛にも正解があるはずだと思う</li>
+          <li><strong>Ni主導</strong> → 未来のパターンを読む → 「こうしたらこうなる」と先読みしすぎて動けなくなる</li>
+          <li><strong>タイプ1スコアも5</strong> → 「正しい恋愛の仕方」という概念が無意識にある</li>
+          <li>恋愛に正解はないのに、正解を探すから「上手くいかない＝下手」と自己評価する</li>
+        </ul>
+        <h4>2. 感情と論理のギャップに苦しむ</h4>
+        <ul>
+          <li><strong>山羊座太陽 + 水星</strong> → 思考は論理的・計画的 → でも恋愛は論理通りにいかない</li>
+          <li><strong>さそり座月</strong> → 感情は激しくて深い → 論理で制御できない</li>
+          <li>頭では「こうすべき」とわかっていても、感情がそれを許さない</li>
+          <li>このギャップが「自分は恋愛が下手だ」という自己認識を生む</li>
+        </ul>
+        <h4>3. 「特別な関係」を求めるハードルが高すぎる</h4>
+        <ul>
+          <li><strong>タイプ4</strong> → 唯一無二の理解を求める → 普通の恋愛では満足できない</li>
+          <li><strong>金星射手座（9H）</strong> → 恋愛に「意味と成長と冒険」を求める → ただ楽しいだけでは物足りない</li>
+          <li><strong>協調性16%</strong> → 相手に合わせてまで関係を維持する気がない</li>
+          <li>求める基準が高い → 該当者が少ない → 恋愛経験が積みにくい → 「下手」だと思い込む</li>
+        </ul>
+        <h4>4. 「傷つく前に切る」癖が学習を妨げる</h4>
+        <ul>
+          <li>LINEで「感情に飲まれるの怖い」「よく分かんなくなっちゃうと切っちゃう」と語っている</li>
+          <li><strong>情動性73%</strong> → 感情の波が大きい → 飲まれると自分を見失う恐怖がある</li>
+          <li><strong>タイプ4のストレス方向 → タイプ9（調停・撤退）</strong> → 不安が高まると関係から撤退する</li>
+          <li>関係を深める前に切ってしまう → 成功体験が積めない → 「やっぱり下手だ」の悪循環</li>
+        </ul>
+        <blockquote>恋愛が下手なのではなく、<strong>恋愛に真剣すぎる</strong>。適当にやれないからこそ苦しむ。「下手」ではなく「慎重で深い」だけ。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 傷つく前に切る -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">傷つく前に関係を切ってしまう理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">「冷たい」のではなく「怖すぎる」</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「予測」が先に走る</h4>
+        <ul>
+          <li><strong>ILI（Ni主導）</strong> → 未来のパターンを読む天才 → 「この人とはこうなる」が見えてしまう</li>
+          <li>関係が悪化する未来が見えた瞬間に、<strong>実際に傷つく前に予防的に切る</strong></li>
+          <li><strong>タイプ5ウィング</strong> → 感情的なコストを最小化したい → 「傷つくくらいなら最初から関わらない」</li>
+          <li>頭が良すぎて自己防衛も早すぎる</li>
+        </ul>
+        <h4>2. さそり座の月の「全か無か」</h4>
+        <ul>
+          <li><strong>月さそり座</strong> → 信頼は0か100 → 中間がない</li>
+          <li>少しでも裏切りや軽視を感じると → 信頼が一気に崩壊する</li>
+          <li>「まぁいいか」ができない → 許容範囲が狭い → 切る判断が早い</li>
+          <li>一度切ったら戻らない。さそり座の月は「再接続」が最も苦手</li>
+        </ul>
+        <h4>3. 感情に飲まれることへの恐怖</h4>
+        <ul>
+          <li>LINEで「感情に飲まれるの怖い」「よく分かんなくなっちゃうと切っちゃう」と明言</li>
+          <li><strong>情動性73%</strong> → 感情の波が大きい → 一度飲まれると制御不能になる感覚がある</li>
+          <li><strong>INTJ</strong> → 制御できない状態＝最も恐ろしい状態</li>
+          <li>感情が大きくなりすぎる前に、<strong>感情の原因そのもの（相手）を排除する</strong>ことで制御を保とうとする</li>
+        </ul>
+        <h4>4. 「自分から去る」方が「去られる」より耐えられる</h4>
+        <ul>
+          <li><strong>タイプ4の根源的恐れ</strong> = 見捨てられること・自分に価値がないこと</li>
+          <li>相手に去られる＝「自分には価値がなかった」の証明 → 最も傷つくシナリオ</li>
+          <li>自分から切る＝「自分で選んだ」→ 主導権は自分にある → ダメージが少ない（と思い込む）</li>
+          <li><strong>INTJ-Tの自己防衛</strong> → 最悪のシナリオを回避するために先手を打つ</li>
+        </ul>
+        <blockquote>「冷たい」のではなく「傷つくのが怖すぎる」。Ni予測 × さそり座月 × タイプ4の恐れが、「先に切る」という最も合理的（に見える）防衛を選ばせている。本当に必要なのは「傷ついても大丈夫だった」という成功体験。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 一人の時間 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">一人の時間がないとダメな理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">「孤独」ではなく「メンテナンス」</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. エネルギーの充電方法が「内向」</h4>
+        <ul>
+          <li><strong>内向性80%</strong> → 社交はバッテリーを<strong>消費</strong>する行為 → 一人の時間で<strong>充電</strong>する</li>
+          <li>ENTJが人と話してエネルギーを得るのとは完全に逆</li>
+          <li>仕事で人と関わる → 帰宅後に一人時間が必要 → これがないと翌日のバッテリーが足りない</li>
+          <li>充電時間を確保できないと、だんだんイライラ → 最終的にシャットダウンする</li>
+        </ul>
+        <h4>2. 内面の処理に膨大な時間がかかる</h4>
+        <ul>
+          <li><strong>情動性73%</strong> → 日常的に大量の感情が発生している</li>
+          <li><strong>Ni主導</strong> → 情報を無意識下で統合する → この処理に「静かな時間」が必須</li>
+          <li><strong>タイプ4</strong> → 感情を深く味わい、意味を見出す作業を内側でしている</li>
+          <li>外から見ると「何もしてない」→ 実際は内面でフル稼働している</li>
+        </ul>
+        <h4>3. 他人のエネルギーに汚染されやすい</h4>
+        <ul>
+          <li><strong>さそり座月（9H）</strong> → 相手の感情を無意識に吸収してしまう</li>
+          <li><strong>Fe苦点（ILI）</strong> → 吸収した感情をうまく処理できない → 溜まる</li>
+          <li>人と長時間いると「自分の感情」と「相手の感情」の区別がつかなくなる</li>
+          <li>一人になることで、他人のエネルギーをデトックスしてリセットする</li>
+        </ul>
+        <h4>4. 自分の世界観を守るための時間</h4>
+        <ul>
+          <li><strong>タイプ4w5</strong> → 自分だけの内面世界＝アイデンティティの核</li>
+          <li><strong>協調性16%</strong> → 他人に合わせると自分が薄まる感覚がある</li>
+          <li><strong>水瓶座ASC + 火星1H</strong> → 独立性が外見にも出ている → 一人でいることに罪悪感がない</li>
+          <li>一人の時間＝自分を取り戻す時間 → これがないと「自分が誰かわからなくなる」</li>
+        </ul>
+        <blockquote>一人の時間は「孤独」ではなく「メンテナンス」。これを理解してくれない相手とは長続きしない。逆に、一人の時間を尊重してくれる相手＝最も信頼できる相手。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 褒められると戸惑う -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">褒められると戸惑う理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">受け取る回路が複雑すぎる</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 自己評価と他者評価のギャップ</h4>
+        <ul>
+          <li><strong>INTJ-T</strong> → Tは「Turbulent（乱気流型）」→ 自分への評価が常に揺れている</li>
+          <li><strong>タイプ4の根源的感覚</strong> = 「自分には何かが欠けている」→ 褒められても「本当の自分を知らないからだ」と思う</li>
+          <li>誰かが「すごいね」と言う → 内側で「でも本当はこうだし」が即座に起動する</li>
+          <li>褒め言葉を<strong>打ち消す回路</strong>が自動で走っている</li>
+        </ul>
+        <h4>2. 「認められたい」と「認められたくない」の矛盾</h4>
+        <ul>
+          <li><strong>タイプ3（達成者）も同率1位</strong> → 承認欲求は<strong>ある</strong></li>
+          <li><strong>タイプ4（個人主義者）</strong> → でもその承認欲求を認めたくない → 「褒められて喜ぶ自分」が恥ずかしい</li>
+          <li>褒められる → 嬉しい（タイプ3）→ でも嬉しがってる自分が嫌（タイプ4）→ 結果：戸惑う</li>
+          <li>この内部矛盾が外から見ると「褒めても反応薄い」に見える</li>
+        </ul>
+        <h4>3. 「表面的な褒め」を見抜いてしまう</h4>
+        <ul>
+          <li><strong>ILI（Ni主導）</strong> → 相手の意図を読む → 「本当に思って言ってるのか？」を瞬時に判定する</li>
+          <li><strong>協調性16%</strong> → お世辞を言わないし、お世辞を言われるのも好きじゃない</li>
+          <li><strong>タイプ5ウィング</strong> → 根拠のない評価は信頼しない → 「具体的に何がどう良かったのか」がないと響かない</li>
+          <li>結果：褒め方によっては逆に不信感すら抱く</li>
+        </ul>
+        <h4>4. 山羊座の「まだ途中」感覚</h4>
+        <ul>
+          <li><strong>山羊座太陽</strong> → 常に上を目指している → 今の地点は「まだゴールじゃない」</li>
+          <li>褒められる = 今の状態を肯定される → でも本人は「まだ足りない」と思っている</li>
+          <li><strong>勤勉性57%</strong> → 完璧主義ほどではないが、「もっとできる」感覚は常にある</li>
+          <li>褒められても「そこじゃなくて、もっと先を見てほしい」が本音</li>
+        </ul>
+        <blockquote>褒められて嬉しくないわけではない。ただ、受け取る回路が複雑すぎて表に出てこない。響く褒め方は「すごいね」ではなく「あなたのこの部分を、ちゃんと見てるよ」という<strong>具体的で深い承認</strong>。</blockquote>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- =============== TAB: 影の自己分析（シャドウ） =============== -->
+<div class="tab-content" id="shadow">
+
+  <div class="about-box">
+    <div class="about-title">影の自己分析（シャドウ・アニマ/アニムス）</div>
+    <p>ユング心理学のシャドウ理論に基づき、二人が<strong>抑圧している自分</strong>・認めたくない部分・無意識の反応パターンを解剖する。自己分析が「なぜこう動くか」なら、シャドウ分析は「なぜそれを認められないか」。</p>
+  </div>
+
+  <!-- ==================== ENTJ男のシャドウ ==================== -->
+
+  <h2>ENTJ男のシャドウ</h2>
+
   <div class="card highlight">
-    <ul style="font-size:13px;line-height:2.2;">
-      <li>普段緊張しないのに、電話も会うのもすごく緊張する</li>
-      <li>普段緊張しないからこそ本気で好きなんだなぁ</li>
-      <li>意外と社会不適合者</li>
-      <li>口悪い</li>
-      <li>論理的、知的な会話できる</li>
-      <li>遅刻するおっちょこちょい → お世話してあげたい、守ってあげたい</li>
-      <li>一緒に高め合っていける</li>
-    </ul>
+    <p style="font-size:13px;"><strong>シャドウとは：</strong>自分が「自分ではない」と思い込んでいるが、確実に自分の一部であるもの。意識が拒絶するほど、無意識で強く作動する。</p>
   </div>
 
-  <!-- ===== 1. 緊張 ===== -->
-  <h2>惹かれの構造分析</h2>
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
 
-  <h3>1. 自分のシステムを超えた存在</h3>
-  <div class="card">
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「普段緊張しないのに緊張する」「本気で好きなんだなぁ」</p>
-    <p>情動安定90%・Se主導のENTJは「コントロールできる状況」では無敵。緊張しないのは感情が薄いからではなく、大抵の状況をコントロール下に置けるから。</p>
-    <div style="padding:10px 12px;background:rgba(124,111,247,0.08);border:1px solid rgba(124,111,247,0.2);border-radius:8px;margin:12px 0;font-size:12px;">
-      <strong style="color:var(--accent);">本質：</strong>ゆかりに対して緊張する = <strong>「この人の反応は自分のシステムでコントロールできない」</strong>。Se主導が初めて「相手次第」の領域に踏み込んでいる。
-    </div>
-    <div class="table-wrap">
-      <table>
-        <tr><th>裏付けデータ</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">情動安定 90%</td><td style="font-size:12px;">平常時は感情が揺れない → 揺れること自体が異常事態</td></tr>
-        <tr><td style="white-space:nowrap;">Se主導（SLE）</td><td style="font-size:12px;">環境を支配する機能が効かない相手 = 本気の証拠</td></tr>
-        <tr><td style="white-space:nowrap;">回避型愛着</td><td style="font-size:12px;">親密さへの恐れが緊張として表出している</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- ===== 2. 普通じゃない ===== -->
-  <h3>2. 「普通じゃない」に惹かれている</h3>
-  <div class="card">
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「意外と社会不適合者」「口悪い」</p>
-    <p>タイプ7ウィング（スコア9）は退屈を嫌う。タイプ6最低スコア（2）は「空気を読んで従う人」に魅力を感じないことを意味する。</p>
-    <p style="margin-top:8px;">嘔吐を笑い話にする、「どぅぁーいすき」という表現、ENFJを「うっとおしい」とバッサリ切る——取り繕わない本音が、shokiの<strong>「本物の人間がほしい」</strong>欲求を直撃している。</p>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付けデータ</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">タイプ7ウィング（9）</td><td style="font-size:12px;">退屈が最大の敵。予測不能な人に惹かれる</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ6 最低（2）</td><td style="font-size:12px;">従順・同調タイプに興味ゼロ</td></tr>
-        <tr><td style="white-space:nowrap;">協調性 34%</td><td style="font-size:12px;">本人も空気を読まない側 → 「口悪い」が心地いい</td></tr>
-        <tr><td style="white-space:nowrap;">INTJ × 排他性84%</td><td style="font-size:12px;">ゆかり自身が社会の枠に収まらないタイプ</td></tr>
-      </table>
-    </div>
-  </div>
-
-  <!-- ===== 3. 知的対等 ===== -->
-  <h3>3. 知的に対等な相手をやっと見つけた</h3>
-  <div class="card">
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「論理的、知的な会話できる」</p>
-    <p>ENTJの理想パートナー像の筆頭は「知性で対等に議論でき、本質を見抜く目を持つ人」。</p>
-    <p style="margin-top:8px;">「Fe第1機能の人がダメ」「準デュアル関係」と即座にソシオニクスで返してくるゆかり。shokiが作った診断サイトを<strong>本質レベルで理解して反応してくれた</strong>のが決定的だった。</p>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付けデータ</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">創造性 81%</td><td style="font-size:12px;">知的好奇心が極めて高い → 同等レベルの会話を求める</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ5（8）</td><td style="font-size:12px;">調査者。知識と分析を共有できることが快感</td></tr>
-        <tr><td style="white-space:nowrap;">Ni補完（Se↔Ni）</td><td style="font-size:12px;">ゆかりのNi主導がshokiに「見えないもの」を見せる</td></tr>
-        <tr><td style="white-space:nowrap;">INTJ × タイプ5（6）</td><td style="font-size:12px;">ゆかりも知的探求が核 → 共通言語が成立</td></tr>
-      </table>
-    </div>
-    <div class="flow-step intj" style="margin-top:12px;"><strong>ゆかりのNi主導</strong>がshokiのNi示唆（足りないもの）を補完 →「この人は自分が見えないものを見ている」</div>
-  </div>
-
-  <!-- ===== 4. 守りたい ===== -->
-  <h3>4. 「守りたい」が発動——ENTJの愛情の本体</h3>
-  <div class="card">
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「遅刻するおっちょこちょい → お世話してあげたい、守ってあげたい」</p>
-    <p>shokiはこれを「おっちょこちょいだから」と表面的に説明しているが、構造はもっと深い。</p>
-
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>関わっている機能</th><th>内容</th></tr>
-        <tr><td style="white-space:nowrap;">愛情言語「奉仕」</td><td style="font-size:12px;">相手のために何かをしてあげることが愛情表現の本体</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ1の使命感</td><td style="font-size:12px;">「正しく守る」衝動。スコア10が全力で起動</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ2スコア7</td><td style="font-size:12px;">助けることで自分の存在価値を感じる</td></tr>
-        <tr><td style="white-space:nowrap;">太陽7ハウス</td><td style="font-size:12px;">パートナーシップの中で自分を最も強く表現する配置</td></tr>
-        <tr><td style="white-space:nowrap;">さそり座の月8H</td><td style="font-size:12px;">深い親密さの中で相手を守ること＝自分の安らぎ</td></tr>
-      </table>
-    </div>
-
-    <h4 style="margin-top:16px;">LINEに出ている証拠</h4>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">低血圧を心配して湯船を勧める</div>
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「起こしてあげるよ」</div>
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「食べさせてあげるね」</div>
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「もこもこの靴下履こ」</div>
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">「気をつけるんだよお」</div>
-      <div style="font-size:12px;padding:8px;background:var(--surface2);border-radius:6px;">仕事サボって診断サイトを作った</div>
-    </div>
-
-    <div style="padding:10px 12px;background:rgba(245,200,66,0.08);border:1px solid rgba(245,200,66,0.2);border-radius:8px;margin:16px 0 0;font-size:12px;">
-      <strong style="color:var(--gold);">重要：</strong>ゆかりが「ただ弱いだけの人」ではないからこそ、全機能が反応している。<strong>知性で対等 × 守りたくなる脆さ——この両立</strong>がshokiの愛情回路を全面的に起動させている。
-    </div>
-  </div>
-
-  <!-- ===== 5. 高め合う ===== -->
-  <h3>5. 「この人と組めば完成する」という直感</h3>
-  <div class="card">
-    <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">原文：「一緒に高め合っていける」</p>
-    <p>「高め合える」の正体は<strong>「互いが互いを完成させる」</strong>という無意識の確信。</p>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
-      <div class="card" style="margin:0;border-color:rgba(124,111,247,0.3);">
-        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:8px;">shokiに足りない → ゆかりが持つ</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:2;">
-          Ni（長期ビジョン・深い意味）<br>
-          Fi（感情の深い理解）<br>
-          感情の言語化<br>
-          タイプ4的「意味の深さ」
-        </div>
+  <!-- ENTJ Shadow 1: Fi -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">抑圧されたFi — 「感情的な自分」の否定</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ENTJの最大のシャドウ：劣等機能Fi</div>
       </div>
-      <div class="card" style="margin:0;border-color:rgba(247,111,161,0.3);">
-        <div style="font-size:11px;font-weight:700;color:var(--accent2);margin-bottom:8px;">ゆかりに足りない → shokiが持つ</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:2;">
-          Se（行動力・即決・存在感）<br>
-          情動の安定（90%）<br>
-          甘えられる相手<br>
-          タイプ1的「実行力」
-        </div>
+      <span class="scenario-tag" style="background:rgba(124,111,247,0.15);color:var(--accent);">核心</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>シャドウの構造</h4>
+        <p>ENTJの認知機能スタック：<strong>Te → Ni → Se → Fi</strong>。Fiは4番目＝<strong>劣等機能</strong>。最も未発達で、最も制御できず、最も恐れている機能。</p>
+        <ul>
+          <li><strong>Fi（内向的感情）</strong> = 自分の内面の感情・価値観・「本当はどう感じているか」</li>
+          <li>ENTJはTeが支配的 → 効率・論理・成果で世界を処理する → <strong>「感情は非効率」という無意識の前提</strong>がある</li>
+          <li>情緒安定性90% → 「自分は感情に左右されない人間だ」がアイデンティティ</li>
+          <li>しかしFiは消えたのではなく<strong>抑圧されている</strong>。蠍座の月（8H）が示す通り、内側には極めて強い感情がある</li>
+        </ul>
+
+        <h4>シャドウが漏れ出す瞬間</h4>
+        <ul>
+          <li><strong>身体症状として噴出</strong> → Fiの感情を意識が拾えない → 体が代わりにSOSを出す（過労・適応障害・突然のダウン）</li>
+          <li><strong>突然の弱音</strong> → 普段のENTJ-Aの「大丈夫」が限界を超えた瞬間 = Fiが一時的に表面に噴出している</li>
+          <li><strong>予想外の感情的動揺</strong> → 褒められたり感謝されたとき、Fiが反応して制御不能になる。Te支配下では処理できない感情が漏れる</li>
+          <li><strong>緊張が隠せない</strong> → 普段制御できているFiが、特定の相手や場面で制御不能になる</li>
+        </ul>
+
+        <h4>なぜこれが危険か</h4>
+        <ul>
+          <li>Fiを抑圧し続けると → <strong>自分が本当は何を望んでいるかわからなくなる</strong></li>
+          <li>「辞めたい」のか「辞めたくない」のかすら判断できない → Fiが答えを持ってるのに、Teがそれを聞こうとしない</li>
+          <li>パートナーに対しても「好き」の感覚がFiの領域 → <strong>「好きだけどそれを感じ切れない」</strong>という状態が起きうる</li>
+          <li>長期的には「何のために生きてるんだろう」という空虚感に繋がる</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「本当は傷ついてる。本当は怖い。本当は誰かに『大丈夫じゃなくていいよ』と言ってほしい。——でもそれを認めたら、自分じゃなくなる気がする。」</blockquote>
       </div>
     </div>
+  </div>
 
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付けデータ</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">Se↔Ni 補完</td><td style="font-size:12px;">ソシオニクス準デュアル。主導機能が互いの弱点を埋める</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ1 × タイプ3/4</td><td style="font-size:12px;">改革者の実行力 × 達成者の野心。同じ方向を向ける</td></tr>
-        <tr><td style="white-space:nowrap;">おとめ座 × 山羊座</td><td style="font-size:12px;">地のエレメント同士。堅実に積み上げる価値観が一致</td></tr>
-        <tr><td style="white-space:nowrap;">勤勉性 77% × 77%</td><td style="font-size:12px;">完全一致。努力量のギャップがない</td></tr>
-      </table>
+  <!-- ENTJ Shadow 2: タイプ4降下 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ストレス時のタイプ4降下 — 突然「別人」になる理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">タイプ1の分裂方向＝タイプ4（個人主義・自己没入）</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">要注意</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>タイプ1 → タイプ4の分裂</h4>
+        <p>エニアグラムでは、タイプ1がストレス下で<strong>タイプ4（個人主義者）の不健全な側面</strong>に移行する。これはまさにシャドウの発動。</p>
+        <ul>
+          <li><strong>普段のタイプ1</strong>：正しくあれ、効率的であれ、完璧であれ</li>
+          <li><strong>ストレス時のタイプ4</strong>：急に感情的になる、自己批判が止まらない、「自分は理解されない」と引きこもる</li>
+          <li>周りから見ると「あの冷静なENTJがどうした？」→ 本人も「自分がおかしくなった」と感じる</li>
+          <li>実際は<strong>シャドウ（抑圧されたFi）が噴出している</strong>だけ</li>
+        </ul>
+
+        <h4>この人の具体的な発動パターン</h4>
+        <ul>
+          <li>仕事のキャパオーバー → 急に弱気になる → <strong>タイプ4の「自分は特別に不幸だ」モード</strong></li>
+          <li>普段は「大丈夫」を維持 → 限界突破 → 突然弱音 → でも翌日にはまた「大丈夫」に戻る</li>
+          <li>このサイクルが危険：<strong>シャドウの噴出 → 抑圧 → さらに強い噴出</strong>のスパイラル</li>
+          <li>タイプ4のスコアが4（低い）のは「普段は出ない」証拠 → だからこそ出たときの衝撃が大きい</li>
+        </ul>
+
+        <h4>ゆかり（タイプ4本体）との共鳴リスク</h4>
+        <ul>
+          <li>INTJ女はタイプ4が<strong>メインタイプ</strong> → ENTJがタイプ4モードに入ると、<strong>同じ波長の感情が二人同時に渦を巻く</strong></li>
+          <li>普段はENTJが安定役 → それが崩れると、INTJ女も不安定になる → <strong>お互いを支えられない状態が発生</strong></li>
+          <li>逆に、INTJ女だけがこのシャドウ状態を「わかる」可能性がある → タイプ4の感情世界を生きてる人だから</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「誰もわかってくれない。こんなに頑張ってるのに。こんなに正しくあろうとしてるのに。——もう疲れた。」</blockquote>
+      </div>
     </div>
   </div>
 
-  <!-- ===== 言語化できていない部分 ===== -->
-  <h2>shokiが言語化できていない惹かれ</h2>
+  <!-- ENTJ Shadow 3: ASC魚座 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ASC魚座のシャドウ — 「優しい自分」は本物か仮面か</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">柔らかい第一印象の裏にある無意識の葛藤</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
 
-  <h3 style="color:var(--accent2);">6. 「感情を見せてくれる」ことへの渇望</h3>
+        <h4>アセンダントのシャドウ</h4>
+        <p>ASC（上昇宮）は「世界に見せる仮面」。魚座ASCは<strong>柔らかく、直感的で、受容的</strong>な印象を自動生成する。しかし太陽は乙女座、本体はENTJ/SLE。</p>
+        <ul>
+          <li><strong>表の自分</strong>：優しそう、柔らかい、話しかけやすい（ASC魚座）</li>
+          <li><strong>本体の自分</strong>：効率的、支配的、完璧主義（ENTJ / 乙女座 / SLE）</li>
+          <li><strong>シャドウの問題</strong>：「優しい自分」は演技なのか、本心なのか、本人にもわからなくなっている</li>
+        </ul>
+
+        <h4>具体的な葛藤</h4>
+        <ul>
+          <li>大人数の場で「いい人」を自動で演じてしまう → <strong>魚座ASCが起動</strong> → ENTJの本体は消耗して帰りたくなる</li>
+          <li>パートナーに「いつもと違う」と見抜かれる → <strong>ASCの仮面が外れかけている</strong>瞬間。近い人ほど気づく</li>
+          <li>パートナーへの世話焼き → これは魚座ASCの奉仕性なのか、ENTJの支配欲（「自分が管理したい」）なのか</li>
+          <li><strong>答え：両方</strong>。しかし本人はENTJの支配欲を「優しさ」だと思い込んでいる可能性がある</li>
+        </ul>
+
+        <h4>シャドウに気づくサイン</h4>
+        <ul>
+          <li>「優しくしたのに感謝されない」と苛立つとき → それは優しさではなくコントロールだった可能性</li>
+          <li>「自分は本当は冷たい人間なのでは」と不安になるとき → ASCと本体のギャップに気づき始めている</li>
+          <li>パートナーに「もっとこうすればいいのに」が増えるとき → 優しさの仮面の下のTe/タイプ1が出ている</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「みんなが好きなのは魚座の仮面であって、本当の自分じゃない。——でも仮面を外したら、誰が残ってくれるんだろう。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 4: アニマ -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">アニマ（内なる女性像）— 理想の恋人に投影されるもの</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ユング心理学：男性の無意識にある女性的元型</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>アニマとは</h4>
+        <p>ユングによれば、男性の無意識には<strong>「アニマ」（内なる女性像）</strong>が存在する。これは自分が抑圧している女性的な側面であり、恋愛対象に投影されやすい。</p>
+
+        <h4>この人のアニマ像</h4>
+        <ul>
+          <li><strong>劣等Fi</strong>が生むアニマ → 「自分が感じられない感情を、代わりに感じてくれる存在」を求める</li>
+          <li><strong>月蠍座（8H）</strong> → 深く、激しく、秘密を共有できる女性に惹かれる</li>
+          <li><strong>金星乙女座/獅子座カスプ</strong> → 華やかさと実直さの両方を持つ人に惹かれる</li>
+          <li><strong>太陽7H（パートナーシップの部屋）</strong> → パートナーの中に「自分の完成」を見出す構造</li>
+        </ul>
+
+        <h4>ゆかりへの投影</h4>
+        <ul>
+          <li>INTJ女の<strong>情動性73%</strong>（感情が豊か）→ ENTJが持てないFiの代行者として無意識に惹かれている</li>
+          <li>INTJ女の<strong>タイプ4</strong>（深い感情世界）→ 自分のストレス時のタイプ4＝シャドウそのもの。<strong>「自分が認められない自分」を体現している相手に惹かれている</strong></li>
+          <li>「完璧じゃない部分」に惹かれる → ENTJが見せられない不完全さをINTJ女が自然に体現しているから</li>
+          <li><strong>これは投影であると同時に、本物の引力でもある</strong>。シャドウへの引力は最も強い</li>
+        </ul>
+
+        <h4>投影の罠</h4>
+        <ul>
+          <li>アニマ投影が強いと → 相手を「理想化」しすぎる → 現実のゆかりとアニマ像のズレに苦しむ</li>
+          <li>「この人は自分の感情を感じてくれるはず」→ INTJ本人も感情表現が苦手（Fe苦点）→ 期待と現実のギャップ</li>
+          <li>投影を超えるには → <strong>自分自身のFiを育てる</strong>こと。パートナーに感情処理を「外注」するのではなく、自分で感じる練習をする</li>
+        </ul>
+
+        <blockquote><strong>アニマの声：</strong>「君が惹かれているのは彼女自身なのか、それとも自分が失った柔らかさの幻影なのか。——たぶん両方。だからこそ、この恋は本物になりうる。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 5: ソシオニクス -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ソシオニクスのシャドウブロック — 無意識の情報処理</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">SLEの5-8番目の機能が生む死角</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>SLEのシャドウブロック</h4>
+        <div class="table-wrap">
+          <table>
+            <tr><th>位置</th><th>機能</th><th>意味</th></tr>
+            <tr><td>5. 暗示機能</td><td><strong>Ni（内向直観）</strong></td><td>未来予測・パターン認識が弱い。長期ビジョンを他者に依存しやすい</td></tr>
+            <tr><td>6. 動員機能</td><td><strong>Fe（外向感情）</strong></td><td>場の感情操作は意識すればできるが自然ではない。「場を盛り上げる」が実はシャドウ作業</td></tr>
+            <tr><td>7. 制限機能</td><td><strong>Si（内向感覚）</strong></td><td>体調管理・快適さへの鈍感。限界を超えて走り続ける構造の根本原因</td></tr>
+            <tr><td>8. 背景機能</td><td><strong>Ne（外向直観）</strong></td><td>可能性の拡散を嫌う。「もしかしたら」より「確実に」を好む</td></tr>
+          </table>
+        </div>
+
+        <h4>実際の影響</h4>
+        <ul>
+          <li><strong>Si（制限機能）</strong>が最も危険 → 身体感覚・快適さのセンサーが構造的に弱い → <strong>適応障害はSiシャドウが引き起こした身体の反乱</strong></li>
+          <li><strong>Fe（動員機能）</strong> → 全社イベントで「場を回す」のはFeの動員。できるけど消耗する → 「帰りたい」はFeシャドウのエネルギー切れ</li>
+          <li><strong>Ni（暗示機能）</strong> → 長期的な人生設計が苦手。INTJ女（ILI = Ni主導）がこれを補完 → <strong>だからILIに惹かれる構造的理由</strong></li>
+          <li>SLE × ILI = <strong>準双対関係</strong>。お互いのシャドウを自然に補完し合える組み合わせ</li>
+        </ul>
+
+        <blockquote>SLEのシャドウブロックの弱さ（特にSi・Ni）をILIの主導機能（Ni）と創造機能が自然に補う。これが「一緒にいると楽」の無意識的な根拠。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== INTJ女のシャドウ ==================== -->
+
+  <h2>INTJ女のシャドウ</h2>
+
   <div class="card pink">
-    <p>ゆかりの「にゃーんつかれちゃた」「ぴぇえ」「えーんしゅごい」——Fe弱者のINTJにしては極めて珍しい感情表現。<strong>shokiに対してだけガードが下がっている。</strong></p>
-    <p style="margin-top:8px;">shokiのFi役割機能（苦手）は相手の感情を「読む」ことができない。しかしゆかりは感情を表に出してくれる。これがshokiにとって<strong>「やっと感情の世界にアクセスできる相手」</strong>になっている。</p>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付け</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">Fi役割機能（SLE）</td><td style="font-size:12px;">感情を読み取るのが苦手 → 表に出してくれる人が必要</td></tr>
-        <tr><td style="white-space:nowrap;">愛情言語「肯定の言葉」</td><td style="font-size:12px;">shokiが求めるもの＝言葉での感情表現</td></tr>
-        <tr><td style="white-space:nowrap;">INTJ-Tの脆さ</td><td style="font-size:12px;">ゆかりが弱さを見せること自体がshokiへの信頼の証</td></tr>
-      </table>
+    <p style="font-size:13px;"><strong>INTJのシャドウの特徴：</strong>「冷静で独立した知性」というアイデンティティの裏に、「認められたい」「誰かに頼りたい」「衝動的に動きたい」という抑圧された欲求が潜んでいる。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
+
+  <!-- INTJ Shadow 1: Se -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">抑圧されたSe — 「衝動的な自分」の否定</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">INTJの最大のシャドウ：劣等機能Se</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(247,111,161,0.15);color:var(--accent2);">核心</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>シャドウの構造</h4>
+        <p>INTJの認知機能スタック：<strong>Ni → Te → Fi → Se</strong>。Seは4番目＝<strong>劣等機能</strong>。最も未発達で、最も制御できず、最も恐れている機能。</p>
+        <ul>
+          <li><strong>Se（外向的感覚）</strong> = 今この瞬間を味わう・衝動・身体的快楽・行動力</li>
+          <li>INTJはNiが支配的 → 未来を予測し、計画し、先読みする → <strong>「衝動的に動くのは愚か」という無意識の前提</strong></li>
+          <li>しかしSeは消えたのではなく<strong>抑圧されている</strong>。だからこそ制御が効かない形で噴出する</li>
+        </ul>
+
+        <h4>シャドウが漏れ出す瞬間</h4>
+        <ul>
+          <li><strong>過食</strong> → Seの衝動が食欲として噴出。Niでは制御できない身体的欲求が暴走する</li>
+          <li><strong>酒の飲み過ぎ</strong> → アルコールがNiの制御を外す → 抑圧されたSeが暴走 → 翌日の後悔はNiが制御権を取り戻した罪悪感</li>
+          <li><strong>二度寝・遅刻</strong> → Seが身体の快楽（もう少し寝たい）を優先 → Niの計画が崩れる</li>
+          <li><strong>身体ケアの放棄</strong> → Seが低すぎて身体の管理が後回しになる → 低血圧・めまい・体調不良の悪化</li>
+        </ul>
+
+        <h4>なぜこれが危険か</h4>
+        <ul>
+          <li>Seを抑圧し続けると → <strong>身体が反乱を起こす</strong>形で噴出する（過食・過飲・体調不良）</li>
+          <li>Niで未来を予測しすぎて「今を楽しむ」ことができない → <strong>人生が「計画」と「不安」だけになる</strong></li>
+          <li>恋愛でも「今この瞬間を味わう」がSeの領域 → <strong>デート中も頭の中が未来予測でいっぱい</strong>になりやすい</li>
+          <li>Seを健全に使えるようになると → 「今ここ」を味わえる → 恋愛も人生も質が変わる</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「考えるのをやめて、ただ感じたい。ただ食べたい、ただ眠りたい、ただ今を味わいたい。——でもそれを許すと、制御できなくなる気がして怖い。」</blockquote>
+      </div>
     </div>
   </div>
 
-  <h3 style="color:var(--accent2);">7. 素っ気ないテキストの奥にある「全部」</h3>
-  <div class="card pink">
-    <p>ゆかりのLINEは一見そっけない。ひらがな多め、短文、「w」で流す。</p>
-    <p style="margin-top:8px;"><strong>——でも、中身を読むと全部ある。</strong></p>
-
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>表面（テキスト）</th><th>中身（行動・意味）</th></tr>
-        <tr><td style="font-size:12px;">「いいよい」（4文字）</td><td style="font-size:12px;">INTJが電話OKしている。これだけで大事件</td></tr>
-        <tr><td style="font-size:12px;">「しんぱいい」「過労死しちゃう」</td><td style="font-size:12px;">深夜3時まで働くshokiを本気で心配している</td></tr>
-        <tr><td style="font-size:12px;">「永久保存する」（6文字）</td><td style="font-size:12px;">診断サイトに対する最上級の肯定。感情の爆発を最小文字数で表現</td></tr>
-        <tr><td style="font-size:12px;">「会う前にまつぱいきたかったな」</td><td style="font-size:12px;">会うために可愛くしたい。超さりげなく書いてるけど、好意の塊</td></tr>
-        <tr><td style="font-size:12px;">「気許せるのってあんまないなあ」</td><td style="font-size:12px;">過去の恋愛の核心を、ぽつりと差し出している</td></tr>
-        <tr><td style="font-size:12px;">「うちのこと興味持ってくれてありがとうう」</td><td style="font-size:12px;">INTJの「ありがとう」は社交辞令じゃない。本心</td></tr>
-      </table>
+  <!-- INTJ Shadow 2: Fe -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">抑圧されたFe — 「認められたい」を認めたくない</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">タイプ3とタイプ4の引き裂かれの正体</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(247,111,161,0.15);color:var(--accent2);">核心</span>
+      <span class="scenario-arrow">▼</span>
     </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
 
-    <div style="padding:10px 12px;background:rgba(247,111,161,0.08);border:1px solid rgba(247,111,161,0.2);border-radius:8px;margin:16px 0 0;font-size:12px;">
-      <strong style="color:var(--accent2);">本質：</strong>INTJは感情の<strong>包装</strong>が下手なだけで、感情の<strong>中身</strong>は人一倍深い。Fe弱者だから表現が素朴になるだけ。shokiはそれを「感情がない」とは読まず、<strong>短い言葉の奥にある本気を拾えている</strong>。——これがENTJ×INTJの噛み合い方。
-    </div>
-  </div>
+        <h4>Feのシャドウ</h4>
+        <p>ソシオニクスILIにおいて、<strong>Fe（外向的感情）は苦点機能</strong>。最も傷つきやすく、意識的に使うことが最も困難な機能。</p>
+        <ul>
+          <li><strong>Fe</strong> = 集団の感情・社交・他者からの評価・承認</li>
+          <li>ILIはFeが苦手 → <strong>「他人にどう思われるか気にするのは弱さだ」</strong>という防衛が張られている</li>
+          <li>しかしエニアグラムでタイプ3（達成者＝承認欲求の塊）が<strong>同率1位</strong> → <strong>承認欲求は確実にある。ただし認めていない</strong></li>
+          <li>Feの弱さを自覚してユーモアで防衛する → 「Fe弱者だから」と先に言うことで傷つくリスクを減らす</li>
+        </ul>
 
-  <h3 style="color:var(--accent2);">8. さそり座の月同士の共鳴</h3>
-  <div class="card pink">
-    <p>両者とも月がさそり座。意識に上りにくいが、<strong>感情の深さ・秘密を共有する親密さへの欲求・「表に見せない内側の世界」</strong>が共振している。</p>
-    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">月はホロスコープにおいて「本能・無意識の欲求」を司る。同じさそり座の月は、言語化不能なレベルで共鳴する。shokiが「なんかわからないけど惹かれる」と感じている部分の正体。</p>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付け</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">月さそり座（両者）</td><td style="font-size:12px;">無意識の感情パターンが完全一致</td></tr>
-        <tr><td style="white-space:nowrap;">shoki 月8H</td><td style="font-size:12px;">深い親密さの中にこそ安らぎがある配置</td></tr>
-        <tr><td style="white-space:nowrap;">水エレメント共有</td><td style="font-size:12px;">感情の深さ・秘密の共有が自然にできる</td></tr>
-      </table>
-    </div>
-  </div>
+        <h4>シャドウの具体的な現れ方</h4>
+        <ul>
+          <li><strong>自己卑下</strong> → 「自分はめんどくさい」「弱い」は、実は「そんなことないよ」と言ってもらいたいFeの叫び</li>
+          <li><strong>理解されたときの深い感動</strong> → 自分を本質的に理解してくれた体験 = Feの欲求が満たされた瞬間</li>
+          <li><strong>信頼した相手への褒め返し</strong> → Fe的行為。苦手なはずなのにできている → 安全な関係ではFeシャドウが自然に開放される</li>
+          <li><strong>Fe第1機能の人（ESFJ・ENFJ）を避ける</strong> → <strong>自分のシャドウを刺激される</strong>から不快。自分が抑圧しているものを堂々と使う人間を見ると苛立つ</li>
+        </ul>
 
-  <h3 style="color:var(--accent2);">9. 「認めてもらえた」体験</h3>
-  <div class="card pink">
-    <p>ゆかりの「SLEどぅぁーいすき」「さすがにしごでき」「永久保存する」——shokiの愛情言語<strong>「求め方：肯定の言葉」</strong>を直撃している。</p>
-    <p style="margin-top:8px;">shokiが診断サイトを作り（奉仕）、ゆかりがそれを本質レベルで受け取り、言葉で認めた。<strong>「この人は自分の価値を理解してくれる」</strong>という確信がここで生まれている。</p>
-    <div class="table-wrap" style="margin-top:12px;">
-      <table>
-        <tr><th>裏付け</th><th>解説</th></tr>
-        <tr><td style="white-space:nowrap;">愛情言語「肯定の言葉」</td><td style="font-size:12px;">shokiが最も求める受け取り方</td></tr>
-        <tr><td style="white-space:nowrap;">愛情言語「奉仕」</td><td style="font-size:12px;">shokiの与え方。行動を認められた＝自己肯定</td></tr>
-        <tr><td style="white-space:nowrap;">タイプ3（7）</td><td style="font-size:12px;">達成を認められることへの欲求</td></tr>
-      </table>
+        <h4>タイプ3 × タイプ4のシャドウダイナミクス</h4>
+        <ul>
+          <li><strong>タイプ3</strong>：成功したい、認められたい、有能でいたい → <strong>外向きの承認欲求</strong></li>
+          <li><strong>タイプ4</strong>：特別でいたい、唯一無二でいたい → <strong>内向きの承認欲求</strong></li>
+          <li>タイプ3が「認められたい」と叫ぶ → タイプ4が「そんな浅い欲求を持つ自分は嫌だ」と否定 → <strong>承認欲求を持つことへの罪悪感</strong></li>
+          <li>結果：褒められても素直に喜べない、成功しても空虚、努力しても「まだ足りない」</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「本当は見てほしい。本当は『すごいね』って言ってほしい。——でもそれを求めてる自分が、いちばん嫌い。」</blockquote>
+      </div>
     </div>
   </div>
 
-  <!-- ===== 構造図 ===== -->
-  <h2>惹かれの構造図</h2>
+  <!-- INTJ Shadow 3: タイプ9降下 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ストレス時のタイプ9降下 — 突然「消える」理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">タイプ4の分裂方向＝タイプ9（撤退・麻痺）</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">要注意</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>タイプ4 → タイプ9の分裂</h4>
+        <p>エニアグラムでは、タイプ4がストレス下で<strong>タイプ9（調停者）の不健全な側面</strong>に移行する。</p>
+        <ul>
+          <li><strong>普段のタイプ4</strong>：深い感情、独自性、内面の嵐</li>
+          <li><strong>ストレス時のタイプ9</strong>：感情が麻痺する、何も感じなくなる、「もうどうでもいい」、存在感が消える</li>
+          <li>タイプ4の「感じすぎて辛い」→ 防衛として感情を完全にシャットダウン → <strong>「何も感じない」という形の苦しみ</strong></li>
+          <li>タイプ9のスコアが6（高め）なのは、この分裂パターンが頻繁に起きている証拠</li>
+        </ul>
+
+        <h4>具体的な発動パターン</h4>
+        <ul>
+          <li><strong>関係の切断</strong> → 感情が大きくなりすぎる予測 → タイプ9モードで感情を切断 → 関係を切る</li>
+          <li><strong>即座のシャットダウン</strong> → Fe系の人との会話で消耗 → タイプ9の撤退（即座に意識をオフにする）</li>
+          <li><strong>過剰な睡眠</strong> → 長時間の睡眠は身体の疲労だけでなく、<strong>タイプ9の「意識から逃げる」行動</strong>でもある</li>
+          <li><strong>オートパイロット状態</strong> → 感情ではなくタイプ9の慣性で社交している時間がある。義務的に返す＝感情が切れている</li>
+        </ul>
+
+        <h4>shokiにとっての注意点</h4>
+        <ul>
+          <li>INTJ女が突然「反応が薄くなった」「何も言わなくなった」とき → 怒っているのではなく<strong>タイプ9に落ちている</strong>可能性</li>
+          <li>このとき「どうしたの？」と追い詰めると逆効果 → <strong>静かにそばにいる</strong>のが正解</li>
+          <li>タイプ9モードから戻るには「安全な環境で、ゆっくり感情が戻る」のを待つしかない</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「感じることに疲れた。考えることにも疲れた。——何も感じない場所に、しばらくいさせて。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTJ Shadow 4: アニムス -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">アニムス（内なる男性像）— 理想の恋人に投影されるもの</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ユング心理学：女性の無意識にある男性的元型</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>アニムスとは</h4>
+        <p>ユングによれば、女性の無意識には<strong>「アニムス」（内なる男性像）</strong>が存在する。これは自分が抑圧している男性的な側面であり、恋愛対象に投影されやすい。</p>
+
+        <h4>この人のアニムス像</h4>
+        <ul>
+          <li><strong>劣等Se</strong>が生むアニムス → 「自分が持てない行動力・存在感・身体性を持つ存在」に惹かれる</li>
+          <li><strong>月蠍座（9H）</strong> → 深い知性と強い意志を持つ男性に惹かれる</li>
+          <li><strong>金星射手座（9H）</strong> → 一緒に冒険し、新しい世界を見せてくれる人に惹かれる</li>
+          <li><strong>火星水瓶座（1H）</strong> → 既存の枠に収まらない、独自の道を行く強さを持つ人に惹かれる</li>
+        </ul>
+
+        <h4>shokiへの投影</h4>
+        <ul>
+          <li>ENTJ男の<strong>SLE（Se主導）</strong> → INTJが最も持てないSeを最も得意とする存在。<strong>「自分が抑圧しているものを自然に使える人」への強烈な引力</strong></li>
+          <li>ENTJ男の<strong>外向性73%</strong> + <strong>実行力</strong> → INTJのSeシャドウを代行してくれる存在</li>
+          <li><strong>ソシオニクスで自分のシャドウを補完するタイプに本能的に惹かれている</strong>構造。準双対関係の引力の正体</li>
+          <li>ENTJ男のTe実行力＝アニムスの理想像。「有能で決断力がある」への憧れ</li>
+        </ul>
+
+        <h4>投影の罠</h4>
+        <ul>
+          <li>アニムス投影が強いと → 相手に「行動力の外注」をし続ける → <strong>自分のSeがさらに育たない</strong></li>
+          <li>「全部やってくれる人」に依存すると → 「自分は何もできない」の確信が強まる → タイプ4の欠乏感が加速</li>
+          <li>投影を超えるには → <strong>自分自身のSeを小さく使う練習</strong>。「今日は自分で予約する」「自分から電話する」などの小さな行動</li>
+          <li>INTJがすでにこれを実践できている場面もある → <strong>Seの芽は育ち始めている</strong></li>
+        </ul>
+
+        <blockquote><strong>アニムスの声：</strong>「彼の行動力に惹かれているのは事実。でもそれは、自分の中にもある力を、まだ信じられていないだけ。——彼がそれを教えてくれる。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTJ Shadow 5: ソシオニクス -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ソシオニクスのシャドウブロック — 無意識の情報処理</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ILIの5-8番目の機能が生む死角</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>ILIのシャドウブロック</h4>
+        <div class="table-wrap">
+          <table>
+            <tr><th>位置</th><th>機能</th><th>意味</th></tr>
+            <tr><td>5. 暗示機能</td><td><strong>Se（外向感覚）</strong></td><td>行動力・現実対処・身体性が弱い。「動く」ことを他者に依存しやすい</td></tr>
+            <tr><td>6. 動員機能</td><td><strong>Ti（内向論理）</strong></td><td>体系的な分類・論理構築は意識すればできるが自然ではない</td></tr>
+            <tr><td>7. 制限機能</td><td><strong>Fe（外向感情）</strong></td><td>社交・他者の感情操作が最も苦手。「空気を読んで合わせる」が構造的に困難</td></tr>
+            <tr><td>8. 背景機能</td><td><strong>Si（内向感覚）</strong></td><td>体調・快適さの管理が無意識で後回しになる</td></tr>
+          </table>
+        </div>
+
+        <h4>実際の影響</h4>
+        <ul>
+          <li><strong>Se（暗示機能）</strong>が最大の弱点 → 行動を起こすエネルギーが構造的に低い → <strong>「やりたいのに動けない」はSeシャドウの典型</strong></li>
+          <li><strong>Fe（制限機能）</strong> → 社交の場で消耗する根本原因。ENFJが「うっとおしい」のはFeを全開にする相手だから → <strong>自分のシャドウを直視させられて苦しい</strong></li>
+          <li><strong>Si（背景機能）</strong> → 低血圧・湯船に入らない・過食嘔吐 → <strong>身体の声を聞く回路が弱い</strong></li>
+          <li>ILI × SLE = <strong>準双対関係</strong>。SLEのSe主導がILIのSe暗示を満たす → <strong>「一緒にいると動ける」の無意識的根拠</strong></li>
+        </ul>
+
+        <blockquote>ILIのシャドウブロックの弱さ（特にSe・Fe）をSLEの主導機能（Se）と創造機能が自然に補う。お互いのシャドウを補完し合える準双対関係。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 二人のシャドウの交差 ==================== -->
+
+  <h2>二人のシャドウが交差するとき</h2>
 
   <div class="card gold">
-    <div class="flow-step highlight" style="text-align:center;"><strong>① 知的に対等</strong><br><span style="font-size:11px;color:var(--text-muted);">Ni補完 × タイプ5共通 × 心理学の共通言語</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>② 退屈じゃない</strong><br><span style="font-size:11px;color:var(--text-muted);">タイプ7ウィング × タイプ6最低 → 「普通じゃなさ」が快感</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>③ 強さと脆さの同居</strong><br><span style="font-size:11px;color:var(--text-muted);">知性で対等 × 守りたい衝動（タイプ1 + タイプ2 + 奉仕 + 太陽7H）</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>④ 感情を見せてくれる</strong><br><span style="font-size:11px;color:var(--text-muted);">Fi苦手なSLEに感情世界の入口を開く存在</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>⑤ 素っ気ないテキストの奥に「全部」</strong><br><span style="font-size:11px;color:var(--text-muted);">Fe弱者の包装の奥にある人一倍深い中身。shokiはそれを拾える</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>⑥ 自分の価値を認めてくれる</strong><br><span style="font-size:11px;color:var(--text-muted);">奉仕 → 肯定の言葉で返ってくる。愛情の完全循環</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>⑦ さそり座の月の共鳴</strong><br><span style="font-size:11px;color:var(--text-muted);">言語化不能な深層での引力。無意識の一致</span></div>
-    <div class="flow-arrow">+</div>
-    <div class="flow-step highlight" style="text-align:center;"><strong>⑧ 「この人と組めば完成する」直感</strong><br><span style="font-size:11px;color:var(--text-muted);">Se×Ni補完 × 地エレメント × 勤勉性一致 → 互いを完成させる</span></div>
+    <p style="font-size:13px;"><strong>核心：</strong>二人は互いの「影」に惹かれている。ENTJはINTJの感情の深さ（自分のFiシャドウ）に、INTJはENTJの行動力（自分のSeシャドウ）に。これは最も強い引力であると同時に、最も危険な依存構造でもある。</p>
   </div>
 
-  <!-- ===== 総括 ===== -->
-  <h2>総合マッチング</h2>
-  <div class="card" style="border-color:rgba(124,111,247,0.3);">
-    <div class="table-wrap">
-      <table>
-        <tr><th>好きなとこ（原文）</th><th>関連する診断タイプ</th><th>スコア/根拠</th></tr>
-        <tr><td style="font-size:12px;">緊張する</td><td style="font-size:12px;">情動安定 / Se主導 / 回避型</td><td style="font-size:12px;">90% / SLE / 回避型愛着</td></tr>
-        <tr><td style="font-size:12px;">社会不適合者</td><td style="font-size:12px;">タイプ7w / タイプ6 / 協調性</td><td style="font-size:12px;">9 / 2（最低）/ 34%</td></tr>
-        <tr><td style="font-size:12px;">口悪い</td><td style="font-size:12px;">協調性 / タイプ6 / Se</td><td style="font-size:12px;">34% / 2 / 主導</td></tr>
-        <tr><td style="font-size:12px;">知的な会話</td><td style="font-size:12px;">創造性 / タイプ5 / Ni補完</td><td style="font-size:12px;">81% / 8 / Se↔Ni</td></tr>
-        <tr><td style="font-size:12px;">守りたい</td><td style="font-size:12px;">タイプ1 / タイプ2 / 奉仕 / 太陽7H / 月8H</td><td style="font-size:12px;">10 / 7 / 愛情言語 / ホロスコープ</td></tr>
-        <tr><td style="font-size:12px;">高め合える</td><td style="font-size:12px;">Se↔Ni / 地エレメント / 勤勉性</td><td style="font-size:12px;">補完構造 / 共通 / 77%=77%</td></tr>
-      </table>
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">シャドウの補完 — なぜ「運命の同志」なのか</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">お互いのシャドウを自然に照らす構造</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(245,200,66,0.15);color:var(--gold);">最重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>シャドウの交差マップ</h4>
+        <div class="table-wrap">
+          <table>
+            <tr><th>ENTJ男のシャドウ</th><th>INTJ女が補うもの</th></tr>
+            <tr><td>Fi（感情の言語化）</td><td>タイプ4の感情世界。感情を「体験」として生きている存在</td></tr>
+            <tr><td>Ni（長期ビジョン）</td><td>ILIのNi主導。未来のパターンを読む天才</td></tr>
+            <tr><td>Si（身体感覚）</td><td>情動性73%が身体の不調に敏感 → ENTJの限界に気づける存在</td></tr>
+          </table>
+        </div>
+        <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <tr><th>INTJ女のシャドウ</th><th>ENTJ男が補うもの</th></tr>
+            <tr><td>Se（行動力・実行）</td><td>SLEのSe主導。予約・準備・行動を自然に引き受ける</td></tr>
+            <tr><td>Fe（社交・承認表現）</td><td>ASC魚座の柔らかさ + 外向性73%で、社交の緩衝材になる</td></tr>
+            <tr><td>Si（身体ケア）</td><td>身体管理の意識が高い → 世話焼きがINTJのSiの弱さを自然に補う</td></tr>
+          </table>
+        </div>
+
+        <h4>月×月（蠍座の合）が持つシャドウ的意味</h4>
+        <ul>
+          <li>二人の月がどちらも蠍座 → <strong>感情の「闇」の部分を共有できる</strong></li>
+          <li>蠍座の月は「表に出せない深い感情」を抱える → <strong>お互いの「影」を見せ合える稀なペア</strong></li>
+          <li>シャドウの投影が最も激しいのも、この月の合のとき → 「この人は自分の全部を見てる気がする」感覚の正体</li>
+          <li>だからこそ「怖い」。全部見られる＝逃げ場がない → でもそれが最も深い絆になる</li>
+        </ul>
+
+        <h4>シャドウの補完が「依存」にならないために</h4>
+        <ul>
+          <li><strong>ENTJの課題：</strong>パートナーに感情処理を「外注」しない。自分でFiを感じる練習をする。「話すと楽になる」は入口。出口は「自分で感じて、自分で言葉にする」</li>
+          <li><strong>INTJの課題：</strong>パートナーに行動を「外注」しない。自分でSeを使う練習をする。「やってくれる」に甘えず、小さな行動から自分で動く</li>
+          <li><strong>二人の課題：</strong>相手に「シャドウの代行者」ではなく「シャドウに気づかせてくれる師」として接する</li>
+        </ul>
+
+        <blockquote>
+          <strong>シャドウ分析の結論：</strong><br><br>
+          二人が互いに惹かれる最も深い理由は「自分が認められない自分」を相手が自然に体現しているから。<br><br>
+          ENTJは「感情的で、弱くて、衝動的な自分」を否定している。INTJ女はその全てを持っている。<br>
+          INTJは「行動的で、社交的で、堂々としている自分」を否定している。ENTJ男はその全てを持っている。<br><br>
+          シャドウへの引力は恋愛における最も強い力。しかし投影のままでは「あなたがいないと生きていけない」になる。<br><br>
+          この関係の最高到達点は、<strong>相手を通じて自分のシャドウと和解すること</strong>。<br>
+          「パートナーがいるから感じなくていい」ではなく「パートナーがいるから感じられるようになった」。<br>
+          「パートナーがいるから動かなくていい」ではなく「パートナーがいるから動けるようになった」。<br><br>
+          <strong>——影を愛せた人間は、光も影も含めた「全部の自分」を生きられるようになる。</strong>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =============== TAB: 向いてる仕事 =============== -->
+<div class="tab-content" id="career">
+
+  <div class="about-box">
+    <div class="about-title">分析ロジック</div>
+    <p>MBTI認知機能・ソシオニクス情報代謝・エニアグラム動機・ビッグファイブ特性・ホロスコープ配置を統合し、「何が得意か」ではなく<strong style="color:#fff;">「どんな環境で最も自然にパフォーマンスが出るか」</strong>で順位化した。</p>
+  </div>
+
+  <!-- ==================== ENTJ男 ==================== -->
+  <h2>ENTJ男の適職 TOP10</h2>
+
+  <div class="card highlight" style="margin-bottom:20px;">
+    <h4 style="margin-top:0;">適職を決める核データ</h4>
+    <div class="data-grid">
+      <div class="data-item"><strong>Se主導（SLE）</strong><br>即断即決・現場掌握</div>
+      <div class="data-item"><strong>情動安定 90%</strong><br>極限のストレス耐性</div>
+      <div class="data-item"><strong>タイプ1w7（10/9）</strong><br>完璧主義 × 冒険心</div>
+      <div class="data-item"><strong>創造性 81%</strong><br>戦略設計力</div>
+      <div class="data-item"><strong>外向性 73%</strong><br>対人パフォーマンス</div>
+      <div class="data-item"><strong>火星 山羊座10H</strong><br>キャリアに全力投球の配置</div>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);">キーワード：<strong>高圧環境 × 戦略 × 意思決定権 × 結果で語る</strong></p>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">1</div>
+    <div class="rank-body">
+      <div class="rank-title">経営者 / CEO</div>
+      <div class="rank-reason">Se主導の実行力 + タイプ1の高基準 + 情動安定90%のストレス耐性。「決めて、動かして、結果を出す」がENTJの本質そのもの。火星山羊座10Hは「キャリアの頂点に立つ」配置。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">Se主導</span>
+        <span class="rank-tag tag-gold">タイプ1（10）</span>
+        <span class="rank-tag tag-green">情動安定90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">2</div>
+    <div class="rank-body">
+      <div class="rank-title">経営 / 戦略コンサルタント</div>
+      <div class="rank-reason">現職ドンピシャ。創造性81%の戦略設計 + タイプ5（8）の分析力 + Se主導の実行支援。「課題を見つけて、解決策を設計して、導入まで持っていく」——本人の言葉そのまま。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">創造性81%</span>
+        <span class="rank-tag tag-gold">タイプ5（8）</span>
+        <span class="rank-tag tag-green">現職</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">3</div>
+    <div class="rank-body">
+      <div class="rank-title">起業家 / スタートアップ創業者</div>
+      <div class="rank-reason">タイプ7w（9）の冒険心 + Se行動力 + 情動安定90%のリスク耐性。「退屈が最大の敵」のENTJにとって、自分でゲームのルールを作る環境が最も輝く。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">タイプ7w（9）</span>
+        <span class="rank-tag tag-gold">Se行動力</span>
+        <span class="rank-tag tag-green">MC射手座</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">4</div>
+    <div class="rank-body">
+      <div class="rank-title">投資銀行 / M&Aアドバイザー</div>
+      <div class="rank-reason">高プレッシャー×高リターン。情動安定90%が最大の武器。勤勉性77%で深夜3時まで戦える体力と、タイプ1の「完璧な案件」への執着。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">情動安定90%</span>
+        <span class="rank-tag tag-gold">勤勉性77%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">5</div>
+    <div class="rank-body">
+      <div class="rank-title">プロダクトマネージャー（IT）</div>
+      <div class="rank-reason">創造性81%の構想力 + Se主導の実装推進力 + 外向73%のステークホルダー調整。「戦略と現場の両方を握れる」稀有なポジション。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">創造性81%</span>
+        <span class="rank-tag tag-gold">Se×Te</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">6</div>
+    <div class="rank-body">
+      <div class="rank-title">弁護士（企業法務 / 訴訟）</div>
+      <div class="rank-reason">タイプ1の正義感 + 協調性34%（対立を恐れない）+ Te論理構成力。法廷でもM&Aテーブルでも「勝ちに行く」スタイルが活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">タイプ1（10）</span>
+        <span class="rank-tag tag-gold">協調性34%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">7</div>
+    <div class="rank-body">
+      <div class="rank-title">危機管理コンサルタント / 交渉人</div>
+      <div class="rank-reason">SLE「元帥」の異名は伊達じゃない。情動安定90%で修羅場でも冷静、Se主導で即断即決。200人の全社イベントを1人で回せる胆力がそのまま活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">SLE元帥</span>
+        <span class="rank-tag tag-gold">情動安定90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">8</div>
+    <div class="rank-body">
+      <div class="rank-title">事業開発（BizDev）</div>
+      <div class="rank-reason">外向73%の対人力 + Se主導の嗅覚 + タイプ7wの新規開拓マインド。「高め合える相手を見つける」能力は仕事でもそのまま武器になる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">外向性73%</span>
+        <span class="rank-tag tag-gold">タイプ7w（9）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">9</div>
+    <div class="rank-body">
+      <div class="rank-title">スポーツチーム監督 / コーチ</div>
+      <div class="rank-reason">バスケの大会に出るほどの競技者。Se主導のリアルタイム判断 + タイプ1の「正しく勝つ」美学 + タイプ2（7）の育成欲。「頑張ろ」と言える指導者。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">Se主導</span>
+        <span class="rank-tag tag-gold">タイプ2（7）</span>
+        <span class="rank-tag tag-green">競技経験</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">10</div>
+    <div class="rank-body">
+      <div class="rank-title">政治家 / 政策立案者</div>
+      <div class="rank-reason">MC射手座の「社会にビジョンを示す」配置 + タイプ1の使命感 + 外向73%のカリスマ。協調性34%は弱点だが、「正しいことを押し通す」力に転化する。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">MC射手座</span>
+        <span class="rank-tag tag-gold">タイプ1使命感</span>
+      </div>
     </div>
   </div>
 
   <blockquote>
-    <strong>shokiが言語化できなかった答え：</strong><br><br>
-    「知性で対等に戦えて、でも守りたくなる脆さがあって、自分の行動をちゃんと見て言葉で返してくれて、一緒にいて退屈じゃなくて、自分が見えないものを見せてくれる。<br><br>
-    そして何より、自分のシステムを超えてくる。<br><br>
-    ——そういう人に、今まで出会ったことがなかった。」
+    <strong>ENTJ男の適職の本質：</strong><br><br>
+    「意思決定権がある × 高圧環境 × 戦略と実行の両方を握れる」<br><br>
+    逆に言えば、<strong>指示を受けるだけの立場・誰かのルールに従うだけの仕事</strong>は最もパフォーマンスが落ちる。現職のITコンサルは2位ど真ん中。ただし「一生仕事終わらない」のは適職だからこそ任されすぎている証拠でもある。
   </blockquote>
+
+  <!-- ==================== INTJ女 ==================== -->
+  <h2>INTJ女の適職 TOP10</h2>
+
+  <div class="card pink" style="margin-bottom:20px;">
+    <h4 style="margin-top:0;">適職を決める核データ</h4>
+    <div class="data-grid">
+      <div class="data-item"><strong>Ni主導（ILI）</strong><br>未来予測・長期戦略</div>
+      <div class="data-item"><strong>内向性 80%</strong><br>深い集中・独立作業</div>
+      <div class="data-item"><strong>タイプ3/4同点（7）</strong><br>達成欲 × 独自性</div>
+      <div class="data-item"><strong>創造性 63%</strong><br>既存を疑う視点</div>
+      <div class="data-item"><strong>排他性 84%</strong><br>自分の基準で判断</div>
+      <div class="data-item"><strong>山羊座☉ × 水瓶座ASC</strong><br>堅実 × 革新のハイブリッド</div>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);">キーワード：<strong>深掘り × 独立環境 × 専門性 × 「特別な自分」で成果を出す</strong></p>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">1</div>
+    <div class="rank-body">
+      <div class="rank-title">マーケティング戦略 / ブランドストラテジスト</div>
+      <div class="rank-reason">Ni主導の「3年後の市場」が見える力 + タイプ3の成果志向 + タイプ4の「独自の世界観を作る」欲求。消費者心理を読み解くのは心理学好きの延長線上。化粧品業界の経験もそのまま活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">Ni主導</span>
+        <span class="rank-tag tag-gold">タイプ3×4</span>
+        <span class="rank-tag tag-green">業界経験</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">2</div>
+    <div class="rank-body">
+      <div class="rank-title">UXリサーチャー / UXデザイナー</div>
+      <div class="rank-reason">Ni洞察で「ユーザーが言語化できてないニーズ」を見抜く + Te補助でシステムに落とす + タイプ4の美意識。人と直接話す頻度が低く、データ×直感のハイブリッド作業。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">Ni×Te</span>
+        <span class="rank-tag tag-gold">タイプ4美意識</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">3</div>
+    <div class="rank-body">
+      <div class="rank-title">データアナリスト / データサイエンティスト</div>
+      <div class="rank-reason">タイプ5（6）の分析欲 + Ni主導のパターン認識 + 内向80%に最適な独立作業。数字の裏にある「意味」を読み取る力はINTJの独壇場。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">タイプ5（6）</span>
+        <span class="rank-tag tag-gold">Ni パターン認識</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">4</div>
+    <div class="rank-body">
+      <div class="rank-title">心理カウンセラー / 臨床心理士</div>
+      <div class="rank-reason">心理学への深い関心 + Ni主導の「相手の本質を見抜く」力 + Fi（3番目）の個人的価値への理解。ソシオニクスを即座に語れる知識量がそのまま武器。Feの弱さは1対1なら問題にならない。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">Ni洞察</span>
+        <span class="rank-tag tag-gold">心理学知識</span>
+        <span class="rank-tag tag-green">1対1適性</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">5</div>
+    <div class="rank-body">
+      <div class="rank-title">投資アナリスト / リスク管理</div>
+      <div class="rank-reason">Ni主導の未来予測 + Te論理で数値化 + 排他性84%で群集心理に流されない。「みんなが見てない構造変化」を見抜く——ILI「予言者」の異名が最も活きる領域。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">ILI予言者</span>
+        <span class="rank-tag tag-gold">排他性84%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">6</div>
+    <div class="rank-body">
+      <div class="rank-title">編集者 / ライター（深掘り型）</div>
+      <div class="rank-reason">タイプ4の「自分の世界を表現したい」+ 内向80%で文章に没頭できる + Ni主導の本質追求。素っ気ない文体の奥に全部ある——あのLINEのスタイルは「書く才能」の原石。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">タイプ4（7）</span>
+        <span class="rank-tag tag-gold">内向80%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">7</div>
+    <div class="rank-body">
+      <div class="rank-title">化粧品 / サプリ開発（処方設計）</div>
+      <div class="rank-reason">現業界の知識 + Ni主導で「次に来る成分」を予測 + 山羊座の堅実な開発プロセス。事務から開発側に回ると、分析力が直接活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">業界知識</span>
+        <span class="rank-tag tag-gold">山羊座☉</span>
+        <span class="rank-tag tag-green">Ni予測</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">8</div>
+    <div class="rank-body">
+      <div class="rank-title">システム設計 / アーキテクト</div>
+      <div class="rank-reason">Te補助の「効率的な構造を作る」力 + Ni主導の全体像把握 + タイプ5の体系化欲。コードを書くより「設計する」側。建築家（Architect）はINTJの異名そのもの。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">Te構築力</span>
+        <span class="rank-tag tag-gold">INTJ = Architect</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">9</div>
+    <div class="rank-body">
+      <div class="rank-title">フリーランスコンサルタント（専門特化型）</div>
+      <div class="rank-reason">排他性84%で組織に合わせるのが本質的に苦手 + カリスマバランサーの「表に出ないリーダーシップ」+ 水瓶座ASCの独立オーラ。自分の裁量で動ける環境が最もストレスが低い。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">排他性84%</span>
+        <span class="rank-tag tag-gold">カリスマバランサー</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">10</div>
+    <div class="rank-body">
+      <div class="rank-title">学術研究者 / シンクタンク研究員</div>
+      <div class="rank-reason">タイプ5（6）の知識欲 + Ni主導の深掘り + 内向80%の没頭力。一つのテーマを数年かけて追究する環境。勤勉性57%は「興味がある分野なら」発動する。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-pink">タイプ5（6）</span>
+        <span class="rank-tag tag-gold">Ni深掘り</span>
+      </div>
+    </div>
+  </div>
+
+  <blockquote style="border-left-color:var(--accent2);background:rgba(247,111,161,0.08);">
+    <strong>INTJ女の適職の本質：</strong><br><br>
+    「独立した環境 × 深い専門性 × 自分らしさで成果を出せる」<br><br>
+    逆に言えば、<strong>チームワーク強制・マイクロマネジメント・表面的な社交が必要な仕事</strong>は消耗する。現職の事務は能力の10%も使えてない。転職を考えているのは正しい直感。
+  </blockquote>
+
+  <!-- ==================== 二人で組んだら ==================== -->
+  <h2>おまけ：二人で組んだら最強な仕事</h2>
+
+  <div class="card gold">
+    <p style="font-size:13px;margin-bottom:12px;">Se主導の実行力 × Ni主導の戦略眼。この補完構造が最も活きる領域：</p>
+
+    <div class="rank-item top3" style="margin:8px 0;">
+      <div class="rank-num" style="font-size:18px;">1</div>
+      <div class="rank-body">
+        <div class="rank-title" style="font-size:14px;">ビジネスパートナーとして起業</div>
+        <div class="rank-reason">ゆかりが「3年後の市場」を読み、shokiが「今日やること」を決めて動く。Se×Niの完全分業。</div>
+      </div>
+    </div>
+
+    <div class="rank-item top3" style="margin:8px 0;">
+      <div class="rank-num" style="font-size:18px;">2</div>
+      <div class="rank-body">
+        <div class="rank-title" style="font-size:14px;">コンサルティングファーム共同経営</div>
+        <div class="rank-reason">shokiがクライアント対応＋実行支援、ゆかりがリサーチ＋戦略設計。フロント×バックの理想形。</div>
+      </div>
+    </div>
+
+    <div class="rank-item top3" style="margin:8px 0;">
+      <div class="rank-num" style="font-size:18px;">3</div>
+      <div class="rank-body">
+        <div class="rank-title" style="font-size:14px;">D2Cブランド立ち上げ（化粧品/サプリ）</div>
+        <div class="rank-reason">ゆかりの業界知識＋タイプ4の世界観 × shokiのITコンサル力＋Se営業力。互いの強みがそのまま事業になる。</div>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--text-muted);margin-top:12px;">「一緒に高め合っていける」の答えがここにもある。</p>
+  </div>
+
+</div>
 
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
   統合分析日: 2026-04-06<br>
-  Swiss Ephemeris / Placidus / 熱帯暦<br>
-  MBTI / ソシオニクス / エニアグラム / ビッグファイブ / 恋愛タイプ / ホロスコープ
 </div>
 
 <!-- JS -->
