@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ENTJ 総合診断</title>
+<title>ENTJ-A 総合性格診断</title>
 <style>
   :root {
     --bg: #0f0f14;
@@ -76,6 +76,7 @@
     gap: 12px;
     margin-top: 14px;
     position: relative;
+    flex-wrap: wrap;
   }
   .type-badge {
     padding: 6px 16px;
@@ -84,10 +85,20 @@
     font-weight: 700;
     letter-spacing: 1px;
   }
-  .type-badge.entj {
+  .type-badge.main {
     background: linear-gradient(135deg, rgba(124,111,247,0.2), rgba(124,111,247,0.05));
     border: 1px solid rgba(124,111,247,0.4);
     color: var(--accent);
+  }
+  .type-badge.sub2 {
+    background: linear-gradient(135deg, rgba(247,111,161,0.2), rgba(247,111,161,0.05));
+    border: 1px solid rgba(247,111,161,0.4);
+    color: var(--accent2);
+  }
+  .type-badge.sub3 {
+    background: linear-gradient(135deg, rgba(245,200,66,0.2), rgba(245,200,66,0.05));
+    border: 1px solid rgba(245,200,66,0.4);
+    color: var(--gold);
   }
 
   /* ===== TAB NAV ===== */
@@ -596,10 +607,12 @@
 
 <!-- HEADER -->
 <div class="header">
-  <h1>ENTJ</h1>
-  <div class="sub">総合性格診断</div>
+  <h1>ENTJ-A</h1>
+  <div class="sub">総合性格診断レポート</div>
   <div class="types">
-    <span class="type-badge entj">ENTJ-A</span>
+    <span class="type-badge main">ENTJ-A</span>
+    <span class="type-badge sub2">SLE</span>
+    <span class="type-badge sub3">Type 1w7</span>
   </div>
 </div>
 
