@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ENTJ × ENTP 相性診断</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --border: #2a2a3a;
+    --text: #e8e6f0;
+    --text-muted: #8a8a9a;
+    --accent: #42b8f5;
+    --accent2: #a78bfa;
+    --accent-glow: rgba(66,184,245,0.15);
+    --gold: #f5c842;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fb923c;
+    --entj: #42b8f5;
+    --entp: #a78bfa;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.7; font-size: 15px;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  .header {
+    background: linear-gradient(135deg, #0f1a30 0%, #0f0f14 50%, #1a0f2a 100%);
+    padding: 40px 20px 24px; text-align: center;
+    border-bottom: 1px solid var(--border); position: relative; overflow: hidden;
+  }
+  .header::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(66,184,245,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(167,139,250,0.08) 0%, transparent 50%);
+    animation: headerGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes headerGlow { 0% { transform: translate(0,0); } 100% { transform: translate(-5%,3%); } }
+  .header h1 {
+    font-size: 22px; font-weight: 800;
+    background: linear-gradient(135deg, var(--entj), var(--entp));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    position: relative; letter-spacing: 0.5px;
+  }
+  .header .sub { font-size: 12px; color: var(--text-muted); margin-top: 6px; position: relative; }
+  .header .vs-row {
+    display: flex; justify-content: center; align-items: center; gap: 16px;
+    margin-top: 16px; position: relative; flex-wrap: wrap;
+  }
+  .vs-person {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .vs-name {
+    font-size: 14px; font-weight: 700; color: #fff;
+  }
+  .vs-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .vs-badge {
+    padding: 4px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+  }
+  .vs-badge.entj { background: rgba(66,184,245,0.15); border: 1px solid rgba(66,184,245,0.4); color: var(--entj); }
+  .vs-badge.entp { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.4); color: var(--entp); }
+  .vs-x { font-size: 20px; font-weight: 900; color: var(--text-muted); position: relative; }
+  .score-circle {
+    width: 80px; height: 80px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; margin: 16px auto 0; position: relative;
+    background: linear-gradient(135deg, rgba(66,184,245,0.15), rgba(167,139,250,0.15));
+    border: 2px solid rgba(66,184,245,0.4);
+  }
+  .score-circle .score-num { font-size: 28px; font-weight: 900; color: #fff; line-height: 1; }
+  .score-circle .score-label { font-size: 9px; color: var(--text-muted); margin-top: 2px; }
+
+  .tab-nav {
+    display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 100; padding: 0 4px;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto; padding: 12px 16px; font-size: 12px; font-weight: 600;
+    color: var(--text-muted); background: none; border: none;
+    border-bottom: 2px solid transparent; white-space: nowrap; cursor: pointer;
+    transition: all 0.2s; -webkit-tap-highlight-color: transparent;
+  }
+  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-content { display: none; padding: 20px 16px 100px; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  h2 {
+    font-size: 20px; font-weight: 800; margin: 32px 0 16px; padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(90deg, var(--text), var(--text-muted));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 { font-size: 16px; font-weight: 700; margin: 24px 0 10px; color: var(--accent); }
+  h4 { font-size: 14px; font-weight: 700; margin: 18px 0 8px; color: var(--text); }
+  p { margin: 8px 0; }
+  strong { color: #fff; font-weight: 700; }
+  ul, ol { margin: 8px 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; margin: 12px 0;
+  }
+  .card.highlight {
+    border-color: rgba(66,184,245,0.3);
+    background: linear-gradient(135deg, rgba(66,184,245,0.06), var(--surface));
+  }
+  .card.purple {
+    border-color: rgba(167,139,250,0.3);
+    background: linear-gradient(135deg, rgba(167,139,250,0.06), var(--surface));
+  }
+  .card.gold {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.06), var(--surface));
+  }
+  .card.green {
+    border-color: rgba(74,222,128,0.3);
+    background: linear-gradient(135deg, rgba(74,222,128,0.06), var(--surface));
+  }
+  .card.danger {
+    border-color: rgba(248,113,113,0.3);
+    background: linear-gradient(135deg, rgba(248,113,113,0.06), var(--surface));
+  }
+  .table-wrap { overflow-x: auto; margin: 12px 0; -webkit-overflow-scrolling: touch; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 280px; }
+  th {
+    background: var(--surface2); color: var(--accent); font-weight: 700; text-align: left;
+    padding: 10px 12px; white-space: nowrap; border-bottom: 2px solid var(--border);
+  }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  .stars { color: var(--gold); letter-spacing: 1px; }
+  .stars-dim { color: #3a3a4a; letter-spacing: 1px; }
+  blockquote {
+    border-left: 3px solid var(--accent); padding: 12px 16px; margin: 16px 0;
+    background: var(--accent-glow); border-radius: 0 8px 8px 0; font-style: italic;
+  }
+  .code-block {
+    background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 16px; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px;
+    overflow-x: auto; margin: 12px 0; line-height: 1.8; white-space: pre-wrap;
+  }
+  .about-box {
+    background: linear-gradient(135deg, rgba(66,184,245,0.06), rgba(167,139,250,0.04));
+    border: 1px solid rgba(66,184,245,0.2); border-radius: 12px;
+    padding: 14px 16px; margin: 0 0 20px; font-size: 13px; line-height: 1.7;
+  }
+  .about-box .about-title { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; }
+  .about-box p { margin: 0; color: var(--text-muted); }
+  .rating { margin: 8px 0; }
+  .rating-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+  .rating-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; position: relative; }
+  .rating-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+  .rating-fill.cyan { background: linear-gradient(90deg, var(--accent), #67d4ff); }
+  .rating-fill.purple { background: linear-gradient(90deg, var(--accent2), #c4b5fd); }
+  .rating-fill.gold { background: linear-gradient(90deg, var(--gold), #fbbf24); }
+  .dual-bar { display: flex; gap: 4px; align-items: center; margin: 6px 0; }
+  .dual-bar .bar-wrap { flex: 1; }
+  .dual-bar .bar-label { font-size: 11px; margin-bottom: 2px; }
+  .dual-bar .bar-label.entj-label { color: var(--entj); }
+  .dual-bar .bar-label.entp-label { color: var(--entp); }
+  .tag {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; margin: 2px;
+  }
+  .tag.ok { background: rgba(74,222,128,0.15); color: var(--green); }
+  .tag.warn { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag.bad { background: rgba(248,113,113,0.15); color: var(--red); }
+  .tag.info { background: rgba(66,184,245,0.15); color: var(--accent); }
+  hr { border: none; height: 1px; background: var(--border); margin: 24px 0; }
+  .footer { text-align: center; padding: 20px; font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); }
+  .scroll-hint { font-size: 11px; color: var(--text-muted); text-align: center; padding: 6px; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+  details.accordion {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin: 10px 0; overflow: hidden;
+  }
+  details.accordion[open] { border-color: rgba(66,184,245,0.3); }
+  details.accordion summary {
+    padding: 14px 16px; cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 700; font-size: 14px; color: #fff;
+    -webkit-user-select: none; user-select: none;
+  }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after {
+    content: '+'; font-size: 18px; color: var(--text-muted); font-weight: 400; transition: transform 0.2s;
+  }
+  details.accordion[open] summary::after { content: '\2212'; }
+  details.accordion .acc-body { padding: 0 16px 16px; }
+  .flow-step { padding: 8px 12px; border-radius: 8px; font-size: 13px; margin: 4px 0; }
+  .flow-step.main { background: rgba(66,184,245,0.1); border-left: 3px solid var(--accent); }
+  .flow-step.alt { background: rgba(167,139,250,0.1); border-left: 3px solid var(--accent2); }
+  .flow-step.danger { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
+  .flow-arrow { text-align: center; color: var(--text-muted); font-size: 16px; margin: 2px 0; }
+  .compat-meter {
+    display: flex; align-items: center; gap: 12px; margin: 8px 0;
+  }
+  .compat-meter .meter-label { font-size: 13px; min-width: 100px; }
+  .compat-meter .meter-bar {
+    flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden;
+  }
+  .compat-meter .meter-fill {
+    height: 100%; border-radius: 4px;
+    background: linear-gradient(90deg, var(--entj), var(--entp));
+  }
+  .compat-meter .meter-score { font-size: 13px; font-weight: 700; color: #fff; min-width: 32px; text-align: right; }
+  .synergy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .synergy-item {
+    padding: 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border);
+    text-align: center;
+  }
+  .synergy-item .synergy-icon { font-size: 24px; margin-bottom: 4px; }
+  .synergy-item .synergy-title { font-size: 12px; font-weight: 700; color: #fff; }
+  .synergy-item .synergy-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>ENTJ-A x ENTP-A</h1>
+  <div class="sub">友情 & 仕事 相性診断レポート</div>
+  <div class="vs-row">
+    <div class="vs-person">
+      <div class="vs-badges">
+        <span class="vs-badge entj">ENTJ-A</span>
+        <span class="vs-badge entj">SLE</span>
+        <span class="vs-badge entj">1w7</span>
+      </div>
+    </div>
+    <div class="vs-x">x</div>
+    <div class="vs-person">
+      <div class="vs-badges">
+        <span class="vs-badge entp">ENTP-A</span>
+        <span class="vs-badge entp">SLE-D</span>
+        <span class="vs-badge entp">8w7</span>
+      </div>
+    </div>
+  </div>
+  <div class="score-circle">
+    <div class="score-num">92</div>
+    <div class="score-label">総合相性</div>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-tab="overview">総合</button>
+  <button class="tab-btn" data-tab="big5">ビッグファイブ</button>
+  <button class="tab-btn" data-tab="enneagram">エニアグラム</button>
+  <button class="tab-btn" data-tab="mbti">MBTI</button>
+  <button class="tab-btn" data-tab="socionics">ソシオニクス</button>
+  <button class="tab-btn" data-tab="element">星座</button>
+  <button class="tab-btn" data-tab="work">仕事相性</button>
+  <button class="tab-btn" data-tab="friendship">友情分析</button>
+  <button class="tab-btn" data-tab="risk">リスク&対策</button>
+</nav>
+<div class="scroll-hint">&larr; タブをスワイプ &rarr;</div>
+
+<!-- =============== TAB: 総合 =============== -->
+<div class="tab-content active" id="overview">
+
+  <div class="about-box">
+    <div class="about-title">この診断について</div>
+    <p>MBTI・エニアグラム・ビッグファイブ・ソシオニクス・星座を横断的に統合し、友情・仕事パートナーとしての相性を多角的に分析したレポートです。</p>
+  </div>
+
+  <h2>データ比較</h2>
+  <div class="table-wrap"><table>
+    <tr><th>指標</th><th style="color:var(--entj)">ENTJ-A</th><th style="color:var(--entp)">ENTP-A</th></tr>
+    <tr><td>MBTI</td><td><strong>ENTJ-A</strong><br>指揮官</td><td><strong>ENTP-A</strong><br>討論者</td></tr>
+    <tr><td>ソシオニクス</td><td><strong>SLE</strong><br>ベータ(&#946;)</td><td><strong>SLE-D</strong><br>ベータ(&#946;)</td></tr>
+    <tr><td>エニアグラム</td><td><strong>1w7</strong><br>改革者+楽天家</td><td><strong>8w7</strong><br>挑戦者+熱狂家</td></tr>
+    <tr><td>LobeType</td><td>敏腕マネージャー</td><td>魅惑系 デビル天使</td></tr>
+    <tr><td>星座</td><td>おとめ座<br>変動宮・地</td><td>水瓶座<br>不動宮・風</td></tr>
+    <tr><td>ASC</td><td>魚座 06&#176;</td><td>射手座 29&#176;</td></tr>
+    <tr><td>MC</td><td>射手座 16&#176;</td><td>天秤座 19&#176;</td></tr>
+  </table></div>
+
+  <h2>ビッグファイブ比較</h2>
+
+  <div class="rating">
+    <div class="rating-label"><span>外向性</span><span><strong style="color:var(--entj)">73%</strong> / <strong style="color:var(--entp)">93%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:73%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:93%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>協調性</span><span><strong style="color:var(--entj)">34%</strong> / <strong style="color:var(--entp)">78%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:34%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:78%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>勤勉性</span><span><strong style="color:var(--entj)">77%</strong> / <strong style="color:var(--entp)">85%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:77%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:85%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>情動安定性</span><span><strong style="color:var(--entj)">90%</strong> / <strong style="color:var(--entp)">97%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:90%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:97%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>創造性</span><span><strong style="color:var(--entj)">81%</strong> / <strong style="color:var(--entp)">94%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:81%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:94%"></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin-top:4px;"><span style="color:var(--entj)">&#9632;</span> ENTJ-A &nbsp; <span style="color:var(--entp)">&#9632;</span> ENTP-A</p>
+
+  <h2>相性レーダー</h2>
+
+  <div class="compat-meter">
+    <span class="meter-label">知的相性</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:98%"></div></div>
+    <span class="meter-score">98</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">仕事相性</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:95%"></div></div>
+    <span class="meter-score">95</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">信頼関係</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:90%"></div></div>
+    <span class="meter-score">90</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">刺激・楽しさ</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:96%"></div></div>
+    <span class="meter-score">96</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">安定感</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:92%"></div></div>
+    <span class="meter-score">92</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">成長促進</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:94%"></div></div>
+    <span class="meter-score">94</span>
+  </div>
+  <div class="compat-meter">
+    <span class="meter-label">衝突リスク</span>
+    <div class="meter-bar"><div class="meter-fill" style="width:35%; background: linear-gradient(90deg, var(--green), var(--orange));"></div></div>
+    <span class="meter-score" style="color:var(--green)">低</span>
+  </div>
+
+  <h2>一言プロファイル</h2>
+  <div class="card gold">
+    <p><strong>「最強の参謀と最強の司令官。脳みそのOSが同じ2人が、役割を分けて世界を動かすコンビ。」</strong></p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTJの構造化・実行力と、ENTPの発想力・柔軟性。どちらもNT型で論理と直感を共有し、どちらもAssertive型でメンタルが揺るがない。ソシオニクスでは同型（SLE）で世界の見方が同じ。エニアグラムでは1と8——ガットセンター（本能の3タイプ）の仲間で、行動原理が腹の底で通じ合う。仕事で組んだとき、このペアが出す成果は異常。</p>
+  </div>
+</div>
+
+<!-- =============== TAB: ビッグファイブ =============== -->
+<div class="tab-content" id="big5">
+
+  <h2>ビッグファイブ相性分析</h2>
+
+  <div class="about-box">
+    <div class="about-title">ビッグファイブとは</div>
+    <p>科学的に最も信頼性が高い性格モデル。5軸の類似度と差異から相性パターンを読み解く。</p>
+  </div>
+
+  <div class="table-wrap"><table>
+    <tr><th>特性</th><th style="color:var(--entj)">ENTJ</th><th style="color:var(--entp)">ENTP</th><th>差異</th><th>評価</th></tr>
+    <tr><td>外向性</td><td><strong>73%</strong></td><td><strong>93%</strong></td><td>20%</td><td><span class="tag ok">好相性</span></td></tr>
+    <tr><td>協調性</td><td><strong>34%</strong></td><td><strong>78%</strong></td><td>44%</td><td><span class="tag info">補完</span></td></tr>
+    <tr><td>勤勉性</td><td><strong>77%</strong></td><td><strong>85%</strong></td><td>8%</td><td><span class="tag ok">好相性</span></td></tr>
+    <tr><td>情動安定性</td><td><strong>90%</strong></td><td><strong>97%</strong></td><td>7%</td><td><span class="tag ok">最強</span></td></tr>
+    <tr><td>創造性</td><td><strong>81%</strong></td><td><strong>94%</strong></td><td>13%</td><td><span class="tag ok">好相性</span></td></tr>
+  </table></div>
+
+  <h3>外向性：73% vs 93%</h3>
+  <div class="card highlight">
+    <p><strong>両者とも外向的で、一緒にいるとエネルギーが増幅する。</strong></p>
+    <p>ENTPの93%はほぼ限界値。ENTJの73%も十分に外向的だが、ENTPほどではない。この20%の差は絶妙で、<strong>ENTPが場を広げ、ENTJがそれを収束させる</strong>自然な役割分担が生まれる。どちらも人といると元気になるタイプなので、一緒にいても消耗しない。</p>
+  </div>
+
+  <h3>協調性：34% vs 78%</h3>
+  <div class="card purple">
+    <p><strong>最大の差異であり、最大の補完ポイント。</strong></p>
+    <p>ENTJの34%は「自分の意見を曲げない」「妥協しない」。ENTPの78%は「パワフルだが人を気持ちよくさせることもできる」。</p>
+    <p>仕事において、ENTJが周囲と軋轢を生みそうな場面でENTPが自然にバッファになれる。逆に、ENTPが人に合わせすぎそうな場面ではENTJの「ブレない軸」が歯止めになる。</p>
+    <p style="color:var(--gold);font-size:13px;margin-top:8px;"><strong>これが友情として最も重要な差異。</strong>ENTJの「言い方キツい問題」をENTPがフォローし、ENTPの「お人好しすぎ問題」をENTJが正す。</p>
+  </div>
+
+  <h3>勤勉性：77% vs 85%</h3>
+  <div class="card highlight">
+    <p><strong>両者ともやり切る力が高い。</strong></p>
+    <p>仕事で組んだとき「途中で投げ出す」リスクがほぼゼロ。ENTPの85%はENTPとしては異例に高く、「飽きっぽい」というENTPのステレオタイプを完全に覆す。ENTJも77%で十分。2人とも<strong>「始めたら終わらせる」</strong>タイプ。</p>
+  </div>
+
+  <h3>情動安定性：90% vs 97%</h3>
+  <div class="card gold">
+    <p><strong>このペア最大の武器。合計187%——文字通り無敵のメンタル。</strong></p>
+    <p>プレッシャー、炎上、トラブル——何が起きても2人とも揺れない。「ヤバい状況」でパニックにならないどころか、むしろパフォーマンスが上がるペア。チームの精神的支柱になれる。</p>
+    <p style="color:var(--orange);font-size:13px;margin-top:8px;"><strong>唯一の注意点：</strong>2人とも安定しすぎて、チームメンバーの不安や辛さに鈍感になるリスクがある。「なんでそんなこと気にするの？」と無意識に言ってしまう可能性。</p>
+  </div>
+
+  <h3>創造性：81% vs 94%</h3>
+  <div class="card highlight">
+    <p><strong>ブレインストーミングが無限に続くペア。</strong></p>
+    <p>ENTPの94%は「アイデアの火山」、ENTJの81%は「アイデアを形にする力」。ENTPがネタを無限に出し、ENTJが「これは使える」「これはダメ」と高速で判断する。企画・戦略立案において最強の組み合わせ。</p>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>5軸のうち4軸が「高い×高い」で方向性が一致し、唯一差が大きい協調性が補完関係になっている。ビッグファイブの観点からは<strong>「ほぼ理想的なビジネスパートナー」</strong>。両者の合計情動安定性187%は心理的安全性の塊であり、このペアが作るチームは自然とメンバーが安心できる空間になる。</blockquote>
+</div>
+
+<!-- =============== TAB: エニアグラム =============== -->
+<div class="tab-content" id="enneagram">
+
+  <h2>エニアグラム相性分析</h2>
+
+  <div class="table-wrap"><table>
+    <tr><th>タイプ</th><th style="color:var(--entj)">ENTJ</th><th style="color:var(--entp)">ENTP</th></tr>
+    <tr><td>タイプ1（改革者）</td><td><strong>10 &#11088;</strong></td><td>7</td></tr>
+    <tr><td>タイプ2（援助者）</td><td>7</td><td>6</td></tr>
+    <tr><td>タイプ3（達成者）</td><td>7</td><td>7</td></tr>
+    <tr><td>タイプ4（個人主義者）</td><td>4</td><td>3</td></tr>
+    <tr><td>タイプ5（調査者）</td><td>8</td><td>5</td></tr>
+    <tr><td>タイプ6（忠実な人）</td><td>2</td><td>2</td></tr>
+    <tr><td>タイプ7（熱狂家）</td><td>9</td><td>5</td></tr>
+    <tr><td>タイプ8（挑戦者）</td><td>6</td><td><strong>8 &#11088;</strong></td></tr>
+    <tr><td>タイプ9（平和主義者）</td><td>4</td><td>3</td></tr>
+  </table></div>
+
+  <h2>タイプ1w7 x タイプ8w7</h2>
+  <h3>ガットセンターの仲間</h3>
+
+  <div class="card gold">
+    <p><strong>タイプ1・8・9は「ガットセンター（本能センター）」に属する。</strong></p>
+    <p>ガットセンターのコアエモーションは<strong>「怒り」</strong>。ただし、タイプ1は怒りを「正義」に変換し、タイプ8は怒りを「行動力」に変換する。</p>
+    <p>この2人は<strong>腹の底で通じ合う</strong>。言葉にしなくても「あ、こいつ怒ってるな」「あ、こいつ本気だな」が直感でわかる。理性ではなく本能レベルでの信頼が築ける稀なペア。</p>
+  </div>
+
+  <h3>タイプ1（ENTJ）の本質</h3>
+  <div class="card highlight">
+    <h4>核にある動機</h4>
+    <ul>
+      <li><strong>「世界を正しくしなければ」</strong>という使命感</li>
+      <li>自分にも他人にも高い基準を課す完璧主義者</li>
+      <li>タイプ7ウィング（9）が楽観性と好奇心を加える</li>
+    </ul>
+    <h4>友人としての特徴</h4>
+    <ul>
+      <li>原則を持って動く。ブレない。信頼できる</li>
+      <li>仲間の「あるべき姿」を示してくれる存在</li>
+      <li>正しさへのこだわりが無意識の批判として出ることがある</li>
+    </ul>
+  </div>
+
+  <h3>タイプ8（ENTP）の本質</h3>
+  <div class="card purple">
+    <h4>核にある動機</h4>
+    <ul>
+      <li><strong>「自分の運命は自分で握る」</strong>——支配されたくない、弱者を守りたい</li>
+      <li>圧倒的な存在感とリーダーシップ</li>
+      <li>タイプ7ウィング（5）がスピードと冒険心を加える</li>
+    </ul>
+    <h4>友人としての特徴</h4>
+    <ul>
+      <li>一度仲間と認めたら、全力で守る</li>
+      <li>本音と直球。嘘がない</li>
+      <li>支配欲が暴走すると「コントロール」になるリスク</li>
+    </ul>
+  </div>
+
+  <h3>噛み合うポイント</h3>
+  <div class="card green">
+    <ul>
+      <li><strong>共通のウィング7：</strong>退屈を嫌い、新しい刺激を求める。一緒にいて飽きない</li>
+      <li><strong>タイプ6が両者とも最低（2）：</strong>権威や慣習に従わない独立心。お互いの自由を尊重できる</li>
+      <li><strong>タイプ3が両者7：</strong>成果へのこだわりが同レベル。「結果を出す」ことへの共通の価値観</li>
+      <li><strong>正義と力のコンビ：</strong>タイプ1が「何が正しいか」を示し、タイプ8が「力ずくで実現する」——行動のベクトルが揃う</li>
+    </ul>
+  </div>
+
+  <h3>摩擦ポイント</h3>
+  <div class="card danger">
+    <ul>
+      <li><strong>主導権争い：</strong>タイプ1は「正しさ」で、タイプ8は「力」でリードしようとする。方向性が合えば無敵だが、ズレると正面衝突</li>
+      <li><strong>批判の出し方：</strong>タイプ1は「正論」で指摘する。タイプ8はそれを「支配」と感じる可能性がある</li>
+      <li><strong>両者とも引かない：</strong>タイプ1は原則、タイプ8はプライド。どちらも折れにくい</li>
+    </ul>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;"><strong>ただし——</strong>ENTJの協調性34%とENTPの協調性78%の差が、このリスクを大幅に緩和している。ENTPの方が柔軟に対応できるため、正面衝突に至る前にバランスが取れる。</p>
+  </div>
+
+  <h3>成長方向の比較</h3>
+  <div class="table-wrap"><table>
+    <tr><th></th><th style="color:var(--entj)">タイプ1（ENTJ）</th><th style="color:var(--entp)">タイプ8（ENTP）</th></tr>
+    <tr><td><span class="tag ok">成長</span></td><td>&#8594; タイプ7方向<br>楽観的になり楽しめる</td><td>&#8594; タイプ2方向<br>他者への愛情を素直に表現</td></tr>
+    <tr><td><span class="tag bad">ストレス</span></td><td>&#8594; タイプ4方向<br>引きこもり・自己批判的に</td><td>&#8594; タイプ5方向<br>引きこもり・情報収集に没頭</td></tr>
+  </table></div>
+  <div class="card">
+    <p style="font-size:13px;">興味深いことに、<strong>両者のストレス方向が似ている</strong>（引きこもる）。つまり片方が消えたとき、もう片方は「ああ、アレだな」と本能的に理解できる。追い詰めずに待てる関係。</p>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>ガットセンターの1と8——「正義の剣」と「力の盾」。ウィング7を共有する好奇心と行動力。タイプ6最低で権威に縛られない自由な精神。このペアの友情は<strong>「腹の底で信頼し、背中を預けて戦える同志」</strong>。</blockquote>
+</div>
+
+<!-- =============== TAB: MBTI =============== -->
+<div class="tab-content" id="mbti">
+
+  <h2>MBTI相性分析：ENTJ x ENTP</h2>
+
+  <div class="card highlight">
+    <h4>認知機能の比較</h4>
+    <div class="table-wrap"><table>
+      <tr><th>位置</th><th style="color:var(--entj)">ENTJ</th><th style="color:var(--entp)">ENTP</th></tr>
+      <tr><td>主機能</td><td><strong>Te</strong>（外向思考）</td><td><strong>Ne</strong>（外向直観）</td></tr>
+      <tr><td>補助機能</td><td><strong>Ni</strong>（内向直観）</td><td><strong>Ti</strong>（内向思考）</td></tr>
+      <tr><td>第三機能</td><td>Se（外向感覚）</td><td>Fe（外向感情）</td></tr>
+      <tr><td>劣等機能</td><td>Fi（内向感情）</td><td>Si（内向感覚）</td></tr>
+    </table></div>
+  </div>
+
+  <h3>共有する軸：EN_T</h3>
+  <div class="card gold">
+    <p><strong>E（外向）+ N（直観）+ T（思考）の3軸が一致。</strong></p>
+    <p>MBTIにおいてENxT同士は「知的エネルギーの方向が同じ」。外の世界に対して、直感と論理を使ってアプローチする。会話のスピード感が合い、抽象的な議論が自然に成立する。</p>
+  </div>
+
+  <h3>唯一の差：J vs P</h3>
+  <div class="card purple">
+    <p><strong>J（判断型）vs P（知覚型）——この差が補完のカギ。</strong></p>
+    <div class="table-wrap"><table>
+      <tr><th></th><th style="color:var(--entj)">ENTJ（J型）</th><th style="color:var(--entp)">ENTP（P型）</th></tr>
+      <tr><td>意思決定</td><td>素早く決断し実行</td><td>選択肢を広げ続ける</td></tr>
+      <tr><td>計画性</td><td>構造化・スケジュール重視</td><td>柔軟・アドリブ重視</td></tr>
+      <tr><td>情報収集</td><td>「これで十分」と区切る</td><td>「もっとないか？」と探し続ける</td></tr>
+      <tr><td>仕事スタイル</td><td>ゴールから逆算</td><td>プロセスの中で発見</td></tr>
+    </table></div>
+    <p style="margin-top:12px;">仕事で組んだとき：<strong>ENTPが可能性を広げ、ENTJが決断して実行する。</strong>「アイデアが散らかって収束しない」も「視野が狭くて正解を見逃す」も起きにくい理想的な分業。</p>
+  </div>
+
+  <h3>認知機能の相互作用</h3>
+
+  <details class="accordion">
+    <summary>Te（ENTJ主機能）x Ne（ENTP主機能）</summary>
+    <div class="acc-body">
+      <p>Te（外向思考）は「効率・結果・仕組み化」。Ne（外向直観）は「可能性・パターン・新しいアイデア」。</p>
+      <p><strong>Neが10のアイデアを出し、Teが3つに絞って仕組み化する。</strong>このサイクルが自然に回る。ブレインストーミング→実行のスピードが異常に速くなる。</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>Ni（ENTJ補助）x Ti（ENTP補助）</summary>
+    <div class="acc-body">
+      <p>Ni（内向直観）は「未来予測・本質の把握」。Ti（内向思考）は「内的ロジックの構築」。</p>
+      <p>ENTJが「こうなるはずだ」と未来像を描き、ENTPが「それはこの論理で正しいか？」と検証する。<strong>ビジョンとロジックの二重チェック。</strong></p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>共通の弱点：Fi x Si</summary>
+    <div class="acc-body">
+      <p>ENTJの劣等機能はFi（個人的感情・価値観）、ENTPの劣等機能はSi（過去の経験・身体感覚）。</p>
+      <p><strong>2人とも「感情」と「過去」が苦手。</strong>一緒にいると未来志向で突っ走れるが、チームの感情面のケアや過去の教訓の活用が抜け落ちやすい。</p>
+    </div>
+  </details>
+
+  <h3>MBTI公式相性：「仲間」関係</h3>
+  <div class="card green">
+    <p>ENTJ × ENTPはMBTI公式分類では<strong>「仲間（Companion）」関係</strong>に分類される。</p>
+    <ul>
+      <li>3軸共有による高い理解度</li>
+      <li>J/Pの差による自然な役割分担</li>
+      <li>競争より協力に向かいやすいペア</li>
+      <li>特に<strong>仕事・プロジェクトでの相性が最も高いグループ</strong>に分類される</li>
+    </ul>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>ENTJ x ENTPは「同じ言語を話す、異なる専門家」。ENTJが構造を作り、ENTPが可能性を広げる。3軸の共有が信頼と理解を保証し、J/Pの差がマンネリを防ぐ。<strong>MBTIの観点からは「仕事で組むべきペア」の筆頭。</strong></blockquote>
+</div>
+
+<!-- =============== TAB: ソシオニクス =============== -->
+<div class="tab-content" id="socionics">
+
+  <h2>ソシオニクス分析：SLE x SLE-D</h2>
+
+  <div class="about-box">
+    <div class="about-title">重要な発見</div>
+    <p>ソシオニクスでは2人とも<strong>SLE（感覚-論理型外向）</strong>に分類される。これは「同一関係（Identity）」と呼ばれ、16の関係性の中でも特殊な位置づけ。</p>
+  </div>
+
+  <h3>SLE（マーシャル）のModel A</h3>
+  <div class="card highlight">
+    <div class="code-block">1. 主導：Se（外向感覚）— 現実への直接作用・意志力
+2. 創造：Ti（内向論理）— 構造化・体系化
+3. 役割：Fi（内向倫理）— 個人的感情（苦手）
+4. 苦点：Ne（外向直観）— 可能性の拡散（最弱）
+5. 示唆：Ni（内向直観）— 長期ビジョン（求める）
+6. 動員：Fe（外向倫理）— 感情表現（受け取ると活性化）
+7. 無視：Te（外向論理）— 効率（使えるが重視しない）
+8. 背景：Si（内向感覚）— 身体感覚（背景処理）</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;"><strong>2人とも同じ配置。</strong>世界の認知の仕方、情報処理の優先順位が同一。</p>
+  </div>
+
+  <h3>同一関係（Identity）の特徴</h3>
+
+  <div class="card green">
+    <h4>強み：鏡のような理解</h4>
+    <ul>
+      <li><strong>言わなくてもわかる：</strong>同じ認知機能配置を持つため、相手の思考プロセスが手に取るようにわかる</li>
+      <li><strong>行動原理が同じ：</strong>Se主導で「まず動く」、Ti創造で「論理的に組み立てる」——仕事の進め方が自然に揃う</li>
+      <li><strong>ストレスポイントが同じ：</strong>Neが苦点なので、可能性の拡散に振り回される辛さを互いに理解できる</li>
+      <li><strong>弱点を攻撃しない：</strong>自分も苦手な部分だから、相手のその部分を突かない</li>
+    </ul>
+  </div>
+
+  <div class="card danger">
+    <h4>リスク：補完がない</h4>
+    <ul>
+      <li><strong>苦手が同じ：</strong>Fi（感情処理）もNe（可能性の把握）も2人とも弱い。チームとして感情面と発想面の穴が埋まらない</li>
+      <li><strong>Niを2人とも外に求める：</strong>長期ビジョンを示してくれる第三者がいないと、目先の行動に偏るリスク</li>
+      <li><strong>役割が被る：</strong>どちらもリーダーポジションを自然に取るため、同じ場で2人がSe主導を発揮すると衝突する</li>
+    </ul>
+  </div>
+
+  <h3>SLE vs SLE-D：サブタイプの差</h3>
+  <div class="card purple">
+    <p>ENTPはSLE-<strong>D（決断サブタイプ）</strong>。ENTJはSLE（標準型）。</p>
+    <div class="table-wrap"><table>
+      <tr><th></th><th style="color:var(--entj)">SLE（ENTJ）</th><th style="color:var(--entp)">SLE-D（ENTP）</th></tr>
+      <tr><td>Se主導の表れ方</td><td>構造化された実行力</td><td>即断即決の瞬発力</td></tr>
+      <tr><td>リーダーシップ</td><td>計画と管理で導く</td><td>カリスマと決断で導く</td></tr>
+      <tr><td>特徴</td><td>持続的な推進力</td><td>爆発的な突破力</td></tr>
+    </table></div>
+    <p style="margin-top:12px;"><strong>同型だがサブタイプが違うことで、微妙な役割分担が自然に発生する。</strong>ENTJが持続的にプロジェクトを管理し、ENTPが局面局面で決断的に突破する。同一関係のリスクである「役割の被り」がサブタイプの差で軽減されている。</p>
+  </div>
+
+  <h3>ベータ(&#946;)クワドラの仲間</h3>
+  <div class="card highlight">
+    <p>2人とも<strong>ベータクワドラ</strong>に所属。ベータの価値観：</p>
+    <ul>
+      <li><strong>力と正義：</strong>強い意志で世界を動かすことを重視</li>
+      <li><strong>階層と忠誠：</strong>リーダーとフォロワーの明確な役割分担</li>
+      <li><strong>情熱と団結：</strong>仲間のために全力を尽くす</li>
+      <li><strong>弱者の保護：</strong>力を持つ者の責任</li>
+    </ul>
+    <p style="margin-top:8px;">同じクワドラに属するため、<strong>根本的な価値観が一致</strong>している。「何を大事にして生きるか」がズレない。</p>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>ソシオニクスの同一関係は「最も理解し合えるが、最も補完がない」関係。しかしこのペアの場合、サブタイプの差（標準 vs D型）とMBTIレベルの差（J vs P）が同一関係の弱点を緩和している。<strong>同じOSを使う2台のマシンが、違うアプリを得意とする</strong>——そんなイメージ。</blockquote>
+</div>
+
+<!-- =============== TAB: 星座 =============== -->
+<div class="tab-content" id="element">
+
+  <h2>星座エレメント分析</h2>
+
+  <div class="table-wrap"><table>
+    <tr><th></th><th style="color:var(--entj)">ENTJ</th><th style="color:var(--entp)">ENTP</th></tr>
+    <tr><td>太陽星座</td><td><strong>おとめ座</strong><br>変動宮・地</td><td><strong>水瓶座</strong><br>不動宮・風</td></tr>
+    <tr><td>ASC</td><td>魚座</td><td>射手座</td></tr>
+    <tr><td>MC</td><td>射手座</td><td>天秤座</td></tr>
+    <tr><td>生年月日</td><td>2001.09.21</td><td>2000.02.16</td></tr>
+  </table></div>
+
+  <h3>地 x 風：実行力と知性の融合</h3>
+  <div class="card highlight">
+    <p>おとめ座（地）は<strong>現実・計画・細部</strong>を重視。水瓶座（風）は<strong>革新・理論・未来</strong>を重視。</p>
+    <p>エレメントとしては自然な組み合わせではないが、<strong>知性を軸にした場合は相性が良い。</strong>おとめ座の分析力と水瓶座の革新性は「新しいアイデアを精密に実装する」最強のコンビになりうる。</p>
+  </div>
+
+  <h3>おとめ座の特徴（ENTJ）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>分析的：</strong>物事を細部まで分解して理解する</li>
+      <li><strong>完璧主義：</strong>中途半端が許せない。エニアグラムタイプ1と強化し合う</li>
+      <li><strong>奉仕的：</strong>人のために働くことに喜びを感じる</li>
+      <li><strong>批評眼：</strong>改善点が自動的に見える目。長所でもあり、時に短所</li>
+    </ul>
+  </div>
+
+  <h3>水瓶座の特徴（ENTP）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>革新的：</strong>既存の枠組みに収まらない発想力</li>
+      <li><strong>独立心：</strong>群れない。自分の道を行く</li>
+      <li><strong>人道的：</strong>社会全体の改善に関心がある</li>
+      <li><strong>知的好奇心：</strong>「なぜ？」が止まらない。ENTPのNe主機能と共鳴</li>
+    </ul>
+  </div>
+
+  <h3>MC（天頂）の関係</h3>
+  <div class="card purple">
+    <p>ENTJのMCは<strong>射手座</strong>、ENTPのASCは<strong>射手座29&#176;</strong>。</p>
+    <p>ENTJの「人生の到達点」とENTPの「第一印象・外に見せる顔」が同じ射手座。つまり<strong>ENTJが目指す場所に、ENTPは自然にいる</strong>。ENTJにとってENTPは「こうなりたい」を体現している存在であり、一緒にいるとインスピレーションを受ける。</p>
+  </div>
+
+  <h3>変動宮 x 不動宮</h3>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th></th><th>変動宮（ENTJ）</th><th>不動宮（ENTP）</th></tr>
+      <tr><td>特性</td><td>適応力・柔軟性・多才</td><td>持続力・安定性・粘り強さ</td></tr>
+      <tr><td>仕事での強み</td><td>状況に合わせた方向転換</td><td>一度決めたら最後までやり抜く</td></tr>
+    </table></div>
+    <p style="margin-top:8px;">MBTIではENTJ＝J型（計画的）、ENTP＝P型（柔軟）だが、星座では逆転する面白い構図。ENTJの変動宮が柔軟さを、ENTPの不動宮が粘りを補完している。</p>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>地（おとめ座）と風（水瓶座）は一見異なるエレメントだが、<strong>知性という共通言語</strong>で強く結びつく。おとめ座の精密さが水瓶座の革新性に形を与え、水瓶座の自由さがおとめ座の完璧主義を解放する。MC-ASC射手座の重なりが「方向性の共鳴」を加え、このペアに共通のビジョンを与えている。</blockquote>
+</div>
+
+<!-- =============== TAB: 仕事相性 =============== -->
+<div class="tab-content" id="work">
+
+  <h2>仕事パートナー相性</h2>
+
+  <div class="card gold">
+    <h4 style="color:var(--gold);">仕事相性スコア：95/100</h4>
+    <p style="font-size:13px;color:var(--text-muted);">全分析を統合した仕事パートナーとしての総合相性。ENT系ペアの中でも最上位クラス。</p>
+  </div>
+
+  <h3>なぜ仕事で最強なのか</h3>
+
+  <div class="synergy-grid">
+    <div class="synergy-item" style="border-color:rgba(66,184,245,0.3);">
+      <div class="synergy-icon">&#9889;</div>
+      <div class="synergy-title">意思決定スピード</div>
+      <div class="synergy-desc">ENTJが即決、ENTPが選択肢を提示。議論→決定→実行が爆速</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(167,139,250,0.3);">
+      <div class="synergy-icon">&#128161;</div>
+      <div class="synergy-title">アイデア &#8594; 実行</div>
+      <div class="synergy-desc">ENTPの発想力 + ENTJの構造化力。企画→仕組み化のサイクルが速い</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(245,200,66,0.3);">
+      <div class="synergy-icon">&#128170;</div>
+      <div class="synergy-title">メンタル耐性</div>
+      <div class="synergy-desc">情動安定性90%+97%=187%。炎上・逆境でも揺るがない鉄壁コンビ</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(74,222,128,0.3);">
+      <div class="synergy-icon">&#127919;</div>
+      <div class="synergy-title">成果へのコミット</div>
+      <div class="synergy-desc">勤勉性77%+85%。タイプ3が両者7。「やり切る」が当たり前</div>
+    </div>
+  </div>
+
+  <h3>理想的な役割分担</h3>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>フェーズ</th><th style="color:var(--entj)">ENTJ</th><th style="color:var(--entp)">ENTP</th></tr>
+      <tr><td>企画</td><td>方向性の決定、ゴール設定</td><td>アイデア出し、可能性の拡張</td></tr>
+      <tr><td>計画</td><td>構造化、スケジュール管理</td><td>リスクの洗い出し、代替案</td></tr>
+      <tr><td>実行</td><td>進捗管理、品質チェック</td><td>現場の突破、アドリブ対応</td></tr>
+      <tr><td>対外</td><td>交渉、意思決定</td><td>関係構築、場の空気づくり</td></tr>
+      <tr><td>問題解決</td><td>根本原因の特定、仕組みで防止</td><td>創造的な回避策、発想の転換</td></tr>
+    </table></div>
+  </div>
+
+  <h3>仕事で活きる補完構造</h3>
+
+  <details class="accordion">
+    <summary>ENTJが持っていてENTPに足りないもの</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>長期ビジョン（Ni補助機能）：</strong>ENTJは「3年後こうなっているべき」を描ける。ENTPは目の前の面白さに集中しがち</li>
+        <li><strong>完璧主義的な品質管理：</strong>タイプ1 × おとめ座。「まだ甘い」と妥協しない目がある</li>
+        <li><strong>構造化する力：</strong>Te主機能。散らかったアイデアをフレームワークに落とし込める</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>ENTPが持っていてENTJに足りないもの</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>対人バッファ（協調性78%）：</strong>ENTJが正論で人を傷つけそうな場面を自然にフォローできる</li>
+        <li><strong>発想の幅（Ne主機能 + 創造性94%）：</strong>ENTJが見逃す選択肢や可能性を無限に提示できる</li>
+        <li><strong>柔軟性（P型）：</strong>計画が崩れたとき、ENTPは「じゃあこうしよう」と即座に適応できる</li>
+        <li><strong>場を和ませる力（Fe第三機能）：</strong>緊張した場面でユーモアで空気を変えられる</li>
+      </ul>
+    </div>
+  </details>
+
+  <h3>2人でプロジェクトを回すときの強み</h3>
+  <div class="card green">
+    <ol>
+      <li><strong>ブレストの質が異常に高い：</strong>ENTPがネタを出す→ENTJが瞬時にフィルタリング→さらにENTPが発展→ENTJが構造化。通常3回かかる会議が1回で終わる</li>
+      <li><strong>危機に強い：</strong>メンタル合計187%。トラブルが起きても「で、どうする？」と即座に切り替えられる</li>
+      <li><strong>人を動かせる：</strong>ENTJの指揮力 + ENTPのカリスマ。チームを引っ張る力が2倍</li>
+      <li><strong>盲点が少ない：</strong>ENTJのNi（未来予測）とENTPのNe（可能性探索）で、見逃しが減る</li>
+    </ol>
+  </div>
+
+  <h3>注意すべき仕事上のリスク</h3>
+  <div class="card danger">
+    <ol>
+      <li><strong>主導権のぶつかり：</strong>両者ともリーダー気質。担当領域を明確に分けることが重要</li>
+      <li><strong>感情面の見落とし：</strong>2人ともFi/Feが弱い。チームメンバーの不満や不安に気づかない</li>
+      <li><strong>過信による暴走：</strong>メンタルが強すぎて「いける」と判断するラインが他人より高い。客観的なブレーキ役が必要</li>
+      <li><strong>ルーティンの軽視：</strong>2人とも新しいことが好きで、地道な保守作業を後回しにしがち</li>
+    </ol>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>仕事で組んだとき、このペアの出力は「1+1=3」を超える。ENTJが城を設計し、ENTPが新しい武器を発明し、2人で攻め込む。<strong>最大のリスクは「強すぎて暴走すること」</strong>——ブレーキ役のチームメンバーが必要。</blockquote>
+</div>
+
+<!-- =============== TAB: 友情分析 =============== -->
+<div class="tab-content" id="friendship">
+
+  <h2>友情パターン分析</h2>
+
+  <div class="card gold">
+    <h4 style="color:var(--gold);">友情相性スコア：92/100</h4>
+    <p style="font-size:13px;color:var(--text-muted);">仕事仲間から始まった友情は、最も自然で持続的な関係になりうる。</p>
+  </div>
+
+  <h3>この友情の本質</h3>
+  <div class="card highlight">
+    <p><strong>「互いの能力をリスペクトし合う、戦友型の友情。」</strong></p>
+    <p>この2人の友情は「一緒にいて楽しい」だけではなく、<strong>「一緒にいると強くなれる」</strong>関係。互いの能力を認め合い、刺激し合い、高め合える。ぬるい関係ではなく、切磋琢磨の関係。</p>
+  </div>
+
+  <h3>友情の5つの柱</h3>
+
+  <div class="card">
+    <h4>1. 知的対話の楽しさ</h4>
+    <p>ENT共有。話題が尽きない。抽象的な議論も具体的な戦略も、どちらも楽しめる。「こいつと話すと頭が回る」感覚。</p>
+    <div class="flow-step main">ENTP「これ、こう考えたらどう？」</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step alt">ENTJ「いや、こっちの方が筋が通る」</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step main">ENTP「あ、でもそれだとここが崩れない？」</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step alt">ENTJ「......確かに。じゃあこうだ」</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">この知的なラリーが2人にとって最高のエンタメ。周りから見ると「議論してる」ように見えるが、本人たちは楽しんでいる。</p>
+  </div>
+
+  <div class="card">
+    <h4>2. メンタルの安定感</h4>
+    <p>情動安定性90% + 97%。一緒にいると<strong>「余計な気を使わなくていい」安心感</strong>がある。感情的なドラマがない。相手の機嫌を伺う必要がない。そのエネルギーを全部、建設的な方向に使える。</p>
+  </div>
+
+  <div class="card">
+    <h4>3. 裏表のない関係</h4>
+    <p>ENTJのタイプ1は「正直・誠実」。ENTPのタイプ8は「本音・直球」。<strong>嘘やごまかしがない関係。</strong>「思ってることを言う」が自然にできる。これは信頼の土台。</p>
+  </div>
+
+  <div class="card">
+    <h4>4. 自立した距離感</h4>
+    <p>タイプ6が両者とも最低（2）。依存しない、束縛しない。<strong>「会いたいときに会う、連絡したいときにする」</strong>が自然。しばらく会わなくても関係が劣化しない。</p>
+  </div>
+
+  <div class="card">
+    <h4>5. 成長の触媒</h4>
+    <p>ENTJはENTPの革新性に刺激され、ENTPはENTJの実行力に刺激される。<strong>一緒にいると「自分ももっとやらなきゃ」と思える関係。</strong>停滞しない友情。</p>
+  </div>
+
+  <h3>友情のフェーズ予測</h3>
+  <div class="card purple">
+    <div class="flow-step main"><strong>フェーズ1：認知</strong>「こいつ、できるな」——能力を認め合う</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step alt"><strong>フェーズ2：議論</strong>知的な対話が楽しくて距離が縮まる</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step main"><strong>フェーズ3：信頼</strong>「こいつは裏がない」と確信する</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step alt"><strong>フェーズ4：戦友</strong>一緒にプロジェクトや困難を乗り越える経験で絆が深まる</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step main"><strong>フェーズ5：生涯</strong>年齢を重ねても「あいつに相談しよう」と思える存在に</div>
+  </div>
+
+  <h3>ENTJから見たENTP</h3>
+  <div class="card highlight">
+    <ul>
+      <li>自分が思いつかないアイデアをポンポン出してくれる<strong>「発想の泉」</strong></li>
+      <li>正論を言いすぎて周囲から浮きそうなとき、自然にフォローしてくれる<strong>「外交官」</strong></li>
+      <li>メンタルが揺るがないから、安心して本音を言える<strong>「壁打ち相手」</strong></li>
+      <li>自分と同じくらい結果にこだわってくれる<strong>「信頼できる同志」</strong></li>
+    </ul>
+  </div>
+
+  <h3>ENTPから見たENTJ</h3>
+  <div class="card purple">
+    <ul>
+      <li>散らかったアイデアを一瞬で構造化してくれる<strong>「設計者」</strong></li>
+      <li>ブレない軸を持っていて、指針になる<strong>「北極星」</strong></li>
+      <li>自分の直球を受け止めてくれる数少ない人間<strong>「受け止め役」</strong></li>
+      <li>一緒にいると「もっと上を目指そう」と思える<strong>「ライバル兼仲間」</strong></li>
+    </ul>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>この友情は「楽しいだけ」の関係ではなく、<strong>「一緒にいると互いが強くなれる」</strong>関係。知的対話、メンタルの安定、裏表のなさ、自立した距離感、成長の触媒——友情に必要な要素が全て揃っている。仕事を通じて始まった関係は、戦友として年齢とともにさらに深まっていく。</blockquote>
+</div>
+
+<!-- =============== TAB: リスク&対策 =============== -->
+<div class="tab-content" id="risk">
+
+  <h2>リスク&対策</h2>
+
+  <div class="about-box">
+    <div class="about-title">なぜリスクを知ることが大事か</div>
+    <p>相性が良いペアほど、問題が起きたときに「まさかこいつとぶつかるとは」と想定外に感じやすい。事前にリスクパターンを知っておくことで、関係を長く維持できる。</p>
+  </div>
+
+  <h3>リスク1：主導権の衝突</h3>
+  <div class="card danger">
+    <h4>なぜ起きるか</h4>
+    <p>両者ともSLE（Se主導）でリーダー気質。エニアグラムもタイプ1（正義でリード）× タイプ8（力でリード）。同じ方向を向いていれば最強だが、方向が割れたとき正面衝突する。</p>
+    <h4>どう防ぐか</h4>
+    <ul>
+      <li><strong>担当領域を明確にする：</strong>「ここは俺の判断」「ここはお前に任せる」を事前に決める</li>
+      <li><strong>目的に立ち戻る：</strong>衝突したら「そもそも何のため？」に戻る。両者とも論理的なので、目的が明確なら折り合える</li>
+      <li><strong>ENTPの協調性78%を活かす：</strong>ENTPの方が柔軟に対応できるため、ENTPが最初に一歩引くとスムーズ</li>
+    </ul>
+  </div>
+
+  <h3>リスク2：批判のエスカレーション</h3>
+  <div class="card danger">
+    <h4>なぜ起きるか</h4>
+    <p>ENTJのタイプ1は無意識に正論で指摘する。ENTPのタイプ8は「支配されること」を最も嫌う。正論が「お前は間違っている」と受け取られると、タイプ8の反撃が始まる。</p>
+    <div class="flow-step main">ENTJ「これ、こうすべきだろ」（タイプ1の正論）</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step danger">ENTP「お前に指図される筋合いはない」（タイプ8の防衛）</div>
+    <div class="flow-arrow">&darr;</div>
+    <div class="flow-step danger">正面衝突</div>
+    <h4>どう防ぐか</h4>
+    <ul>
+      <li><strong>指摘→問いかけに変換：</strong>「こうすべき」→「こっちの方がよくない？」。形を変えるだけで受け取り方が変わる</li>
+      <li><strong>リスペクトを言語化する：</strong>ENTJが相手の判断を認めた上で別案を出す。「お前の考えはわかる。でも——」</li>
+      <li><strong>ユーモアで脱線：</strong>ENTPのFe第三機能で緊張を和らげるのが最も自然な解決策</li>
+    </ul>
+  </div>
+
+  <h3>リスク3：感情の死角</h3>
+  <div class="card danger">
+    <h4>なぜ起きるか</h4>
+    <p>2人とも情動安定性が高すぎて（90% + 97%）、感情の問題に鈍感。チームで働く場合、メンバーの不満や不安に気づかない。プライベートでも、相手が珍しく感情的になったとき「なんでそんなこと気にするの？」と反応してしまう可能性。</p>
+    <h4>どう防ぐか</h4>
+    <ul>
+      <li><strong>定期的に「大丈夫？」を聞く習慣：</strong>自分は気にならなくても、周囲は違うかもしれないという前提を持つ</li>
+      <li><strong>相手が珍しく感情的なときは「論理」ではなく「聞く」：</strong>この2人が感情的になるのは相当なストレス時。そのサインを見逃さない</li>
+    </ul>
+  </div>
+
+  <h3>リスク4：過信による暴走</h3>
+  <div class="card danger">
+    <h4>なぜ起きるか</h4>
+    <p>全スペックが高い2人が組むと「俺たちならいける」の判断ラインが上がりすぎる。客観的に見てリスクが高い選択を「大丈夫だろう」と進めてしまう。</p>
+    <h4>どう防ぐか</h4>
+    <ul>
+      <li><strong>第三者の意見を入れる：</strong>2人の結論に「本当にそう？」と言える人を意識的にチームに入れる</li>
+      <li><strong>「最悪のシナリオ」を定期的に想定する：</strong>ENTPのNe（可能性の探索）でリスクシナリオを洗い出し、ENTJのNi（未来予測）で確率を見積もる</li>
+    </ul>
+  </div>
+
+  <h3>長期的な関係維持の秘訣</h3>
+  <div class="card green">
+    <ol>
+      <li><strong>互いの領域を尊重する：</strong>「こっちの判断は任せろ」が言えて、それを受け入れられる関係</li>
+      <li><strong>新しい挑戦を共有する：</strong>タイプ7ウィング共通。新しい体験を一緒にすると関係がリフレッシュされる</li>
+      <li><strong>正直であり続ける：</strong>2人の友情の基盤は「裏表がないこと」。これを崩さない</li>
+      <li><strong>成長を認め合う：</strong>タイプ1は「肯定の言葉」を求め、タイプ8は「リスペクト」を求める。互いの成長を言葉にして伝える</li>
+      <li><strong>時々距離を取る：</strong>タイプ6が両者2。べったりしない。距離があっても壊れない信頼を築く</li>
+    </ol>
+  </div>
+
+  <h2>最終総括</h2>
+  <div class="card gold">
+    <blockquote style="border-color:var(--gold);">
+      <p><strong>「ENTJ × ENTP——知性で共鳴し、行動で証明し、本能で信頼する、最強の戦友。」</strong></p>
+      <p style="margin-top:12px;">MBTIは「同じ言語を話すパートナー」を示し、<br>
+      ソシオニクスは「鏡のような理解」を示し、<br>
+      エニアグラムは「腹の底で通じ合う同志」を示し、<br>
+      ビッグファイブは「メンタル無敵のコンビ」を示し、<br>
+      星座は「知性で融合する実行者と革新者」を示す。</p>
+      <p style="margin-top:12px;">このペアの友情と仕事関係を一言で表すなら——<br>
+      <strong>「お互いがいると、世界がもっと面白くなる。」</strong></p>
+    </blockquote>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  統合分析日: 2026-04-18<br>
+  分析エンジン: MBTI / エニアグラム / ビッグファイブ / ソシオニクス / 星座エレメント<br>
+  ENTJ-A（おとめ座 / 2001.09.21） x ENTP-A（水瓶座 / 2000.02.16）
+</div>
+
+<script>
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+</script>
+</body>
+</html>
