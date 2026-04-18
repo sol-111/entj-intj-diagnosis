@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>ENTJ 総合診断</title>
+<style>
+  :root {
+    --bg: #0f0f14;
+    --surface: #1a1a24;
+    --surface2: #22222f;
+    --border: #2a2a3a;
+    --text: #e8e6f0;
+    --text-muted: #8a8a9a;
+    --accent: #7c6ff7;
+    --accent2: #f76fa1;
+    --accent-glow: rgba(124,111,247,0.15);
+    --gold: #f5c842;
+    --green: #4ade80;
+    --red: #f87171;
+    --orange: #fb923c;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ===== HEADER ===== */
+  .header {
+    background: linear-gradient(135deg, #1a1030 0%, #0f0f14 50%, #0f1420 100%);
+    padding: 40px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(124,111,247,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(247,111,161,0.06) 0%, transparent 50%);
+    animation: headerGlow 8s ease-in-out infinite alternate;
+  }
+  @keyframes headerGlow {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-5%,3%); }
+  }
+  .header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    letter-spacing: 0.5px;
+  }
+  .header .sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    position: relative;
+  }
+  .header .types {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 14px;
+    position: relative;
+  }
+  .type-badge {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .type-badge.entj {
+    background: linear-gradient(135deg, rgba(124,111,247,0.2), rgba(124,111,247,0.05));
+    border: 1px solid rgba(124,111,247,0.4);
+    color: var(--accent);
+  }
+
+  /* ===== TAB NAV ===== */
+  .tab-nav {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 4px;
+  }
+  .tab-nav::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ===== CONTENT ===== */
+  .tab-content { display: none; padding: 20px 16px 100px; }
+  .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== TYPOGRAPHY ===== */
+  h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    background: linear-gradient(90deg, var(--text), var(--text-muted));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  h2:first-child { margin-top: 0; }
+  h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    color: var(--accent);
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 18px 0 8px;
+    color: var(--text);
+  }
+  p { margin: 8px 0; }
+  strong { color: #fff; font-weight: 700; }
+  ul, ol { margin: 8px 0; padding-left: 20px; }
+  li { margin: 4px 0; }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .card.highlight {
+    border-color: rgba(124,111,247,0.3);
+    background: linear-gradient(135deg, rgba(124,111,247,0.06), var(--surface));
+  }
+  .card.pink {
+    border-color: rgba(247,111,161,0.3);
+    background: linear-gradient(135deg, rgba(247,111,161,0.06), var(--surface));
+  }
+  .card.gold {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.06), var(--surface));
+  }
+
+  /* ===== TABLES ===== */
+  .table-wrap { overflow-x: auto; margin: 12px 0; -webkit-overflow-scrolling: touch; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 300px;
+  }
+  th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-weight: 700;
+    text-align: left;
+    padding: 10px 12px;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+
+  /* ===== STARS ===== */
+  .stars { color: var(--gold); letter-spacing: 1px; }
+  .stars-dim { color: #3a3a4a; letter-spacing: 1px; }
+
+  /* ===== QUOTES ===== */
+  blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    margin: 16px 0;
+    background: var(--accent-glow);
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+  }
+
+  /* ===== CODE BLOCKS ===== */
+  .code-block {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    overflow-x: auto;
+    margin: 12px 0;
+    line-height: 1.8;
+    white-space: pre-wrap;
+  }
+
+  /* ===== ENNEAGRAM GUIDE ===== */
+  .ennea-guide-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    margin: 12px 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ennea-guide-toggle:hover { border-color: rgba(124,111,247,0.4); color: var(--text); }
+  .ennea-guide-toggle .arrow {
+    transition: transform 0.3s;
+    font-size: 11px;
+  }
+  .ennea-guide-toggle.open .arrow { transform: rotate(180deg); }
+  .ennea-guide-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, margin 0.3s ease;
+    margin: 0;
+  }
+  .ennea-guide-body.open {
+    max-height: 2000px;
+    margin: 0 0 16px;
+  }
+  .ennea-guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  .ennea-guide-table th {
+    background: var(--surface2);
+    color: var(--accent);
+    font-weight: 700;
+    text-align: left;
+    padding: 8px 10px;
+    white-space: nowrap;
+    border-bottom: 2px solid var(--border);
+    font-size: 11px;
+  }
+  .ennea-guide-table td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .ennea-guide-table tr:last-child td { border-bottom: none; }
+  .ennea-guide-table .etype {
+    font-weight: 900;
+    white-space: nowrap;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .ennea-guide-table .ename {
+    font-weight: 700;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .ennea-guide-table .edesc {
+    color: var(--text-muted);
+  }
+
+  /* ===== FIGHT SIM ===== */
+  .fight-scenario {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin: 16px 0;
+    overflow: hidden;
+  }
+  .fight-scenario-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+  .fight-scenario-header:hover { background: var(--surface2); }
+  .fight-scenario-header .scenario-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    flex: 1;
+  }
+  .fight-scenario-header .scenario-tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .fight-scenario-header .scenario-arrow {
+    font-size: 11px;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+  }
+  .fight-scenario-header.open .scenario-arrow { transform: rotate(180deg); }
+  .fight-scenario-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+  }
+  .fight-scenario-body.open { max-height: 4000px; }
+  .fight-scenario-inner { padding: 0 16px 16px; }
+
+  /* chat bubbles */
+  .chat { margin: 6px 0; display: flex; flex-direction: column; }
+  .bubble {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .bubble.entj {
+    background: rgba(124,111,247,0.15);
+    border: 1px solid rgba(124,111,247,0.25);
+    border-bottom-left-radius: 4px;
+    align-self: flex-start;
+  }
+  .bubble.thought {
+    background: var(--surface2);
+    border: 1px dashed var(--border);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 12px;
+  }
+  .bubble.thought.entj { border-color: rgba(124,111,247,0.3); }
+  .bubble-name {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+  .bubble-name.entj { color: var(--accent); }
+  .chat-divider {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 11px;
+    margin: 10px 0;
+  }
+
+  /* mechanism flow */
+  .flow-step {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    margin: 4px 0;
+  }
+  .flow-step.entj { background: rgba(124,111,247,0.1); border-left: 3px solid var(--accent); }
+  .flow-step.both { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
+  .flow-arrow { text-align: center; color: var(--text-muted); font-size: 16px; margin: 2px 0; }
+
+  /* magic words */
+  .magic-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 6px 0;
+  }
+  .magic-bad {
+    padding: 8px 12px;
+    background: rgba(248,113,113,0.08);
+    border: 1px solid rgba(248,113,113,0.2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .magic-good {
+    padding: 8px 12px;
+    background: rgba(74,222,128,0.08);
+    border: 1px solid rgba(74,222,128,0.2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .magic-bad strong { color: #f87171; }
+  .magic-good strong { color: var(--green); }
+
+  /* ===== ABOUT BOX ===== */
+  .about-box {
+    background: linear-gradient(135deg, rgba(124,111,247,0.06), rgba(247,111,161,0.04));
+    border: 1px solid rgba(124,111,247,0.2);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 0 0 20px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .about-box .about-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .about-box p {
+    margin: 0;
+    color: var(--text-muted);
+  }
+
+  /* ===== RATING BARS ===== */
+  .rating { margin: 8px 0; }
+  .rating-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+  .rating-bar {
+    height: 6px;
+    background: var(--surface2);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .rating-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+  .rating-fill.purple { background: linear-gradient(90deg, var(--accent), #a78bfa); }
+  .rating-fill.pink { background: linear-gradient(90deg, var(--accent2), #fb7185); }
+  .rating-fill.gold { background: linear-gradient(90deg, var(--gold), #fbbf24); }
+
+  /* ===== RANKING BADGES ===== */
+  .rank { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+  .rank-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 900;
+    flex-shrink: 0;
+  }
+  .rank-num.r1 { background: linear-gradient(135deg, #f5c842, #f59e42); color: #000; }
+  .rank-num.r2 { background: linear-gradient(135deg, #c0c0c0, #9a9a9a); color: #000; }
+  .rank-num.r3 { background: linear-gradient(135deg, #cd7f32, #a0522d); color: #fff; }
+  .rank-num.r4 { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+  .rank-num.r5 { background: var(--surface2); border: 1px solid var(--border); color: var(--text-muted); }
+
+  /* ===== TAGS ===== */
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px;
+  }
+  .tag.ok { background: rgba(74,222,128,0.15); color: var(--green); }
+  .tag.warn { background: rgba(251,146,60,0.15); color: var(--orange); }
+  .tag.bad { background: rgba(248,113,113,0.15); color: var(--red); }
+
+  /* ===== DIVIDER ===== */
+  hr {
+    border: none;
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+  }
+
+  /* ===== SCROLL HINT ===== */
+  .scroll-hint {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    padding: 6px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+
+  /* ===== PROFILE COMPARISON ===== */
+  .vs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 12px 0;
+  }
+  .vs-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .vs-card.left { border-color: rgba(124,111,247,0.3); }
+  .vs-card.right { border-color: rgba(247,111,161,0.3); }
+  .vs-name {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .vs-name.entj { color: var(--accent); }
+  .vs-val { font-size: 20px; font-weight: 900; color: #fff; }
+  .vs-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .rank-item {
+    display: flex; gap: 14px; padding: 14px; border-radius: 10px; margin: 8px 0;
+    align-items: flex-start; border: 1px solid var(--border); background: var(--surface);
+  }
+  .rank-item.top3 {
+    border-color: rgba(245,200,66,0.3);
+    background: linear-gradient(135deg, rgba(245,200,66,0.04), var(--surface));
+  }
+  .rank-num { font-size: 22px; font-weight: 900; min-width: 36px; text-align: center; line-height: 1.2; }
+  .rank-item.top3 .rank-num { color: var(--gold); }
+  .rank-item:not(.top3) .rank-num { color: var(--text-muted); }
+  .rank-body { flex: 1; }
+  .rank-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .rank-reason { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+  .rank-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .rank-tag { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .tag-purple { background: rgba(124,111,247,0.15); color: var(--accent); }
+  .tag-pink { background: rgba(247,111,161,0.15); color: var(--accent2); }
+  .tag-gold { background: rgba(245,200,66,0.15); color: var(--gold); }
+  .tag-green { background: rgba(74,222,128,0.15); color: var(--green); }
+  .data-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 12px 0; }
+  .data-item { font-size: 11px; padding: 6px 10px; background: var(--surface2); border-radius: 6px; }
+  .data-item strong { font-size: 12px; }
+  details.accordion {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    margin: 10px 0; overflow: hidden;
+  }
+  details.accordion[open] { border-color: rgba(124,111,247,0.3); }
+  details.accordion summary {
+    padding: 14px 16px; cursor: pointer; list-style: none;
+    display: flex; justify-content: space-between; align-items: center;
+    font-weight: 700; font-size: 14px; color: #fff;
+    -webkit-user-select: none; user-select: none;
+  }
+  details.accordion summary::-webkit-details-marker { display: none; }
+  details.accordion summary::after {
+    content: '+'; font-size: 18px; color: var(--text-muted); font-weight: 400;
+    transition: transform 0.2s;
+  }
+  details.accordion[open] summary::after { content: '−'; }
+  details.accordion .acc-body { padding: 0 16px 16px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>ENTJ</h1>
+  <div class="sub">総合性格診断</div>
+  <div class="types">
+    <span class="type-badge entj">ENTJ-A</span>
+  </div>
+</div>
+
+<!-- TAB NAV -->
+<nav class="tab-nav" id="tabNav">
+  <button class="tab-btn active" data-tab="overview">総合</button>
+  <button class="tab-btn" data-tab="big5">ビッグファイブ</button>
+  <button class="tab-btn" data-tab="enneagram">エニアグラム</button>
+  <button class="tab-btn" data-tab="mbti">MBTI</button>
+  <button class="tab-btn" data-tab="socionics">ソシオニクス</button>
+  <button class="tab-btn" data-tab="love">恋愛タイプ</button>
+  <button class="tab-btn" data-tab="element">星座エレメント</button>
+  <button class="tab-btn" data-tab="horoscope">ホロスコープ</button>
+  <button class="tab-btn" data-tab="entj-summary">ENTJ総合</button>
+  <button class="tab-btn" data-tab="stress-map">ストレス＆地雷</button>
+  <button class="tab-btn" data-tab="shadow">影の自己分析</button>
+  <button class="tab-btn" data-tab="entj-self">ENTJ自己分析</button>
+  <button class="tab-btn" data-tab="career">向いてる仕事</button>
+</nav>
+<div class="scroll-hint">← タブをスワイプ →</div>
+
+<!-- =============== TAB: 総合 =============== -->
+<div class="tab-content active" id="overview">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTI・エニアグラム・ビッグファイブ・ソシオニクス・ホロスコープなど複数の性格診断を横断的に統合し、性格構造・強みと課題を多角的に分析したレポートです。</p>
+  </div>
+
+  <h2>データ一覧</h2>
+  <div class="table-wrap"><table>
+    <tr><th>指標</th><th>ENTJ男</th></tr>
+    <tr><td>MBTI</td><td><strong>ENTJ-A</strong><br>主張型・指揮官</td></tr>
+    <tr><td>ソシオニクス</td><td><strong>SLE</strong><br>ベータ(β)クワドラ</td></tr>
+    <tr><td>エニアグラム</td><td><strong>タイプ1w7</strong><br>改革者+楽天家</td></tr>
+    <tr><td>星座</td><td>おとめ座・地</td></tr>
+    <tr><td>ASC</td><td>魚座 06°25'</td></tr>
+    <tr><td>MC</td><td>射手座 16°08'</td></tr>
+  </table></div>
+
+  <h2>ビッグファイブ</h2>
+  <div class="rating">
+    <div class="rating-label"><span>外向性</span><span>73%</span></div>
+    <div class="rating-bar"><div class="rating-fill purple" style="width:73%"></div></div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>協調性</span><span>34%</span></div>
+    <div class="rating-bar"><div class="rating-fill purple" style="width:34%"></div></div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>勤勉性</span><span>77%</span></div>
+    <div class="rating-bar"><div class="rating-fill purple" style="width:77%"></div></div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>情動安定性</span><span>90%</span></div>
+    <div class="rating-bar"><div class="rating-fill purple" style="width:90%"></div></div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>創造性</span><span>81%</span></div>
+    <div class="rating-bar"><div class="rating-fill purple" style="width:81%"></div></div>
+  </div>
+
+  <h2>ENTJ男 プロファイル</h2>
+  <blockquote>正義感と実行力を持ち、世界を動かそうとする、ストレス知らずのリーダー</blockquote>
+  <div class="card highlight">
+    <h4>強みの構造</h4>
+    <ul>
+      <li><strong>圧倒的な実行力</strong> — Se主導(SLE) + 外向73% + 情動安定90%</li>
+      <li><strong>ブレない軸と完璧主義</strong> — エニアタイプ1(スコア10) + おとめ座28°</li>
+      <li><strong>楽観的エネルギー</strong> — タイプ7ウィング(スコア9) + ASC魚座</li>
+      <li><strong>長期戦略と知的探求</strong> — タイプ5(スコア8) + 創造性81%</li>
+      <li><strong>カリスマ的リーダーシップ</strong> — 敏腕マネージャー + MC射手座</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h4>弱点の核心</h4>
+    <ul>
+      <li>Niが苦手 — 長期ビジョン・未来予測を他者に頼る</li>
+      <li>Fiが苦手 — 個人的な感情の表現・受け取りが消耗</li>
+      <li>批判が無意識に出る — タイプ1の影</li>
+      <li>ストレス時はタイプ4化 — 急に引きこもる</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- =============== TAB: ビッグファイブ =============== -->
+<div class="tab-content" id="big5">
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>性格を「外向性・協調性・勤勉性・情動安定性・創造性」の5つの軸でスコア化する、心理学で最も科学的根拠が強い性格モデルです。性格傾向が数値で客観的にわかります。</p>
+  </div>
+  <h2>ENTJ男のビッグファイブ</h2>
+  <div class="card highlight">
+    <div class="vs-name entj">ENTJ-A / EHCNO / SLE / タイプ1</div>
+    <div class="rating">
+      <div class="rating-label"><span>外向性</span><span>73%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:73%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>協調性(排他性66%)</span><span>34%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:34%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>勤勉性</span><span>77%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:77%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>情動安定性</span><span>90%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:90%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>創造性</span><span>81%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:81%"></div></div>
+    </div>
+  </div>
+  <blockquote>自分の力で世界を動かそうとする、ストレス知らずのリーダー</blockquote>
+  <h3>強みと行動パターン</h3>
+  <p><strong>圧倒的な実行力と自信</strong> — 外向性73%+情動安定90%の組み合わせは「失敗しても動じない」人間を作る。ENTJ-Aの自己肯定感が高く、挫折をエネルギーに変えられる。</p>
+  <p><strong>高い目標設定と完璧主義</strong> — エニアグラム タイプ1(スコア10/最高値)が核心。勤勉性77%と合わさり、やると決めたことは徹底的にやり遂げる。</p>
+  <p><strong>戦略的思考と知的探求</strong> — 創造性81%+タイプ5(スコア8)。物事の本質を見抜き、俯瞰的に計画を立てるのが得意。</p>
+  <p><strong>楽観的なエネルギー</strong> — タイプ7(スコア9)の影響で好奇心旺盛。フットワークが軽く楽しいことに全力。</p>
+  <h3>弱点</h3>
+  <ul>
+    <li>協調性34% — 自分のやり方を優先しがち</li>
+    <li>支配的になりやすい</li>
+    <li>共感よりも解決策を出してしまう</li>
+  </ul>
+
+</div>
+
+<!-- =============== TAB: エニアグラム =============== -->
+<div class="tab-content" id="enneagram">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>人の根本的な動機・恐れ・欲求を9つのタイプで分類する性格類型論です。「なぜそう行動するのか」という内面の動機がわかり、ストレス時や成長時の変化パターンが見えてきます。</p>
+  </div>
+
+  <h2>エニアグラムスコア</h2>
+
+  <button class="ennea-guide-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
+    <span>タイプ早見表を見る</span>
+    <span class="arrow">▼</span>
+  </button>
+  <div class="ennea-guide-body">
+    <div class="table-wrap">
+    <table class="ennea-guide-table">
+      <tr><th>タイプ</th><th>名称</th><th>特徴</th></tr>
+      <tr>
+        <td class="etype">1</td>
+        <td class="ename">改革者</td>
+        <td class="edesc">「正しくありたい」が原動力。高い理想と倫理観を持ち、物事を改善しようとする完璧主義者。自分にも他人にも厳しく、妥協を嫌う。責任感が強く信頼されるが、批判的になりやすい面も。</td>
+      </tr>
+      <tr>
+        <td class="etype">2</td>
+        <td class="ename">援助者</td>
+        <td class="edesc">「人の役に立ちたい」が原動力。共感力が高く、他者のニーズを察して献身的にサポートする。愛情深く温かいが、自分の欲求を後回しにしがち。感謝されないと不満を溜め込むことも。</td>
+      </tr>
+      <tr>
+        <td class="etype">3</td>
+        <td class="ename">達成者</td>
+        <td class="edesc">「成功して認められたい」が原動力。目標に向かって効率的に動き、結果を出す実力派。適応力が高く自信に満ちているが、成果＝自分の価値と捉えすぎると、本当の自分を見失うことがある。</td>
+      </tr>
+      <tr>
+        <td class="etype">4</td>
+        <td class="ename">個人主義者</td>
+        <td class="edesc">「自分らしくありたい」が原動力。豊かな感受性と独自の美意識を持つクリエイティブな人。深い感情体験を大切にし、平凡を嫌う。自分だけが理解されていないと感じやすく、気分の波が大きい。</td>
+      </tr>
+      <tr>
+        <td class="etype">5</td>
+        <td class="ename">調査者</td>
+        <td class="edesc">「知りたい・理解したい」が原動力。観察力と分析力に優れ、知識を深く掘り下げる思考家。自分の世界を大切にし、一人の時間を必要とする。感情表現や社交に消耗しやすく、距離を取りがち。</td>
+      </tr>
+      <tr>
+        <td class="etype">6</td>
+        <td class="ename">忠実な人</td>
+        <td class="edesc">「安全でありたい」が原動力。慎重でリスクを先読みし、信頼できる人や組織に誠実に尽くす。責任感が強く堅実だが、最悪のケースを想定しすぎて不安に駆られたり、決断に迷うことがある。</td>
+      </tr>
+      <tr>
+        <td class="etype">7</td>
+        <td class="ename">熱狂家</td>
+        <td class="edesc">「楽しみたい・満たされたい」が原動力。好奇心旺盛で多才、次々と新しい体験を求めるポジティブな冒険家。発想力が豊かだが、退屈や苦痛を避けるため深掘りを嫌い、散漫になることも。</td>
+      </tr>
+      <tr>
+        <td class="etype">8</td>
+        <td class="ename">挑戦者</td>
+        <td class="edesc">「強くありたい・支配されたくない」が原動力。自信と決断力に溢れ、困難に立ち向かうパワフルなリーダー。弱者を守る正義感がある一方、威圧的になったり、弱さを見せることを極端に嫌う。</td>
+      </tr>
+      <tr>
+        <td class="etype">9</td>
+        <td class="ename">平和主義者</td>
+        <td class="edesc">「平穏でありたい・争いを避けたい」が原動力。穏やかで受容的、誰とでも調和できる癒しの存在。多様な視点を理解できるが、対立を恐れて自分の意見を抑え、優柔不断になりやすい。</td>
+      </tr>
+    </table>
+    </div>
+  </div>
+
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name entj">ENTJ男</div>
+    <div style="font-size:28px;font-weight:800;margin:8px 0;">1w7</div>
+    <div style="font-size:13px;color:var(--text-muted);">改革者+楽天家</div>
+  </div>
+
+  <h3>ENTJ男 スコア</h3>
+  <div class="card highlight">
+    <div class="rating"><div class="rating-label"><span>タイプ1 改革者</span><span><strong>10</strong></span></div><div class="rating-bar"><div class="rating-fill purple" style="width:100%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ7 熱狂家</span><span>9</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:90%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ5 調査者</span><span>8</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:80%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ2 援助者</span><span>7</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:70%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ3 達成者</span><span>7</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:70%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ8 挑戦者</span><span>6</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:60%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ4 個人主義者</span><span>4</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:40%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ9 平和主義者</span><span>4</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:40%"></div></div></div>
+    <div class="rating"><div class="rating-label"><span>タイプ6 忠実な人</span><span>2</span></div><div class="rating-bar"><div class="rating-fill purple" style="width:20%"></div></div></div>
+  </div>
+
+</div>
+
+<!-- =============== TAB: MBTI =============== -->
+<div class="tab-content" id="mbti">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>外向/内向・感覚/直感・思考/感情・判断/知覚の4軸で16タイプに分類する世界で最も普及した性格診断です。思考スタイルやコミュニケーションの傾向がわかります。</p>
+  </div>
+
+  <h2>ENTJ-A（指揮官）</h2>
+  <blockquote>圧倒的な自信と行動力で、周囲を巻き込みながら目標を叩き割る戦略家。</blockquote>
+  <div class="card highlight">
+    <h4>強み</h4>
+    <ul>
+      <li><strong>カリスマ性と決断力</strong> — 即断即決、曖昧さを嫌い常に前進</li>
+      <li><strong>長期戦略の立案</strong> — ビジョンを具体的な計画に落とし込む</li>
+      <li><strong>効率と結果の追求</strong> — 最短距離で目標へ</li>
+      <li><strong>Assertive(-A)</strong> — 他者の評価に振り回されない</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- =============== TAB: ソシオニクス =============== -->
+<div class="tab-content" id="socionics">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTIをさらに発展させた心理類型論で、8つの認知機能の優先順位からタイプを分類します。最大の特徴はタイプ間の関係性（双対・活性化・衝突など）が体系化されている点です。</p>
+  </div>
+
+  <h2>ソシオニクスとは</h2>
+  <p>MBTIより精緻な心理類型論。8つの認知機能の配置で16タイプを分類し、<strong>タイプ間の相互関係</strong>が体系化されている。</p>
+
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name entj">SLE</div>
+    <div style="font-size:28px;font-weight:800;margin:8px 0;">Se</div>
+    <div style="font-size:13px;color:var(--text-muted);">外向感覚 主導<br>ベータ(β)クワドラ</div>
+  </div>
+
+  <h2>SLE 機能配置</h2>
+  <div class="table-wrap"><table>
+    <tr><th>位置</th><th>機能</th><th>説明</th></tr>
+    <tr><td>1 主導</td><td><strong>Se</strong></td><td>現実への直接作用、意志力</td></tr>
+    <tr><td>2 創造</td><td><strong>Ti</strong></td><td>構造化・体系化</td></tr>
+    <tr><td>3 役割</td><td>Fi</td><td>個人的感情(苦手)</td></tr>
+    <tr><td>4 苦点</td><td>Ne</td><td>可能性の拡散(最弱)</td></tr>
+    <tr><td>5 示唆</td><td><strong>Ni</strong></td><td>長期ビジョン(他者に求める)</td></tr>
+    <tr><td>6 動員</td><td><strong>Fe</strong></td><td>感情表現(受け取ると活性化)</td></tr>
+    <tr><td>7 無視</td><td>Te</td><td>効率(使えるが重視しない)</td></tr>
+    <tr><td>8 背景</td><td>Si</td><td>身体感覚(背景処理)</td></tr>
+  </table></div>
+
+</div>
+
+<!-- =============== TAB: 恋愛タイプ =============== -->
+<div class="tab-content" id="love">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>恋愛心理学の「愛の6類型（リーの愛のスタイル）」をベースに、情熱型・友愛型・実用型などの恋愛パターンを分析します。どんな愛し方をし、何を求めるかが具体的にわかります。</p>
+  </div>
+
+  <h2>恋愛スタイル</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name entj">ENTJ男</div>
+    <div style="font-size:16px;font-weight:800;margin:8px 0;">Pragma + Eros</div>
+    <div style="font-size:13px;color:var(--text-muted);">実用的で情熱的</div>
+  </div>
+
+  <h3>ENTJ男の恋愛パターン</h3>
+  <div class="card highlight">
+    <ul>
+      <li>相手の知性・価値観・目標を最初に見る</li>
+      <li>決めた相手へのコミットメントは強い</li>
+      <li>口より行動。計画・解決で愛情を示す</li>
+      <li>パートナーにも「成長・向上心」を求める</li>
+      <li>退屈を嫌い、刺激のある関係を好む</li>
+    </ul>
+  </div>
+
+  <h2>愛情言語</h2>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>与え方</th><th>求め方</th></tr>
+    <tr><td style="color:var(--accent);font-weight:700;">ENTJ男</td><td>奉仕・行動・計画</td><td><strong>肯定の言葉</strong></td></tr>
+  </table></div>
+
+  <h2>アタッチメント(愛着)スタイル</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name entj">ENTJ男</div>
+    <div style="font-size:16px;font-weight:800;margin:8px 0;">回避型</div>
+    <div style="font-size:13px;color:var(--text-muted);">近づきすぎると引く</div>
+  </div>
+</div>
+
+<!-- =============== TAB: 星座エレメント =============== -->
+<div class="tab-content" id="element">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>12星座を火・地・風・水の4元素と、活動・固定・変動の3区分で分類し、性格の根底にあるエネルギーの質を読み解きます。同じ元素同士の安定感や、異なる元素間の刺激・摩擦のパターンがわかります。</p>
+  </div>
+
+  <h2>エレメント対応</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name entj">ENTJ男</div>
+    <div style="font-size:18px;font-weight:800;margin:8px 0;">おとめ座</div>
+    <div style="font-size:13px;color:var(--text-muted);">地・変動宮・水星</div>
+  </div>
+
+  <h2>地(Earth)の特性</h2>
+  <div class="card">
+    <ul>
+      <li>感情より<strong>現実と結果</strong>を重視する</li>
+      <li>計画を<strong>着実に実行</strong>できる</li>
+      <li><strong>安全と安定</strong>に高い価値</li>
+      <li>変化より<strong>持続性</strong>を好む</li>
+    </ul>
+  </div>
+
+  <h3>おとめ座(変動宮) — ENTJ男</h3>
+  <div class="card highlight">
+    <p>支配星<strong>水星</strong> — 分析力・言語化能力・細部への注目</p>
+    <p><strong>変動宮</strong> — 柔軟に状況に適応。より良い方法に切り替えられる</p>
+    <p>ENTJの推進力に、おとめ座の「内省と修正」の力 → <strong>突き進みながら自己補正できるリーダー</strong></p>
+  </div>
+
+</div>
+
+<!-- =============== TAB: ホロスコープ =============== -->
+<div class="tab-content" id="horoscope">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>出生時刻・場所から天体の正確な配置を算出し、太陽星座だけでは見えない深層的な性格・人生テーマ・対人傾向を読み解きます。ASC（第一印象）、MC（社会的方向性）、月（内面・感情）など多層的な分析ができます。</p>
+  </div>
+
+  <h2>出生データ</h2>
+  <div class="card">
+    <p style="font-size:12px;">ENTJ男: 2001/09/21 16:40 JST 茨城県古河市<br>
+    <span style="color:var(--text-muted);">Swiss Ephemeris(Moshier法) / Placidus / 熱帯暦</span></p>
+  </div>
+
+  <h2>ASC × MC</h2>
+  <div class="table-wrap"><table>
+    <tr><th></th><th>ENTJ男</th></tr>
+    <tr><td>ASC</td><td>魚座 06°25'</td></tr>
+    <tr><td>MC</td><td>射手座 16°08'</td></tr>
+  </table></div>
+
+  <h3>ENTJ男: ASC 魚座</h3>
+  <p>第一印象は<strong>柔らかく、直感的で、受容的</strong>。ENTJの強さが内側に隠れる「ギャップ」の正体。パートナーシップの中で最も力を発揮する(太陽7H)。</p>
+
+  <h2>天体位置</h2>
+  <div class="table-wrap"><table>
+    <tr><th>天体</th><th>ENTJ男</th></tr>
+    <tr><td>☉ 太陽</td><td>28°23' 乙女座 (7H)</td></tr>
+    <tr><td>☽ 月</td><td>21°18' さそり座 (8H)</td></tr>
+    <tr><td>☿ 水星</td><td>24°38' 天秤座 (8H)</td></tr>
+    <tr><td>♀ 金星</td><td>00°16' 乙女座 (6H)</td></tr>
+    <tr><td>♂ 火星</td><td>06°49' 山羊座 (10H)</td></tr>
+    <tr><td>♃ 木星</td><td>12°54' 蟹座 (5H)</td></tr>
+    <tr><td>♄ 土星</td><td>14°56' 双子座 (3H)</td></tr>
+    <tr><td>♅ 天王星</td><td>21°31' 水瓶座 (12H)</td></tr>
+    <tr><td>♆ 海王星</td><td>06°11' 水瓶座 (12H)</td></tr>
+    <tr><td>♇ 冥王星</td><td>12°45' 射手座 (9H)</td></tr>
+  </table></div>
+</div>
+
+<!-- =============== TAB: ENTJ男まとめ =============== -->
+<div class="tab-content" id="entj-summary">
+
+  <h2>ENTJ男とは</h2>
+  <blockquote>正義感と実行力を持ち、世界を動かそうとする、ストレス知らずのリーダー。</blockquote>
+
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>指標</th><th>内容</th></tr>
+      <tr><td>MBTI</td><td>ENTJ-A（主張型・指揮官）</td></tr>
+      <tr><td>ソシオニクス</td><td>SLE（マーシャル / ベータクワドラ）</td></tr>
+      <tr><td>エニアグラム</td><td>タイプ1w7（改革者＋楽天家）</td></tr>
+      <tr><td>LobeType</td><td>敏腕マネージャー</td></tr>
+      <tr><td>星座</td><td>おとめ座（変動宮・地）/ ASC魚座</td></tr>
+    </table></div>
+    <div class="rating">
+      <div class="rating-label"><span>外向性</span><span>73%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:73%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>協調性</span><span>34%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:34%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>勤勉性</span><span>77%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:77%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>情動安定性</span><span>90%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:90%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>創造性</span><span>81%</span></div>
+      <div class="rating-bar"><div class="rating-fill purple" style="width:81%"></div></div>
+    </div>
+  </div>
+
+  <h2>性格の核心</h2>
+
+  <div class="card">
+    <h4>1. 圧倒的な実行力と自信</h4>
+    <p>外向性73%＋情動安定90%。失敗しても動じない。自分の判断を信じて前に進む。ENTJ-Aの自己肯定感が高く、挫折をエネルギーに変えられる。SLEのSe主導は「今ここの現実に直接介入する」力。</p>
+  </div>
+
+  <div class="card">
+    <h4>2. ブレない軸と完璧主義</h4>
+    <p>エニアグラム タイプ1がスコア10で最高値。「正しいことをすべき」という内なる倫理基準が非常に強い。おとめ座28°（最終度数）が完璧主義と分析力を極限まで凝縮。</p>
+  </div>
+
+  <div class="card">
+    <h4>3. 楽観的なエネルギーと好奇心</h4>
+    <p>タイプ7（楽天家）がスコア9。生真面目なだけでなく、好奇心旺盛で新しい刺激を求める。フットワークが軽く、楽しいことに全力。タイプ1の厳しさをタイプ7が和らげている。</p>
+  </div>
+
+  <div class="card">
+    <h4>4. 深い知的探求心</h4>
+    <p>創造性81%＋タイプ5（調査者）スコア8。本質を見抜き俯瞰的に計画を立てる。月がさそり座8ハウスにあり、内面は見た目以上に深く熱い。</p>
+  </div>
+
+  <div class="card">
+    <h4>5. ギャップのある第一印象</h4>
+    <p>ASC魚座。第一印象は「柔らかく、直感的で、受容的」。初対面では「意外と優しそう」と思われる。しかし内側に入るほど乙女座の精密さとさそり座の月の強度が出てくる。<strong>「見た目の柔らかさ×中身の鋼鉄」</strong>がギャップの正体。</p>
+  </div>
+
+  <h2>弱点</h2>
+  <div class="table-wrap"><table>
+    <tr><th>弱点</th><th>具体的な現れ方</th></tr>
+    <tr><td>無意識の批判</td><td>「正しくあること」へのこだわりから、指摘が相手を傷つける</td></tr>
+    <tr><td>共感より解決策</td><td>感情的な話に「じゃあこうすれば？」と論理で返す</td></tr>
+    <tr><td>支配的になりやすい</td><td>相手を管理・コントロールしようとする</td></tr>
+    <tr><td>長期ビジョンが苦手</td><td>SLEのNi示唆機能。未来予測を他者に頼る</td></tr>
+    <tr><td>突然の引きこもり</td><td>ストレス時にタイプ4化。急に内向的になる</td></tr>
+    <tr><td>感情の受け取りが苦手</td><td>SLEのFi役割機能。消耗する</td></tr>
+  </table></div>
+
+  <h2>ホロスコープ深層</h2>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>天体</th><th>位置</th><th>意味</th></tr>
+      <tr><td>太陽</td><td>乙女座 7H</td><td>パートナーシップの中で最も力を発揮</td></tr>
+      <tr><td>月</td><td>さそり座 8H</td><td>内面は深く熱い。深い親密さに安らぎ</td></tr>
+      <tr><td>金星</td><td>乙女座 6H</td><td>奉仕型の愛情。日常の積み重ねで愛を伝える</td></tr>
+      <tr><td>火星</td><td>山羊座 10H</td><td>鋼鉄の実行力。結果を出すまでやめない</td></tr>
+      <tr><td>ASC</td><td>魚座</td><td>第一印象は柔らかく直感的</td></tr>
+      <tr><td>MC</td><td>射手座</td><td>真理の探求が人生の到達点</td></tr>
+    </table></div>
+  </div>
+  <blockquote>分析と情熱が同居するさそり座の心を持った乙女座。魚座の仮面の下に、山羊座の鋼鉄の意志を隠す——表は柔らかく、内は灼熱、行動は鉄壁</blockquote>
+
+  <hr>
+
+  <h2>どんな恋愛を好むのか</h2>
+  <p style="font-size:13px;color:var(--text-muted);">恋愛スタイル: <strong>Pragma(実用型) + Eros(情熱型)</strong></p>
+
+  <div class="card">
+    <h4>1. 知性と目標で相手を選ぶ</h4>
+    <p>最初に見るのは知性・価値観・目標。「この人と一緒にいて成長できるか」が恋愛のフィルター。</p>
+  </div>
+  <div class="card">
+    <h4>2. 決めたら一直線</h4>
+    <p>「この人だ」と決めた相手へのコミットメントは非常に強い。さそり座の月8Hがその深さを裏付ける。</p>
+  </div>
+  <div class="card">
+    <h4>3. 行動で愛を示す</h4>
+    <p>「好き」と言うより、デートの計画・問題の解決・将来の設計で愛情を表現。金星が乙女座6Hにあり、毎日のケアで伝える。</p>
+  </div>
+  <div class="card gold">
+    <h4>4. 求めているのは「肯定の言葉」</h4>
+    <p>与え方は「行動」だが、受け取りたいのは「言葉」。<strong>「あなたを信頼している」「あなたは正しい」</strong>という言葉に弱い。</p>
+  </div>
+  <div class="card">
+    <h4>5. パートナーにも成長を求める</h4>
+    <p>停滞した関係には耐えられない。共に高め合える関係が理想。</p>
+  </div>
+  <div class="card">
+    <h4>6. 退屈を嫌う</h4>
+    <p>タイプ7ウィングの影響で、新しい体験・刺激・冒険を共有したい。安定だけでは足りない。</p>
+  </div>
+  <div class="card">
+    <h4>7. パートナーシップの中で完成する</h4>
+    <p>太陽が7H（パートナーシップの部屋）。一人でも強いが、信頼できるパートナーがいて最大化される。</p>
+  </div>
+
+  <h3>愛着スタイル: 回避型(Avoidant)寄り</h3>
+  <div class="card">
+    <ul>
+      <li>情動安定90% — 感情的な絆の必要性をあまり感じない</li>
+      <li>協調性34% + タイプ6最低 — 依存・束縛を嫌う</li>
+      <li>ストレス時にタイプ4方向 — 急に引きこもり、連絡が減る</li>
+    </ul>
+    <p style="margin-top:8px;">健全な状態では「安定型」に近いが、本質的には一人の時間が必要。</p>
+  </div>
+
+  <h3>最も幸せを感じる恋愛</h3>
+  <div class="card highlight">
+    <ul>
+      <li>知的に対等で、本質的な議論ができる関係</li>
+      <li>パートナーから「信頼している」と言葉で認められること</li>
+      <li>共に目標を設定し、達成に向かって動ける関係</li>
+      <li>新しい体験・冒険を一緒に楽しめること</li>
+      <li>適度な距離感で互いの空間を尊重し合えること</li>
+      <li>深い信頼と秘密の共有（さそり座の月・8H）</li>
+      <li><strong>「この人と組めば何でもできる」という実感</strong></li>
+    </ul>
+  </div>
+
+  <h3>恋愛の地雷パターン</h3>
+  <div class="card">
+    <h4>「正しさ」の無意識的押し付け <span class="tag bad">最大リスク</span></h4>
+    <div class="code-block">相手の行動が基準に合わない → 「こうすべき」と指摘
+→ 本人は愛情のつもり → 相手は「責められている」
+→ 相手が黙る → さらに論理で追い詰める
+→ 相手が静かに離れていく</div>
+    <p style="margin-top:8px;"><strong>対策:</strong>「気づいてる？」ではなく「どう思う？」に変えるだけで変わる。</p>
+  </div>
+  <div class="card">
+    <h4>突然の引きこもり <span class="tag warn">要注意</span></h4>
+    <div class="code-block">ストレスが溜まる → タイプ4方向に統合
+→ 急に連絡が減る → 何も伝えない
+→ 相手が「嫌われた？」と不安に</div>
+    <p style="margin-top:8px;"><strong>対策:</strong>引く前に一言「少し時間がほしい」と伝えるだけでOK。</p>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    外見は魚座ASCの柔らかさ。中身はおとめ座の精密さとタイプ1の正義感。核心にはさそり座の月の灼熱な感情。<br><br>
+    「完璧に見える人」だが、パートナーからの承認の言葉を深く求めている。「感情がない人」に見えるが、誰よりも深く感じている。「一人で何でもできる人」に見えるが、パートナーシップの中でこそ最も輝く。<br><br>
+    <strong>「この人と組めば、世界を変えられる」——その確信を持てたとき、鋼鉄の意志と深い情熱のすべてを注いで、その関係を守り抜く。</strong>
+  </blockquote>
+
+  <hr>
+
+  <h2>最強相性 TOP4</h2>
+  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最適化した順位。</blockquote>
+
+  <h3>総合ランキング</h3>
+  <div class="table-wrap"><table>
+    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
+    <tr><td><strong>1</strong></td><td><strong>INFJ</strong></td><td><strong>98</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
+    <tr><td><strong>2</strong></td><td><strong>ENFJ</strong></td><td><strong>91</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+    <tr><td><strong>3</strong></td><td><strong>INFP</strong></td><td><strong>78</strong></td><td>★★★☆☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★☆☆</td></tr>
+    <tr><td><strong>4</strong></td><td><strong>INTP</strong></td><td><strong>74</strong></td><td>★★★★★</td><td>★★☆☆☆</td><td>★★★☆☆</td><td>★★★☆☆</td></tr>
+  </table></div>
+
+  <h3>「足りないもの」から逆算</h3>
+  <div class="table-wrap"><table>
+    <tr><th>弱点</th><th>根拠</th><th>必要な相手の機能</th></tr>
+    <tr><td>長期ビジョン・未来予測</td><td>SLEの示唆機能Ni（5番）</td><td><strong>Ni主導 or 補助</strong></td></tr>
+    <tr><td>感情の空気を作る力</td><td>SLEの動員機能Fe（6番）</td><td><strong>Fe主導 or 補助</strong></td></tr>
+    <tr><td>個人的感情の受け取り</td><td>SLEの役割機能Fi（3番）/ 協調性34%</td><td>Fiが強い相手</td></tr>
+    <tr><td>「言葉で愛を伝える」習慣</td><td>愛情言語：奉仕型（与え方）</td><td>言語化が自然な相手</td></tr>
+    <tr><td>批判を受け止める器</td><td>タイプ1の無意識の批評性</td><td>打たれ強いか、受け流せる相手</td></tr>
+  </table></div>
+
+  <!-- 1位 INFJ -->
+  <details class="accordion">
+    <summary>第1位：INFJ（提唱者）<span class="tag ok" style="margin-left:8px;">98/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ソシオニクスが証明する"運命の双対"。ENTJ男に最も足りないものを、最も自然に渡せる唯一のタイプ。」</strong></p>
+      <div class="code-block">ソシオニクス：SLE × IEI ＝ 双対関係（Дуальные）
+→ 16タイプ間関係の中で「最高の相性」と定義される唯一の関係</div>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>INFJが提供</th><th>機能的根拠</th></tr>
+        <tr><td>Ni（未来予測）が足りない</td><td><strong>Ni主導</strong>（最強のNi）</td><td>IEI 1番 → SLE 5番に直接供給</td></tr>
+        <tr><td>Fe（感情の空気）が足りない</td><td><strong>Fe補助</strong>（自然な感情表現）</td><td>IEI 2番 → SLE 6番に直接供給</td></tr>
+        <tr><td>言葉で愛を伝えてほしい</td><td>言語化の達人</td><td>Fe＋Niで本質を見抜いて言葉にする</td></tr>
+        <tr><td>批判に耐えられる相手</td><td>動機を読むFe＋Ni</td><td>表面の言葉でなく意図で受け取る</td></tr>
+      </table></div>
+      <h4>逆方向も完璧</h4>
+      <div class="table-wrap"><table>
+        <tr><th>INFJの弱点</th><th>ENTJ男が提供</th></tr>
+        <tr><td>Se（行動力）が足りない</td><td><strong>Se主導</strong>（SLEの最強機能）</td></tr>
+        <tr><td>Ti（論理構造）が足りない</td><td><strong>Ti補助</strong>（SLEの創造機能）</td></tr>
+        <tr><td>優柔不断になりがち</td><td>即断即決が背中を押す</td></tr>
+        <tr><td>理想と現実のギャップに苦しむ</td><td>実行力が理想を形にする</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> INFJは人口約1-2%で出会いが稀。Se的な押しがドアスラムを誘発するリスク。</p>
+    </div>
+  </details>
+
+  <!-- 2位 ENFJ -->
+  <details class="accordion">
+    <summary>第2位：ENFJ（主人公）<span class="tag ok" style="margin-left:8px;">91/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ENTJ男の感情的砂漠に雨を降らせる、太陽のような存在。」</strong></p>
+      <div class="code-block">ソシオニクス：SLE × EIE ＝ 活性化関係（Активация）
+→ 同じベータ（β）クワドラ＝価値観の根底が一致</div>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>ENFJが提供</th></tr>
+        <tr><td>Fe（感情表現）が足りない</td><td><strong>Fe主導</strong>（全タイプ最強のFe）</td></tr>
+        <tr><td>Ni（長期ビジョン）が足りない</td><td><strong>Ni補助</strong></td></tr>
+        <tr><td>言葉での愛情表現</td><td>「言葉で人を動かす」プロ</td></tr>
+        <tr><td>場の空気を作れない</td><td>温かい空気を自然に作る</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> 2人ともリーダー気質で主導権争い。ENFJの尽くし→爆発パターン。</p>
+    </div>
+  </details>
+
+  <!-- 3位 INFP -->
+  <details class="accordion">
+    <summary>第3位：INFP（仲介者）<span class="tag warn" style="margin-left:8px;">78/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「ENTJ男が知らなかった"自分の感情"を教えてくれる存在。」</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の弱点</th><th>INFPが提供</th></tr>
+        <tr><td>Fi（個人的感情）が弱い</td><td><strong>Fi主導</strong>（全タイプ最強のFi）</td></tr>
+        <tr><td>感情の言語化ができない</td><td>感情を言葉にするプロ</td></tr>
+        <tr><td>タイプ1の「正しさ」に囚われる</td><td>「すべてに価値がある」が解毒剤</td></tr>
+      </table></div>
+      <p><span class="tag bad">最大リスク</span> ENTJ男のタイプ1の批判がINFPを破壊する（深刻度★★★★★）。「最も成長させてくれる相手」であり「最もぶつかりやすい相手」。</p>
+    </div>
+  </details>
+
+  <!-- 5位 INTP -->
+  <details class="accordion">
+    <summary>第4位：INTP（論理学者）<span class="tag warn" style="margin-left:8px;">74/100</span></summary>
+    <div class="acc-body">
+      <p><strong>「知的遊び場の最高の相棒。ただし、感情は2人ともどこかに置いてきた。」</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>ENTJ男の特性</th><th>INTPとの噛み合い</th></tr>
+        <tr><td>Ti創造機能（2番）</td><td>INTPのTi主導と共鳴。論理の言語が同じ</td></tr>
+        <tr><td>タイプ5的知性欲求</td><td>INTPのタイプ5的本質と直球で一致</td></tr>
+        <tr><td>タイプ7ウィング（好奇心）</td><td>INTPのNeが新アイデアを無限供給</td></tr>
+      </table></div>
+      <p><span class="tag warn">注意</span> 感情面が2人とも壊滅的（★★★★★）。「最高の知的パートナー」にはなれるが恋愛はINFJ/ENFJに劣る。</p>
+    </div>
+  </details>
+
+  <blockquote>
+    INFJが1位なのは、ソシオニクスの双対関係（全タイプ中唯一の"完全補完"）が根拠。<br><br>
+    ENTJ男に最も足りない「Ni（未来予測）」と「Fe（感情の空気）」を自然に供給できる唯一のタイプ。
+  </blockquote>
+
+  <hr>
+
+  <h2>相性 WORST5</h2>
+  <blockquote>忖度なし。全診断データを総合して、ENTJ男個人に最も合わないタイプを順位化。</blockquote>
+
+  <h3>ワースト総合ランキング</h3>
+  <div class="table-wrap"><table>
+    <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>摩耗</th></tr>
+    <tr><td><strong>W1</strong></td><td><strong>ESFJ</strong></td><td><strong>18</strong></td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
+    <tr><td><strong>W2</strong></td><td><strong>ISFJ</strong></td><td><strong>25</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★☆</td><td>★★★★★</td></tr>
+    <tr><td><strong>W3</strong></td><td><strong>ESTP</strong></td><td><strong>32</strong></td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td><td>★★★★★</td></tr>
+    <tr><td><strong>W4</strong></td><td><strong>ISTJ</strong></td><td><strong>38</strong></td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td><td>★★★★☆</td></tr>
+    <tr><td><strong>W5</strong></td><td><strong>ISFP</strong></td><td><strong>42</strong></td><td>★★★★☆</td><td>★★★★☆</td><td>★★★☆☆</td><td>★★★★☆</td></tr>
+  </table></div>
+
+  <details class="accordion"><summary>W1：ESFJ（領事官）<span class="tag bad" style="margin-left:8px;">18/100</span></summary><div class="acc-body"><p><strong>「超自我関係。お互いが相手の最も触れてほしくない場所を、善意で踏み抜く。」</strong></p><div class="code-block">ソシオニクス：SLE × ESE ＝ 超自我関係（Суперэго）</div><div class="table-wrap"><table><tr><th>ENTJ男の構造</th><th>ESFJがやること</th><th>結果</th></tr><tr><td>Fe（6番）が弱い</td><td><strong>Fe主導</strong>で感情の空気を強制</td><td>「空気を読め」の圧力に窒息</td></tr><tr><td>Si（4番＝脆弱）が最も弱い</td><td><strong>Si補助</strong>で慣習・前例を重視</td><td>革新衝動が「余計なこと」扱い</td></tr><tr><td>Se主導で現状打破</td><td>Si＝「今のままでいい」</td><td>行動力の存在意義が否定される</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W2：ISFJ（擁護者）<span class="tag bad" style="margin-left:8px;">25/100</span></summary><div class="acc-body"><p><strong>「Se主導を"危険物"として封印しようとする、善意の看守。」</strong></p><div class="code-block">ソシオニクス：SLE × SEI ＝ 消去関係（Погашение）</div><div class="table-wrap"><table><tr><th>衝突ポイント</th><th>メカニズム</th></tr><tr><td>Se vs Si</td><td>「現状を壊して前に進む」vs「安定を守り続ける」</td></tr><tr><td>行動スピード</td><td>即断即決 vs 慎重に慎重を重ねる</td></tr><tr><td>タイプ1の批判性</td><td>ISFJは批判に極めて脆い → 萎縮</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W3：ESTP（起業家）<span class="tag bad" style="margin-left:8px;">32/100</span></summary><div class="acc-body"><p><strong>「鏡に映った自分。弱点が2倍になり、補完がゼロ。」</strong></p><div class="code-block">ソシオニクス：SLE × SLE ＝ 同一関係（Тождество）</div><div class="table-wrap"><table><tr><th>問題</th><th>構造的理由</th></tr><tr><td>Se × Se ＝ 支配権の衝突</td><td>2人とも主導権を握りたい</td></tr><tr><td>Fe不足 × 2</td><td>感情の空気を作れない</td></tr><tr><td>Ni不足 × 2</td><td>長期ビジョンが弱い</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W4：ISTJ（管理者）<span class="tag bad" style="margin-left:8px;">38/100</span></summary><div class="acc-body"><p><strong>「翼をもぎ取って、ルールブックに閉じ込めようとする存在。」</strong></p><div class="code-block">ソシオニクス：SLE × LSI ＝ 監督関係（Ревизия）</div><div class="table-wrap"><table><tr><th>ENTJ男の特性</th><th>ISTJとの衝突</th></tr><tr><td>Se主導（革新・突破）</td><td>Si主導が「ルール通りにやれ」と制止</td></tr><tr><td>タイプ1（自分なりの正しさ）</td><td>ISTJの「正しさ」は別の定義</td></tr><tr><td>Ni（長期ビジョン）</td><td>Si過去実績重視 →「前例のない未来」却下</td></tr></table></div></div></details>
+
+  <details class="accordion"><summary>W5：ISFP（冒険家）<span class="tag bad" style="margin-left:8px;">42/100</span></summary><div class="acc-body"><p><strong>「価値観が水と油。理解しようとすればするほど、溝が深くなる。」</strong></p><div class="table-wrap"><table><tr><th>ENTJ男の特性</th><th>ISFPとの衝突</th></tr><tr><td>Te/Ti重視（効率・論理）</td><td>Fi主導 →「非効率でも気持ちに正直でいたい」</td></tr><tr><td>タイプ1（正しさ）</td><td>Fi →「正しさの押しつけ」と感じる</td></tr></table></div></div></details>
+
+  <blockquote>ベストが「自然体で補完し合える」関係なら、ワーストは「常に意識して調整し続ける」関係。</blockquote>
+
+</div>
+
+<!-- STRESS MAP TAB -->
+<div id="stress-map" class="tab-content">
+
+  <div class="about-box">
+    <div class="about-title">STRESS & MINE MAP</div>
+    <p>「何にストレスを感じるか」「何をされると壊れるか」「ストレス時にどう変化するか」を統合した完全マップ。エニアグラム・ソシオニクス・ビッグファイブ・愛着スタイルから導出。</p>
+  </div>
+
+  <!-- ENTJ男 -->
+  <h2>ENTJ男のストレス＆地雷マップ</h2>
+
+  <div class="card highlight">
+    <h3>基本構造</h3>
+    <p><strong>情動安定性90%。普段は「揺るがない岩」。</strong><br>だからこそ、ストレスが溜まっていても気づかない。気づいた時には臨界点を超えている。</p>
+  </div>
+
+  <h3>ストレストリガー</h3>
+  <div style="margin:12px 0;">
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">「正しい」と信じたことを否定される</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">タイプ1のコア。存在価値が揺らぐ</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(248,113,113,0.2);color:#f87171;padding:2px 10px;border-radius:10px;font-weight:700;">最大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">感情的な訴えに論理で返せない状況</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:70px;">SLE-Fi役割機能の消耗。感情の受け取り自体が疲弊</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">長期ビジョンを求められる・未来が見えない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Ni示唆機能。SLEの最も弱い領域</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(251,146,60,0.2);color:#fb923c;padding:2px 10px;border-radius:10px;font-weight:700;">大</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">計画が狂う・結果が出ない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:60px;">Se主導×タイプ1完璧主義。「進んでいない」状態が耐えられない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">批判を「受ける」側になる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">タイプ1は批判する側の習慣。受ける側の対処法を持っていない</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">関係の停滞・成長を感じない</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">タイプ7ウィングの退屈嫌い。意味のない時間が苦痛</p>
+    </div>
+    <div class="stress-item" style="margin:8px 0;">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+        <span style="font-size:12px;background:rgba(245,200,66,0.2);color:#f5c842;padding:2px 10px;border-radius:10px;font-weight:700;">中</span>
+        <span style="font-size:14px;font-weight:700;color:#fff;">「察して」を求められる</span>
+      </div>
+      <p style="font-size:13px;color:var(--text-muted);padding-left:58px;">Fi役割機能。暗黙の期待に気づけない構造的限界</p>
+    </div>
+  </div>
+
+  <h3>ストレス時の変容：タイプ1 → タイプ4</h3>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;">
+      <div style="padding:14px;background:rgba(124,111,247,0.06);border-right:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:1px;">平常時（タイプ1）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          実行力・行動的<br>自信・自己肯定感高い<br>明確な意見を言う<br>他者を引っ張る<br>連絡マメ
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;padding:8px;color:var(--text-muted);font-size:18px;">→</div>
+      <div style="padding:14px;background:rgba(248,113,113,0.05);">
+        <div style="font-size:11px;font-weight:700;color:#f87171;margin-bottom:10px;letter-spacing:1px;">ストレス時（タイプ4化）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          引きこもる・動けない<br>自己批判「自分はダメか」<br>沈黙・感情の言語化困難<br>孤独の中に閉じこもる<br>連絡が急に減る・既読スルー
+        </div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:var(--surface2);border-top:1px solid var(--border);font-size:12px;color:var(--orange);">
+      ⚠️ このタイプ4化は「突然」来る。本人も気づかないうちに蓄積し、ある日「引く」。
+    </div>
+  </div>
+
+  <h3>回復パターン</h3>
+  <div class="table-wrap"><table>
+    <tr><th>回復方法</th><th>理由</th></tr>
+    <tr><td><strong>一人の時間・空間</strong></td><td>Se主導の実行力を充電する必要</td></tr>
+    <tr><td><strong>「達成」体験</strong></td><td>タイプ1は成果で自己肯定が回復する</td></tr>
+    <tr><td><strong>肯定の言葉</strong></td><td>「あなたは正しい」「信頼している」が心の安定に直結</td></tr>
+    <tr><td><strong>新しい刺激・体験</strong></td><td>タイプ7ウィングが復活するきっかけ</td></tr>
+    <tr><td><strong>深い知的議論</strong></td><td>タイプ5スコア8。頭を使うことで整理される</td></tr>
+  </table></div>
+
+  <h3>地雷リスト</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>危険度</th><th>やってはいけないこと</th><th>爆発のメカニズム</th></tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>「あなたの判断は間違ってた」と断定</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">タイプ1のコア直撃。正しさを否定 = 存在否定</td>
+      </tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>感情をぶつけながら「あなたは冷たい」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">SLE-Fiの苦手領域への攻撃。追い詰められる</td>
+      </tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>他の男と比較する</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">タイプ1の完璧主義。「劣っている」認識に耐えられない</td>
+      </tr>
+      <tr>
+        <td><span style="color:#fb923c;font-weight:700;">🟠 大</span></td>
+        <td><strong>「共感力がない」と繰り返す</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">できないことを責め続けると消耗し距離を置く</td>
+      </tr>
+      <tr>
+        <td><span style="color:#fb923c;font-weight:700;">🟠 大</span></td>
+        <td><strong>「普通はこうでしょ」「みんなそうしてる」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">Se×タイプ1の独自路線。同調圧力に本能的反発</td>
+      </tr>
+      <tr>
+        <td><span style="color:#facc15;font-weight:700;">🟡 中</span></td>
+        <td><strong>「どうせ〜でしょ」系の決めつけ</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">タイプ1の評価欲求。決めつけは否定より怒りを生む</td>
+      </tr>
+      <tr>
+        <td><span style="color:#60a5fa;font-weight:700;">🔵 小</span></td>
+        <td><strong>「ありがとう」を言わない / 行動を見てない</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">愛情言語：行動。見てもらえない = 価値を認められない感覚</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>ストレス・地雷発動後のサイン</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>サイン</th><th>意味</th></tr>
+      <tr><td>口数が減る（普段の外向73%から別人のように静かに）</td><td style="font-size:12px;color:var(--text-muted);">内側でシャットダウンが始まっている</td></tr>
+      <tr><td>急に返信が素っ気なくなる</td><td style="font-size:12px;color:var(--text-muted);">心理的距離を置いている</td></tr>
+      <tr><td>「別にいいよ」「気にしてない」</td><td style="font-size:12px;color:var(--text-muted);">気にしている。でも言葉にできない</td></tr>
+      <tr><td>ユーモアが消える</td><td style="font-size:12px;color:var(--text-muted);">タイプ7ウィングが引っ込んだサイン</td></tr>
+      <tr><td>批判・指摘が増える</td><td style="font-size:12px;color:var(--text-muted);">無意識のストレス発散</td></tr>
+      <tr><td>数日後に突然「あのとき〜」</td><td style="font-size:12px;color:var(--text-muted);">溜め込んでいたものが出てくる</td></tr>
+    </table>
+  </div>
+
+
+
+</div>
+
+
+<!-- =============== TAB: ENTJ自己分析 =============== -->
+<div class="tab-content" id="entj-self">
+
+  <div class="about-box">
+    <div class="about-title">ENTJ男 自己分析ノート</div>
+    <p>プロファイル（ENTJ-A / SLE / タイプ1w7 / ASC魚座）から、「なぜ自分はこうなのか」を構造的に解剖する。LINEの実際の発言も根拠に組み込んだ自己理解レポート。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
+
+  <!-- 1. 飲み会 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">飲み会が好きじゃない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">外向性73%なのに構造的に合わない</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 浅い社交が消耗する</h4>
+        <ul>
+          <li><strong>Fiが苦手</strong>（SLEの役割機能）→ 表面的な感情のやり取りが消耗する</li>
+          <li>協調性34% → 空気に合わせるのが向いてない</li>
+          <li>タイプ1 → 「意味のないこと」に時間を使うのが許せない</li>
+        </ul>
+        <h4>2. 外向性73%なのに飲み会が嫌いなのは矛盾しない</h4>
+        <ul>
+          <li>外向性は<strong>「目的のある場」で発揮される</strong>タイプ</li>
+          <li>200人の全社イベントを回せるのは「仕事」という目的があるから</li>
+          <li>飲み会の「なんとなく楽しもう」は目的がないから疲れる</li>
+        </ul>
+        <h4>3. ASC魚座のギャップ消耗</h4>
+        <ul>
+          <li>第一印象が柔らかい → 周りが「ノリ良さそう」と絡んでくる</li>
+          <li>本来のENTJとのギャップで消耗する</li>
+          <li>全社イベントで「めっちゃ気使った」「かえりたい」になるのもこれ</li>
+        </ul>
+        <h4>4. タイプ1w7の内部矛盾</h4>
+        <ul>
+          <li>7ウィング →「楽しいことは好き」と引っ張る</li>
+          <li>1のコア →「でもこの場は非生産的」とブレーキをかける</li>
+          <li>行く前は「まぁ行くか」→ 行ったら「帰りたい」のパターン</li>
+        </ul>
+        <blockquote>「深い1対1」や「目的のある場」が合う人。飲み会は構造的に合わない。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. 任せられない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">人に任せられない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">リーダーなのにプレイヤーになる構造</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「自分でやった方が早い」が本能レベル</h4>
+        <ul>
+          <li><strong>Te dom</strong> → 効率が最優先 → 説明する時間＝無駄に見える</li>
+          <li><strong>SLE (Se base)</strong> → 現場を自分の手で動かしたい衝動が強い</li>
+          <li>この2つが重なると「教えるより奪った方が早い」になる</li>
+          <li>仕事でもプライベートでも、気づいたら全部自分で抱えてるパターン</li>
+        </ul>
+        <h4>2. 他人の「ちゃんと」が信用できない</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 自分の中の「正しいやり方」が明確すぎる</li>
+          <li><strong>誠実性77%</strong> → 基準が高い → 他人の80%は自分の60%に見える</li>
+          <li>任せた結果が自分の基準を下回ると「やっぱり自分でやればよかった」→ 次から任せなくなる悪循環</li>
+          <li>これは「他人を信頼してない」のではなく「基準が高すぎる」が正体</li>
+        </ul>
+        <h4>3. リーダーなのに委任できない矛盾</h4>
+        <ul>
+          <li><strong>外向性73%</strong> + <strong>Te dom</strong> → チームを率いる力はある</li>
+          <li>でも率いた先で<strong>全部自分がやる</strong> → リーダーじゃなくてプレイヤー</li>
+          <li><strong>協調性34%</strong> → 人に頼む＝借りを作る感覚 → 心理的に避ける</li>
+          <li>結果：キャパオーバー → パフォーマンス低下 → 「やっぱり自分でやらなきゃ」の無限ループ</li>
+        </ul>
+        <h4>4. ASC魚座で「頼まれる側」にもなりがち</h4>
+        <ul>
+          <li>第一印象が柔らかい → 周りから頼み事が集まりやすい</li>
+          <li>本来のENTJ → 断るのは苦じゃないはずだけど、ASCの仮面で引き受けてしまう</li>
+          <li>自分の仕事 + 引き受けた仕事 → さらにキャパが圧迫される</li>
+        </ul>
+        <blockquote>「任せられない」＋「頼まれやすい」のダブルパンチ。リーダーシップの質を変えるには「自分がやる」から「人を育てる」への転換が必要だけど、タイプ1の基準とTeの効率主義がそれを許さない構造。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. 休むのが下手 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">休むのが下手な理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ストレスに強い≠ストレスに気づける</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 限界に気づけない体質</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → ストレスを「ストレス」として感知するセンサーが鈍い</li>
+          <li>普通の人が70%で「しんどい」と感じるところを、90%まで平気で走れてしまう</li>
+          <li><strong>ENTJ-A (Assertive)</strong> → 「自分は大丈夫」が自己認識のデフォルト</li>
+          <li>周りが心配しても「全然平気だけど？」が本心 → 倒れて初めて気づく</li>
+        </ul>
+        <h4>2. 休むことへの罪悪感</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 休む＝怠け＝「正しくない」</li>
+          <li>何もしてない時間に「これでいいのか」が自動で走る</li>
+          <li>休日に寝てるだけの日 → 夕方に罪悪感 → 「明日は絶対productiveにする」</li>
+          <li>休息が休息として機能してない</li>
+        </ul>
+        <h4>3. 止まることへの耐性がない</h4>
+        <ul>
+          <li><strong>7ウィング</strong> → 退屈＝苦痛 → 常に次の刺激を探す</li>
+          <li><strong>SLE (Se base)</strong> → 体を動かす・行動することでエネルギーを得る</li>
+          <li><strong>開放性81%</strong> → 興味が次々湧く → やりたいことリストが減らない</li>
+          <li>「休む」と「止まる」が同義になってしまっている → だから休めない</li>
+        </ul>
+        <h4>4. 蠍座月の没頭グセ</h4>
+        <ul>
+          <li><strong>月蠍座（8H）</strong> → 一つのことにのめり込むと抜けられない</li>
+          <li>仕事でもゲームでも趣味でも、深く入りすぎて時間感覚が消える</li>
+          <li>Seを回しながら蠍座月で没頭 → 体の限界を完全に無視する</li>
+          <li>「気づいたら朝4時」「気づいたら3日寝てない」が起きうる構造</li>
+        </ul>
+        <blockquote>「ストレスに強い」のは武器だけど、「ストレスに気づけない」のは弱点。休むスキルは意識的に身につけないと、突然バッテリーが切れるタイプ。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. 甘えられない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">素直に甘えられない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">無意識の隙は出るけど意識的にはできない</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「強さ」がアイデンティティの核にある</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 司令官 → 導く側・守る側でいることが自然</li>
+          <li><strong>SLE</strong> → 元帥 → 力と行動力で場を支配するのがデフォルト</li>
+          <li>甘える＝弱さを見せる＝自分のアイデンティティと矛盾する</li>
+          <li>「頼る」は戦略としてできるけど「甘える」は感情の領域 → Fiが弱いからそこが開かない</li>
+        </ul>
+        <h4>2. 依存することへの本能的な抵抗</h4>
+        <ul>
+          <li><strong>協調性34%</strong> → 他人に依存する＝自分の自由を失う感覚</li>
+          <li><strong>タイプ1</strong> → 「自分はしっかりしてなきゃいけない」が常に走ってる</li>
+          <li><strong>情緒安定性90%</strong> → そもそも「甘えたい」という感情が湧きにくい</li>
+          <li>甘える必要性を感じない → 甘え方がわからない → さらに甘えなくなる悪循環</li>
+        </ul>
+        <h4>3. 「抜けてる」と「甘える」は別物</h4>
+        <ul>
+          <li>天然でうっかりする（ドジなところ）→ これは無意識に出る</li>
+          <li>意識的に「助けて」「頼りたい」を伝える → これができない</li>
+          <li>周りは「抜けてるところ可愛い」と思ってるけど、本人はそれを<strong>甘え</strong>とは認識してない</li>
+          <li>パートナーが「面倒見てあげたいとこが好き」と言うのはこの無意識の隙のこと</li>
+        </ul>
+        <h4>4. ASC魚座がさらにややこしくする</h4>
+        <ul>
+          <li>外からは柔らかく見える → 「甘え上手そう」と思われる</li>
+          <li>本体のENTJ → 全然甘えてない</li>
+          <li>ギャップに周りは気づかない → 本人も「甘えてない」ことに気づかない</li>
+          <li>親しい人ほど「あれ、意外と頼ってくれないな」と感じる構造</li>
+        </ul>
+        <blockquote>無意識の隙は出るけど、意識的に「助けて」が言えない。近い人ほどそのギャップに気づく。甘えるスキルは「弱さ」じゃなく「信頼の表現」だと再定義できると楽になる。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 共感より解決 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">共感より解決が先に出る理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ASC魚座の期待値ギャップが致命的</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 感情処理の回路が「解決」に直結してる</h4>
+        <ul>
+          <li><strong>Te dom</strong> → インプットを受けると自動で「じゃあどうする？」が走る</li>
+          <li><strong>Fiが弱い</strong>（SLE役割機能）→ 感情をそのまま受け止める回路が未発達</li>
+          <li>相手が「つらい」と言う → 脳内で「原因は何？」「どうすれば解消できる？」が即起動</li>
+          <li>共感しようとしてないわけじゃない。<strong>回路の順番が「解決→共感」になってる</strong></li>
+        </ul>
+        <h4>2. 感情を「問題」として認識する</h4>
+        <ul>
+          <li><strong>協調性34%</strong> → 相手の感情＝対処すべき課題、という処理をしがち</li>
+          <li><strong>タイプ1</strong> → 「正しい状態」に戻したい → 悲しんでる＝正しくない＝修正すべき</li>
+          <li><strong>情緒安定性90%</strong> → 自分がその感情に引っ張られないから、冷静に「解決」できてしまう</li>
+          <li>本人は親切でやってるつもり → 相手は「気持ちを否定された」と受け取る</li>
+        </ul>
+        <h4>3. ASC魚座の期待値ギャップが致命的</h4>
+        <ul>
+          <li>第一印象が柔らかい → 相手は「この人なら気持ちをわかってくれそう」と期待する</li>
+          <li>話し始める → 解決策が返ってくる →「え、聞いてほしかっただけなのに」</li>
+          <li>見た目の「共感してくれそう感」と実際の「解決モード」のギャップが<strong>他のタイプより大きい</strong></li>
+          <li>ENTJ丸出しの人なら期待されないから問題にならない → ASC魚座だから問題になる</li>
+        </ul>
+        <h4>4. タイプ4のパートナーとの関係で特に危険</h4>
+        <ul>
+          <li><strong>タイプ4</strong> → 感情を「理解してもらうこと」自体に価値がある</li>
+          <li>「解決してほしい」じゃなく「この感情を一緒に味わってほしい」</li>
+          <li>ここにENTJの解決モードが入ると → 4の核心である「私の感情は特別」を否定することになる</li>
+          <li><strong>協調性が低いパートナー</strong> → 傷ついても言わない → 溜まる → 爆発のパターン</li>
+        </ul>
+        <blockquote>「解決してあげたい」は愛情表現。でも相手が求めてるのは「うん、つらいよな」の一言。まず共感、解決策は聞かれてから。「3秒黙って聞く」がセーフティネットになる。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. 褒められても -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">褒められても素直に受け取れない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">表面は受け取ってるように見えるから厄介</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「まだ足りない」が常に先に来る</h4>
+        <ul>
+          <li><strong>タイプ1</strong> → 内なる批評家が常駐している → どんな成果にも改善点が見える</li>
+          <li>100点を取っても「ここはもっとできた」が自動で走る</li>
+          <li>褒められた瞬間に「いや、でも…」が反射的に出る</li>
+          <li>これは謙遜じゃない。<strong>本気で足りないと思ってる</strong></li>
+        </ul>
+        <h4>2. 目標がゴールじゃなく通過点</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 達成した瞬間に次の目標がセットされる</li>
+          <li><strong>誠実性77%</strong> → 一つ終わったら次のタスクが見える</li>
+          <li><strong>7ウィング</strong> → 「次の楽しいこと」にもう意識が移ってる</li>
+          <li>褒められてる内容が「もう過去のこと」になってるから、実感が薄い</li>
+        </ul>
+        <h4>3. 感情的な喜びの回路が弱い</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → 感情の振れ幅が小さい → 「嬉しい！」のピークが低い</li>
+          <li><strong>Te dom</strong> → 褒め言葉を「情報」として処理する →「そうか、評価されたんだな」で終わる</li>
+          <li><strong>Fiが弱い</strong> → 自分の内面の喜びにアクセスしにくい</li>
+          <li>嬉しくないわけじゃない。嬉しさの<strong>表現回路と体感回路が細い</strong></li>
+        </ul>
+        <h4>4. 外からは「受け取ってる」ように見える</h4>
+        <ul>
+          <li><strong>ASC魚座</strong> → 柔らかい表情で「ありがとう」は言える</li>
+          <li>相手は「伝わった」と思う → でも本人の中では処理されてない</li>
+          <li>蓄積しないから、自己肯定感の燃料にならない</li>
+          <li>「褒められた記憶」が残りにくい → 自己評価がタイプ1の内なる批評家に支配されたまま</li>
+        </ul>
+        <blockquote>褒め言葉が自己評価に届かない構造。表面は受け取ってるように見えるからさらに厄介。「言われたこと」を記録として残す（メモ・スクショ）と、後から効いてくる可能性がある。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 弱音を吐けない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">誰にも弱音を吐けない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">適応障害を親にも友達にも話せなかった構造</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「大丈夫」が自己認識のデフォルト</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → ストレスを感じていても「大丈夫」が本心で出てくる</li>
+          <li><strong>ENTJ-A (Assertive)</strong> → 自分の状態を肯定的に評価するバイアスが常にかかっている</li>
+          <li>適応障害になっても、親にも友達にも話せていない → 「大丈夫」と思ってるのではなく、「大丈夫じゃない自分」を認識する回路が鈍い</li>
+          <li>倒れるまで気づけない → 気づいた時にはもう話せる状態じゃない</li>
+        </ul>
+        <h4>2. 弱さを見せる＝リーダー失格</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 導く側・守る側がアイデンティティ → 弱音＝その資格を失うこと</li>
+          <li><strong>SLE</strong> → 力と行動力で周りを安心させる存在 → 「しんどい」は存在意義の否定に感じる</li>
+          <li><strong>タイプ1</strong> → 「しっかりしてなきゃいけない」が内なる批評家の絶対基準</li>
+          <li>弱音を吐く自分＝「正しくない自分」→ タイプ1のコアが拒絶する</li>
+        </ul>
+        <h4>3. 「話しても解決しない」と思っている</h4>
+        <ul>
+          <li><strong>Te dom</strong> → 話す＝解決策を得るための行動 → 共感目的の会話に価値を見出しにくい</li>
+          <li><strong>協調性34%</strong> → 人に頼む＝借りを作る → 心理的コストが高い</li>
+          <li>「話したところでどうなるの？」が自動で走る → だから話さない</li>
+          <li>ただし「パートナーに話したら楽になって疲れ果てて寝ちゃった」という経験 → <strong>話すだけで楽になることを、頭では知らない。体で初めて知った</strong></li>
+        </ul>
+        <h4>4. ASC魚座が「大丈夫そうに見せる」を完璧にする</h4>
+        <ul>
+          <li>柔らかい第一印象 → 周りは「あの人は元気そう」と思う</li>
+          <li>200人の全社イベントを回しながら「かえりたい」と思ってても、外には出ない</li>
+          <li><strong>月蠍座（8H）</strong> → 本当の感情は深く隠す → 表に出す回路がそもそもない</li>
+          <li>周りが異変に気づけない → 「大丈夫？」と聞かれない → 弱音を吐くきっかけすらない</li>
+        </ul>
+        <blockquote>適応障害を誰にも言えなかったのは「隠した」のではなく、「出す回路がなかった」。パートナーに話せたのは、パートナーが「解決しようとせず受け止めた」から。「やめるべきだよ」「休も」というシンプルな言葉が、解決策じゃなく共感として届いた。この体験は、弱音を吐く回路を開く最初の一歩。</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 仕事を手放せない -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">仕事を手放せない理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">三重ロックで「辞めたい」が封じ込められている</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">重要</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+        <h4>1. 「辞める」＝「負け」に見える</h4>
+        <ul>
+          <li><strong>ENTJ</strong> → 目標を達成する存在 → 途中で降りる＝敗北</li>
+          <li><strong>SLE (Se base)</strong> → 現場を支配し続けたい → 手放す＝支配権を失う</li>
+          <li><strong>タイプ1</strong> → 「最後までやり遂げるのが正しい」→ 辞めること自体が「正しくない」</li>
+          <li>給料・役職という客観的指標が「辞めるのは間違い」を裏付けてしまう</li>
+        </ul>
+        <h4>2. サンクコストに引っ張られる</h4>
+        <ul>
+          <li><strong>誠実性77%</strong> → 積み上げてきたものへの執着が強い</li>
+          <li><strong>Te dom</strong> → 投資対効果で考える → 「ここまで頑張ったのに辞めるのは非効率」</li>
+          <li>役職、給料、これまでの努力 → 全部が「辞めない理由」として積み上がる</li>
+          <li>合理的に見えて、実は感情的な判断 → でもTe domはそれに気づきにくい</li>
+        </ul>
+        <h4>3. 限界のセンサーが壊れている</h4>
+        <ul>
+          <li><strong>情緒安定性90%</strong> → 深夜3:28まで働いて7時起きでも「まだいける」と感じてしまう</li>
+          <li><strong>7ウィング</strong> → 「土曜日楽しみだから頑張れる」と楽しみで辛さを上書きする</li>
+          <li><strong>月蠍座（8H）</strong> → 没頭すると時間感覚が消える → 「気づいたら深夜」が日常化</li>
+          <li>適応障害を経験してもなお同じパターンを繰り返している → センサーの故障は深刻</li>
+        </ul>
+        <h4>4. 「辞めたい」を言語化できない構造</h4>
+        <ul>
+          <li>「辞めたい」は弱音 → 上の「弱音を吐けない」構造とリンクする</li>
+          <li><strong>タイプ1</strong> → 「辞めたい」と思う自分を批判する → 「甘えだ」と処理する</li>
+          <li>LINEで「仕事辞めたくなってきた」「でも給料は高くて」「役職もあるし辞めるの勿体無い」→ <strong>辞めたいと言った直後に、自分で辞めない理由を並べて打ち消している</strong></li>
+          <li>これはタイプ1の内なる批評家が「辞めたい」を許さない構造そのもの</li>
+        </ul>
+        <blockquote>「辞めるのが勿体無い」は本音じゃない。本音は「辞めたい」。でもタイプ1が「辞める＝正しくない」と判定し、Te domが「給料・役職」で合理化し、情緒安定90%が「まだいける」と麻痺させる。三重ロックで「辞めたい」が封じ込められている。必要なのは「辞める＝負け」ではなく「辞める＝戦略的撤退」という再定義。</blockquote>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<!-- =============== TAB: 影の自己分析（シャドウ） =============== -->
+<div class="tab-content" id="shadow">
+
+  <div class="about-box">
+    <div class="about-title">影の自己分析（シャドウ・アニマ/アニムス）</div>
+    <p>ユング心理学のシャドウ理論に基づき、<strong>抑圧している自分</strong>・認めたくない部分・無意識の反応パターンを解剖する。自己分析が「なぜこう動くか」なら、シャドウ分析は「なぜそれを認められないか」。</p>
+  </div>
+
+  <!-- ==================== ENTJ男のシャドウ ==================== -->
+
+  <h2>ENTJ男のシャドウ</h2>
+
+  <div class="card highlight">
+    <p style="font-size:13px;"><strong>シャドウとは：</strong>自分が「自分ではない」と思い込んでいるが、確実に自分の一部であるもの。意識が拒絶するほど、無意識で強く作動する。</p>
+  </div>
+
+  <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
+
+  <!-- ENTJ Shadow 1: Fi -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">抑圧されたFi — 「感情的な自分」の否定</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ENTJの最大のシャドウ：劣等機能Fi</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(124,111,247,0.15);color:var(--accent);">核心</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>シャドウの構造</h4>
+        <p>ENTJの認知機能スタック：<strong>Te → Ni → Se → Fi</strong>。Fiは4番目＝<strong>劣等機能</strong>。最も未発達で、最も制御できず、最も恐れている機能。</p>
+        <ul>
+          <li><strong>Fi（内向的感情）</strong> = 自分の内面の感情・価値観・「本当はどう感じているか」</li>
+          <li>ENTJはTeが支配的 → 効率・論理・成果で世界を処理する → <strong>「感情は非効率」という無意識の前提</strong>がある</li>
+          <li>情緒安定性90% → 「自分は感情に左右されない人間だ」がアイデンティティ</li>
+          <li>しかしFiは消えたのではなく<strong>抑圧されている</strong>。蠍座の月（8H）が示す通り、内側には極めて強い感情がある</li>
+        </ul>
+
+        <h4>シャドウが漏れ出す瞬間</h4>
+        <ul>
+          <li><strong>身体症状として噴出</strong> → Fiの感情を意識が拾えない → 体が代わりにSOSを出す（過労・適応障害・突然のダウン）</li>
+          <li><strong>突然の弱音</strong> → 普段のENTJ-Aの「大丈夫」が限界を超えた瞬間 = Fiが一時的に表面に噴出している</li>
+          <li><strong>予想外の感情的動揺</strong> → 褒められたり感謝されたとき、Fiが反応して制御不能になる。Te支配下では処理できない感情が漏れる</li>
+          <li><strong>緊張が隠せない</strong> → 普段制御できているFiが、特定の相手や場面で制御不能になる</li>
+        </ul>
+
+        <h4>なぜこれが危険か</h4>
+        <ul>
+          <li>Fiを抑圧し続けると → <strong>自分が本当は何を望んでいるかわからなくなる</strong></li>
+          <li>「辞めたい」のか「辞めたくない」のかすら判断できない → Fiが答えを持ってるのに、Teがそれを聞こうとしない</li>
+          <li>パートナーに対しても「好き」の感覚がFiの領域 → <strong>「好きだけどそれを感じ切れない」</strong>という状態が起きうる</li>
+          <li>長期的には「何のために生きてるんだろう」という空虚感に繋がる</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「本当は傷ついてる。本当は怖い。本当は誰かに『大丈夫じゃなくていいよ』と言ってほしい。——でもそれを認めたら、自分じゃなくなる気がする。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 2: タイプ4降下 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ストレス時のタイプ4降下 — 突然「別人」になる理由</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">タイプ1の分裂方向＝タイプ4（個人主義・自己没入）</div>
+      </div>
+      <span class="scenario-tag" style="background:rgba(248,113,113,0.15);color:#f87171;">要注意</span>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>タイプ1 → タイプ4の分裂</h4>
+        <p>エニアグラムでは、タイプ1がストレス下で<strong>タイプ4（個人主義者）の不健全な側面</strong>に移行する。これはまさにシャドウの発動。</p>
+        <ul>
+          <li><strong>普段のタイプ1</strong>：正しくあれ、効率的であれ、完璧であれ</li>
+          <li><strong>ストレス時のタイプ4</strong>：急に感情的になる、自己批判が止まらない、「自分は理解されない」と引きこもる</li>
+          <li>周りから見ると「あの冷静なENTJがどうした？」→ 本人も「自分がおかしくなった」と感じる</li>
+          <li>実際は<strong>シャドウ（抑圧されたFi）が噴出している</strong>だけ</li>
+        </ul>
+
+        <h4>この人の具体的な発動パターン</h4>
+        <ul>
+          <li>仕事のキャパオーバー → 急に弱気になる → <strong>タイプ4の「自分は特別に不幸だ」モード</strong></li>
+          <li>普段は「大丈夫」を維持 → 限界突破 → 突然弱音 → でも翌日にはまた「大丈夫」に戻る</li>
+          <li>このサイクルが危険：<strong>シャドウの噴出 → 抑圧 → さらに強い噴出</strong>のスパイラル</li>
+          <li>タイプ4のスコアが4（低い）のは「普段は出ない」証拠 → だからこそ出たときの衝撃が大きい</li>
+        </ul>
+
+        <h4>パートナーとの共鳴リスク</h4>
+        <ul>
+          <li>タイプ4がメインタイプのパートナーがいる場合、ENTJがタイプ4モードに入ると<strong>同じ波長の感情が渦を巻く</strong></li>
+          <li>普段ENTJが安定役を担っている場合、それが崩れるとパートナーも不安定になる可能性がある</li>
+          <li>逆に、タイプ4のパートナーだけがこのシャドウ状態を「わかる」可能性がある → タイプ4の感情世界を生きてる人だから</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「誰もわかってくれない。こんなに頑張ってるのに。こんなに正しくあろうとしてるのに。——もう疲れた。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 3: ASC魚座 -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ASC魚座のシャドウ — 「優しい自分」は本物か仮面か</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">柔らかい第一印象の裏にある無意識の葛藤</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>アセンダントのシャドウ</h4>
+        <p>ASC（上昇宮）は「世界に見せる仮面」。魚座ASCは<strong>柔らかく、直感的で、受容的</strong>な印象を自動生成する。しかし太陽は乙女座、本体はENTJ/SLE。</p>
+        <ul>
+          <li><strong>表の自分</strong>：優しそう、柔らかい、話しかけやすい（ASC魚座）</li>
+          <li><strong>本体の自分</strong>：効率的、支配的、完璧主義（ENTJ / 乙女座 / SLE）</li>
+          <li><strong>シャドウの問題</strong>：「優しい自分」は演技なのか、本心なのか、本人にもわからなくなっている</li>
+        </ul>
+
+        <h4>具体的な葛藤</h4>
+        <ul>
+          <li>大人数の場で「いい人」を自動で演じてしまう → <strong>魚座ASCが起動</strong> → ENTJの本体は消耗して帰りたくなる</li>
+          <li>パートナーに「いつもと違う」と見抜かれる → <strong>ASCの仮面が外れかけている</strong>瞬間。近い人ほど気づく</li>
+          <li>パートナーへの世話焼き → これは魚座ASCの奉仕性なのか、ENTJの支配欲（「自分が管理したい」）なのか</li>
+          <li><strong>答え：両方</strong>。しかし本人はENTJの支配欲を「優しさ」だと思い込んでいる可能性がある</li>
+        </ul>
+
+        <h4>シャドウに気づくサイン</h4>
+        <ul>
+          <li>「優しくしたのに感謝されない」と苛立つとき → それは優しさではなくコントロールだった可能性</li>
+          <li>「自分は本当は冷たい人間なのでは」と不安になるとき → ASCと本体のギャップに気づき始めている</li>
+          <li>パートナーに「もっとこうすればいいのに」が増えるとき → 優しさの仮面の下のTe/タイプ1が出ている</li>
+        </ul>
+
+        <blockquote><strong>影の声：</strong>「みんなが好きなのは魚座の仮面であって、本当の自分じゃない。——でも仮面を外したら、誰が残ってくれるんだろう。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 4: アニマ -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">アニマ（内なる女性像）— 理想の恋人に投影されるもの</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">ユング心理学：男性の無意識にある女性的元型</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>アニマとは</h4>
+        <p>ユングによれば、男性の無意識には<strong>「アニマ」（内なる女性像）</strong>が存在する。これは自分が抑圧している女性的な側面であり、恋愛対象に投影されやすい。</p>
+
+        <h4>この人のアニマ像</h4>
+        <ul>
+          <li><strong>劣等Fi</strong>が生むアニマ → 「自分が感じられない感情を、代わりに感じてくれる存在」を求める</li>
+          <li><strong>月蠍座（8H）</strong> → 深く、激しく、秘密を共有できる女性に惹かれる</li>
+          <li><strong>金星乙女座/獅子座カスプ</strong> → 華やかさと実直さの両方を持つ人に惹かれる</li>
+          <li><strong>太陽7H（パートナーシップの部屋）</strong> → パートナーの中に「自分の完成」を見出す構造</li>
+        </ul>
+
+        <h4>パートナーへの投影</h4>
+        <ul>
+          <li>感情が豊かなパートナー → ENTJが持てないFiの代行者として無意識に惹かれている</li>
+          <li>タイプ4のパートナー（深い感情世界）→ 自分のストレス時のタイプ4＝シャドウそのもの。<strong>「自分が認められない自分」を体現している相手に惹かれている</strong></li>
+          <li>「完璧じゃない部分」に惹かれる → ENTJが見せられない不完全さをパートナーが自然に体現しているから</li>
+          <li><strong>これは投影であると同時に、本物の引力でもある</strong>。シャドウへの引力は最も強い</li>
+        </ul>
+
+        <h4>投影の罠</h4>
+        <ul>
+          <li>アニマ投影が強いと → 相手を「理想化」しすぎる → 現実のパートナーとアニマ像のズレに苦しむ</li>
+          <li>「この人は自分の感情を感じてくれるはず」→ パートナー本人も感情表現が苦手な場合 → 期待と現実のギャップ</li>
+          <li>投影を超えるには → <strong>自分自身のFiを育てる</strong>こと。パートナーに感情処理を「外注」するのではなく、自分で感じる練習をする</li>
+        </ul>
+
+        <blockquote><strong>アニマの声：</strong>「君が惹かれているのは彼女自身なのか、それとも自分が失った柔らかさの幻影なのか。——たぶん両方。だからこそ、この恋は本物になりうる。」</blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENTJ Shadow 5: ソシオニクス -->
+  <div class="fight-scenario">
+    <div class="fight-scenario-header" onclick="toggleScenario(this)">
+      <div>
+        <div class="scenario-title">ソシオニクスのシャドウブロック — 無意識の情報処理</div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">SLEの5-8番目の機能が生む死角</div>
+      </div>
+      <span class="scenario-arrow">▼</span>
+    </div>
+    <div class="fight-scenario-body">
+      <div class="fight-scenario-inner">
+
+        <h4>SLEのシャドウブロック</h4>
+        <div class="table-wrap">
+          <table>
+            <tr><th>位置</th><th>機能</th><th>意味</th></tr>
+            <tr><td>5. 暗示機能</td><td><strong>Ni（内向直観）</strong></td><td>未来予測・パターン認識が弱い。長期ビジョンを他者に依存しやすい</td></tr>
+            <tr><td>6. 動員機能</td><td><strong>Fe（外向感情）</strong></td><td>場の感情操作は意識すればできるが自然ではない。「場を盛り上げる」が実はシャドウ作業</td></tr>
+            <tr><td>7. 制限機能</td><td><strong>Si（内向感覚）</strong></td><td>体調管理・快適さへの鈍感。限界を超えて走り続ける構造の根本原因</td></tr>
+            <tr><td>8. 背景機能</td><td><strong>Ne（外向直観）</strong></td><td>可能性の拡散を嫌う。「もしかしたら」より「確実に」を好む</td></tr>
+          </table>
+        </div>
+
+        <h4>実際の影響</h4>
+        <ul>
+          <li><strong>Si（制限機能）</strong>が最も危険 → 身体感覚・快適さのセンサーが構造的に弱い → <strong>適応障害はSiシャドウが引き起こした身体の反乱</strong></li>
+          <li><strong>Fe（動員機能）</strong> → 全社イベントで「場を回す」のはFeの動員。できるけど消耗する → 「帰りたい」はFeシャドウのエネルギー切れ</li>
+          <li><strong>Ni（暗示機能）</strong> → 長期的な人生設計が苦手。Ni主導タイプ（ILI等）がこれを補完する → <strong>Ni主導のパートナーに惹かれる構造的理由</strong></li>
+        </ul>
+
+        <blockquote>SLEのシャドウブロックの弱さ（特にSi・Ni）を、Ni主導タイプの主導機能と創造機能が自然に補う。これが「一緒にいると楽」の無意識的な根拠。</blockquote>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+</div>
+
+
+<!-- =============== TAB: 向いてる仕事 =============== -->
+<div class="tab-content" id="career">
+
+  <div class="about-box">
+    <div class="about-title">分析ロジック</div>
+    <p>MBTI認知機能・ソシオニクス情報代謝・エニアグラム動機・ビッグファイブ特性・ホロスコープ配置を統合し、「何が得意か」ではなく<strong style="color:#fff;">「どんな環境で最も自然にパフォーマンスが出るか」</strong>で順位化した。</p>
+  </div>
+
+  <!-- ==================== ENTJ男 ==================== -->
+  <h2>ENTJ男の適職 TOP10</h2>
+
+  <div class="card highlight" style="margin-bottom:20px;">
+    <h4 style="margin-top:0;">適職を決める核データ</h4>
+    <div class="data-grid">
+      <div class="data-item"><strong>Se主導（SLE）</strong><br>即断即決・現場掌握</div>
+      <div class="data-item"><strong>情動安定 90%</strong><br>極限のストレス耐性</div>
+      <div class="data-item"><strong>タイプ1w7（10/9）</strong><br>完璧主義 × 冒険心</div>
+      <div class="data-item"><strong>創造性 81%</strong><br>戦略設計力</div>
+      <div class="data-item"><strong>外向性 73%</strong><br>対人パフォーマンス</div>
+      <div class="data-item"><strong>火星 山羊座10H</strong><br>キャリアに全力投球の配置</div>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);">キーワード：<strong>高圧環境 × 戦略 × 意思決定権 × 結果で語る</strong></p>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">1</div>
+    <div class="rank-body">
+      <div class="rank-title">経営者 / CEO</div>
+      <div class="rank-reason">Se主導の実行力 + タイプ1の高基準 + 情動安定90%のストレス耐性。「決めて、動かして、結果を出す」がENTJの本質そのもの。火星山羊座10Hは「キャリアの頂点に立つ」配置。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">Se主導</span>
+        <span class="rank-tag tag-gold">タイプ1（10）</span>
+        <span class="rank-tag tag-green">情動安定90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">2</div>
+    <div class="rank-body">
+      <div class="rank-title">経営 / 戦略コンサルタント</div>
+      <div class="rank-reason">現職ドンピシャ。創造性81%の戦略設計 + タイプ5（8）の分析力 + Se主導の実行支援。「課題を見つけて、解決策を設計して、導入まで持っていく」——本人の言葉そのまま。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">創造性81%</span>
+        <span class="rank-tag tag-gold">タイプ5（8）</span>
+        <span class="rank-tag tag-green">現職</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item top3">
+    <div class="rank-num">3</div>
+    <div class="rank-body">
+      <div class="rank-title">起業家 / スタートアップ創業者</div>
+      <div class="rank-reason">タイプ7w（9）の冒険心 + Se行動力 + 情動安定90%のリスク耐性。「退屈が最大の敵」のENTJにとって、自分でゲームのルールを作る環境が最も輝く。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">タイプ7w（9）</span>
+        <span class="rank-tag tag-gold">Se行動力</span>
+        <span class="rank-tag tag-green">MC射手座</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">4</div>
+    <div class="rank-body">
+      <div class="rank-title">投資銀行 / M&Aアドバイザー</div>
+      <div class="rank-reason">高プレッシャー×高リターン。情動安定90%が最大の武器。勤勉性77%で深夜3時まで戦える体力と、タイプ1の「完璧な案件」への執着。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">情動安定90%</span>
+        <span class="rank-tag tag-gold">勤勉性77%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">5</div>
+    <div class="rank-body">
+      <div class="rank-title">プロダクトマネージャー（IT）</div>
+      <div class="rank-reason">創造性81%の構想力 + Se主導の実装推進力 + 外向73%のステークホルダー調整。「戦略と現場の両方を握れる」稀有なポジション。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">創造性81%</span>
+        <span class="rank-tag tag-gold">Se×Te</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">6</div>
+    <div class="rank-body">
+      <div class="rank-title">弁護士（企業法務 / 訴訟）</div>
+      <div class="rank-reason">タイプ1の正義感 + 協調性34%（対立を恐れない）+ Te論理構成力。法廷でもM&Aテーブルでも「勝ちに行く」スタイルが活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">タイプ1（10）</span>
+        <span class="rank-tag tag-gold">協調性34%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">7</div>
+    <div class="rank-body">
+      <div class="rank-title">危機管理コンサルタント / 交渉人</div>
+      <div class="rank-reason">SLE「元帥」の異名は伊達じゃない。情動安定90%で修羅場でも冷静、Se主導で即断即決。200人の全社イベントを1人で回せる胆力がそのまま活きる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">SLE元帥</span>
+        <span class="rank-tag tag-gold">情動安定90%</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">8</div>
+    <div class="rank-body">
+      <div class="rank-title">事業開発（BizDev）</div>
+      <div class="rank-reason">外向73%の対人力 + Se主導の嗅覚 + タイプ7wの新規開拓マインド。「高め合える相手を見つける」能力は仕事でもそのまま武器になる。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">外向性73%</span>
+        <span class="rank-tag tag-gold">タイプ7w（9）</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">9</div>
+    <div class="rank-body">
+      <div class="rank-title">スポーツチーム監督 / コーチ</div>
+      <div class="rank-reason">バスケの大会に出るほどの競技者。Se主導のリアルタイム判断 + タイプ1の「正しく勝つ」美学 + タイプ2（7）の育成欲。「頑張ろ」と言える指導者。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">Se主導</span>
+        <span class="rank-tag tag-gold">タイプ2（7）</span>
+        <span class="rank-tag tag-green">競技経験</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="rank-item">
+    <div class="rank-num">10</div>
+    <div class="rank-body">
+      <div class="rank-title">政治家 / 政策立案者</div>
+      <div class="rank-reason">MC射手座の「社会にビジョンを示す」配置 + タイプ1の使命感 + 外向73%のカリスマ。協調性34%は弱点だが、「正しいことを押し通す」力に転化する。</div>
+      <div class="rank-tags">
+        <span class="rank-tag tag-purple">MC射手座</span>
+        <span class="rank-tag tag-gold">タイプ1使命感</span>
+      </div>
+    </div>
+  </div>
+
+  <blockquote>
+    <strong>ENTJ男の適職の本質：</strong><br><br>
+    「意思決定権がある × 高圧環境 × 戦略と実行の両方を握れる」<br><br>
+    逆に言えば、<strong>指示を受けるだけの立場・誰かのルールに従うだけの仕事</strong>は最もパフォーマンスが落ちる。現職のITコンサルは2位ど真ん中。ただし「一生仕事終わらない」のは適職だからこそ任されすぎている証拠でもある。
+  </blockquote>
+
+
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  統合分析日: 2026-04-06<br>
+</div>
+
+<!-- JS -->
+<script>
+  function toggleScenario(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    header.classList.toggle('open', !isOpen);
+    body.classList.toggle('open', !isOpen);
+  }
+
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      contents.forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+</body>
+</html>
