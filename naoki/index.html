@@ -19,6 +19,8 @@
     --green: #4ade80;
     --red: #f87171;
     --orange: #fb923c;
+    --entj: #42b8f5;
+    --entp: #a78bfa;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -196,6 +198,32 @@
   .flow-step.alt { background: rgba(167,139,250,0.1); border-left: 3px solid var(--accent2); }
   .flow-step.danger { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
   .flow-arrow { text-align: center; color: var(--text-muted); font-size: 16px; margin: 2px 0; }
+  .card.green { border-color: rgba(74,222,128,0.3); background: linear-gradient(135deg, rgba(74,222,128,0.06), var(--surface)); }
+  .card.danger { border-color: rgba(248,113,113,0.3); background: linear-gradient(135deg, rgba(248,113,113,0.06), var(--surface)); }
+  .score-circle {
+    width: 90px; height: 90px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; margin: 16px auto; position: relative;
+    background: linear-gradient(135deg, rgba(66,184,245,0.15), rgba(167,139,250,0.15));
+    border: 2px solid rgba(66,184,245,0.4);
+  }
+  .score-circle .score-num { font-size: 30px; font-weight: 900; color: #fff; line-height: 1; }
+  .score-circle .score-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .vs-row { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+  .vs-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .vs-badge { padding: 4px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
+  .vs-badge.entj { background: rgba(66,184,245,0.15); border: 1px solid rgba(66,184,245,0.4); color: var(--entj); }
+  .vs-badge.entp { background: rgba(167,139,250,0.15); border: 1px solid rgba(167,139,250,0.4); color: var(--entp); }
+  .vs-x { font-size: 20px; font-weight: 900; color: var(--text-muted); }
+  .compat-meter { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+  .compat-meter .meter-label { font-size: 13px; min-width: 100px; }
+  .compat-meter .meter-bar { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .compat-meter .meter-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--entj), var(--entp)); }
+  .compat-meter .meter-score { font-size: 13px; font-weight: 700; color: #fff; min-width: 32px; text-align: right; }
+  .synergy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .synergy-item { padding: 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); text-align: center; }
+  .synergy-item .synergy-icon { font-size: 24px; margin-bottom: 4px; }
+  .synergy-item .synergy-title { font-size: 12px; font-weight: 700; color: #fff; }
+  .synergy-item .synergy-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -225,6 +253,8 @@
   <button class="tab-btn" data-tab="stress">ストレス＆地雷</button>
   <button class="tab-btn" data-tab="shadow">影の自己分析</button>
   <button class="tab-btn" data-tab="career">向いてる仕事</button>
+  <button class="tab-btn" data-tab="shoki-compat">shoki相性</button>
+  <button class="tab-btn" data-tab="shoki-bond">shoki仕事&友情</button>
 </nav>
 <div class="scroll-hint">← タブをスワイプ →</div>
 
@@ -1276,11 +1306,387 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
 </div>
 
+<!-- =============== TAB: shoki相性 =============== -->
+<div class="tab-content" id="shoki-compat">
+
+  <div class="about-box">
+    <div class="about-title">shokiとの相性分析</div>
+    <p>MBTI・エニアグラム・ビッグファイブ・ソシオニクス・星座を横断的に統合し、shoki（ENTJ-A / SLE / 1w7 / おとめ座）との友情・仕事パートナーとしての相性を多角的に分析。</p>
+  </div>
+
+  <div class="vs-row">
+    <div class="vs-badges">
+      <span class="vs-badge entj">ENTJ-A</span>
+      <span class="vs-badge entj">SLE</span>
+      <span class="vs-badge entj">1w7</span>
+    </div>
+    <div class="vs-x">×</div>
+    <div class="vs-badges">
+      <span class="vs-badge entp">ENTP-A</span>
+      <span class="vs-badge entp">SLE-D</span>
+      <span class="vs-badge entp">8w7</span>
+    </div>
+  </div>
+
+  <div class="score-circle">
+    <div class="score-num">92</div>
+    <div class="score-label">総合相性</div>
+  </div>
+
+  <h2>データ比較</h2>
+  <div class="table-wrap"><table>
+    <tr><th>指標</th><th style="color:var(--entj)">shoki (ENTJ-A)</th><th style="color:var(--entp)">自分 (ENTP-A)</th></tr>
+    <tr><td>MBTI</td><td><strong>ENTJ-A</strong><br>指揮官</td><td><strong>ENTP-A</strong><br>討論者</td></tr>
+    <tr><td>ソシオニクス</td><td><strong>SLE</strong><br>ベータ(β)</td><td><strong>SLE-D</strong><br>ベータ(β)</td></tr>
+    <tr><td>エニアグラム</td><td><strong>1w7</strong><br>改革者+楽天家</td><td><strong>8w7</strong><br>挑戦者+熱狂家</td></tr>
+    <tr><td>LobeType</td><td>敏腕マネージャー</td><td>魅惑系 デビル天使</td></tr>
+    <tr><td>星座</td><td>おとめ座<br>変動宮・地</td><td>水瓶座<br>不動宮・風</td></tr>
+    <tr><td>ASC</td><td>魚座 06°25'</td><td>射手座 29°</td></tr>
+    <tr><td>MC</td><td>射手座 16°08'</td><td>天秤座 19°</td></tr>
+    <tr><td>出生</td><td>2001/09/21 16:40<br>茨城県古河市</td><td>2000/02/16 03:09<br>東京都江東区亀戸</td></tr>
+  </table></div>
+
+  <h2>ビッグファイブ比較</h2>
+  <div class="rating">
+    <div class="rating-label"><span>外向性</span><span><strong style="color:var(--entj)">73%</strong> / <strong style="color:var(--entp)">93%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:73%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:93%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>協調性</span><span><strong style="color:var(--entj)">34%</strong> / <strong style="color:var(--entp)">78%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:34%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:78%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>勤勉性</span><span><strong style="color:var(--entj)">77%</strong> / <strong style="color:var(--entp)">85%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:77%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:85%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>情動安定性</span><span><strong style="color:var(--entj)">90%</strong> / <strong style="color:var(--entp)">97%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:90%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:97%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>創造性</span><span><strong style="color:var(--entj)">81%</strong> / <strong style="color:var(--entp)">94%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill cyan" style="width:81%; opacity:0.5; position:absolute; top:0; left:0;"></div>
+      <div class="rating-fill purple" style="width:94%"></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin-top:4px;"><span style="color:var(--entj)">■</span> shoki &nbsp; <span style="color:var(--entp)">■</span> 自分</p>
+
+  <h2>相性レーダー</h2>
+  <div class="compat-meter"><span class="meter-label">知的相性</span><div class="meter-bar"><div class="meter-fill" style="width:98%"></div></div><span class="meter-score">98</span></div>
+  <div class="compat-meter"><span class="meter-label">仕事相性</span><div class="meter-bar"><div class="meter-fill" style="width:95%"></div></div><span class="meter-score">95</span></div>
+  <div class="compat-meter"><span class="meter-label">信頼関係</span><div class="meter-bar"><div class="meter-fill" style="width:90%"></div></div><span class="meter-score">90</span></div>
+  <div class="compat-meter"><span class="meter-label">刺激・楽しさ</span><div class="meter-bar"><div class="meter-fill" style="width:96%"></div></div><span class="meter-score">96</span></div>
+  <div class="compat-meter"><span class="meter-label">安定感</span><div class="meter-bar"><div class="meter-fill" style="width:92%"></div></div><span class="meter-score">92</span></div>
+  <div class="compat-meter"><span class="meter-label">成長促進</span><div class="meter-bar"><div class="meter-fill" style="width:94%"></div></div><span class="meter-score">94</span></div>
+  <div class="compat-meter"><span class="meter-label">衝突リスク</span><div class="meter-bar"><div class="meter-fill" style="width:35%; background: linear-gradient(90deg, var(--green), var(--orange));"></div></div><span class="meter-score" style="color:var(--green)">低</span></div>
+
+  <h2>一言プロファイル</h2>
+  <div class="card gold">
+    <p><strong>「最強の参謀と最強の司令官。脳みそのOSが同じ2人が、役割を分けて世界を動かすコンビ。」</strong></p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTJの構造化・実行力と、ENTPの発想力・柔軟性。どちらもNT型で論理と直感を共有し、どちらもAssertive型でメンタルが揺るがない。ソシオニクスでは同型（SLE）で世界の見方が同じ。エニアグラムでは1と8——ガットセンター（本能の3タイプ）の仲間で、行動原理が腹の底で通じ合う。</p>
+  </div>
+
+  <h2>詳細分析</h2>
+
+  <details class="accordion">
+    <summary>ビッグファイブ：協調性34%×78%の補完関係</summary>
+    <div class="acc-body">
+      <p><strong>5軸のうち4軸が「高い×高い」で方向性が一致、唯一差が大きい協調性が補完関係。</strong></p>
+      <ul>
+        <li><strong>外向性 73% vs 93%：</strong>shokiが場を収束させ、自分が場を広げる自然な役割分担</li>
+        <li><strong>協調性 34% vs 78%：</strong>shokiの「言い方キツい問題」を自分がフォローし、自分の「お人好し問題」をshokiが正す</li>
+        <li><strong>勤勉性 77% vs 85%：</strong>途中で投げ出すリスクほぼゼロ</li>
+        <li><strong>情動安定性 90% vs 97%：</strong>合計187%。何が起きても揺れない。チームの精神的支柱</li>
+        <li><strong>創造性 81% vs 94%：</strong>自分がネタを出し、shokiが「これは使える/ダメ」と高速判断</li>
+      </ul>
+      <p style="color:var(--orange);font-size:13px;margin-top:8px;"><strong>注意：</strong>2人とも安定しすぎて、チームの不安や辛さに鈍感になるリスク</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>エニアグラム：ガットセンター1w7 × 8w7</summary>
+    <div class="acc-body">
+      <p><strong>タイプ1・8はガットセンター（本能）の仲間。コアエモーションは「怒り」。</strong></p>
+      <ul>
+        <li>タイプ1（shoki）は怒りを「正義」に、タイプ8（自分）は怒りを「行動力」に変換</li>
+        <li>腹の底で通じ合う——言葉にしなくても「本気だな」が直感でわかる</li>
+        <li>ウィング7共通：退屈を嫌い、新しい刺激を求める。一緒にいて飽きない</li>
+        <li>タイプ6が両者最低（2）：権威に縛られない独立心。お互いの自由を尊重</li>
+        <li>タイプ3が両者7：成果へのこだわりが同レベル</li>
+      </ul>
+      <p><strong>成長方向：</strong>shoki→タイプ7（楽観）/ 自分→タイプ2（愛情表現）</p>
+      <p><strong>ストレス方向：</strong>両者とも引きこもる（shoki:タイプ4 / 自分:タイプ5）。片方が消えても本能的に理解できる</p>
+      <div class="card danger" style="margin-top:10px;">
+        <p><strong>摩擦ポイント：</strong>主導権争い（タイプ1の正義 vs タイプ8の力）。方向性が合えば無敵、ズレると正面衝突。ただしENTPの協調性78%がこのリスクを大幅に緩和</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>MBTI：EN_T共有 × J/P補完</summary>
+    <div class="acc-body">
+      <p><strong>E+N+Tの3軸一致 ＋ J/P差による自然な役割分担。MBTI公式「仲間（Companion）」関係。</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>位置</th><th style="color:var(--entj)">shoki (ENTJ)</th><th style="color:var(--entp)">自分 (ENTP)</th></tr>
+        <tr><td>主機能</td><td><strong>Te</strong>（効率・結果）</td><td><strong>Ne</strong>（可能性）</td></tr>
+        <tr><td>補助</td><td><strong>Ni</strong>（本質把握）</td><td><strong>Ti</strong>（内的論理）</td></tr>
+        <tr><td>第三</td><td>Se</td><td>Fe</td></tr>
+        <tr><td>劣等</td><td>Fi</td><td>Si</td></tr>
+      </table></div>
+      <p style="margin-top:10px;"><strong>Te × Ne：</strong>Neが10のアイデアを出し、Teが3つに絞って仕組み化。ブレスト→実行のサイクルが異常に速い</p>
+      <p><strong>Ni × Ti：</strong>shokiが「こうなるはず」と未来像を描き、自分が「論理的に正しいか」を検証。ビジョンとロジックの二重チェック</p>
+      <p><strong>共通の弱点：</strong>Fi × Si——2人とも「感情」と「過去」が苦手。未来志向で突っ走れるが、チームの感情ケアや過去の教訓が抜け落ちやすい</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>ソシオニクス：SLE × SLE-D 同一関係</summary>
+    <div class="acc-body">
+      <p><strong>2人ともSLE（感覚-論理型外向）。ソシオニクスで「同一関係（Identity）」。</strong></p>
+      <ul>
+        <li><strong>鏡のような理解：</strong>世界の認知・情報処理の優先順位が同じ。言わなくてもわかる</li>
+        <li><strong>行動原理が同じ：</strong>Se主導で「まず動く」、Ti創造で「論理的に組み立てる」</li>
+        <li><strong>弱点を攻撃しない：</strong>自分も苦手な部分だから突かない</li>
+      </ul>
+      <p><strong>サブタイプの差（標準 vs D）：</strong>shokiが持続的に管理、自分が局面局面で決断的に突破。同一関係のリスク「役割の被り」がサブタイプ差で軽減</p>
+      <p><strong>ベータクワドラ共通価値観：</strong>力と正義、階層と忠誠、情熱と団結、弱者の保護</p>
+      <div class="card danger" style="margin-top:10px;">
+        <p><strong>リスク：</strong>Fi・Neが両者とも弱い。感情面と発想面の穴が埋まらない。Ni（長期ビジョン）を2人とも外部に求める</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>星座：おとめ座（地）× 水瓶座（風）</summary>
+    <div class="acc-body">
+      <p><strong>知性という共通言語で強く結びつく組み合わせ。</strong></p>
+      <ul>
+        <li>おとめ座の分析力・完璧主義 × 水瓶座の革新性・独立心 = 「新しいアイデアを精密に実装する」</li>
+        <li>shokiのMC射手座 × 自分のASC射手座29° → <strong>shokiの人生の到達点に、自分は自然にいる</strong>。一緒にいるとインスピレーションを受ける</li>
+        <li>変動宮（shoki）× 不動宮（自分）：適応力と持続力の補完</li>
+      </ul>
+    </div>
+  </details>
+
+  <blockquote>知性で共鳴し、行動で証明し、本能で信頼する——MBTIでは「同じ言語を話すパートナー」、ソシオニクスでは「鏡のような理解」、エニアグラムでは「腹の底で通じ合う同志」、ビッグファイブでは「メンタル無敵のコンビ」、星座では「知性で融合する実行者と革新者」。</blockquote>
+</div>
+
+<!-- =============== TAB: shoki仕事&友情 =============== -->
+<div class="tab-content" id="shoki-bond">
+
+  <h2>仕事パートナー相性</h2>
+  <div class="card gold">
+    <h4 style="color:var(--gold);margin-top:0;">仕事相性スコア：95/100</h4>
+    <p style="font-size:13px;color:var(--text-muted);">ENT系ペアの中でも最上位クラス。</p>
+  </div>
+
+  <h3>なぜ仕事で最強なのか</h3>
+  <div class="synergy-grid">
+    <div class="synergy-item" style="border-color:rgba(66,184,245,0.3);">
+      <div class="synergy-icon">⚡</div>
+      <div class="synergy-title">意思決定スピード</div>
+      <div class="synergy-desc">shokiが即決、自分が選択肢を提示。議論→決定→実行が爆速</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(167,139,250,0.3);">
+      <div class="synergy-icon">💡</div>
+      <div class="synergy-title">アイデア → 実行</div>
+      <div class="synergy-desc">自分の発想力 + shokiの構造化力。企画→仕組み化が速い</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(245,200,66,0.3);">
+      <div class="synergy-icon">💪</div>
+      <div class="synergy-title">メンタル耐性</div>
+      <div class="synergy-desc">情動安定90%+97%=187%。炎上・逆境でも揺るがない</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(74,222,128,0.3);">
+      <div class="synergy-icon">🎯</div>
+      <div class="synergy-title">成果へのコミット</div>
+      <div class="synergy-desc">勤勉性77%+85%。タイプ3が両者7。「やり切る」が当然</div>
+    </div>
+  </div>
+
+  <h3>理想的な役割分担</h3>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>フェーズ</th><th style="color:var(--entj)">shoki (ENTJ)</th><th style="color:var(--entp)">自分 (ENTP)</th></tr>
+      <tr><td>企画</td><td>方向性の決定、ゴール設定</td><td>アイデア出し、可能性の拡張</td></tr>
+      <tr><td>計画</td><td>構造化、スケジュール管理</td><td>リスクの洗い出し、代替案</td></tr>
+      <tr><td>実行</td><td>進捗管理、品質チェック</td><td>現場の突破、アドリブ対応</td></tr>
+      <tr><td>対外</td><td>交渉、意思決定</td><td>関係構築、場の空気づくり</td></tr>
+      <tr><td>問題解決</td><td>根本原因の特定、仕組みで防止</td><td>創造的な回避策、発想の転換</td></tr>
+    </table></div>
+  </div>
+
+  <h3>相互補完構造</h3>
+  <details class="accordion">
+    <summary>shokiが持っていて自分に足りないもの</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>長期ビジョン（Ni補助機能）：</strong>「3年後こうなっているべき」を描ける</li>
+        <li><strong>完璧主義的な品質管理：</strong>タイプ1 × おとめ座。「まだ甘い」と妥協しない目</li>
+        <li><strong>構造化する力：</strong>Te主機能。散らかったアイデアをフレームに落とし込める</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>自分が持っていてshokiに足りないもの</summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>対人バッファ（協調性78%）：</strong>shokiが正論で人を傷つけそうな場面を自然にフォロー</li>
+        <li><strong>発想の幅（Ne主機能 + 創造性94%）：</strong>見逃す選択肢を無限に提示</li>
+        <li><strong>柔軟性（P型）：</strong>計画が崩れたとき「じゃあこうしよう」と即適応</li>
+        <li><strong>場を和ませる力（Fe第三機能）：</strong>緊張をユーモアで変える</li>
+      </ul>
+    </div>
+  </details>
+
+  <div class="card green">
+    <h4>2人でプロジェクトを回すときの強み</h4>
+    <ol>
+      <li><strong>ブレストの質が異常：</strong>自分がネタ出し→shokiが瞬時にフィルタ→さらに自分が発展→shokiが構造化。通常3回の会議が1回で終わる</li>
+      <li><strong>危機に強い：</strong>メンタル合計187%。「で、どうする？」と即切り替え</li>
+      <li><strong>人を動かせる：</strong>shokiの指揮力 + 自分のカリスマ</li>
+      <li><strong>盲点が少ない：</strong>shokiのNi × 自分のNe で見逃しが減る</li>
+    </ol>
+  </div>
+
+  <hr>
+
+  <h2>友情パターン分析</h2>
+  <div class="card gold">
+    <h4 style="color:var(--gold);margin-top:0;">友情相性スコア：92/100</h4>
+    <p style="font-size:13px;color:var(--text-muted);">仕事仲間から始まった友情は、最も自然で持続的な関係になりうる。</p>
+  </div>
+
+  <div class="card highlight">
+    <p><strong>「互いの能力をリスペクトし合う、戦友型の友情。」</strong></p>
+    <p>「一緒にいて楽しい」だけではなく、<strong>「一緒にいると強くなれる」</strong>関係。切磋琢磨。</p>
+  </div>
+
+  <h3>友情の5つの柱</h3>
+  <div class="card">
+    <h4>1. 知的対話の楽しさ</h4>
+    <p>ENT共有。話題が尽きない。「こいつと話すと頭が回る」感覚。</p>
+    <div class="flow-step main">自分「これ、こう考えたらどう？」</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step alt">shoki「いや、こっちの方が筋が通る」</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step main">自分「あ、でもそれだとここが崩れない？」</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step alt">shoki「......確かに。じゃあこうだ」</div>
+  </div>
+
+  <div class="card">
+    <h4>2. メンタルの安定感</h4>
+    <p>情動安定性90% + 97%。<strong>「余計な気を使わなくていい」安心感</strong>。感情的なドラマがない</p>
+  </div>
+
+  <div class="card">
+    <h4>3. 裏表のない関係</h4>
+    <p>タイプ1（正直）× タイプ8（本音・直球）。嘘やごまかしがない。これは信頼の土台</p>
+  </div>
+
+  <div class="card">
+    <h4>4. 自立した距離感</h4>
+    <p>タイプ6が両者最低（2）。依存しない、束縛しない。しばらく会わなくても関係が劣化しない</p>
+  </div>
+
+  <div class="card">
+    <h4>5. 成長の触媒</h4>
+    <p>shokiは自分の革新性に、自分はshokiの実行力に刺激される。停滞しない友情</p>
+  </div>
+
+  <h3>相互認識</h3>
+  <div class="card highlight">
+    <h4>shokiから見た自分</h4>
+    <ul>
+      <li>アイデアをポンポン出してくれる<strong>「発想の泉」</strong></li>
+      <li>正論で浮きそうなときフォローしてくれる<strong>「外交官」</strong></li>
+      <li>メンタルが揺るがない<strong>「壁打ち相手」</strong></li>
+      <li>結果にこだわる<strong>「信頼できる同志」</strong></li>
+    </ul>
+  </div>
+  <div class="card purple">
+    <h4>自分から見たshoki</h4>
+    <ul>
+      <li>散らかったアイデアを一瞬で構造化する<strong>「設計者」</strong></li>
+      <li>ブレない軸を持つ<strong>「北極星」</strong></li>
+      <li>直球を受け止めてくれる<strong>「受け止め役」</strong></li>
+      <li>「もっと上を目指そう」と思える<strong>「ライバル兼仲間」</strong></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <h2>リスク&対策</h2>
+
+  <div class="card danger">
+    <h4>リスク1：主導権の衝突</h4>
+    <p>両者ともSLE（Se主導）でリーダー気質。タイプ1（正義でリード）× タイプ8（力でリード）。同方向なら最強、割れると正面衝突。</p>
+    <p><strong>対策：</strong>担当領域を明確に / 目的に立ち戻る / 協調性78%の自分が先に一歩引く</p>
+  </div>
+
+  <div class="card danger">
+    <h4>リスク2：批判のエスカレーション</h4>
+    <p>shokiのタイプ1は正論で指摘。自分のタイプ8は「支配されること」を最も嫌う。</p>
+    <div class="flow-step main">shoki「これ、こうすべきだろ」</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step danger">自分「お前に指図される筋合いはない」</div>
+    <p><strong>対策：</strong>指摘→問いかけに変換 / リスペクトを言語化 / Fe第三機能でユーモアに逃がす</p>
+  </div>
+
+  <div class="card danger">
+    <h4>リスク3：感情の死角</h4>
+    <p>情動安定90%+97%でチームの不満や不安に鈍感。「なんでそんなこと気にするの？」と反応してしまう可能性。</p>
+    <p><strong>対策：</strong>定期的に「大丈夫？」を聞く / 相手が珍しく感情的なときは「論理」ではなく「聞く」</p>
+  </div>
+
+  <div class="card danger">
+    <h4>リスク4：過信による暴走</h4>
+    <p>全スペックが高すぎて「俺たちならいける」の判断ラインが上がりすぎる。</p>
+    <p><strong>対策：</strong>第三者を入れる / ENTPのNeでリスクシナリオを洗い出し、ENTJのNiで確率を見積もる</p>
+  </div>
+
+  <div class="card green">
+    <h4>長期的な関係維持の秘訣</h4>
+    <ol>
+      <li>互いの領域を尊重する</li>
+      <li>新しい挑戦を共有する（タイプ7ウィング共通）</li>
+      <li>正直であり続ける（友情の基盤）</li>
+      <li>成長を認め合う（タイプ1は肯定、タイプ8はリスペクトを求める）</li>
+      <li>時々距離を取る（べったりしない）</li>
+    </ol>
+  </div>
+
+  <h2>最終総括</h2>
+  <div class="card gold">
+    <blockquote style="border-color:var(--gold);">
+      <p><strong>「ENTJ × ENTP——知性で共鳴し、行動で証明し、本能で信頼する、最強の戦友。」</strong></p>
+      <p style="margin-top:12px;">このペアの友情と仕事関係を一言で表すなら——<br>
+      <strong>「お互いがいると、世界がもっと面白くなる。」</strong></p>
+    </blockquote>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
-  統合分析日: 2026-04-15<br>
+  統合分析日: 2026-04-18<br>
   参照データ: BIG5-BASIC / エニアグラム / MBTI / ソシオニクス / LobeType / 西洋占星術<br>
-  出生データ: 2000/02/16 03:09 JST 東京都江東区亀戸
+  出生データ: 2000/02/16 03:09 JST 東京都江東区亀戸<br>
+  shoki相性データ: 2001/09/21 16:40 JST 茨城県古河市
 </div>
 
 <!-- JS -->
