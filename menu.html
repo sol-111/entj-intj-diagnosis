@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>診断メニュー一覧</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #0f0f14;
+    color: #e8e6f0;
+    min-height: 100vh;
+    padding: 40px 20px 80px;
+  }
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7c6ff7, #f76fa1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    text-align: center;
+    color: #8a8a9a;
+    font-size: 14px;
+    margin-bottom: 48px;
+  }
+  .category {
+    margin-bottom: 48px;
+  }
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #2a2a3a;
+  }
+  .category-icon {
+    font-size: 22px;
+  }
+  .category-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c8c6d0;
+  }
+  .category-desc {
+    font-size: 12px;
+    color: #6a6a7a;
+    margin-left: auto;
+  }
+  .card {
+    background: #1a1a24;
+    border: 1px solid #2a2a3a;
+    border-radius: 14px;
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: all 0.2s;
+  }
+  .card:hover {
+    border-color: #3a3a5a;
+    box-shadow: 0 0 20px rgba(124,111,247,0.08);
+  }
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .card-emoji {
+    font-size: 28px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #22222e;
+    border-radius: 10px;
+    flex-shrink: 0;
+  }
+  .card-title-area {
+    flex: 1;
+  }
+  .card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #e8e6f0;
+    margin-bottom: 2px;
+  }
+  .card-tagline {
+    font-size: 12px;
+    color: #7c6ff7;
+    font-weight: 500;
+  }
+  .card-body {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #a8a6b4;
+  }
+  .card-body p {
+    margin-bottom: 10px;
+  }
+  .card-body p:last-child {
+    margin-bottom: 0;
+  }
+  .what-you-get {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 12px;
+  }
+  .tag {
+    font-size: 11px;
+    padding: 3px 10px;
+    background: #22222e;
+    border: 1px solid #2a2a3a;
+    border-radius: 20px;
+    color: #8a8a9a;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2a2a3a, transparent);
+    margin: 48px 0;
+  }
+  .footer-note {
+    text-align: center;
+    color: #5a5a6a;
+    font-size: 12px;
+    margin-top: 48px;
+    line-height: 1.8;
+  }
+  .badge-solo {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(124,111,247,0.15);
+    color: #9d93ff;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .badge-pair {
+    font-size: 10px;
+    padding: 2px 8px;
+    background: rgba(247,111,161,0.15);
+    color: #f7a0be;
+    border-radius: 4px;
+    font-weight: 600;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>性格診断メニュー</h1>
+  <p class="subtitle">8つの心理学理論 × 占星術を統合した、あなただけの分析レポート</p>
+
+  <!-- ==================== 自分を知る ==================== -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">🪞</span>
+      <span class="category-title">自分を知る</span>
+      <span class="category-desc">あなたの性格・思考パターン・行動原理を丸裸にする</span>
+    </div>
+
+    <!-- 総合分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">👑</div>
+        <div class="card-title-area">
+          <div class="card-name">総合分析レポート<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">すべての診断を統合した「あなたの取扱説明書」</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>下記のすべての診断結果を1つにまとめた最終レポートです。「結局、自分ってどんな人間なの？」に対する答え。</p>
+        <p>性格の核心を5つのキーワードで抽出し、強みの根拠・弱点の原因・第一印象と本質のギャップまで、複数の理論が同じことを指している部分だけを拾って解説します。</p>
+        <div class="what-you-get">
+          <span class="tag">性格の核心5キーワード</span>
+          <span class="tag">強みの構造マップ</span>
+          <span class="tag">弱点の根本原因</span>
+          <span class="tag">第一印象とのギャップ分析</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MBTI -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🧩</div>
+        <div class="card-title-area">
+          <div class="card-name">MBTI分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">頭の中の「考え方のクセ」を4つの軸で可視化</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>人間の思考パターンを4つの軸で分類する、世界で最も有名な性格診断です。全16タイプのうち、あなたがどれに当てはまるかがわかります。</p>
+        <p>ただしタイプ名を出して終わりではありません。あなたの脳が「どの順番で情報を処理しているか」まで解剖します。なぜその考え方をするのか、なぜ苦手なことが苦手なのか、仕組みから説明します。</p>
+        <div class="what-you-get">
+          <span class="tag">16タイプ判定</span>
+          <span class="tag">考え方のクセの優先順位</span>
+          <span class="tag">強み・弱みの仕組み</span>
+          <span class="tag">ストレス耐性タイプ判定</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ビッグファイブ -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">📊</div>
+        <div class="card-title-area">
+          <div class="card-name">ビッグファイブ性格特性<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">科学的に最も信頼性の高い「性格の数値化」</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>心理学の研究で最も広く使われている性格モデルです。人間の性格を「社交性・思いやり・真面目さ・メンタルの安定度・好奇心」の5つの数値で測定します。</p>
+        <p>MBTIが「タイプ」で分類するのに対し、ビッグファイブは「%」で測るので、より細かい個人差が見えます。「社交性73%」のように数値で出るため、自分の性格を客観的に把握できます。</p>
+        <div class="what-you-get">
+          <span class="tag">5つの性格スコア</span>
+          <span class="tag">スコアが意味すること</span>
+          <span class="tag">他の診断との対応関係</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- エニアグラム -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🔮</div>
+        <div class="card-title-area">
+          <div class="card-name">エニアグラム分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">あなたの行動を裏で動かしている「恐怖」と「欲求」</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>人間を9つのタイプに分類しますが、注目するのは表面的な行動ではなく「なぜそう動くのか」という心の奥の動機です。あなたが無意識に避けているもの（恐怖）と、無意識に追い求めているもの（欲求）が見えてきます。</p>
+        <p>さらに「成長するとどう変わるか」「追い詰められるとどう壊れるか」もわかるので、ストレス時に自分がなぜ別人のようになるのかが理解できます。</p>
+        <div class="what-you-get">
+          <span class="tag">9タイプのスコア全公開</span>
+          <span class="tag">あなたのメインタイプ判定</span>
+          <span class="tag">心の奥にある恐怖と欲求</span>
+          <span class="tag">成長パターン・崩れパターン</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ソシオニクス -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🧬</div>
+        <div class="card-title-area">
+          <div class="card-name">ソシオニクス分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">MBTIのさらに奥——無意識レベルの情報処理を解剖</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>MBTIをさらに精密にした性格理論です。MBTIでは見えない「自分でも気づいていない得意・不得意」や「無意識に他人に求めているもの」まで特定できます。</p>
+        <p>特に相性分析の精度が高く、「なぜこの人と一緒にいると楽なのか」「なぜあの人といると疲れるのか」を理論的に説明できるのが最大の特徴です。</p>
+        <div class="what-you-get">
+          <span class="tag">16タイプ判定</span>
+          <span class="tag">得意・不得意の全体マップ</span>
+          <span class="tag">自分では気づけない弱点</span>
+          <span class="tag">無意識に他人に求めているもの</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ホロスコープ -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🌌</div>
+        <div class="card-title-area">
+          <div class="card-name">ホロスコープ分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">生まれた瞬間の星の配置が示す、あなたの設計図</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>生年月日・出生時刻・出生地から、あなたが生まれた瞬間の星の配置を精密に計算します。テレビでよく見る「星座占い」とは全くの別物で、太陽・月・金星・火星など10個の天体すべての位置とその意味を読み解きます。</p>
+        <p>「周囲に与える第一印象」「感情の本質」「愛情表現のスタイル」「仕事で向かう方向」など、人生の各領域がどの星に影響されているかがわかります。心理学とは違う角度から、自分の深いパターンを確認できます。</p>
+        <div class="what-you-get">
+          <span class="tag">10天体の位置と意味</span>
+          <span class="tag">第一印象の正体</span>
+          <span class="tag">仕事・キャリアの方向性</span>
+          <span class="tag">星同士の相互作用</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 星座エレメント分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🜂</div>
+        <div class="card-title-area">
+          <div class="card-name">星座エレメント分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">火・地・風・水——あなたの根っこにあるエネルギーの質</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>12星座は「火（情熱）」「地（現実）」「風（知性）」「水（感情）」の4つの属性に分かれます。あなたがどの属性に属するかで、物事への向き合い方の根本的な傾向がわかります。</p>
+        <p>さらに「始めるのが得意」「続けるのが得意」「臨機応変が得意」の3タイプとの掛け合わせで、あなたの行動スタイルがより立体的に見えてきます。</p>
+        <div class="what-you-get">
+          <span class="tag">4属性の判定</span>
+          <span class="tag">行動スタイルの判定</span>
+          <span class="tag">あなたの星が持つ意味</span>
+          <span class="tag">性格診断との照らし合わせ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ストレス＆地雷 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">💣</div>
+        <div class="card-title-area">
+          <div class="card-name">ストレス＆地雷マップ<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">何にキレるか、何で壊れるか、どう直すか</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>あなたのストレスの「トリガー（引き金）」を危険度別にリスト化します。何をされると怒るのか、何が地雷なのか、そしてストレスが溜まると行動がどう変わるのか。</p>
+        <p>「ストレス時のサイン」（周りから見た変化）と「回復パターン」（何をすれば復活するか）まで網羅するので、自分の取り扱い方がわかるだけでなく、パートナーや周囲の人に共有しても役立ちます。</p>
+        <div class="what-you-get">
+          <span class="tag">ストレストリガー一覧（強度別）</span>
+          <span class="tag">ストレス時の行動変化</span>
+          <span class="tag">周囲から見たサイン</span>
+          <span class="tag">回復パターン</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- シャドウ分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🌑</div>
+        <div class="card-title-area">
+          <div class="card-name">影の自己分析（シャドウ）<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">自分が「自分じゃない」と思い込んでいる、もう一人の自分</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>あなたが無意識に抑え込んでいる性格の側面を分析します。「自分はこういう人間だ」と思っている裏側に、認めたくないもう一人の自分がいます。</p>
+        <p>なぜ特定の場面で急に感情的になるのか、なぜ特定のタイプの人に惹かれるのか——その答えは「影」にあります。自分の裏面を知ることで、無意識に振り回されなくなります。</p>
+        <div class="what-you-get">
+          <span class="tag">抑え込んでいる自分の特定</span>
+          <span class="tag">裏の自分が出てくる瞬間</span>
+          <span class="tag">恋愛で惹かれる理由の深層</span>
+          <span class="tag">無意識の行動パターン</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== 恋愛を知る ==================== -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">💘</span>
+      <span class="category-title">恋愛を知る</span>
+      <span class="category-desc">恋愛パターン・好みの構造・理想の相手を解き明かす</span>
+    </div>
+
+    <!-- 恋愛タイプ診断 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">💝</div>
+        <div class="card-title-area">
+          <div class="card-name">恋愛タイプ診断<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">愛し方・愛され方・距離感——あなたの恋愛の「型」</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>3つの恋愛心理学の理論で、あなたの恋愛パターンを立体的に分析します。</p>
+        <p>恋愛への基本的な向き合い方（情熱型？実用型？献身型？）、愛の伝え方と受け取り方のズレ、そしてパートナーとの距離感の取り方。なぜあの恋愛がうまくいかなかったのか、仕組みから理解できます。</p>
+        <div class="what-you-get">
+          <span class="tag">恋愛スタイル判定（6タイプ）</span>
+          <span class="tag">愛情の伝え方・求め方</span>
+          <span class="tag">距離感のタイプ判定</span>
+          <span class="tag">恋愛の弱点と対策</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 好きなタイプ分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🎯</div>
+        <div class="card-title-area">
+          <div class="card-name">好きなタイプ分析<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">「なぜその人に惹かれるのか」を心理構造から解剖</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>あなたが無意識に惹かれる人の特徴を、性格データから逆算します。「好きなタイプは？」と聞かれても答えにくい人ほど、この分析が刺さります。</p>
+        <p>知性・感情の出し方・距離感・外見の好み・独立性——各項目について「なぜそれが好きなのか」を根拠つきで説明。自分でも気づいていなかった好みのパターンが言語化されます。</p>
+        <div class="what-you-get">
+          <span class="tag">好みの特徴マップ</span>
+          <span class="tag">惹かれる理由の深層分析</span>
+          <span class="tag">無意識に恋人に求めているもの</span>
+          <span class="tag">理想と現実のギャップ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 恋愛スタイル -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">💫</div>
+        <div class="card-title-area">
+          <div class="card-name">恋愛スタイル<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">出会いから深い関係まで——フェーズ別の恋愛行動パターン</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>恋愛の「追いかける期→構築期→安定期→深化期」の各フェーズで、あなたの行動がどう変わるかをマッピングします。</p>
+        <p>連絡頻度・デートの傾向・距離感の取り方・冷める条件まで、時系列で分析。「最初はあんなに積極的だったのに急に冷めた」のような変化も、性格の仕組みから説明します。</p>
+        <div class="what-you-get">
+          <span class="tag">フェーズ別行動パターン</span>
+          <span class="tag">連絡・距離感のスタイル</span>
+          <span class="tag">冷める条件</span>
+          <span class="tag">長期関係で起きること</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 最強相性ランキング -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🏆</div>
+        <div class="card-title-area">
+          <div class="card-name">相性ランキング<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">全データ統合——最高の相性と最悪の相性、その理由</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>すべての診断データを統合し、あなた個人に最適化された相性ランキングを作成します。</p>
+        <p>ネットでよく見る一般的な相性表ではなく、あなたの弱点・欲求・深層パターンから逆算した「あなたに足りないものを自然に補ってくれる相手」の順位です。知性・感情・恋愛・長期安定の4軸で点数をつけます。最高の相性だけでなく、最悪の相性とその理由も解説します。</p>
+        <div class="what-you-get">
+          <span class="tag">最強相性TOP（スコアつき）</span>
+          <span class="tag">最悪相性＆その理由</span>
+          <span class="tag">タイプ別の相性根拠</span>
+          <span class="tag">知性/感情/恋愛/安定の4軸評価</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== 二人の関係を知る ==================== -->
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">🔗</span>
+      <span class="category-title">二人の関係を知る</span>
+      <span class="category-desc">特定の相手との相性・衝突パターン・未来予測</span>
+    </div>
+
+    <!-- 二人の相性分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">⚡</div>
+        <div class="card-title-area">
+          <div class="card-name">二人の相性分析<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">二人の性格データを突き合わせた、忖度なしの相性診断</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人分の性格データをすべての理論で突き合わせ、どこが噛み合い、どこがぶつかるかを徹底分析します。</p>
+        <p>性格タイプ同士の相性理論や、二人の星の配置の相互作用など、個人分析だけでは見えない「二人の間で起きること」を可視化します。</p>
+        <div class="what-you-get">
+          <span class="tag">総合相性スコア</span>
+          <span class="tag">噛み合うポイント</span>
+          <span class="tag">衝突が起きやすいポイント</span>
+          <span class="tag">関係を良くするための具体策</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 喧嘩シミュレーション -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🔥</div>
+        <div class="card-title-area">
+          <div class="card-name">喧嘩シミュレーション<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">きっかけ・発言・内心・メカニズム・仲直りまで完全再現</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の性格データから「こういう喧嘩が起きやすい」というパターンをシーン別にシミュレーションします。</p>
+        <p>ただの予測ではなく、発言の一つひとつに「なぜそう言ってしまうのか」を心理メカニズムつきで解剖。喧嘩の裏で何が起きているかが見えるので、同じパターンにハマらなくなります。仲直りの「最初の一言」まで提案します。</p>
+        <div class="what-you-get">
+          <span class="tag">喧嘩パターンのシーン別再現</span>
+          <span class="tag">発言の裏にある心理メカニズム</span>
+          <span class="tag">エスカレートの構造</span>
+          <span class="tag">仲直りの具体的な方法</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ストレス＆地雷マップ（ペア版） -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🚧</div>
+        <div class="card-title-area">
+          <div class="card-name">二人のストレス＆地雷マップ<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">お互いの「触れちゃいけないポイント」を見える化</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人それぞれの地雷・ストレストリガーを並べて比較し、どんな場面でどちらが先に限界に達するかをマッピングします。</p>
+        <p>「自分は平気だけど相手にとっては地雷」というすれ違いポイントが一目でわかるので、無意識に相手を傷つけるリスクを減らせます。</p>
+        <div class="what-you-get">
+          <span class="tag">地雷の比較マップ</span>
+          <span class="tag">すれ違いポイント</span>
+          <span class="tag">NGワード・NG行動リスト</span>
+          <span class="tag">お互いの回復の助け方</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==================== 使用フレームワーク ==================== -->
+  <div class="divider"></div>
+
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">📚</span>
+      <span class="category-title">使用している理論・フレームワーク</span>
+    </div>
+
+    <div class="card" style="padding: 20px 24px;">
+      <div class="card-body" style="font-size: 13px; line-height: 2;">
+        <p><strong style="color:#e8e6f0;">心理学（8理論）</strong>　MBTI / ビッグファイブ / エニアグラム / ソシオニクス / ユング心理学 / アタッチメント理論 / 愛のスタイル理論 / 愛情言語理論</p>
+        <p><strong style="color:#e8e6f0;">占星術</strong>　出生ホロスコープ（精密計算） / 二人の星の相性分析 / エレメント分析</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="footer-note">
+    すべてのレポートは、複数の理論を横断した統合分析です。<br>
+    1つの診断だけでは見えない部分にこそ、本当のあなたが現れます。
+  </p>
+
+</div>
+</body>
+</html>

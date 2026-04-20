@@ -134,6 +134,11 @@
   }
   .about-box .about-title { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: 1px; margin-bottom: 6px; }
   .about-box p { margin: 0; color: var(--text-muted); }
+  .vs-name {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .vs-name.cyan { color: var(--accent); }
   .rating { margin: 8px 0; }
   .rating-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
   .rating-bar { height: 6px; background: var(--surface2); border-radius: 3px; overflow: hidden; }
@@ -197,6 +202,7 @@
   .flow-step.main { background: rgba(66,184,245,0.1); border-left: 3px solid var(--accent); }
   .flow-step.alt { background: rgba(167,139,250,0.1); border-left: 3px solid var(--accent2); }
   .flow-step.danger { background: rgba(248,113,113,0.08); border-left: 3px solid #f87171; }
+  .flow-step.ng-late { background: rgba(248,113,113,0.08); border-left: 3px solid var(--red); }
   .flow-arrow { text-align: center; color: var(--text-muted); font-size: 16px; margin: 2px 0; }
   .card.green { border-color: rgba(74,222,128,0.3); background: linear-gradient(135deg, rgba(74,222,128,0.06), var(--surface)); }
   .card.danger { border-color: rgba(248,113,113,0.3); background: linear-gradient(135deg, rgba(248,113,113,0.06), var(--surface)); }
@@ -311,6 +317,14 @@
   .danger-box .title { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 4px; }
 
   /* ===== TYPE ITEMS ===== */
+  .card.pink {
+    border-color: rgba(247,111,161,0.3);
+    background: linear-gradient(135deg, rgba(247,111,161,0.06), var(--surface));
+  }
+  .card.cyan {
+    border-color: rgba(66,184,245,0.3);
+    background: linear-gradient(135deg, rgba(66,184,245,0.06), var(--surface));
+  }
   .card.red {
     border-color: rgba(248,113,113,0.3);
     background: linear-gradient(135deg, rgba(248,113,113,0.06), var(--surface));
@@ -388,7 +402,7 @@
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>MBTI・エニアグラム・ビッグファイブ・ソシオニクス・ホロスコープなど複数の性格診断を横断的に統合し、性格構造・強み・弱点・恋愛傾向・ストレスパターンを多角的に分析したレポートです。</p>
+    <p>MBTI・エニアグラム・ビッグファイブ・ソシオニクス・ホロスコープなど複数の性格診断を横断的に統合し、性格構造・強みと課題を多角的に分析したレポートです。</p>
   </div>
 
   <h2>データ一覧</h2>
@@ -404,7 +418,7 @@
     <tr><td>MC（天頂）</td><td>天秤座 19°</td></tr>
   </table></div>
 
-  <h2>ビッグファイブ スコア</h2>
+  <h2>ビッグファイブ</h2>
   <div class="rating">
     <div class="rating-label"><span>外向性</span><span><strong>93%</strong></span></div>
     <div class="rating-bar"><div class="rating-fill cyan" style="width:93%"></div></div>
@@ -496,7 +510,7 @@
 
   <hr>
 
-  <h2>最強相性MBTI TOP5</h2>
+  <h2>最強相性 TOP5</h2>
 
   <div class="about-box">
     <div class="about-title">ランキング基準</div>
@@ -631,10 +645,34 @@
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>性格を「外向性・協調性・勤勉性・情動安定性・創造性」の5つの軸でスコア化する、心理学で最も科学的根拠が強い性格モデルです。</p>
+    <p>性格を「外向性・協調性・勤勉性・情動安定性・創造性」の5つの軸でスコア化する、心理学で最も科学的根拠が強い性格モデルです。性格傾向が数値で客観的にわかります。</p>
   </div>
 
-  <h2>ビッグファイブ性格特性</h2>
+  <h2>ビッグファイブ</h2>
+  <div class="card highlight">
+    <div class="vs-name cyan">ENTP-A / EACNO / SLE-D / タイプ8</div>
+    <div class="rating">
+      <div class="rating-label"><span>外向性</span><span>93%</span></div>
+      <div class="rating-bar"><div class="rating-fill cyan" style="width:93%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>協調性</span><span>78%</span></div>
+      <div class="rating-bar"><div class="rating-fill cyan" style="width:78%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>勤勉性</span><span>85%</span></div>
+      <div class="rating-bar"><div class="rating-fill cyan" style="width:85%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>情動安定性</span><span>97%</span></div>
+      <div class="rating-bar"><div class="rating-fill cyan" style="width:97%"></div></div>
+    </div>
+    <div class="rating">
+      <div class="rating-label"><span>創造性</span><span>94%</span></div>
+      <div class="rating-bar"><div class="rating-fill cyan" style="width:94%"></div></div>
+    </div>
+  </div>
+  <blockquote>全5軸70%超のオールハイ。何も恐れずに創造し続ける最強のクリエイターマインド</blockquote>
 
   <div class="table-wrap"><table>
     <tr><th>特性</th><th>スコア</th><th>方向性</th></tr>
@@ -644,7 +682,18 @@
     <tr><td>情動安定性</td><td><strong>97%</strong></td><td>極めて安定</td></tr>
     <tr><td>創造性</td><td><strong>94%</strong></td><td>極めて創造的</td></tr>
   </table></div>
-  <p style="font-size:12px;color:var(--text-muted);">タイプ: EACNO / BIG5-BASIC推定MBTI: ENFJ-A / 信頼性: C</p>
+
+  <h3>統合プロファイル</h3>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>指標</th><th>結果</th></tr>
+      <tr><td>MBTI</td><td>ENTP-A（主張型・討論者）</td></tr>
+      <tr><td>ビッグファイブタイプ</td><td>EACNO</td></tr>
+      <tr><td>ソシオニクス</td><td>SLE-D</td></tr>
+      <tr><td>LobeType</td><td>魅惑系 デビル天使</td></tr>
+      <tr><td>エニアグラム主体</td><td>タイプ8（挑戦者）</td></tr>
+    </table></div>
+  </div>
 
   <h2>各特性の深掘り</h2>
 
@@ -686,18 +735,6 @@
     <p><strong>本質はT（思考型）だが、行動はF的に見える</strong>——これが「デビル天使」と診断される所以。</p>
   </div>
 
-  <h3>統合プロファイル</h3>
-  <div class="card">
-    <div class="table-wrap"><table>
-      <tr><th>指標</th><th>結果</th></tr>
-      <tr><td>MBTI</td><td>ENTP-A（主張型・討論者）</td></tr>
-      <tr><td>ビッグファイブタイプ</td><td>EACNO</td></tr>
-      <tr><td>ソシオニクス</td><td>SLE-D</td></tr>
-      <tr><td>LobeType</td><td>魅惑系 デビル天使</td></tr>
-      <tr><td>エニアグラム主体</td><td>タイプ8（挑戦者）</td></tr>
-    </table></div>
-  </div>
-
   <h2>総括</h2>
   <blockquote>ビッグファイブ5軸全てが70%以上という「オールハイ」プロファイルは極めて稀。特に情動安定性97% × 創造性94%の組み合わせは、<strong>「何も恐れずに創造し続けられる」</strong>という最強のクリエイターマインドを意味する。弱点があるとすれば、全て高すぎて自分の限界が見えにくいこと。</blockquote>
 </div>
@@ -707,10 +744,10 @@
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>人の根本的な動機・恐れ・欲求を9つのタイプで分類する性格類型論です。「なぜそう行動するのか」という内面の動機がわかります。</p>
+    <p>人の根本的な動機・恐れ・欲求を9つのタイプで分類する性格類型論です。「なぜそう行動するのか」という内面の動機がわかり、ストレス時や成長時の変化パターンが見えてきます。</p>
   </div>
 
-  <h2>エニアグラム分析</h2>
+  <h2>エニアグラムスコア</h2>
 
   <button class="ennea-guide-toggle" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">
     <span>タイプ早見表を見る</span>
@@ -733,9 +770,10 @@
     </div>
   </div>
 
-  <div class="card highlight">
-    <div style="font-size:28px;font-weight:800;margin:8px 0;text-align:center;">8w7</div>
-    <div style="font-size:13px;color:var(--text-muted);text-align:center;">挑戦者+熱狂家</div>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name cyan">ENTP-A</div>
+    <div style="font-size:28px;font-weight:800;margin:8px 0;">8w7</div>
+    <div style="font-size:13px;color:var(--text-muted);">挑戦者+熱狂家</div>
   </div>
 
   <h3>スコア一覧</h3>
@@ -753,8 +791,8 @@
 
   <h2>主タイプ：タイプ8w7（挑戦者＋熱狂家ウィング）</h2>
 
+  <h3>核にある動機</h3>
   <div class="card highlight">
-    <h4>核にある動機</h4>
     <ul>
       <li><strong>基本的欲求：</strong>自分の運命を自分で握りたい。支配されたくない。弱者を守りたい。</li>
       <li><strong>基本的恐怖：</strong>コントロールを失うこと。他者に支配されること。弱さを見せること。</li>
@@ -762,34 +800,28 @@
     </ul>
   </div>
 
-  <h3>タイプ8の特徴</h3>
+  <h3>強み</h3>
   <div class="card">
-    <h4>強み</h4>
     <ul>
       <li>圧倒的な存在感とリーダーシップ。部屋に入った瞬間に空気が変わる</li>
       <li>弱者を守る正義感。自分のグループに対する忠誠心は極めて強い</li>
       <li>即断即決。決めたら迷わない。迷う暇があったら動く</li>
       <li>本音と直球。裏表がなく、嘘やごまかしを見抜く鋭さ</li>
       <li>逆境に強い。プレッシャーが大きいほど力を発揮する</li>
+      <li>タイプ7ウィングにより、楽観的でエネルギッシュ。ユーモアで場を和ませる</li>
     </ul>
-    <h4>注意点</h4>
+  </div>
+
+  <h3>注意点・内面の葛藤</h3>
+  <div class="card">
     <ul>
       <li>支配欲が暴走する可能性。「守る」が「コントロールする」にすり替わる</li>
       <li>脆さを見せられない。97%の情動安定性がこれを強化している</li>
       <li>白黒思考になりやすい。「味方か敵か」で人を分類する傾向</li>
       <li>タイプ6が最低（2）→ 権威・慣習への服従が本能的に不可能</li>
+      <li>タイプ7ウィングの影響で、退屈を嫌い常に新しい刺激を求める</li>
     </ul>
-  </div>
-
-  <h3>タイプ7ウィング</h3>
-  <div class="card">
-    <p>タイプ8にタイプ7（熱狂家）のウィングが加わることで、<strong>「力強さ＋楽観＋スピード」</strong>の三拍子が揃う。</p>
-    <ul>
-      <li>退屈を嫌い、常に新しい刺激を求める</li>
-      <li>エネルギッシュで行動が速い</li>
-      <li>深刻になりすぎず、ユーモアで場を和ませる</li>
-      <li>ENTP的な「次は何をやろう？」精神とシナジーが高い</li>
-    </ul>
+    <blockquote>力と情熱を持ち、世界を動かそうとする挑戦者。タイプ8のパワーをタイプ7の楽観性が和らげている</blockquote>
   </div>
 
   <h2>統合と分裂 — ストレスと成長の方向</h2>
@@ -816,7 +848,7 @@
     </ul>
   </div>
 
-  <h2>サブタイプの影響</h2>
+  <h2>サブタイプの影響 — 他のタイプが高スコアである意味</h2>
 
   <details class="accordion">
     <summary>タイプ1（改革者）スコア7 — 倫理の軸</summary>
@@ -844,23 +876,50 @@
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>外向/内向・感覚/直感・思考/感情・判断/知覚の4軸で16タイプに分類する性格診断です。思考スタイルやコミュニケーション傾向がわかります。</p>
+    <p>外向/内向・感覚/直感・思考/感情・判断/知覚の4軸で16タイプに分類する世界で最も普及した性格診断です。思考スタイルやコミュニケーションの傾向がわかります。</p>
   </div>
 
-  <h2>MBTI分析：ENTP-A（討論者・主張型）</h2>
+  <h2>ENTP-A（討論者）</h2>
+  <blockquote>あらゆる可能性を見出し、論理で磨き、人を巻き込んで実現する——情動安定97%の知的革命家。</blockquote>
+  <div class="card highlight">
+    <h4>強み</h4>
+    <ul>
+      <li><strong>無限のアイデア生成</strong> — Ne主導で他の人が見逃す可能性を瞬時に察知</li>
+      <li><strong>論理×行動のハイブリッド</strong> — 考える時はENTP、動く時はSLE</li>
+      <li><strong>人を巻き込むカリスマ</strong> — 協調性78%の温かさ＋タイプ8のパワー</li>
+      <li><strong>Assertive(-A)</strong> — 批判や失敗を引きずらない、揺るがない自己確信</li>
+    </ul>
+  </div>
 
+  <h3>ENTP × SLE のズレと統合</h3>
+  <div class="card gold">
+    <h4>なぜ同じ人がENTP（Ne主導）とSLE（Se主導）の両方になるのか</h4>
+    <div class="table-wrap"><table>
+      <tr><th>体系</th><th>主導機能</th><th>意味</th></tr>
+      <tr><td>MBTI</td><td>Ne（外向直観）</td><td>可能性・抽象・未来志向</td></tr>
+      <tr><td>ソシオニクス</td><td>Se（外向感覚）</td><td>現実・行動・今ここ</td></tr>
+    </table></div>
+    <p style="margin-top:12px;">この矛盾は<strong>「考える時はENTP、動く時はSLE」</strong>と解釈できる。</p>
+    <ul>
+      <li>アイデアを生む段階 → Ne的（可能性を無限に広げる）</li>
+      <li>実行する段階 → Se的（今すぐ動いて現実を変える）</li>
+      <li>勤勉性85%がこの「切り替え」を可能にしている</li>
+      <li>BIG5がENFJ-Aを推定した理由もここ → 行動面（Se）＋協調性（Fe）が表に出やすい</li>
+    </ul>
+  </div>
+
+  <h3>LobeType「魅惑系 デビル天使」</h3>
+  <div class="card">
+    <p>タイプ8のカリスマ性＋協調性78%の温かさ＋ENTP的な知性が生み出す「悪魔的な魅力と天使的な優しさ」の共存。人を惹きつけながら振り回す、規格外の存在感。</p>
+  </div>
+
+  <h2>認知機能スタック：Ne → Ti → Fe → Si</h2>
   <div class="card highlight">
     <h4>認知機能スタック</h4>
-    <div class="code-block">1. 主機能：Ne（外向直観）— 可能性・パターン・アイデアの爆発的生成
-2. 補助機能：Ti（内向思考）— 論理的整合性・内的フレームワーク構築
-3. 第三機能：Fe（外向感情）— 場の空気・他者の感情への配慮
-4. 劣等機能：Si（内向感覚）— 過去の経験・身体感覚・ルーティン</div>
-  </div>
-
-  <h3>ENTP-Aの本質</h3>
-  <div class="card">
-    <p>ENTPは<strong>「あらゆる可能性を見出し、論理で磨き、人を巻き込んで実現する」</strong>タイプ。Ne主導により、他の人が見逃す選択肢やパターンを瞬時に察知する。</p>
-    <p>Assertive（-A）型は自己確信が強く、批判や失敗を引きずらない。情動安定性97%がこれを裏付ける。</p>
+    <div class="code-block">1. 主機能：Ne（外向的直観）— 可能性・パターン・アイデアの爆発的生成
+2. 補助機能：Ti（内向的思考）— 論理的整合性・内的フレームワーク構築
+3. 第三機能：Fe（外向的感情）— 場の空気・他者の感情への配慮
+4. 劣等機能：Si（内向的感覚）— 過去の経験・身体感覚・ルーティン（最も未発達）</div>
   </div>
 
   <h3>各機能の詳細</h3>
@@ -917,28 +976,6 @@
     </div>
   </details>
 
-  <h3>ENTP × SLE のズレと統合</h3>
-  <div class="card gold">
-    <h4>なぜ同じ人がENTP（Ne主導）とSLE（Se主導）の両方になるのか</h4>
-    <div class="table-wrap"><table>
-      <tr><th>体系</th><th>主導機能</th><th>意味</th></tr>
-      <tr><td>MBTI</td><td>Ne（外向直観）</td><td>可能性・抽象・未来志向</td></tr>
-      <tr><td>ソシオニクス</td><td>Se（外向感覚）</td><td>現実・行動・今ここ</td></tr>
-    </table></div>
-    <p style="margin-top:12px;">この矛盾は<strong>「考える時はENTP、動く時はSLE」</strong>と解釈できる。</p>
-    <ul>
-      <li>アイデアを生む段階 → Ne的（可能性を無限に広げる）</li>
-      <li>実行する段階 → Se的（今すぐ動いて現実を変える）</li>
-      <li>勤勉性85%がこの「切り替え」を可能にしている</li>
-      <li>BIG5がENFJ-Aを推定した理由もここ → 行動面（Se）＋協調性（Fe）が表に出やすい</li>
-    </ul>
-  </div>
-
-  <h3>LobeType「魅惑系 デビル天使」</h3>
-  <div class="card">
-    <p>タイプ8のカリスマ性＋協調性78%の温かさ＋ENTP的な知性が生み出す「悪魔的な魅力と天使的な優しさ」の共存。人を惹きつけながら振り回す、規格外の存在感。</p>
-  </div>
-
   <h2>ENTPの弱点 — 認知機能から見る構造的課題</h2>
 
   <div class="card">
@@ -986,21 +1023,24 @@
 <!-- =============== TAB: ソシオニクス =============== -->
 <div class="tab-content" id="socionics">
 
-  <h2>ソシオニクス：SLE-D</h2>
-
   <div class="about-box">
-    <div class="about-title">ソシオニクスとは</div>
-    <p>MBTIより精緻な旧ソ連発祥の心理類型論。8つの認知機能が「どの位置に置かれるか」でタイプを分類する。特にタイプ間の相互関係が体系化されている。</p>
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTIをさらに発展させた心理類型論で、8つの認知機能の優先順位からタイプを分類します。最大の特徴はタイプ間の関係性（双対・活性化・衝突など）が体系化されている点です。</p>
   </div>
 
-  <div class="card highlight">
-    <p><strong>正式名称：</strong>センソリコ-ロギチェスキー・エクストラヴェルト</p>
-    <p><strong>別称：</strong>マーシャル / コマンダー</p>
-    <p><strong>所属クワドラ：</strong>ベータ（β）</p>
-    <p><strong>サブタイプ：</strong>D（Dominant）— 主導機能Seが最も強調されたサブタイプ</p>
+  <h2>ソシオニクスとは</h2>
+  <div class="card">
+    <p>MBTIより精緻な、旧ソ連発祥の心理類型論。<strong>情報代謝（Information Metabolism）</strong>の概念を核に、8つの認知機能がどの「位置（ブロック）」に置かれるかで16タイプを分類する。特に<strong>タイプ間の相互関係（インタータイプ・リレーション）</strong>が体系化されており、相性分析の精度が高い。</p>
   </div>
 
-  <h3>Model A 機能配置</h3>
+  <h2>SLE-D（感覚-論理型外向）</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name cyan">SLE-D</div>
+    <div style="font-size:28px;font-weight:800;margin:8px 0;">Se</div>
+    <div style="font-size:13px;color:var(--text-muted);">外向感覚 主導<br>ベータ(β)クワドラ<br>別称：マーシャル / コマンダー</div>
+  </div>
+
+  <h2>Model A 機能配置</h2>
   <div class="table-wrap"><table>
     <tr><th>ブロック</th><th>位置</th><th>機能</th><th>説明</th></tr>
     <tr><td>Ego（強い）</td><td>1（主導）</td><td><strong>Se</strong></td><td>現実への直接作用、意志力、物理的支配</td></tr>
@@ -1013,47 +1053,13 @@
     <tr><td>Id</td><td>8（背景）</td><td>Si</td><td>身体感覚（背景処理）</td></tr>
   </table></div>
 
-  <h3>SLE-Dの本質</h3>
-  <div class="card">
-    <p>Se主導型 × Dサブタイプ = <strong>「今この瞬間に最大のインパクトを与える」</strong>ことに特化した人間。</p>
-    <ul>
-      <li>環境を支配し、自分の意志で物事を動かすことに喜びを感じる</li>
-      <li>Ti（創造機能）により、行動は単なる衝動ではなく論理的枠組みの中で展開される</li>
-      <li>Dサブタイプは「最も典型的なSLE」。迷いが少なく、決断が速い</li>
-    </ul>
+  <h3>SLEの本質</h3>
+  <div class="card highlight">
+    <p>Se主導型 × Dサブタイプ = <strong>「今この瞬間に最大のインパクトを与える」</strong>ことに特化した人間。環境を支配し、自分の意志で物事を動かすことに喜びを感じる。Ti（創造機能）により、行動は単なる衝動ではなく論理的枠組みの中で展開される。</p>
+    <p style="margin-top:8px;"><strong>弱点の核心：</strong>Ne（外向直観）が苦点ポジション（4番）にある。可能性の拡散・what-if思考が最も苦手で、<strong>誰かにNiを提供してもらうことで初めて完成する</strong>人間。</p>
   </div>
 
-  <h3>弱点の核心</h3>
-  <div class="card">
-    <h4>Ne（苦点・4番）</h4>
-    <p>外向直観が苦点にある。<strong>「可能性が多すぎる」状態が最大のストレス源</strong>。矛盾するようだが、MBTIのENTPはNe主導でこれが得意とされる。この不一致は「アイデアを出すことはできるが、選択肢が広がりすぎると消耗する」と解釈できる。</p>
-    <h4>Ni（示唆・5番）</h4>
-    <p>長期的ビジョン・未来予測が自力では難しく、<strong>Ni主導の相手（INFJ/INTJ）に補完してもらうことで完成する</strong>。</p>
-    <h4>Fi（役割・3番）</h4>
-    <p>個人的な感情の表現・受け取りが消耗する。深い感情的なケアを求められると疲弊する。協調性78%の「協調」は、Fiではなく<strong>Fe（6番）を意識的に使っている</strong>結果。</p>
-  </div>
-
-  <h3>ベータ（β）クワドラの価値観</h3>
-  <div class="card purple">
-    <p>ベータクワドラは<strong>「力・構造・情熱・意志」</strong>を重視する。</p>
-    <ul>
-      <li>権力構造を理解し、活用する</li>
-      <li>情熱的なエネルギーの交換を好む</li>
-      <li>弱さを見せることは「裏切り」に近い</li>
-      <li>同じベータクワドラの相手（IEI/EIE/LSI）と最も自然に共鳴する</li>
-    </ul>
-  </div>
-
-  <h3>SLEの双対関係：IEI（INFJ相当）</h3>
-  <div class="card gold">
-    <div class="code-block">SLEのSe（最得意）→ IEIのSe（最も求めている）
-IEIのNi（最得意）→ SLEのNi（最も求めている）
-IEIのFe（得意）→ SLEのFe（求めている）
-SLEのTi（得意）→ IEIのTi（求めている）</div>
-    <p style="margin-top:8px;">ソシオニクスで「最高の相性」と定義される唯一の関係。全ての弱点を相手が自然に補完する。</p>
-  </div>
-
-  <h2>ビッグファイブとの対応</h2>
+  <h3>ビッグファイブとの対応</h3>
   <div class="card">
     <ul>
       <li><strong>外向性93%</strong> → Se主導そのもの。外の世界に働きかけることがエネルギー源</li>
@@ -1061,6 +1067,29 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
       <li><strong>情動安定97%</strong> → SuperIdのFeとNiへの渇望があっても外には揺らぎを見せない</li>
       <li><strong>協調性78%</strong> → Fe動員機能を意識的に使っている結果。Fiではない</li>
       <li><strong>創造性94%</strong> → MBTIのNe主導とは一致するが、SLEのNe苦点とは矛盾</li>
+    </ul>
+  </div>
+
+  <h2>ベータ（β）クワドラの文化</h2>
+  <div class="card">
+    <p style="font-size:13px;color:var(--text-muted);">ソシオニクスでは4つのクワドラがあり、SLEはベータ（β）に所属する。クワドラは<strong>集団の中で何を重視するか</strong>を決める。</p>
+    <div class="table-wrap"><table>
+      <tr><th>クワドラ</th><th>重視する価値</th><th>雰囲気</th></tr>
+      <tr><td>アルファ（α）</td><td>楽しさ・知的遊び・調和</td><td>温かくて軽い</td></tr>
+      <tr><td><strong>ベータ（β）</strong></td><td><strong>力・意志・情熱・構造</strong></td><td><strong>熱くて強い</strong></td></tr>
+      <tr><td>ガンマ（γ）</td><td>成果・効率・個人の自由</td><td>クールで合理的</td></tr>
+      <tr><td>デルタ（δ）</td><td>誠実さ・調和・個人の価値観</td><td>穏やかで深い</td></tr>
+    </table></div>
+  </div>
+
+  <h3>ベータクワドラの特徴</h3>
+  <div class="card highlight">
+    <ul>
+      <li>「力のある者がリードすべき」という暗黙の了解がある</li>
+      <li>情熱・意志・闘志が価値として認められる。弱さを見せることへの抵抗感</li>
+      <li>組織やチームに強い一体感を求める。「同志」という感覚</li>
+      <li>ユーモアは辛辣で挑発的なスタイル。毒舌系</li>
+      <li>権力構造への理解が深く、政治的な動きが得意</li>
     </ul>
   </div>
 
@@ -1081,14 +1110,24 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <h2>SLEの苦点Ne — 「可能性の拡散」への構造的弱さ</h2>
   <div class="card">
-    <p>Ne（外向直観）は「まだ見ぬ可能性・アイデアの拡散」の機能。SLEにとってこれは<strong>4番目＝苦点</strong>であり、最も脆弱で最も過敏な領域。</p>
+    <p>Ne（外向直観）は「まだ見ぬ可能性・アイデアの拡散・what-if思考」の機能。SLEにとってこれは<strong>4番目＝苦点</strong>であり、最も脆弱で最も過敏な領域。</p>
     <ul>
       <li>複数の可能性を提示されると不安になる</li>
       <li>答えが一つに絞れない状況でストレスを感じる</li>
       <li>MBTIのNe主導との矛盾→「アイデアは出せるが、広がりすぎると消耗する」</li>
-      <li><strong>一つの明確な答え・方向性が見えたときに最も力を発揮する</strong></li>
+      <li>裏を返せば、<strong>一つの明確な答え・方向性が見えたときに最も力を発揮する</strong></li>
     </ul>
   </div>
+
+  <h2>SLEの双対関係：IEI（INFJ相当）</h2>
+  <div class="card gold">
+    <div class="code-block">SLEのSe（最得意）→ IEIのSe（最も求めている）
+IEIのNi（最得意）→ SLEのNi（最も求めている）
+IEIのFe（得意）→ SLEのFe（求めている）
+SLEのTi（得意）→ IEIのTi（求めている）</div>
+    <p style="margin-top:8px;">ソシオニクスで「最高の相性」と定義される唯一の関係。全ての弱点を相手が自然に補完する。</p>
+  </div>
+
 </div>
 
 <!-- =============== TAB: 恋愛タイプ =============== -->
@@ -1096,12 +1135,17 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>恋愛心理学の「愛の6類型」をベースに、情熱型・遊戯型などの恋愛パターンを分析します。どんな愛し方をし、何を求めるかが具体的にわかります。</p>
+    <p>恋愛心理学の「愛の6類型（リーの愛のスタイル）」をベースに、情熱型・友愛型・実用型などの恋愛パターンを分析します。どんな愛し方をし、何を求めるかが具体的にわかります。</p>
   </div>
 
-  <h2>恋愛タイプ診断</h2>
+  <h2>恋愛スタイル</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name cyan">ENTP-A</div>
+    <div style="font-size:16px;font-weight:800;margin:8px 0;">Eros + Ludus</div>
+    <div style="font-size:13px;color:var(--text-muted);">情熱的で遊戯的</div>
+  </div>
 
-  <h3>6つの愛のスタイル：Eros（情熱型）+ Ludus（遊戯型）</h3>
+  <h3>恋愛パターン</h3>
   <div class="card highlight">
     <div class="table-wrap"><table>
       <tr><th>特徴</th><th>根拠</th></tr>
@@ -1114,7 +1158,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <p style="margin-top:8px;">恋愛の核心 = <strong>「刺激的で対等な関係。退屈は死。でも信じた相手は絶対に裏切らない。」</strong></p>
   </div>
 
-  <h3>5つの愛情言語</h3>
+  <h2>愛情言語</h2>
   <div class="card">
     <h4>与え方：奉仕（Acts of Service）+ クオリティタイム</h4>
     <p>Se主導のSLEは「行動すること」が愛情の示し方。デートの企画、問題解決、実際に動いて助ける。同時に93%の外向性で「一緒に過ごす時間」そのものも重視する。</p>
@@ -1142,7 +1186,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </div>
   </div>
 
-  <h3>アタッチメントスタイル：安定型（Secure）寄り</h3>
+  <h2>アタッチメント(愛着)スタイル</h2>
   <div class="card gold">
     <div class="table-wrap"><table>
       <tr><th>根拠</th><th>評価</th></tr>
@@ -1154,7 +1198,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <p style="margin-top:8px;"><strong>ただし回避型の要素も潜在的にある。</strong>タイプ8は「弱さを見せたくない」→ 深い感情的親密さを避ける可能性。97%の安定性は「動じない」のか「感じていない」のか——その区別が恋愛の質を決める。</p>
   </div>
 
-  <h3>アタッチメントの振る舞いパターン</h3>
+  <h2>アタッチメントの振る舞いパターン</h2>
   <div class="card highlight">
     <h4>距離を取りたくなるタイミング</h4>
     <ul>
@@ -1173,6 +1217,22 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
       <div class="title">自分が気をつけるべきこと</div>
       <p style="font-size:13px;color:var(--text-muted);">「大丈夫」で済ませず、一言残す。「少し一人の時間がほしい。○日には話す」——これだけで相手の不安は大幅に減る。</p>
     </div>
+  </div>
+
+  <h2>Eros+Ludus型の判断基準</h2>
+  <div class="card">
+    <p>「情熱×遊戯型 = 誰でもいい」ではない。惹かれるかどうかの判断は一瞬だが、その裏で無意識にスキャンしてる項目がある：</p>
+    <div class="table-wrap"><table>
+      <tr><th>査定項目</th><th>何を見てるか</th></tr>
+      <tr><td><strong>知的刺激</strong></td><td>会話のテンポ。予想外の返しがあるか。「この人おもしろい」と思えるか</td></tr>
+      <tr><td><strong>対等さ</strong></td><td>自分にビビらないか。対等にぶつかってこれるか</td></tr>
+      <tr><td><strong>独立心</strong></td><td>自分の世界を持っているか。べったり依存してこないか</td></tr>
+      <tr><td><strong>強さ</strong></td><td>精神的にタフか。感情のドラマに巻き込まれないか</td></tr>
+      <tr><td><strong>新鮮さ</strong></td><td>一緒にいて飽きないか。引き出しの多さ。変化し続ける人か</td></tr>
+      <tr><td><strong>ノリの良さ</strong></td><td>フットワークが軽いか。思いつきの提案に乗れるか</td></tr>
+      <tr><td><strong>本気度</strong></td><td>表面だけじゃなく、深いところで繋がれるか。薄い関係は飽きる</td></tr>
+    </table></div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);"><strong>注意：</strong>Eros（情熱）で一瞬で惹かれるが、Ludus（遊戯）が「飽きるかどうか」を常に測っている。最初の熱量は高いが、刺激が続かないと急速に冷める。逆に言えば、飽きさせない相手には圧倒的な忠誠心を発揮する。</p>
   </div>
 
   <h3>恋愛における行動パターン</h3>
@@ -1207,10 +1267,8 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>西洋占星術の「エレメント（火・地・風・水）」と「モダリティ（活動・不動・変動）」から性格の基盤を読み解きます。星座の「なぜそうなるか」がわかります。</p>
+    <p>12星座を火・地・風・水の4元素と、活動・固定・変動の3区分で分類し、性格の根底にあるエネルギーの質を読み解きます。同じ元素同士の安定感や、異なる元素間の刺激・摩擦のパターンがわかります。</p>
   </div>
-
-  <h2>星座エレメント分析：水瓶座</h2>
 
   <div class="table-wrap"><table>
     <tr><th>項目</th><th>内容</th></tr>
@@ -1221,7 +1279,14 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <tr><td>度数</td><td>太陽 27°（最終度数付近）</td></tr>
   </table></div>
 
-  <h3>風（Air）エレメントの特性</h3>
+  <h2>エレメント対応</h2>
+  <div class="card highlight" style="text-align:center;">
+    <div class="vs-name cyan">ENTP-A</div>
+    <div style="font-size:18px;font-weight:800;margin:8px 0;">水瓶座</div>
+    <div style="font-size:13px;color:var(--text-muted);">風・不動宮・天王星</div>
+  </div>
+
+  <h2>風(Air)の特性</h2>
   <div class="card highlight">
     <ul>
       <li>思考・コミュニケーション・知性が核</li>
@@ -1231,6 +1296,17 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
       <li>「なぜ」を追求する知的好奇心</li>
     </ul>
     <p style="margin-top:8px;">ENTPのNe主導 × 風エレメント = <strong>「知的探求」がアイデンティティの核</strong>。MBTI・星座の両方が同じ方向を指している。</p>
+  </div>
+
+  <h2>水瓶座の深掘り</h2>
+  <div class="card">
+    <ul>
+      <li>「常識を疑え」が本能。既存のルールやシステムに対して「なぜそうなの？」と問い続ける</li>
+      <li>博愛主義的だが、個人的な感情の深入りは苦手。「人類愛はあるけど目の前の一人に寄り添うのは難しい」構造</li>
+      <li>独立心が極端に強く、集団に属しても「自分は自分」のスタンスを崩さない</li>
+      <li>ENTPの知的反逆性 + 水瓶座の革新精神 → <strong>「壊してから作り直す」が得意な知的革命家</strong></li>
+    </ul>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">MBTIのENTPと水瓶座は「既存を壊して新しいものを作る」という同じ原型を共有している。タイプ8の実行力が加わることで、アイデアだけでなく<strong>実際に世界を動かす</strong>力になっている。</p>
   </div>
 
   <h2>支配星：天王星（Uranus）</h2>
@@ -1244,17 +1320,31 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
   </div>
 
   <h2>モダリティ：不動宮（Fixed）</h2>
-  <div class="card highlight">
-    <p>不動宮は「一度決めたら動かない」粘り強さを持つ。ENTPの「飽きっぽい」イメージとは逆に、<strong>信念を持った領域では驚異的な持続力</strong>を発揮する。勤勉性85%はこの不動宮の影響。</p>
+  <div class="card">
+    <p style="font-size:13px;color:var(--text-muted);">12サインは3つのモダリティに分類される。水瓶座は<strong>不動宮（Fixed）</strong>。</p>
+    <div class="table-wrap"><table>
+      <tr><th>モダリティ</th><th>役割</th><th>サイン</th></tr>
+      <tr><td>活動宮</td><td>始める</td><td>牡羊・蟹・天秤・山羊</td></tr>
+      <tr><td><strong>固定宮</strong></td><td><strong>続ける</strong></td><td><strong>牡牛・獅子・さそり・水瓶</strong></td></tr>
+      <tr><td>変動宮</td><td>適応する</td><td>双子・乙女・射手・魚</td></tr>
+    </table></div>
+    <h4 style="margin-top:12px;">不動宮の特性</h4>
+    <ul>
+      <li><strong>一度決めたら動かない粘り強さ</strong>。信念を持った領域では驚異的な持続力を発揮する</li>
+      <li><strong>安定と継続の力</strong>。ENTPの「飽きっぽい」イメージとは逆に、本気で信じたものは手放さない</li>
+      <li>ENTPの知的好奇心と不動宮の持続力の組み合わせ → <strong>広く浅くではなく、刺さったテーマを深く掘り続ける</strong></li>
+      <li>ただし不動宮は「頑固さ」にもなりえる。タイプ8の「譲らない」気質と合わさると、<strong>一度決めた方針を変えるのが極端に難しい</strong></li>
+    </ul>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">勤勉性85%はこの不動宮の影響。「やると決めたら最後までやる」構造が星座レベルで裏付けられている。</p>
   </div>
 
-  <h3>水瓶座の深掘り</h3>
+  <h2>水瓶座27° — 最終度数の凝縮</h2>
   <div class="card">
     <h4>太陽27°（最終度数付近）</h4>
     <p>水瓶座の最終度数に近い太陽は、<strong>「水瓶座の本質がMAXまで凝縮された配置」</strong>。水瓶座的特質（革新・独立・知性・博愛）が極限まで強化されている。同時に次の魚座への移行点でもあり、直感的・共感的な側面も微かに持つ。</p>
   </div>
 
-  <h3>水瓶座 × ENTPの共鳴</h3>
+  <h2>風エレメント × ENTP × SLE の統合</h2>
   <div class="card gold">
     <div class="table-wrap"><table>
       <tr><th>水瓶座の特性</th><th>ENTPとの対応</th></tr>
@@ -1276,12 +1366,16 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <div class="about-box">
     <div class="about-title">この診断でわかること</div>
-    <p>出生時の天体配置から、性格の深層・人生のテーマ・対人パターンを読み解きます。出生データ：2000/02/16 03:09 JST 東京都江東区亀戸</p>
+    <p>出生時刻・場所から天体の正確な配置を算出し、太陽星座だけでは見えない深層的な性格・人生テーマ・対人傾向を読み解きます。ASC（第一印象）、MC（社会的方向性）、月（内面・感情）など多層的な分析ができます。</p>
   </div>
 
-  <h2>ホロスコープ分析</h2>
+  <h2>出生データ</h2>
+  <div class="card">
+    <p style="font-size:12px;">2000/02/16 03:09 JST 東京都江東区亀戸<br>
+    <span style="color:var(--text-muted);">Swiss Ephemeris(Moshier法) / Placidus / 熱帯暦</span></p>
+  </div>
 
-  <h3>アセンダント・MC</h3>
+  <h2>ASC × MC</h2>
   <div class="table-wrap"><table>
     <tr><th>感受点</th><th>位置</th></tr>
     <tr><td><strong>ASC（上昇宮）</strong></td><td><strong>29° 射手座（Sagittarius）</strong></td></tr>
@@ -1290,7 +1384,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <tr><td>IC（天底）</td><td>19° 牡羊座（Aries）</td></tr>
   </table></div>
 
-  <h3>天体位置</h3>
+  <h2>天体位置</h2>
   <div class="table-wrap"><table>
     <tr><th>天体</th><th>位置</th><th>ハウス</th></tr>
     <tr><td>☉ 太陽</td><td><strong>27° 水瓶座</strong></td><td>2H</td></tr>
@@ -1304,6 +1398,8 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <tr><td>♆ 海王星</td><td>5° 水瓶座</td><td>2H</td></tr>
     <tr><td>♇ 冥王星</td><td>13° 射手座</td><td>12H</td></tr>
   </table></div>
+
+  <h2>各天体の詳細解読</h2>
 
   <details class="accordion">
     <summary>ASC 射手座 29° — 第一印象</summary>
@@ -1406,7 +1502,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </div>
   </details>
 
-  <h3>主要アスペクト</h3>
+  <h2>ネイタルアスペクト — 性格の統合パターン</h2>
   <div class="card">
     <div class="table-wrap"><table>
       <tr><th>アスペクト</th><th>意味</th></tr>
@@ -1419,7 +1515,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </table></div>
   </div>
 
-  <h2>総括</h2>
+  <h2>総合一言</h2>
   <blockquote>水瓶座ステリウム（2H）が独自の価値観を、牡羊座火星（ドミサイル/4H）が不屈の行動力を、射手座ASCが冒険家の仮面を、冥王星12Hがカリスマの源泉を保証する。——「革新」と「行動」が星の配置レベルで融合した、生まれながらの変革者。</blockquote>
   <p style="font-size:11px;color:var(--text-muted);margin-top:16px;">※天体位置は概算値。出生地（江東区亀戸 35.70°N, 139.83°E）基準。ハウスはPlacidus近似。</p>
 </div>
@@ -1428,15 +1524,15 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 <div class="tab-content" id="stress-map">
 
   <div class="about-box">
-    <div class="about-title">この診断でわかること</div>
-    <p>ストレスの引き金・行動変容・地雷パターンを構造的に分析します。「何が刺さり、どう崩れるか」の予測地図です。</p>
+    <div class="about-title">STRESS & MINE MAP</div>
+    <p>「何にストレスを感じるか」「何をされると壊れるか」「ストレス時にどう変化するか」を統合した完全マップ。エニアグラム・ソシオニクス・ビッグファイブ・愛着スタイルから導出。</p>
   </div>
 
   <h2>ストレス＆地雷マップ</h2>
 
-  <div class="card gold">
-    <p><strong>基本構造：97%の安定が崩壊するとき、それは「取り返しがつかない」レベルの爆発になる。</strong></p>
-    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">情動安定性97%は「何が来ても揺るがない」——だからこそ、ストレスの蓄積に気づかない。気づいた時には臨界点を超えている。</p>
+  <div class="card highlight">
+    <h3>基本構造</h3>
+    <p><strong>情動安定性97%。普段は「揺るがない鉄壁」。</strong><br>だからこそ、ストレスが溜まっていても気づかない。気づいた時には臨界点を超えている。</p>
   </div>
 
   <h3>ストレストリガー</h3>
@@ -1479,31 +1575,28 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </div>
   </div>
 
-  <h2>地雷リスト</h2>
-  <div class="card red">
-    <div class="code-block" style="color:var(--red);">「お前の判断は間違ってた」（断定形での否定）
-「言う通りにしろ」「従え」（支配・コントロール）
-「弱い」「情けない」（弱さの指摘）
-「みんなそうしてるよ」（同調圧力）
-「大したことないじゃん」（能力の軽視）
-裏で悪口を言うこと（最も許せない行為）</div>
+  <h3>ストレス時の変容：タイプ8 → タイプ5</h3>
+  <div class="card" style="padding:0;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;">
+      <div style="padding:14px;background:rgba(124,111,247,0.06);border-right:1px solid var(--border);">
+        <div style="font-size:11px;font-weight:700;color:var(--accent);margin-bottom:10px;letter-spacing:1px;">平常時（タイプ8）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          外向93%・社交的<br>行動的・即断即決<br>オープン・直球<br>人を信頼する<br>エネルギッシュ
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;padding:8px;color:var(--text-muted);font-size:18px;">→</div>
+      <div style="padding:14px;background:rgba(248,113,113,0.05);">
+        <div style="font-size:11px;font-weight:700;color:#f87171;margin-bottom:10px;letter-spacing:1px;">ストレス時（タイプ5化）</div>
+        <div style="font-size:13px;line-height:2;color:var(--text-muted);">
+          人を避ける・一人になる<br>情報収集に没頭・動かない<br>秘密主義・警戒的<br>誰も信じない<br>省エネモード
+        </div>
+      </div>
+    </div>
+    <div style="padding:10px 14px;background:var(--surface2);border-top:1px solid var(--border);font-size:12px;color:var(--orange);">
+      ⚠️ 外向93%の人間が突然「消える」のは危険信号。本人も気づかないうちに蓄積し、ある日「シャットダウン」する。
+    </div>
   </div>
-
-  <h2>ストレス時変容：タイプ8 → タイプ5</h2>
-  <div class="data-grid">
-    <div class="data-item"><strong>平常時</strong><br>外向93%・社交的</div>
-    <div class="data-item"><strong>ストレス時</strong><br>人を避ける・一人になる</div>
-    <div class="data-item"><strong>平常時</strong><br>行動的・即断即決</div>
-    <div class="data-item"><strong>ストレス時</strong><br>情報収集に没頭・動かない</div>
-    <div class="data-item"><strong>平常時</strong><br>オープン・直球</div>
-    <div class="data-item"><strong>ストレス時</strong><br>秘密主義・警戒的</div>
-    <div class="data-item"><strong>平常時</strong><br>人を信頼する</div>
-    <div class="data-item"><strong>ストレス時</strong><br>誰も信じない</div>
-    <div class="data-item"><strong>平常時</strong><br>エネルギッシュ</div>
-    <div class="data-item"><strong>ストレス時</strong><br>省エネモード</div>
-  </div>
-
-  <p style="color:var(--orange);font-size:13px;"><strong>ポイント：</strong>外向93%の人間が突然「消える」のは危険信号。本人も気づかないうちに蓄積し、ある日「シャットダウン」する。</p>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">※ タイプ8→タイプ5分裂の理論的背景は「エニアグラム」タブ参照</p>
 
   <h3>ストレス時のサイン</h3>
   <div class="card">
@@ -1521,13 +1614,61 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
   <h3>回復パターン</h3>
   <div class="card highlight">
     <div class="table-wrap"><table>
-      <tr><th>方法</th><th>理由</th></tr>
+      <tr><th>回復方法</th><th>理由</th></tr>
       <tr><td>新しい挑戦・刺激</td><td>Ne + タイプ7ウィング。新しいことでエネルギーが戻る</td></tr>
       <tr><td>具体的な「達成」体験</td><td>タイプ8 + タイプ3（7）。結果を出すことで自己肯定が回復</td></tr>
       <tr><td>信頼できる人との深い対話</td><td>タイプ8の「仲間意識」。信頼の輪の中でだけ回復できる</td></tr>
       <tr><td>身体を動かす</td><td>Se主導 + 火星牡羊座。物理的な行動がストレスを発散</td></tr>
       <tr><td>「認められる」言葉</td><td>愛情言語：肯定の言葉。「すごい」「さすが」が回復を加速</td></tr>
     </table></div>
+  </div>
+
+  <h3>最大禁句リスト</h3>
+  <div class="card red">
+    <ul>
+      <li><strong>「お前は弱い」「情けないやつだな」</strong> → タイプ8の核心的恐怖を直撃</li>
+      <li><strong>「言う通りにしろ」「黙って従え」</strong> → 自律性の完全否定</li>
+      <li><strong>「みんなそうしてるんだから」</strong> → 同調圧力。タイプ6最低（2）の本能的反発</li>
+      <li><strong>「大したことないよ」「別にすごくないし」</strong> → 能力と存在の軽視</li>
+      <li><strong>「裏で○○って言ってたよ」</strong> → 信頼構造の破壊。タイプ8にとって最も許せない</li>
+    </ul>
+  </div>
+
+  <h3>地雷リスト</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>危険度</th><th>やってはいけないこと</th><th>爆発のメカニズム</th></tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>「お前の判断は間違ってた」と断定</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">タイプ8のコア直撃。判断の否定 = 存在否定</td>
+      </tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>「言う通りにしろ」「従え」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">支配・コントロール。自律性の完全否定</td>
+      </tr>
+      <tr>
+        <td><span style="color:#f87171;font-weight:700;">🔴 最大</span></td>
+        <td><strong>裏で悪口を言うこと</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">信頼構造の破壊。タイプ8にとって最も許せない行為</td>
+      </tr>
+      <tr>
+        <td><span style="color:#fb923c;font-weight:700;">🟠 大</span></td>
+        <td><strong>「弱い」「情けない」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">弱さの指摘。97%の鎧が剥がれる恐怖を直撃</td>
+      </tr>
+      <tr>
+        <td><span style="color:#fb923c;font-weight:700;">🟠 大</span></td>
+        <td><strong>「みんなそうしてるよ」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">同調圧力。タイプ6最低（2）の本能的反発</td>
+      </tr>
+      <tr>
+        <td><span style="color:#facc15;font-weight:700;">🟡 中</span></td>
+        <td><strong>「大したことないじゃん」</strong></td>
+        <td style="font-size:12px;color:var(--text-muted);">能力の軽視。タイプ8の自己価値を削る</td>
+      </tr>
+    </table>
   </div>
 
   <h2>総括</h2>
@@ -1537,11 +1678,15 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 <!-- =============== TAB: 影の自己分析 =============== -->
 <div class="tab-content" id="shadow">
 
-  <h2>影の自己分析（シャドウ）</h2>
-
   <div class="about-box">
-    <div class="about-title">シャドウとは</div>
-    <p>ユング心理学における「影」——自分が「自分ではない」と思い込んでいるが、確実に自分の一部であるもの。意識が拒絶するほど、無意識で強く作動する。</p>
+    <div class="about-title">影の自己分析（シャドウ・アニマ/アニムス）</div>
+    <p>ユング心理学のシャドウ理論に基づき、<strong>抑圧している自分</strong>・認めたくない部分・無意識の反応パターンを解剖する。自己分析が「なぜこう動くか」なら、シャドウ分析は「なぜそれを認められないか」。</p>
+  </div>
+
+  <h2>シャドウ分析</h2>
+
+  <div class="card highlight">
+    <p style="font-size:13px;"><strong>シャドウとは：</strong>自分が「自分ではない」と思い込んでいるが、確実に自分の一部であるもの。意識が拒絶するほど、無意識で強く作動する。</p>
   </div>
 
   <p style="font-size:12px;color:var(--text-muted);text-align:center;margin-bottom:16px;">タップで展開 ↓</p>
@@ -2182,11 +2327,11 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 <div class="tab-content" id="my-type">
 
   <div class="about-box">
-    <div class="about-title">ENTP男が本当に惹かれる相手</div>
-    <p>プロファイル（ENTP-A / SLE-D / タイプ8w7 / 水瓶座27° / ASC射手座29°）を統合し、「どんな相手に惹かれるか」を構造的に分解する。表面的な好みではなく、認知機能・動機・星の配置レベルで共鳴する相手像。</p>
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTI・ソシオニクス・エニアグラム・ビッグファイブ・ホロスコープ・ユングのシャドウ理論を統合し、ENTP-Aが「なぜそのタイプの人に惹かれるのか」を構造的に解剖したレポート。</p>
   </div>
 
-  <h2>結論：3つの条件が揃った相手</h2>
+  <h2>結論：惹かれる人の3条件</h2>
 
   <div class="card highlight">
     <h4>理想像の3条件</h4>
@@ -2198,18 +2343,55 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <p style="margin-top:10px;">この3つが揃うと、SLEの弱点（Ni示唆・Fi役割・Fe動員）がすべて自然に補完される。つまり<strong>INFJ / INFP / INTJ</strong>あたりが理論値で最上位に来る。</p>
   </div>
 
-  <h2>認知機能から見る「求めるタイプ」</h2>
+  <h2>一言で言うと</h2>
+  <div class="card gold">
+    <p><strong>「退屈じゃない人。知的に刺激があって、自分の軸を持ってて、簡単に折れない。対等にぶつかってきて、でも本音では深い感情がある——そういう人。」</strong></p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTPは「感情的な人」が好きなのではなく、<strong>感情を言語化できる強い人</strong>が好き。泣いてすがるんじゃなくて、静かに「こう感じた」と言える人。表面はクールで中身は熱い——そのギャップがSe主導のSLEに刺さる。</p>
+  </div>
 
+  <h2>好みの根本構造</h2>
+  <div class="card highlight">
+    <h4>Ne主導が生む恋愛原理</h4>
+    <p>Ne（外向直感）が主機能 = <strong>「この人といると新しい発見がある」感覚がないと飽きる。</strong>同じパターンの繰り返しが最も苦痛。予測不能で、次に何が出てくるかわからない人に本能的に惹かれる。</p>
+    <p style="margin-top:8px;"><strong>刺激と新鮮さが途切れない関係がしたい</strong>——これがENTPの恋愛原理の核心。</p>
+  </div>
+
+  <div class="card gold">
+    <h4>Ti補助が生む選別基準</h4>
+    <p>Ti（内向思考）が補助 = <strong>論理的に筋が通らない人には惹かれない。</strong>「かわいい」「優しい」だけでは足りない。自分の考えを持っていて、それを論理的に説明できる人。「なぜそう思うの？」に答えられる人だけがフィルターを通過する。</p>
+  </div>
+
+  <div class="card highlight">
+    <h4>Fi役割が生む引力</h4>
+    <p><strong>自分が「感じにくい深い感情」を、自然に体現している存在に惹かれる。</strong>Fi役割機能は感情を使えるが浅い。だから「感情の深さ」を持っている人に無意識に惹かれる。ただし感情爆発型はNG——<strong>静かに深く感じている人</strong>がベスト。</p>
+    <p style="margin-top:8px;font-size:12px;color:var(--text-muted);">※ Fi役割機能の詳細は「ソシオニクス」タブ、認知機能の配置は「MBTI」タブ参照</p>
+  </div>
+
+  <div class="card gold">
+    <h4>タイプ8w7が生む恋愛基準</h4>
+    <p>タイプ8の核は<strong>「支配されないこと」</strong>。だから弱さを見せる相手より<strong>対等に立てる強さを持つ相手</strong>に惹かれる。w7は「一緒にいて楽しい」も求める。強くて面白い人——退屈と従属の両方を拒否する構造。</p>
+  </div>
+
+  <h2>好みの特徴マップ</h2>
   <div class="table-wrap"><table>
-    <tr><th>自分の弱さ</th><th>求める機能</th><th>相手の候補</th></tr>
-    <tr><td>Ni示唆（長期ビジョン）</td><td>Ni主導 or 補助</td><td>INFJ / INTJ</td></tr>
-    <tr><td>Fi役割（深い感情）</td><td>Fi主導 or 補助</td><td>INFP / ISFP</td></tr>
-    <tr><td>Fe動員（感情の空気）</td><td>Fe主導 or 補助</td><td>INFJ / ENFJ</td></tr>
-    <tr><td>Si背景（日常の安定）</td><td>Si発達</td><td>ISFJ / ISTJ寄り</td></tr>
+    <tr><th>カテゴリ</th><th>好むもの</th><th>根拠</th></tr>
+    <tr><td>知性</td><td><strong>対等に議論できる</strong></td><td>Ne主導 + Ti補助 / 創造性94%</td></tr>
+    <tr><td>感情</td><td><strong>深いが静かに持つ人</strong></td><td>Fi役割 / 情動安定97%</td></tr>
+    <tr><td>距離感</td><td><strong>独立同士の並走</strong></td><td>タイプ8 / 水瓶座 / タイプ6最低(2)</td></tr>
+    <tr><td>外見</td><td><strong>落ち着き・上品・凛</strong></td><td>金星山羊座2H</td></tr>
+    <tr><td>会話</td><td><strong>知的テンポ・言葉のセンス</strong></td><td>月双子座 / Ne主導</td></tr>
+    <tr><td>独立性</td><td><strong>自分の世界を持っている</strong></td><td>タイプ8 / 水瓶座27° / 協調性32%</td></tr>
+    <tr><td>成長</td><td><strong>変化を楽しめる</strong></td><td>Ne主導 / タイプ7w / 開放性92%</td></tr>
+    <tr><td>誠実さ</td><td><strong>本音・嘘のなさ</strong></td><td>タイプ8「裏表を嫌う」</td></tr>
+    <tr><td>核心</td><td><strong>予測不能な面白さ</strong></td><td>Ne主導 × タイプ7ウィング</td></tr>
   </table></div>
-  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">全条件を一人で満たすのはほぼINFJのみ。これがソシオニクスで「双対関係」と呼ばれる所以。</p>
 
-  <h2>性格面で惹かれる要素</h2>
+  <div class="ending-box">
+    <div class="big">好きなタイプの本質</div>
+    <p style="font-size:14px;color:var(--text);margin-top:8px;">知的で、自立していて、深い感情を静かに持つ人。<br>退屈しない。予測不能で面白い。<br>本音で向き合えて、一緒に成長できる。<br><br><strong style="color:#fff;">「この人には敵わない」と思える何かがある——そういう相手に、全力で向かう。</strong></p>
+  </div>
+
+  <h2>「好きなタイプ」9選</h2>
 
   <div class="type-item">
     <div class="type-num">01</div>
@@ -2246,6 +2428,66 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     <div class="type-evidence"><div class="ev-label">根拠</div><div class="ev-text">水瓶座27° × タイプ7ウィング × Ne主導 = 常に新しい地平を求める</div></div>
   </div>
 
+  <div class="type-item">
+    <div class="type-num">06</div>
+    <div class="type-title">ユーモア：笑いの波長が合う</div>
+    <div class="type-reason">ただ面白いだけじゃない。ブラックジョークもわかる。皮肉を皮肉で返せる。テンポ良くボケとツッコミが回る。一緒にいて「笑い」が絶えない関係。</div>
+    <div class="type-evidence">
+      <div class="ev-label">なぜ惹かれるのか</div>
+      <div class="ev-text">Ne主導は「面白い人」を最も高く評価する。タイプ7ウィングが「楽しさ」を恋愛の必須条件にする。月双子座もユーモアのセンスに敏感。笑いの波長が合う = 認知の波長が合う証拠。</div>
+    </div>
+  </div>
+
+  <div class="type-item">
+    <div class="type-num">07</div>
+    <div class="type-title">芯の強さ：簡単に折れない</div>
+    <div class="type-reason">意見を押し通そうとした時に、ちゃんと押し返してくる。「あなたが言うならそうだね」じゃない。自分の考えを持っていて、それを曲げない強さがある。</div>
+    <div class="type-evidence">
+      <div class="ev-label">なぜ惹かれるのか</div>
+      <div class="ev-text">タイプ8は無意識に相手を「試す」。押して折れる人には興味を失う。ENTPの議論好きも、反論してくる相手にこそ燃える。Se主導SLEは強さに惹かれる構造。「この人には勝てない部分がある」= 最高のリスペクト。</div>
+    </div>
+  </div>
+
+  <div class="type-item">
+    <div class="type-num">08</div>
+    <div class="type-title">ミステリアス：全部は見せない</div>
+    <div class="type-reason">最初から全開じゃない。知れば知るほど新しい面が出てくる。「もっと知りたい」が尽きない。簡単に底が見えない深さ。</div>
+    <div class="type-evidence">
+      <div class="ev-label">なぜ惹かれるのか</div>
+      <div class="ev-text">Ne主導は「未知」に興奮する。既知の情報だけの相手は退屈。Ni示唆機能が「奥行きのある人」に無意識に惹かれる構造。水星魚座3Hも「言葉にならない深さ」を持つ人に反応する。</div>
+    </div>
+  </div>
+
+  <div class="type-item">
+    <div class="type-num">09</div>
+    <div class="type-title">並走できる距離感</div>
+    <div class="type-reason">べったりしない。でも大事な時にはちゃんとそばにいる。お互いの領域を侵さず、それぞれが全力で走りながら隣にいる。そんな距離感。</div>
+    <div class="type-evidence">
+      <div class="ev-label">なぜ惹かれるのか</div>
+      <div class="ev-text">タイプ8の「支配されたくない」+ 水瓶座の独立心 + タイプ6最低(2)で束縛を拒否。でもFe第三機能が「完全な孤独」は求めていない。理想は「独立した二人が選んで隣にいる」関係。距離があるからこそ密度が上がる。</div>
+    </div>
+  </div>
+
+  <div class="ending-box">
+    <div class="big">全部に通じるテーマ：退屈しない人</div>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">
+      知的に刺激がある。感情的に深い。簡単に折れない。全部は見せない。一緒にいて成長できる。<br><br>
+      ENTPが恋に落ちるのは「この人は飽きない」と確信した瞬間。<br><br>
+      <strong style="color:#fff;">Ne主導が「まだ知らない面がある」と感じ続ける限り、その人への興味は尽きない。</strong>
+    </p>
+  </div>
+
+  <h2>認知機能から見る「求めるタイプ」</h2>
+
+  <div class="table-wrap"><table>
+    <tr><th>自分の弱さ</th><th>求める機能</th><th>相手の候補</th></tr>
+    <tr><td>Ni示唆（長期ビジョン）</td><td>Ni主導 or 補助</td><td>INFJ / INTJ</td></tr>
+    <tr><td>Fi役割（深い感情）</td><td>Fi主導 or 補助</td><td>INFP / ISFP</td></tr>
+    <tr><td>Fe動員（感情の空気）</td><td>Fe主導 or 補助</td><td>INFJ / ENFJ</td></tr>
+    <tr><td>Si背景（日常の安定）</td><td>Si発達</td><td>ISFJ / ISTJ寄り</td></tr>
+  </table></div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">全条件を一人で満たすのはほぼINFJのみ。これがソシオニクスで「双対関係」と呼ばれる所以。</p>
+
   <h2>外見・雰囲気で惹かれるもの</h2>
 
   <div class="card">
@@ -2275,7 +2517,7 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </ul>
   </div>
 
-  <h2>NGタイプ（相性が構造的に悪い）</h2>
+  <h2>こういう人は無理（NG・地雷）</h2>
 
   <div class="card red">
     <h4>1. 依存型・束縛型</h4>
@@ -2312,69 +2554,71 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 <div class="tab-content" id="love-style">
 
   <div class="about-box">
-    <div class="about-title">ENTP男の恋愛スタイル</div>
-    <p>「どんな恋愛を好むか」をフェーズ別・シーン別に分解。連絡・デート・衝突・長期観——どう愛し、どう関係を深めるか。</p>
+    <div class="about-title">この診断でわかること</div>
+    <p>「どんな恋愛を好むか」。フェーズ別の行動パターン、連絡・距離感の理想、デート、衝突と仲直り、長期観までを構造的に解剖。「誰を好きになるか（好きなタイプ）」の次の章。</p>
   </div>
 
   <h2>恋愛のフェーズ論</h2>
 
   <p>ENTPの恋愛は「爆発的な始動 → 加速する探求 → 並走する安定 → 深まる信頼」の4段階。Ne主導で始まり、Se-Tiで磨かれ、タイプ8の忠誠で安定する。</p>
 
+  <h3>フェーズ1：爆発的な始動（Ne + Se 全開）</h3>
   <div class="card highlight">
-    <h4>フェーズ1：爆発的な始動（Ne + Se 全開）</h4>
-    <p style="font-size:12px;color:var(--text-muted);">主導：Ne（ENTP） + Se（SLE-D）</p>
+    <p><strong>主導：Ne（ENTP） + Se（SLE-D）</strong></p>
     <ul>
       <li>「この人だ」と直感したら行動が爆速</li>
       <li>デート計画・連絡頻度・アプローチ——即興で作り込む</li>
       <li>火星牡羊座（ドミサイル）が「動く」を本能レベルで駆動</li>
       <li>情動安定97% × タイプ8の自信 → 迷いがない告白・行動</li>
     </ul>
-    <p><em>この時期は普段の「飽きっぽく見える」性質が消える。タイプ8の「一点集中」モードに切り替わる。</em></p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">この時期は普段の「飽きっぽく見える」性質が消える。タイプ8の「一点集中」モードに切り替わる。</p>
   </div>
 
-  <div class="card purple">
-    <h4>フェーズ2：加速する探求（Ti + Ne の検証モード）</h4>
-    <p style="font-size:12px;color:var(--text-muted);">主導：Ti（補助） + Ne（主機能）</p>
+  <h3>フェーズ2：加速する探求（Ti + Ne の検証モード）</h3>
+  <div class="card cyan">
+    <p><strong>主導：Ti（補助） + Ne（主機能）</strong></p>
     <ul>
       <li>「この関係が論理的にも面白いか」を問い続ける</li>
       <li>相手の知性・価値観・独立性を徹底的にスキャン</li>
       <li>議論・対話を通じて「脳が一致するか」を確認</li>
       <li>Fi役割のため、感情より論理で関係の質を測る</li>
     </ul>
-    <p><em>相手からは「熱量が高いのか冷静なのかわからない」タイミング。本人はフル稼働で検証中。</em></p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">相手からは「熱量が高いのか冷静なのかわからない」タイミング。本人はフル稼働で検証中。</p>
   </div>
 
+  <h3>フェーズ3：並走する安定（タイプ8の忠誠）</h3>
   <div class="card gold">
-    <h4>フェーズ3：並走する安定（タイプ8の忠誠）</h4>
-    <p style="font-size:12px;color:var(--text-muted);">主導：タイプ8の信頼 + 不動宮の粘り</p>
+    <p><strong>主導：タイプ8の信頼 + 不動宮の粘り</strong></p>
     <ul>
       <li>検証が完了すると、タイプ8の「仲間認定」が発動</li>
       <li>水瓶座（不動宮）の粘り強さがここで前面に出る</li>
       <li>「飽きっぽいENTP」のステレオタイプが消え、むしろ安定期が長い</li>
       <li>お互いの独立を尊重しながら<strong>並走する</strong>関係へ</li>
     </ul>
-    <p><em>このフェーズに入ると裏切らない。タイプ8は仲間に徹底的に忠実。</em></p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">このフェーズに入ると裏切らない。タイプ8は仲間に徹底的に忠実。</p>
   </div>
 
-  <div class="card" style="border-color:rgba(167,139,250,0.3);background:linear-gradient(135deg,rgba(167,139,250,0.06),var(--surface));">
-    <h4>フェーズ4：深まる信頼（Fi解放・鎧の開放）</h4>
-    <p style="font-size:12px;color:var(--text-muted);">主導：Fi役割の解放（潜在）</p>
+  <h3>フェーズ4：深まる信頼（Fi解放・鎧の開放）</h3>
+  <div class="card pink">
+    <p><strong>主導：Fi役割の解放（潜在）</strong></p>
     <ul>
       <li>信頼が蓄積すると、97%の鎧が少しずつ開く</li>
       <li>相手の前でだけ「弱さを感じる」ことを許せるようになる</li>
       <li>ここで初めてFi（自分の感情）が動き始める</li>
       <li>「強さの中に弱さを含める」という成長方向が具現化</li>
     </ul>
-    <p><em>ここまで来るのは時間がかかるが、到達すれば関係は揺るがない。</em></p>
+    <p style="margin-top:8px;font-size:13px;color:var(--text-muted);">ここまで来るのは時間がかかるが、到達すれば関係は揺るがない。</p>
   </div>
 
   <hr>
 
   <h2>連絡・距離感の理想</h2>
 
-  <h3>LINE・メッセージの頻度</h3>
-  <div class="card highlight">
+  <h3>LINEの理想頻度</h3>
+  <div class="card">
     <p>外向93%で話し好きだが、Si劣等 × 行動優先（Se）で「会って話す」を好む。</p>
+
+    <h4 style="margin-top:12px;">理想の頻度感</h4>
     <ul>
       <li><strong>理想：</strong>毎日軽くやり取り（1〜5往復）。会えない時の接続</li>
       <li><strong>好き：</strong>面白いネタ共有、知的な話題、計画の相談</li>
@@ -2392,19 +2636,32 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </div>
   </div>
 
-  <h3>会う頻度</h3>
+  <h3>既読/未読への反応</h3>
   <div class="card">
     <ul>
-      <li><strong>付き合いたて：</strong>週2〜3回（Ne × Seの探求モード）</li>
-      <li><strong>安定期：</strong>週1〜2回。それ以外は各自の時間</li>
-      <li>会わない時間 = 冷めた、ではない。Se主導でも充電時間が必要</li>
-      <li>一人の時間が<strong>侵食されない</strong>距離感が持続可能性の鍵</li>
+      <li>自分の返信タイミングもバラバラなので、相手にも強要しない（ENTP-Aの気楽さ）</li>
+      <li>既読無視されても基本気にしない（情動安定97%）</li>
+      <li>未読放置も「忙しいんだろう」で終わる。催促はしない</li>
     </ul>
+    <div class="danger-box">
+      <div class="title">ただし「意図的な無視」は別</div>
+      <p style="font-size:13px;color:var(--text-muted);">タイプ8は「無視」を「支配の道具」として使われることに敏感。駆け引きとしての既読無視は信頼構造の問題として反応する。怒るのではなく、関係の見直しスイッチが入る。</p>
+    </div>
   </div>
 
-  <h3>一人の時間の必要性</h3>
+  <h3>会う頻度の理想</h3>
   <div class="card">
-    <p>「いつでも一緒」は構造的に無理。</p>
+    <div class="table-wrap"><table>
+      <tr><th>フェーズ</th><th>頻度</th></tr>
+      <tr><td>付き合いたて</td><td>週2〜3回（Ne × Seの探求モード）</td></tr>
+      <tr><td>安定期</td><td>週1〜2回。それ以外は各自の時間</td></tr>
+      <tr><td>長期</td><td>Se主導でも充電時間が必要。会わない時間 = 冷めた、ではない</td></tr>
+    </table></div>
+  </div>
+
+  <h3>一人時間の必要性</h3>
+  <div class="card pink">
+    <p><strong>「いつでも一緒」は構造的に無理。</strong></p>
     <ul>
       <li>Ne主導が新しい情報を処理する時間が必要</li>
       <li>タイプ8が「自分の領域」を確保したい本能</li>
@@ -2417,28 +2674,23 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <h2>デートの好み</h2>
 
+  <h3>好むデートの型</h3>
   <div class="card highlight">
     <h4>1. 新しい体験（Ne × タイプ7）</h4>
     <p>行ったことない場所、初めてのアクティビティ、新しいジャンル。「まだ体験していない」が最強のフック。</p>
-  </div>
 
-  <div class="card highlight">
-    <h4>2. 知的刺激のある場所</h4>
+    <h4 style="margin-top:16px;">2. 知的刺激のある場所</h4>
     <p>美術展、ライブ、対話が生まれるバー、面白い人がいる場。「話すネタ」が自然に生まれる環境。</p>
-  </div>
 
-  <div class="card highlight">
-    <h4>3. 目的のあるデート（Se × Ti）</h4>
+    <h4 style="margin-top:16px;">3. 目的のあるデート（Se × Ti）</h4>
     <p>「この店に行く」「この映画を観る」のように目的が明確。ダラダラより密度が高い方が満足感が大きい。</p>
-  </div>
 
-  <div class="card highlight">
-    <h4>4. 身体を動かすデート（火星牡羊座 × Se）</h4>
+    <h4 style="margin-top:16px;">4. 身体を動かすデート（火星牡羊座 × Se）</h4>
     <p>散歩・スポーツ・登山・ドライブ。Se主導 × 火星ドミサイルで、動くことがエネルギー源。</p>
   </div>
 
   <h3>苦手なデート</h3>
-  <div class="card danger">
+  <div class="card red">
     <ul>
       <li>予定を決めないダラダラデート（Se + Ti が消耗）</li>
       <li>同じ場所のルーティン化（Ne × タイプ7が死ぬ）</li>
@@ -2447,12 +2699,22 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </ul>
   </div>
 
+  <h3>デートの頻度</h3>
+  <div class="card">
+    <ul>
+      <li>外向性93%で「会いたい」の衝動は強い。だが束縛は嫌う</li>
+      <li><strong>「会いたい時に会える」が理想</strong>——固定スケジュールより柔軟に</li>
+      <li>週2〜3で密に会う時期と、週1で各自の時間を取る時期が交互に来る</li>
+      <li>Ne主導で「今日面白い店見つけた、行こう」の即興デートも多い</li>
+    </ul>
+  </div>
+
   <hr>
 
-  <h2>喧嘩・衝突のパターン</h2>
+  <h2>喧嘩・衝突のパターンと仲直り</h2>
 
   <h3>衝突の火種</h3>
-  <div class="card">
+  <div class="card red">
     <ol>
       <li><strong>コントロールされる</strong>（タイプ8の直撃）</li>
       <li><strong>感情爆発を向けられる</strong>（Fi役割 + 情動安定97%で処理不能）</li>
@@ -2462,16 +2724,18 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     </ol>
   </div>
 
-  <h3>衝突時の反応フロー</h3>
-  <div class="flow-step main">初期：直球で言う（タイプ8）。相手も巻き込む論理の応酬</div>
-  <div class="flow-arrow">↓</div>
-  <div class="flow-step alt">中期：感情が向けられると論理でシャットダウン（Fi役割）</div>
-  <div class="flow-arrow">↓</div>
-  <div class="flow-step danger">末期：急に冷める・引く（タイプ5化）。連絡頻度が激減</div>
-  <p style="margin-top:8px;font-size:13px;color:var(--text-muted);"><strong>最大の特徴：</strong>外向93%の人間が突然静かになる時は危険信号。内側でタイプ5に降下している。</p>
+  <h3>反応フロー</h3>
+  <div class="card">
+    <div class="flow-step main"><strong>初期：</strong>直球で言う（タイプ8）。相手も巻き込む論理の応酬</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step alt"><strong>中期：</strong>感情が向けられると論理でシャットダウン（Fi役割）</div>
+    <div class="flow-arrow">↓</div>
+    <div class="flow-step ng-late"><strong>末期：</strong>急に冷める・引く（タイプ5化）。連絡頻度が激減</div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);"><strong>最大の特徴：</strong>外向93%の人間が突然静かになる時は危険信号。内側でタイプ5に降下している。</p>
+  </div>
 
-  <h3>健全な仲直り</h3>
-  <div class="card green">
+  <h3>健全な仲直りの形</h3>
+  <div class="card highlight">
     <h4>相手にしてほしいこと</h4>
     <ul>
       <li>感情ではなく事実・論理で話す（Ti起動で処理できる）</li>
@@ -2479,12 +2743,23 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
       <li>タイプ5化している時は追わず待つ（一人時間で回復）</li>
       <li>復帰時に「責めない」態度が大きい</li>
     </ul>
-    <h4>自分がすべきこと</h4>
+    <h4 style="margin-top:16px;">自分がすべきこと</h4>
     <ul>
       <li>論破モードに入ったら意識的に止める（3秒黙る）</li>
       <li>引く前に「少し時間がほしい」を伝える（消失は不安にさせる）</li>
       <li>タイプ2方向の成長（愛情の言語化）を意識的に選ぶ</li>
       <li>「弱音を吐くのは信頼の表現」と再定義する</li>
+    </ul>
+  </div>
+
+  <h3>喧嘩後の関係性</h3>
+  <div class="card pink">
+    <ul>
+      <li>タイプ8は喧嘩を引きずらない。終わったら終わり。切り替えが速い</li>
+      <li>対等にぶつかってきた相手への<strong>信頼は上がる</strong>（タイプ8の「強さの尊重」）</li>
+      <li>喧嘩で「本音が出た」ことをポジティブに捉える（Ti的検証が進んだ）</li>
+      <li>ただし<strong>「裏切り」と認識した喧嘩は修復不能</strong>——陰口・第三者への暴露・信頼を武器にした攻撃</li>
+      <li>同じ火種の繰り返しには耐えない。2回目は構造的不一致と判断する</li>
     </ul>
   </div>
 
@@ -2495,26 +2770,53 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
   <h3>結婚観：対等な共同プロジェクト</h3>
   <div class="card gold">
     <p>水瓶座27° × MC天秤座 × タイプ8の結婚観は以下。</p>
+
+    <h4 style="margin-top:12px;">理想の結婚像</h4>
     <ul>
       <li>ただの生活共同体ではなく<strong>人生の共同プロジェクト</strong></li>
       <li>対等性が絶対条件（どちらかが上下でもNG）</li>
       <li>お互いのキャリア・目標を尊重し、相乗効果を生む関係</li>
-      <li>MC天秤座：公平・バランス・パートナーシップで社会に影響を与える</li>
+    </ul>
+
+    <h4 style="margin-top:16px;">求める相手の条件</h4>
+    <ul>
+      <li>自分の軸を持っている（依存しない）</li>
+      <li>知的に対等で尊敬できる</li>
+      <li>MC天秤座が求める公平・バランス・パートナーシップを共有できる</li>
     </ul>
   </div>
 
   <h3>同棲・共同生活の好み</h3>
-  <div class="card">
+  <div class="card highlight">
     <ul>
       <li><strong>物理的な距離：</strong>各自のスペースが必須（書斎・作業部屋）</li>
       <li><strong>生活ルール：</strong>「察して」ではなく明文化を好む</li>
       <li><strong>予定：</strong>共有しつつも、干渉しない</li>
       <li><strong>一緒にいる時間：</strong>質＞量。短くても濃い時間を</li>
     </ul>
+    <div class="danger-box">
+      <div class="title">NG</div>
+      <ul style="margin-top:4px;">
+        <li>ルールの一方的な押し付け</li>
+        <li>自由・行動の制限</li>
+        <li>プライベート空間への侵害（一人の時間を邪魔される）</li>
+      </ul>
+    </div>
   </div>
 
-  <h3>長期関係維持の鍵</h3>
-  <div class="card highlight">
+  <h3>子育て観（軽めに）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>「強い子に育てたい」</strong>（タイプ8w7の根本的な価値観）</li>
+      <li>自分で判断し、自分で行動できる子。指示待ちにはさせたくない</li>
+      <li>過保護は嫌い——転んだら自分で立つことを教える</li>
+      <li>Ne主導で「面白い体験」をたくさんさせたい。世界の広さを見せる</li>
+      <li>パートナーとの教育方針の一致が前提。ここがズレると構造的に破綻する</li>
+    </ul>
+  </div>
+
+  <h3>長期の関係維持で大事にしたいこと</h3>
+  <div class="card gold">
     <ol>
       <li><strong>停滞させない：</strong>共通の挑戦・目標を更新し続ける</li>
       <li><strong>独立を尊重：</strong>一人時間を侵さない距離感</li>
@@ -2526,26 +2828,37 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
   <hr>
 
-  <h2>NGな恋愛の形</h2>
+  <h2>NGな恋愛パターン（関係性版）</h2>
+  <p>「NGな相手」ではなく「NGな関係の形」。同じ相手でもこの形に陥ったら冷める。</p>
 
   <div class="card red">
     <h4>1. 停滞した安定</h4>
     <p>「このままでいいじゃん」が続く関係。Ne × タイプ7が死ぬ。</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">→ Ne主導のENTPにとって「変化がない」は関係の死を意味する。</p>
   </div>
 
   <div class="card red">
     <h4>2. べったり共依存</h4>
     <p>「いないと無理」が成立する関係。タイプ8の自律性と水瓶座の独立心が拒絶。</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">→ 自由を失った瞬間にタイプ8の反発スイッチが入る。</p>
   </div>
 
   <div class="card red">
     <h4>3. 感情ドラマの連続</h4>
     <p>毎週のように修羅場が発生する関係。Fi役割 × 情動安定97%で処理不能。</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">→ 感情処理の帯域が狭いENTPにとって、毎週のドラマは構造的に耐えられない。</p>
   </div>
 
   <div class="card red">
     <h4>4. 役割の固定化</h4>
     <p>「いつも追う側/追われる側」「いつもリードする側」が固定される関係。対等性が崩れる。</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">→ タイプ8は対等性が崩れた関係に意味を見出せない。</p>
+  </div>
+
+  <div class="card red">
+    <h4>5. 知的刺激がなくなった関係</h4>
+    <p>会話がルーティン化し、新しい発見や議論がなくなった関係。Ne主導の根本ニーズが満たされない。</p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:4px;">→ ENTPは「脳が退屈する関係」を最も恐れる。知的並走が消えた時点で関係の動機が失われる。</p>
   </div>
 
   <hr>
