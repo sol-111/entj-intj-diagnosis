@@ -289,6 +289,30 @@
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     margin-bottom: 6px;
   }
+  .score-circle {
+    width: 90px; height: 90px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; margin: 16px auto; position: relative;
+    background: linear-gradient(135deg, rgba(124,111,247,0.15), rgba(247,111,161,0.15));
+    border: 2px solid rgba(247,111,161,0.4);
+  }
+  .score-circle .score-num { font-size: 30px; font-weight: 900; color: #fff; line-height: 1; }
+  .score-circle .score-label { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+  .vs-row { display: flex; justify-content: center; align-items: center; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+  .vs-badges { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+  .vs-badge { padding: 4px 10px; border-radius: 16px; font-size: 11px; font-weight: 700; letter-spacing: 0.3px; }
+  .vs-badge.shoki { background: rgba(124,111,247,0.15); border: 1px solid rgba(124,111,247,0.4); color: #7c6ff7; }
+  .vs-badge.sana { background: rgba(247,111,161,0.15); border: 1px solid rgba(247,111,161,0.4); color: var(--accent); }
+  .vs-x { font-size: 20px; font-weight: 900; color: var(--text-muted); }
+  .compat-meter { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+  .compat-meter .meter-label { font-size: 13px; min-width: 100px; }
+  .compat-meter .meter-bar { flex: 1; height: 8px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+  .compat-meter .meter-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #7c6ff7, #f76fa1); }
+  .compat-meter .meter-score { font-size: 13px; font-weight: 700; color: #fff; min-width: 32px; text-align: right; }
+  .synergy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+  .synergy-item { padding: 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); text-align: center; }
+  .synergy-item .synergy-icon { font-size: 24px; margin-bottom: 4px; }
+  .synergy-item .synergy-title { font-size: 12px; font-weight: 700; color: #fff; }
+  .synergy-item .synergy-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
 </style>
 </head>
 <body>
@@ -320,6 +344,8 @@
   <button class="tab-btn" data-tab="career">向いてる仕事</button>
   <button class="tab-btn" data-tab="my-type">好きなタイプ</button>
   <button class="tab-btn" data-tab="love-style">恋愛スタイル</button>
+  <button class="tab-btn" data-tab="shoki-compat">shoki相性</button>
+  <button class="tab-btn" data-tab="shoki-love">shoki恋愛</button>
 </nav>
 <div class="scroll-hint">← タブをスワイプ →</div>
 
@@ -2257,6 +2283,315 @@ SLIのTe（得意）→ IEEのTe（求めている）</div>
   <div class="ending-box">
     <div class="big">静かな炎で、深く、一途に</div>
     <p style="font-size:13px;color:var(--text-muted);">INFPの恋愛は派手ではない。しかし、その静かな炎は一度灯ると容易には消えない。金星蠍座7Hが示すように、愛の深さは海のようで、一度潜ったら底が見えない。最も大切なのは「大丈夫」の仮面の下にある本当の気持ちを、信頼できるパートナーに見せる勇気。その勇気こそが、INFPの恋愛を「魂のつながり」に変える鍵。</p>
+  </div>
+</div>
+
+<!-- =============== TAB: shoki相性 =============== -->
+<div class="tab-content" id="shoki-compat">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>全診断データを統合し、タイプ間の相性を多角的に分析します。強みと課題、コミュニケーションのコツがわかります。</p>
+  </div>
+
+  <div class="vs-row">
+    <div class="vs-badges">
+      <span class="vs-badge shoki">ENTJ-A</span>
+      <span class="vs-badge shoki">SLE</span>
+      <span class="vs-badge shoki">1w7</span>
+    </div>
+    <div class="vs-x">×</div>
+    <div class="vs-badges">
+      <span class="vs-badge sana">INFP-A</span>
+      <span class="vs-badge sana">IEE-Q</span>
+      <span class="vs-badge sana">9w1</span>
+    </div>
+  </div>
+
+  <div class="score-circle">
+    <div class="score-num">85</div>
+    <div class="score-label">総合相性</div>
+  </div>
+
+  <h2>データ比較</h2>
+  <div class="table-wrap"><table>
+    <tr><th>指標</th><th style="color:#7c6ff7">shoki (ENTJ-A)</th><th style="color:var(--accent)">自分 (INFP-A)</th></tr>
+    <tr><td>MBTI</td><td><strong>ENTJ-A</strong><br>指揮官</td><td><strong>INFP-A</strong><br>仲介者</td></tr>
+    <tr><td>ソシオニクス</td><td><strong>SLE</strong><br>ベータ(β)</td><td><strong>IEE-Q</strong><br>デルタ(δ)</td></tr>
+    <tr><td>エニアグラム</td><td><strong>1w7</strong><br>改革者+楽天家</td><td><strong>9w1</strong><br>平和主義者+改革者</td></tr>
+    <tr><td>LobeType</td><td>敏腕マネージャー</td><td>溺愛系 不思議生命体</td></tr>
+    <tr><td>星座</td><td>おとめ座<br>柔軟宮・地</td><td>射手座<br>柔軟宮・火</td></tr>
+    <tr><td>ASC</td><td>魚座 06°25'</td><td>牡牛座 26°</td></tr>
+    <tr><td>MC</td><td>射手座 16°08'</td><td>水瓶座 7°</td></tr>
+    <tr><td>出生</td><td>2001/09/21 16:40<br>茨城県古河市</td><td>2004/12/16 15:37<br>埼玉県坂戸市</td></tr>
+  </table></div>
+
+  <h2>ビッグファイブ比較</h2>
+  <div class="rating">
+    <div class="rating-label"><span>外向性</span><span><strong style="color:#7c6ff7">73%</strong> / <strong style="color:var(--accent)">54%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill" style="width:73%; opacity:0.5; position:absolute; top:0; left:0; background:linear-gradient(90deg, #7c6ff7, #a78bfa);"></div>
+      <div class="rating-fill pink" style="width:54%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>協調性</span><span><strong style="color:#7c6ff7">34%</strong> / <strong style="color:var(--accent)">57%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill" style="width:34%; opacity:0.5; position:absolute; top:0; left:0; background:linear-gradient(90deg, #7c6ff7, #a78bfa);"></div>
+      <div class="rating-fill pink" style="width:57%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>勤勉性</span><span><strong style="color:#7c6ff7">77%</strong> / <strong style="color:var(--accent)">77%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill" style="width:77%; opacity:0.5; position:absolute; top:0; left:0; background:linear-gradient(90deg, #7c6ff7, #a78bfa);"></div>
+      <div class="rating-fill pink" style="width:77%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>情動安定性</span><span><strong style="color:#7c6ff7">90%</strong> / <strong style="color:var(--accent)">90%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill" style="width:90%; opacity:0.5; position:absolute; top:0; left:0; background:linear-gradient(90deg, #7c6ff7, #a78bfa);"></div>
+      <div class="rating-fill pink" style="width:90%"></div>
+    </div>
+  </div>
+  <div class="rating">
+    <div class="rating-label"><span>創造性</span><span><strong style="color:#7c6ff7">81%</strong> / <strong style="color:var(--accent)">58%</strong></span></div>
+    <div class="rating-bar" style="position:relative">
+      <div class="rating-fill" style="width:81%; opacity:0.5; position:absolute; top:0; left:0; background:linear-gradient(90deg, #7c6ff7, #a78bfa);"></div>
+      <div class="rating-fill pink" style="width:58%"></div>
+    </div>
+  </div>
+  <p style="font-size:11px;color:var(--text-muted);margin-top:4px;"><span style="color:#7c6ff7">■</span> shoki &nbsp; <span style="color:var(--accent)">■</span> 自分</p>
+
+  <h2>相性レーダー</h2>
+  <div class="compat-meter"><span class="meter-label">知的相性</span><div class="meter-bar"><div class="meter-fill" style="width:82%"></div></div><span class="meter-score">82</span></div>
+  <div class="compat-meter"><span class="meter-label">感情的相性</span><div class="meter-bar"><div class="meter-fill" style="width:90%"></div></div><span class="meter-score">90</span></div>
+  <div class="compat-meter"><span class="meter-label">信頼関係</span><div class="meter-bar"><div class="meter-fill" style="width:88%"></div></div><span class="meter-score">88</span></div>
+  <div class="compat-meter"><span class="meter-label">刺激・楽しさ</span><div class="meter-bar"><div class="meter-fill" style="width:78%"></div></div><span class="meter-score">78</span></div>
+  <div class="compat-meter"><span class="meter-label">安定感</span><div class="meter-bar"><div class="meter-fill" style="width:92%"></div></div><span class="meter-score">92</span></div>
+  <div class="compat-meter"><span class="meter-label">成長促進</span><div class="meter-bar"><div class="meter-fill" style="width:95%"></div></div><span class="meter-score">95</span></div>
+  <div class="compat-meter"><span class="meter-label">衝突リスク</span><div class="meter-bar"><div class="meter-fill" style="width:55%; background: linear-gradient(90deg, var(--orange), var(--red));"></div></div><span class="meter-score" style="color:var(--orange)">中</span></div>
+
+  <h2>一言プロファイル</h2>
+  <div class="card gold">
+    <p><strong>「指揮官と仲介者。正反対だからこそ惹かれ合い、互いの"持っていないもの"を差し出し合える鏡のような関係。」</strong></p>
+    <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTJの主機能Te（外向思考）はINFPの劣等機能、INFPの主機能Fi（内向感情）はENTJの劣等機能。まさにミラーイメージ。互いの弱点を相手の強みが埋める「完全補完型」のペア。勤勉性77%・情動安定性90%が完全一致し、基盤の安定感は抜群。エニアグラムではw1を共有し、正しさへの価値観が重なる。</p>
+  </div>
+
+  <h2>詳細分析</h2>
+
+  <details class="accordion">
+    <summary>ビッグファイブ比較分析</summary>
+    <div class="acc-body">
+      <p><strong>勤勉性と情動安定性が完全一致。外向性と協調性に差があり、それが補完関係を生む。</strong></p>
+      <ul>
+        <li><strong>外向性 73% vs 54%：</strong>大きな差ではないが、社交の場ではshokiがリードし、自分はペースに合わせて付いていける。二人きりでは差が縮まる</li>
+        <li><strong>協調性 34% vs 57%：</strong>最大の差。shokiの直球な物言いを自分が受け止め、柔らかく翻訳する役割が自然に生まれる。自分が「言いにくいこと」を代わりに伝えてくれる</li>
+        <li><strong>勤勉性 77% vs 77%：</strong>完全一致。やるべきことはやる、というリズムが同じ。生活ペースが合いやすい</li>
+        <li><strong>情動安定性 90% vs 90%：</strong>完全一致。感情の波に振り回されない安定したペア。危機的状況でも冷静に対処できる</li>
+        <li><strong>創造性 81% vs 58%：</strong>shokiの方が高いが、どちらも平均以上。自分はNe補助機能で独自の発想力を持ち、shokiとは違う角度からのクリエイティビティを提供する</li>
+      </ul>
+      <p style="color:var(--orange);font-size:13px;margin-top:8px;"><strong>注意：</strong>情動安定が高すぎて「何も問題ない」と思い込み、小さな不満を見逃すリスクがある</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>エニアグラム：1w7 × 9w1</summary>
+    <div class="acc-body">
+      <p><strong>w1を共有する「正しさ」のペア。タイプ1が行動を促し、タイプ9が安らぎを与える。</strong></p>
+      <ul>
+        <li>タイプ1（shoki）は「こうあるべき」を明確にし、タイプ9（自分）は「それでいいよ」と受容する</li>
+        <li>w1共通：「正しいことをしたい」という根底の価値観が一致。道徳的な方向性がズレにくい</li>
+        <li>タイプ1がタイプ9の受動性を打破し、行動へ導く。タイプ9がタイプ1の批判的な面を和らげる</li>
+        <li>タイプ9の「平和を保ちたい」がタイプ1の「改善したい」と衝突することがある——特に自分が問題を回避しようとするとき</li>
+      </ul>
+      <p><strong>成長方向：</strong>shoki→タイプ7（楽観・柔軟性）/ 自分→タイプ3（行動力・目標志向）</p>
+      <p><strong>ストレス方向：</strong>shoki→タイプ4（自己否定）/ 自分→タイプ6（不安・依存）</p>
+      <div class="card" style="border-color:rgba(251,146,60,0.3);background:linear-gradient(135deg,rgba(251,146,60,0.06),var(--surface));margin-top:10px;">
+        <p><strong>摩擦ポイント：</strong>shokiが改善点を指摘するとき、自分が「否定された」と感じやすい。shokiに悪意はなくても、Fi主機能が敏感に反応する。「意見を否定しているのではなく、より良くしたいだけ」という前提の共有が鍵</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>MBTI：ENTJ × INFP</summary>
+    <div class="acc-body">
+      <p><strong>Te-Fi軸のミラーイメージ。互いの主機能が相手の劣等機能という「究極の補完関係」。</strong></p>
+      <div class="table-wrap"><table>
+        <tr><th>位置</th><th style="color:#7c6ff7">shoki (ENTJ)</th><th style="color:var(--accent)">自分 (INFP)</th></tr>
+        <tr><td>主機能</td><td><strong>Te</strong>（外向思考・効率）</td><td><strong>Fi</strong>（内向感情・価値観）</td></tr>
+        <tr><td>補助</td><td><strong>Ni</strong>（内向直感・本質把握）</td><td><strong>Ne</strong>（外向直感・可能性）</td></tr>
+        <tr><td>第三</td><td>Se（外向感覚）</td><td>Si（内向感覚）</td></tr>
+        <tr><td>劣等</td><td>Fi（内向感情）</td><td>Te（外向思考）</td></tr>
+      </table></div>
+      <p style="margin-top:10px;"><strong>Te × Fi：</strong>shokiが「どうすれば実現できるか」を設計し、自分が「それは本当に大切なことか」を問う。効率と意味のバランスが取れる</p>
+      <p><strong>Ni × Ne：</strong>shokiが「こうなるはず」と収束させ、自分が「こういう可能性もある」と拡散する。ビジョンと可能性の二重レンズ</p>
+      <p><strong>最大の魅力：</strong>相手が自分の「苦手なこと」を自然にやってくれる。尊敬と憧れが生まれやすいペア</p>
+      <p style="color:var(--orange);font-size:13px;margin-top:8px;"><strong>注意：</strong>同じ軸の反対側にいるため、コミュニケーションスタイルが大きく異なる。shokiの論理的な指摘が自分の感情を傷つけ、自分の感情的な反応がshokiを困惑させることがある</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>ソシオニクス：SLE × IEE（恩恵関係）</summary>
+    <div class="acc-body">
+      <p><strong>SLE（shoki）が「恩恵者」、IEE（自分）が「受益者」の非対称関係。</strong></p>
+      <ul>
+        <li><strong>恩恵関係（Benefit / Заказ）：</strong>shokiの行動や言葉が自分に大きな影響を与える。自分はshokiの意図を直感的に読み取り、自然にサポートできる</li>
+        <li><strong>非対称性：</strong>shokiの影響力の方が強い。自分が「合わせている」感覚を持ちやすいので、意識的に自分の意見を伝える努力が必要</li>
+        <li><strong>クワドラの違い：</strong>ベータ(β) × デルタ(δ)。価値観の基盤が異なるが、それが新鮮さと学びを生む</li>
+        <li><strong>IEEの強み：</strong>直感-倫理型外向（Ne+Fi）で、人の可能性と感情を読む力が高い。shokiが見落とす人間関係の機微をキャッチできる</li>
+      </ul>
+      <div class="card" style="border-color:rgba(251,146,60,0.3);background:linear-gradient(135deg,rgba(251,146,60,0.06),var(--surface));margin-top:10px;">
+        <p><strong>リスク：</strong>恩恵関係は長期的に受益者側にフラストレーションが溜まりやすい。「自分ばかり合わせている」と感じたら、率直に伝えること。shokiのTe主機能は明確なフィードバックを歓迎する</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>星座：おとめ座（地・柔軟宮）× 射手座（火・柔軟宮）</summary>
+    <div class="acc-body">
+      <p><strong>異なるエレメント（地×火）だが、同じ柔軟宮（ミュータブル）。変化に強い適応型ペア。</strong></p>
+      <ul>
+        <li>おとめ座の緻密さ × 射手座の大らかさ = 「細部と全体像」の両方をカバーできる</li>
+        <li><strong>shokiのMC射手座 × 自分のSun射手座：</strong>shokiの人生の目標・社会的到達点が射手座の方向にあり、自分の本質的なエネルギーと共鳴する。「一緒にいると自然と同じ方向を向ける」</li>
+        <li>柔軟宮同士：環境の変化に適応しやすく、関係が硬直化しにくい。ただし「決断力」が弱まるリスクも</li>
+        <li>地(おとめ)×火(射手)：shokiが現実的な基盤を作り、自分が理想とビジョンを灯す。お互いに足りないエレメントを補い合う</li>
+      </ul>
+    </div>
+  </details>
+
+  <h2>総括</h2>
+  <blockquote>正反対のようで、深いところで繋がっている——MBTIでは「ミラーイメージの補完ペア」、ソシオニクスでは「恩恵関係」、エニアグラムでは「w1を共有する正しさの絆」、ビッグファイブでは「勤勉性と安定感が完全一致の安心基盤」、星座では「柔軟宮同士の適応力」。互いの違いこそが最大の強み。</blockquote>
+</div>
+
+<!-- =============== TAB: shoki恋愛 =============== -->
+<div class="tab-content" id="shoki-love">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>ENTJ×INFPペアの恋愛相性を分析します。コミュニケーションパターン・愛情表現の違い・長期的な関係維持のコツがわかります。</p>
+  </div>
+
+  <h2>恋愛相性</h2>
+  <div class="card gold">
+    <h4 style="color:var(--gold);margin-top:0;">恋愛相性スコア：88/100</h4>
+    <p style="font-size:13px;color:var(--text-muted);">Te×Fiの補完が生む強い引力と、根底にある安定感の一致。正反対だからこそ深く惹かれ合う。</p>
+  </div>
+
+  <h3>なぜ恋愛で惹かれ合うのか</h3>
+  <div class="synergy-grid">
+    <div class="synergy-item" style="border-color:rgba(124,111,247,0.3);">
+      <div class="synergy-icon">🪞</div>
+      <div class="synergy-title">Te×Fi補完</div>
+      <div class="synergy-desc">実行力が内面を形にし、感情が盲点を照らす</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(247,111,161,0.3);">
+      <div class="synergy-icon">🛡️</div>
+      <div class="synergy-title">安定×安定</div>
+      <div class="synergy-desc">情動安定90%同士。感情的ドラマが少ない安心関係</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(245,200,66,0.3);">
+      <div class="synergy-icon">🌱</div>
+      <div class="synergy-title">成長の触媒</div>
+      <div class="synergy-desc">行動力を引き出し、感情に気づかせる。互いの弱点を育てる</div>
+    </div>
+    <div class="synergy-item" style="border-color:rgba(74,222,128,0.3);">
+      <div class="synergy-icon">🔄</div>
+      <div class="synergy-title">柔軟宮×柔軟宮</div>
+      <div class="synergy-desc">両者とも変化に適応できる。関係が硬直化しにくい</div>
+    </div>
+  </div>
+
+  <h3>理想的な役割</h3>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>場面</th><th style="color:#7c6ff7">shoki</th><th style="color:var(--accent)">自分</th></tr>
+      <tr><td>デート企画</td><td>計画立案・スケジュール管理</td><td>雰囲気づくり・場所のセンス</td></tr>
+      <tr><td>感情的サポート</td><td>行動で支える・解決策を示す</td><td>言葉で寄り添う・気持ちを受け止める</td></tr>
+      <tr><td>意思決定</td><td>即断・選択肢を絞る</td><td>価値観に照らしてチェック</td></tr>
+      <tr><td>喧嘩の仲直り</td><td>解決策を提示する</td><td>先に歩み寄る・空気を和らげる</td></tr>
+      <tr><td>長期ビジョン</td><td>目標設定・ロードマップ</td><td>意味づけ・大切なものの優先順位</td></tr>
+    </table></div>
+  </div>
+
+  <h3>コミュニケーションの注意点</h3>
+  <div class="card">
+    <div class="magic-row">
+      <div class="magic-good"><strong>Do:</strong> 感情を言語化してから伝える</div>
+      <div class="magic-bad"><strong>Don't:</strong> 黙り込んで察してもらおうとする</div>
+    </div>
+    <div class="magic-row">
+      <div class="magic-good"><strong>Do:</strong> 「改善案」として意見を伝える</div>
+      <div class="magic-bad"><strong>Don't:</strong> 正論で相手を追い詰める</div>
+    </div>
+    <div class="magic-row">
+      <div class="magic-good"><strong>Do:</strong> 決断の理由を丁寧に説明する</div>
+      <div class="magic-bad"><strong>Don't:</strong> 「とにかくこうして」と一方的に決める</div>
+    </div>
+    <div class="magic-row">
+      <div class="magic-good"><strong>Do:</strong> 相手のペースを尊重する</div>
+      <div class="magic-bad"><strong>Don't:</strong> 相手を急かす/問題を先延ばしにする</div>
+    </div>
+  </div>
+
+  <h3>喧嘩のパターンと対処法</h3>
+
+  <details class="accordion">
+    <summary>パターン1: 正論 vs 価値観（Te vs Fi）</summary>
+    <div class="acc-body">
+      <p><strong>トリガー：</strong>shokiが論理的に正しい指摘をしたとき、自分が「価値観を否定された」と感じる</p>
+      <p><strong>shoki側の心理：</strong>Te主機能が「効率的な解決策」を提示しているだけ。感情を攻撃する意図はない</p>
+      <p><strong>自分側の心理：</strong>Fi主機能が「大切にしているものを踏みにじられた」と反応。頭では正しいとわかっても心が痛い</p>
+      <div class="golden-box">
+        <div class="title">対処法</div>
+        <p style="font-size:12px;color:var(--text-muted);">shokiは「内容は正しいけど、言い方を変える」意識を。自分は「指摘≠否定」と理解する訓練を。クールダウン時間を設け、感情が落ち着いてから話し合うルールを作る</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>パターン2: 沈黙 vs 即決（9の回避 vs 1の即決）</summary>
+    <div class="acc-body">
+      <p><strong>トリガー：</strong>問題が発生したとき、自分が沈黙・回避し、shokiが即座に解決しようとする</p>
+      <p><strong>shoki側の心理：</strong>タイプ1は問題を放置できない。「なぜ向き合わないのか」とフラストレーションが溜まる</p>
+      <p><strong>自分側の心理：</strong>タイプ9は衝突を避けたい。考えを整理する時間が必要なのに、急かされると心を閉ざす</p>
+      <div class="golden-box">
+        <div class="title">対処法</div>
+        <p style="font-size:12px;color:var(--text-muted);">「今は考え中。30分後に話そう」と具体的な時間を伝える。shokiは待つことを覚え、自分は期限を守る。「回避」と「熟考」は違うと互いに理解する</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>パターン3: コントロール vs 自由（J型 vs P型）</summary>
+    <div class="acc-body">
+      <p><strong>トリガー：</strong>shokiが計画通りに物事を進めたいとき、自分がその枠にストレスを感じる</p>
+      <p><strong>shoki側の心理：</strong>ENTJのJ型+タイプ1が「構造と予測可能性」を求める。コントロールは愛情表現の一形態</p>
+      <p><strong>自分側の心理：</strong>INFPのP型+タイプ9が「自由と自分のペース」を必要とする。管理されると個性が殺される感覚</p>
+      <div class="golden-box">
+        <div class="title">対処法</div>
+        <p style="font-size:12px;color:var(--text-muted);">「一緒に決めること」と「各自に任せること」の境界線を明確にする。大きな決断は共同、日常の細部は互いの自由に。柔軟宮同士だからこそ、この調整は得意なはず</p>
+      </div>
+    </div>
+  </details>
+
+  <h2>長期関係のコツ</h2>
+  <div class="card gold">
+    <h4 style="color:var(--gold);margin-top:0;">5つの鍵</h4>
+    <ol>
+      <li><strong>「違い」を脅威ではなく資源として見る</strong> — Te×Fiの補完は意識しないと衝突に、意識すれば最強の武器になる</li>
+      <li><strong>感情の翻訳機を持つ</strong> — shokiの行動による愛情表現を「言葉がないから冷たい」と誤解しない。自分の沈黙を「怒っている」と誤解しない</li>
+      <li><strong>定期的な「本音タイム」を設ける</strong> — 情動安定90%同士は不満を溜め込みやすい。週に一度「最近どう？」と深く話す時間を作る</li>
+      <li><strong>互いの成長を祝う</strong> — shokiがFi的な感受性を見せたとき、自分がTe的な行動力を発揮したとき、それを認め合う</li>
+      <li><strong>w1の「正しさ」を関係に適用する</strong> — 二人とも「正しくありたい」共通価値観がある。パートナーに対して誠実であること、それが最大の絆</li>
+    </ol>
+  </div>
+
+  <h2>総括</h2>
+  <div class="ending-box">
+    <div class="big">鏡の向こう側に、自分にないすべてがある</div>
+    <p style="font-size:13px;color:var(--text-muted);">ENTJ×INFPは「正反対」と言われるが、実は同じ軸(Te-Fi)の両端に立つ者同士。鏡を覗き込むように、相手の中に自分の知らない自分を見つける。勤勉性77%と情動安定90%という揺るがない土台の上に、Te×Fiの補完という最も美しい橋が架かる。違いを恐れず、違いを愛せたとき——この関係は誰にも真似できない深さを持つ。</p>
   </div>
 </div>
 
