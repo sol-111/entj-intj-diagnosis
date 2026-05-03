@@ -11,26 +11,103 @@
     background: #0f0f14;
     color: #e8e6f0;
     min-height: 100vh;
-    padding: 40px 20px 80px;
+    padding: 0 0 80px;
   }
   .container {
     max-width: 800px;
     margin: 0 auto;
+    padding: 0 20px;
   }
-  h1 {
+
+  /* ===== HERO ===== */
+  .hero {
+    text-align: center;
+    padding: 40px 20px 24px;
+  }
+  .hero h1 {
     font-size: 28px;
     font-weight: 800;
     background: linear-gradient(135deg, #7c6ff7, #f76fa1);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-align: center;
     margin-bottom: 8px;
   }
-  .subtitle {
-    text-align: center;
+  .hero .subtitle {
     color: #8a8a9a;
     font-size: 14px;
-    margin-bottom: 48px;
+  }
+
+  /* ===== STICKY NAV ===== */
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: #0f0f14;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0 20px;
+  }
+  .nav-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0; right: 0;
+    height: 20px;
+    background: linear-gradient(to bottom, #0f0f14, transparent);
+    pointer-events: none;
+  }
+  .nav {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 12px 0;
+  }
+  .nav::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #2a2a3a;
+    background: #1a1a24;
+    color: #8a8a9a;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-btn:hover {
+    border-color: #3a3a5a;
+    color: #c8c6d0;
+  }
+  .nav-btn.active {
+    background: linear-gradient(135deg, rgba(124,111,247,0.15), rgba(247,111,161,0.1));
+    border-color: rgba(124,111,247,0.4);
+    color: #e8e6f0;
+  }
+  .nav-btn .nav-icon { font-size: 15px; }
+  .nav-btn .nav-count {
+    font-size: 11px;
+    background: #22222e;
+    padding: 1px 7px;
+    border-radius: 10px;
+    color: #6a6a7a;
+  }
+  .nav-btn.active .nav-count {
+    background: rgba(124,111,247,0.2);
+    color: #9d93ff;
+  }
+
+  /* ===== SECTIONS ===== */
+  .section {
+    padding-top: 32px;
   }
   .category {
     margin-bottom: 48px;
@@ -43,9 +120,7 @@
     padding-bottom: 12px;
     border-bottom: 1px solid #2a2a3a;
   }
-  .category-icon {
-    font-size: 22px;
-  }
+  .category-icon { font-size: 22px; }
   .category-title {
     font-size: 18px;
     font-weight: 700;
@@ -56,6 +131,8 @@
     color: #6a6a7a;
     margin-left: auto;
   }
+
+  /* ===== CARDS ===== */
   .card {
     background: #1a1a24;
     border: 1px solid #2a2a3a;
@@ -85,9 +162,7 @@
     border-radius: 10px;
     flex-shrink: 0;
   }
-  .card-title-area {
-    flex: 1;
-  }
+  .card-title-area { flex: 1; }
   .card-name {
     font-size: 16px;
     font-weight: 700;
@@ -104,12 +179,8 @@
     line-height: 1.8;
     color: #a8a6b4;
   }
-  .card-body p {
-    margin-bottom: 10px;
-  }
-  .card-body p:last-child {
-    margin-bottom: 0;
-  }
+  .card-body p { margin-bottom: 10px; }
+  .card-body p:last-child { margin-bottom: 0; }
   .what-you-get {
     display: flex;
     flex-wrap: wrap;
@@ -124,18 +195,8 @@
     border-radius: 20px;
     color: #8a8a9a;
   }
-  .divider {
-    height: 1px;
-    background: linear-gradient(90deg, transparent, #2a2a3a, transparent);
-    margin: 48px 0;
-  }
-  .footer-note {
-    text-align: center;
-    color: #5a5a6a;
-    font-size: 12px;
-    margin-top: 48px;
-    line-height: 1.8;
-  }
+
+  /* ===== BADGES ===== */
   .badge-solo {
     font-size: 10px;
     padding: 2px 8px;
@@ -156,15 +217,79 @@
     margin-left: 8px;
     vertical-align: middle;
   }
+
+  /* ===== SUB-CATEGORY ===== */
+  .sub-category {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 28px 0 16px;
+    padding: 8px 14px;
+    background: linear-gradient(90deg, rgba(124,111,247,0.06), transparent);
+    border-left: 3px solid #7c6ff7;
+    border-radius: 0 8px 8px 0;
+  }
+  .sub-icon { font-size: 16px; }
+  .sub-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #9d93ff;
+  }
+
+  /* ===== FOOTER ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #2a2a3a, transparent);
+    margin: 48px 0;
+  }
+  .footer-note {
+    text-align: center;
+    color: #5a5a6a;
+    font-size: 12px;
+    margin-top: 48px;
+    line-height: 1.8;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 600px) {
+    .category-desc { display: none; }
+    .category-header { gap: 8px; }
+  }
+
+  /* smooth scroll */
+  html { scroll-behavior: smooth; }
 </style>
 </head>
 <body>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>性格診断メニュー</h1>
+    <p class="subtitle">8つの心理学理論 × 占星術を統合した、あなただけの分析レポート</p>
+  </div>
+
+  <!-- STICKY NAV -->
+  <div class="nav-wrap">
+    <nav class="nav">
+      <a class="nav-btn active" href="#self">
+        <span class="nav-icon">🪞</span>自分を知る<span class="nav-count">10</span>
+      </a>
+      <a class="nav-btn" href="#love">
+        <span class="nav-icon">💘</span>恋愛を知る<span class="nav-count">5</span>
+      </a>
+      <a class="nav-btn" href="#work">
+        <span class="nav-icon">💼</span>仕事を知る<span class="nav-count">4</span>
+      </a>
+      <a class="nav-btn" href="#pair">
+        <span class="nav-icon">🔗</span>二人の関係<span class="nav-count">7</span>
+      </a>
+    </nav>
+  </div>
+
 <div class="container">
 
-  <h1>性格診断メニュー</h1>
-  <p class="subtitle">8つの心理学理論 × 占星術を統合した、あなただけの分析レポート</p>
-
   <!-- ==================== 自分を知る ==================== -->
+  <div class="section" id="self">
   <div class="category">
     <div class="category-header">
       <span class="category-icon">🪞</span>
@@ -360,9 +485,32 @@
       </div>
     </div>
 
+    <!-- MBTIタイプ深掘り -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🔬</div>
+        <div class="card-title-area">
+          <div class="card-name">MBTIタイプ深掘り<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">あなたのタイプ固有の認知構造・内面の葛藤・成長課題を解剖</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>MBTIの4文字だけでは見えない、あなたのタイプ固有の「頭の中の仕組み」を徹底解剖します。認知機能がどんな順番で動いているか、理想と現実のギャップがどこで生まれるか、-Aと-Tで何が変わるか。</p>
+        <p>全診断データを統合し、「自分はなぜこういう考え方をするのか」「なぜこの場面で苦しくなるのか」を構造から理解できます。MBTIの先にある、あなただけの自己理解レポートです。</p>
+        <div class="what-you-get">
+          <span class="tag">認知機能の動作順序</span>
+          <span class="tag">理想と現実のギャップ構造</span>
+          <span class="tag">A/Tタイプの影響分析</span>
+          <span class="tag">タイプ固有の成長課題</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
   </div>
 
   <!-- ==================== 恋愛を知る ==================== -->
+  <div class="section" id="love">
   <div class="category">
     <div class="category-header">
       <span class="category-icon">💘</span>
@@ -476,13 +624,117 @@
     </div>
 
   </div>
+  </div>
+
+  <!-- ==================== 仕事を知る ==================== -->
+  <div class="section" id="work">
+  <div class="category">
+    <div class="category-header">
+      <span class="category-icon">💼</span>
+      <span class="category-title">仕事を知る</span>
+      <span class="category-desc">適職・働き方・稼ぎ方——キャリアの最適解を導き出す</span>
+    </div>
+
+    <!-- 向いてる仕事 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🏢</div>
+        <div class="card-title-area">
+          <div class="card-name">向いてる仕事<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">全データ統合——最も力を発揮できる職種と避けるべき環境</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>MBTI・ソシオニクス・エニアグラム・ビッグファイブ・ホロスコープの全データから、最も力を発揮できる職業と働き方を分析します。</p>
+        <p>ネットの「ENTJ 適職」のような一般論ではなく、あなた個人の性格スコア・星の配置・深層動機を掛け合わせた完全オーダーメイドのTOP5。「向いている仕事」だけでなく「絶対に避けるべき環境」も明確にします。</p>
+        <div class="what-you-get">
+          <span class="tag">最適職種TOP5（根拠つき）</span>
+          <span class="tag">避けるべき環境リスト</span>
+          <span class="tag">理想の働き方</span>
+          <span class="tag">キャリアの方向性</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- リーダーシップスタイル -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">👔</div>
+        <div class="card-title-area">
+          <div class="card-name">リーダーシップスタイル<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">あなたはどう人を動かすか——指揮型か、触媒型か、職人型か</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>MBTI・エニアグラム・ソシオニクスの3理論からリーダーシップの「型」を特定します。指示を出すタイプなのか、環境を整えるタイプなのか、背中で見せるタイプなのか。</p>
+        <p>部下やチームメンバーからどう見えているか、どんな場面で頼られ、どんな場面で反感を買いやすいかまで分析。マネジメントの強みと盲点が見えます。</p>
+        <div class="what-you-get">
+          <span class="tag">リーダーシップタイプ判定</span>
+          <span class="tag">部下から見た印象</span>
+          <span class="tag">マネジメントの強み・弱み</span>
+          <span class="tag">チームで最も活きる役割</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 仕事の地雷マップ -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🚨</div>
+        <div class="card-title-area">
+          <div class="card-name">仕事の地雷マップ<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">やる気が消える瞬間・燃え尽きるパターン・限界のサイン</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>職場でのストレストリガーを危険度別にマッピングします。「何をされるとやる気がゼロになるか」「どんな環境で燃え尽きるか」を性格データから特定。</p>
+        <p>ストレス＆地雷マップの「仕事特化版」です。上司との相性パターン、会議でイラつく瞬間、転職したくなるトリガーまで、職場で起きるストレスに完全フォーカスします。</p>
+        <div class="what-you-get">
+          <span class="tag">職場ストレストリガー一覧</span>
+          <span class="tag">燃え尽きパターン</span>
+          <span class="tag">やる気が消える条件</span>
+          <span class="tag">限界のサインと回復法</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- お金・稼ぎ方スタイル -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">💰</div>
+        <div class="card-title-area">
+          <div class="card-name">お金・稼ぎ方スタイル<span class="badge-solo">個人</span></div>
+          <div class="card-tagline">給与型？起業型？投資型？——あなたに合った稼ぎ方の構造</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>ホロスコープの2ハウス（所有・収入）と8ハウス（他者の資産・投資）、MBTIの意思決定スタイル、エニアグラムの欲求構造から、あなたに最適な「お金との付き合い方」を分析します。</p>
+        <p>安定収入を積み上げるべきか、リスクを取って大きく稼ぐべきか。浪費しやすいポイント、貯められない理由、お金に対する無意識のブロックまで可視化します。</p>
+        <div class="what-you-get">
+          <span class="tag">稼ぎ方タイプ判定</span>
+          <span class="tag">お金の価値観の構造</span>
+          <span class="tag">浪費パターンと対策</span>
+          <span class="tag">資産形成の適性</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
 
   <!-- ==================== 二人の関係を知る ==================== -->
+  <div class="section" id="pair">
   <div class="category">
     <div class="category-header">
       <span class="category-icon">🔗</span>
       <span class="category-title">二人の関係を知る</span>
       <span class="category-desc">特定の相手との相性・衝突パターン・未来予測</span>
+    </div>
+
+    <!-- ---- 恋愛ペア サブカテゴリ ---- -->
+    <div class="sub-category">
+      <span class="sub-icon">💘</span>
+      <span class="sub-title">恋愛ペア</span>
     </div>
 
     <!-- 二人の相性分析 -->
@@ -527,6 +779,75 @@
       </div>
     </div>
 
+    <!-- 二人のホロスコープ相性 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🌠</div>
+        <div class="card-title-area">
+          <div class="card-name">二人のホロスコープ相性<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">星の配置が示す、二人の間に流れる運命的な引力と緊張</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の出生ホロスコープを重ね合わせる「シナストリー」分析です。心理学では説明できない「なぜかこの人に惹かれる」「理由はわからないけど離れられない」の正体を、天体配置から読み解きます。</p>
+        <p>太陽と月の関係・金星と火星の引力・土星の試練など、二人の星がどう絡み合っているかを全天体で分析。運命的な繋がりの強さと、関係に訪れる試練の時期まで予測します。</p>
+        <div class="what-you-get">
+          <span class="tag">シナストリーチャート</span>
+          <span class="tag">運命的引力の強さ</span>
+          <span class="tag">天体間のアスペクト全解読</span>
+          <span class="tag">関係の試練と乗り越え方</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 長期関係シミュレーション -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🔄</div>
+        <div class="card-title-area">
+          <div class="card-name">長期関係シミュレーション<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">交際→同棲→結婚——段階が進むにつれて何が起きるか</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の関係が深まるにつれて変化する力学を、性格データからシミュレーションします。「付き合いたてはラブラブだったのに…」の裏にある構造的な原因が見えます。</p>
+        <p>交際初期・安定期・同棲・結婚・倦怠期の各フェーズで、二人の間に何が起きるかを予測。どのフェーズで最も危険で、何をすれば乗り越えられるかまで提示します。</p>
+        <div class="what-you-get">
+          <span class="tag">フェーズ別の関係変化予測</span>
+          <span class="tag">倦怠期のタイミングと原因</span>
+          <span class="tag">関係が深まる条件</span>
+          <span class="tag">各段階の乗り越え方</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 危機パターン分析 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">⚠️</div>
+        <div class="card-title-area">
+          <div class="card-name">危機パターン分析<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">この二人が壊れるとしたら、こうなる——破綻シナリオと回避策</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の性格の組み合わせから「最もありえる破綻パターン」をシナリオ形式で提示します。どんなきっかけで、どんな悪循環に陥り、最終的にどうなるか。</p>
+        <p>ただ怖がらせるのが目的ではありません。「この危機パターンが見えたらこう対処する」という具体的な回避策・修復策までセットで提示します。壊れる前に読むことに意味がある診断です。</p>
+        <div class="what-you-get">
+          <span class="tag">破綻シナリオTOP3</span>
+          <span class="tag">悪循環の構造図</span>
+          <span class="tag">危機の兆候チェックリスト</span>
+          <span class="tag">回避策・修復アクション</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---- 共通ペア サブカテゴリ ---- -->
+    <div class="sub-category">
+      <span class="sub-icon">🔗</span>
+      <span class="sub-title">共通（恋愛・仕事どちらにも使える）</span>
+    </div>
+
     <!-- ストレス＆地雷マップ（ペア版） -->
     <div class="card">
       <div class="card-top">
@@ -548,23 +869,55 @@
       </div>
     </div>
 
-  </div>
-
-  <!-- ==================== 使用フレームワーク ==================== -->
-  <div class="divider"></div>
-
-  <div class="category">
-    <div class="category-header">
-      <span class="category-icon">📚</span>
-      <span class="category-title">使用している理論・フレームワーク</span>
-    </div>
-
-    <div class="card" style="padding: 20px 24px;">
-      <div class="card-body" style="font-size: 13px; line-height: 2;">
-        <p><strong style="color:#e8e6f0;">心理学（8理論）</strong>　MBTI / ビッグファイブ / エニアグラム / ソシオニクス / ユング心理学 / アタッチメント理論 / 愛のスタイル理論 / 愛情言語理論</p>
-        <p><strong style="color:#e8e6f0;">占星術</strong>　出生ホロスコープ（精密計算） / 二人の星の相性分析 / エレメント分析</p>
+    <!-- コミュニケーション衝突マップ -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">💬</div>
+        <div class="card-title-area">
+          <div class="card-name">コミュニケーション衝突マップ<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">なぜ伝わらないのか——すれ違いの構造を完全解剖</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の「伝え方」と「受け取り方」のズレをシーン別にマッピングします。議論・相談・報告・お願い・謝罪——場面ごとに、どちらがどうズレるかを可視化。</p>
+        <p>「そういう意味で言ったんじゃないのに」が起きる仕組みを心理構造から解剖。恋愛でも仕事でも使える、二人専用のコミュニケーション取扱説明書です。</p>
+        <div class="what-you-get">
+          <span class="tag">伝え方のスタイル比較</span>
+          <span class="tag">シーン別すれ違いマップ</span>
+          <span class="tag">誤解が生まれる構造</span>
+          <span class="tag">二人専用の伝え方ガイド</span>
+        </div>
       </div>
     </div>
+
+    <!-- ---- 仕事ペア サブカテゴリ ---- -->
+    <div class="sub-category">
+      <span class="sub-icon">💼</span>
+      <span class="sub-title">仕事ペア</span>
+    </div>
+
+    <!-- ビジネスパートナー相性 -->
+    <div class="card">
+      <div class="card-top">
+        <div class="card-emoji">🤝</div>
+        <div class="card-title-area">
+          <div class="card-name">ビジネスパートナー相性<span class="badge-pair">ペア</span></div>
+          <div class="card-tagline">この人と仕事で組んだら何が起きるか</div>
+        </div>
+      </div>
+      <div class="card-body">
+        <p>二人の性格データを「仕事」の文脈で突き合わせます。恋愛相性とは全く別の軸——意思決定スピード・リスク許容度・コミュニケーション頻度・役割分担の噛み合いで分析。</p>
+        <p>「一緒に起業したらどうなるか」「同じチームに配属されたらどうなるか」をシミュレーション。強みが重なる部分、補い合える部分、衝突が起きやすい部分を明確にします。</p>
+        <div class="what-you-get">
+          <span class="tag">仕事相性スコア</span>
+          <span class="tag">最適な役割分担</span>
+          <span class="tag">衝突が起きやすい場面</span>
+          <span class="tag">チームとしての強み・弱み</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
   </div>
 
   <p class="footer-note">
@@ -573,5 +926,24 @@
   </p>
 
 </div>
+
+<!-- ===== SCROLL SPY ===== -->
+<script>
+  const navBtns = document.querySelectorAll('.nav-btn');
+  const sections = document.querySelectorAll('.section');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navBtns.forEach(btn => btn.classList.remove('active'));
+        const target = document.querySelector(`.nav-btn[href="#${entry.target.id}"]`);
+        if (target) target.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  sections.forEach(section => observer.observe(section));
+</script>
+
 </body>
 </html>

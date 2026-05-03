@@ -102,22 +102,54 @@
   }
 
   /* ===== TAB NAV ===== */
+  /* ===== CATEGORY NAV ===== */
+  .cat-nav {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 101;
+    padding: 0;
+  }
+  .cat-btn {
+    flex: 1;
+    padding: 10px 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-muted);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cat-btn.active {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    background: rgba(124,111,247,0.05);
+  }
+  .cat-btn .cat-icon { margin-right: 4px; }
+
+  /* ===== TAB NAV ===== */
   .tab-nav {
     display: flex;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
-    background: var(--surface);
+    background: var(--bg);
     border-bottom: 1px solid var(--border);
     position: sticky;
-    top: 0;
+    top: 43px;
     z-index: 100;
     padding: 0 4px;
   }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab-btn {
     flex: 0 0 auto;
-    padding: 12px 16px;
+    padding: 10px 16px;
     font-size: 12px;
     font-weight: 600;
     color: var(--text-muted);
@@ -130,8 +162,8 @@
     -webkit-tap-highlight-color: transparent;
   }
   .tab-btn.active {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+    color: var(--accent2);
+    border-bottom-color: var(--accent2);
   }
 
   /* ===== CONTENT ===== */
@@ -695,25 +727,38 @@
   </div>
 </div>
 
+<!-- CATEGORY NAV -->
+<nav class="cat-nav">
+  <button class="cat-btn active" data-cat="self"><span class="cat-icon">🪞</span>自分を知る</button>
+  <button class="cat-btn" data-cat="love"><span class="cat-icon">💘</span>恋愛を知る</button>
+  <button class="cat-btn" data-cat="work"><span class="cat-icon">💼</span>仕事を知る</button>
+</nav>
+
 <!-- TAB NAV -->
 <nav class="tab-nav" id="tabNav">
-  <button class="tab-btn active" data-tab="overview">総合</button>
-  <button class="tab-btn" data-tab="big5">ビッグファイブ</button>
-  <button class="tab-btn" data-tab="enneagram">エニアグラム</button>
-  <button class="tab-btn" data-tab="mbti">MBTI</button>
-  <button class="tab-btn" data-tab="socionics">ソシオニクス</button>
-  <button class="tab-btn" data-tab="love">恋愛タイプ</button>
-  <button class="tab-btn" data-tab="element">星座エレメント</button>
-  <button class="tab-btn" data-tab="horoscope">ホロスコープ</button>
-  <button class="tab-btn" data-tab="stress-map">ストレス＆地雷</button>
-  <button class="tab-btn" data-tab="shadow">影の自己分析</button>
-  <button class="tab-btn" data-tab="entj-self">ENTJ自己分析</button>
-  <button class="tab-btn" data-tab="career">向いてる仕事</button>
-  <button class="tab-btn" data-tab="my-type">好きなタイプ</button>
-  <button class="tab-btn" data-tab="love-style">恋愛スタイル</button>
-  <button class="tab-btn" data-tab="destiny-points">運命の感受点</button>
+  <!-- 自分を知る -->
+  <button class="tab-btn active" data-tab="overview" data-cat="self">総合</button>
+  <button class="tab-btn" data-tab="big5" data-cat="self">ビッグファイブ</button>
+  <button class="tab-btn" data-tab="enneagram" data-cat="self">エニアグラム</button>
+  <button class="tab-btn" data-tab="mbti" data-cat="self">MBTI</button>
+  <button class="tab-btn" data-tab="socionics" data-cat="self">ソシオニクス</button>
+  <button class="tab-btn" data-tab="element" data-cat="self">星座エレメント</button>
+  <button class="tab-btn" data-tab="horoscope" data-cat="self">ホロスコープ</button>
+  <button class="tab-btn" data-tab="stress-map" data-cat="self">ストレス＆地雷</button>
+  <button class="tab-btn" data-tab="shadow" data-cat="self">影の自己分析</button>
+  <button class="tab-btn" data-tab="entj-self" data-cat="self">ENTJ自己分析</button>
+  <!-- 恋愛を知る -->
+  <button class="tab-btn" data-tab="love" data-cat="love" style="display:none;">恋愛タイプ</button>
+  <button class="tab-btn" data-tab="my-type" data-cat="love" style="display:none;">好きなタイプ</button>
+  <button class="tab-btn" data-tab="love-style" data-cat="love" style="display:none;">恋愛スタイル</button>
+  <button class="tab-btn" data-tab="ranking" data-cat="love" style="display:none;">相性ランキング</button>
+  <button class="tab-btn" data-tab="destiny-points" data-cat="love" style="display:none;">運命の感受点</button>
+  <!-- 仕事を知る -->
+  <button class="tab-btn" data-tab="career" data-cat="work" style="display:none;">向いてる仕事</button>
+  <button class="tab-btn" data-tab="leadership" data-cat="work" style="display:none;">リーダーシップ</button>
+  <button class="tab-btn" data-tab="work-stress" data-cat="work" style="display:none;">仕事の地雷</button>
+  <button class="tab-btn" data-tab="money" data-cat="work" style="display:none;">お金・稼ぎ方</button>
 </nav>
-<div class="scroll-hint">← タブをスワイプ →</div>
 
 <!-- =============== TAB: 総合 =============== -->
 <div class="tab-content active" id="overview">
@@ -824,14 +869,19 @@
     <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTJ的な実行力、SLEの現場掌握力、タイプ1の正義感、おとめ座の精密さ——全てが「完璧であるべき」に向かう。だが「完璧でなくていい」と言ってくれる存在を最も深いところで求めている。</p>
   </div>
 
-  <hr>
 
-  <h2>最強相性 TOP5</h2>
+
+</div>
+
+<!-- =============== TAB: 相性ランキング =============== -->
+<div class="tab-content" id="ranking">
+
   <div class="about-box">
-    <div class="about-title">ランキング基準</div>
+    <div class="about-title">この診断でわかること</div>
     <p>MBTI・ソシオニクス・エニアグラム・ビッグファイブ・恋愛タイプ・ホロスコープの全データを統合し、「足りないものを自然に補える相手」を逆算した忖度なしランキング。</p>
   </div>
-  <h3>足りないものから逆算する</h3>
+
+  <h2>足りないものから逆算する</h2>
   <div class="table-wrap"><table>
     <tr><th>弱点</th><th>根拠</th><th>必要な相手の機能</th></tr>
     <tr><td>長期ビジョン・未来予測</td><td>SLEの示唆機能Ni（5番）</td><td><strong>Ni主導 or 補助</strong></td></tr>
@@ -841,7 +891,8 @@
     <tr><td>批判を受け止める器</td><td>タイプ1の無意識の批評性</td><td>打たれ強いか、受け流せる相手</td></tr>
   </table></div>
 
-  <h3>総合ランキング</h3>
+  <h2>最強相性 TOP5</h2>
+
   <div class="table-wrap"><table>
     <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
     <tr><td><strong>1</strong></td><td><strong>INFJ</strong></td><td><strong>98</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
@@ -2730,6 +2781,289 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
 
 </div>
 
+<!-- =============== TAB: リーダーシップスタイル =============== -->
+<div class="tab-content" id="leadership">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTI・エニアグラム・ソシオニクスの3理論からリーダーシップの「型」を特定します。どう人を動かし、どこで頼られ、どこで反感を買いやすいかまで分析します。</p>
+  </div>
+
+  <h2>リーダーシップタイプ</h2>
+  <div class="card gold">
+    <h4>指揮官型リーダー — 「俺が決める。ついてこい。」</h4>
+    <p style="margin-top:8px;">Te主導 × Se第三（SLE）× タイプ1の完璧主義。自ら意思決定し、即座に実行に移し、結果で証明するスタイル。環境を整えるのではなく、環境を作り変えるタイプ。</p>
+  </div>
+
+  <h2>リーダーシップの構造</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>根拠</th><th>リーダーシップへの影響</th><th>具体的な行動</th></tr>
+      <tr><td>Te主導</td><td>効率最優先の意思決定</td><td>全員の意見を聞く前に決断を下す。結論→根拠の順番で話す</td></tr>
+      <tr><td>Se第三（SLE）</td><td>現場掌握力・圧倒的な存在感</td><td>会議の空気を一瞬で支配する。声のトーン・視線で場をコントロール</td></tr>
+      <tr><td>Ni補助</td><td>長期ビジョンの設計</td><td>「3年後にこうなる」を描き、逆算してチームの動きを設計する</td></tr>
+      <tr><td>タイプ1（10/9）</td><td>高い基準の要求</td><td>「これでいい」がない。80点を許容できず、常に100点を求める</td></tr>
+      <tr><td>火星山羊座10H</td><td>キャリアへの使命感</td><td>仕事において一切手を抜かない。部下にも同じ姿勢を求める</td></tr>
+      <tr><td>外向性73%</td><td>対外交渉力</td><td>クライアント・上層部との折衝を自然にこなす。内部調整より外で勝負</td></tr>
+    </table></div>
+  </div>
+
+  <h2>部下・チームから見た印象</h2>
+
+  <details class="accordion">
+    <summary>頼られるポイント</summary>
+    <div class="acc-body">
+      <div class="card highlight">
+        <ul>
+          <li><strong>決断力</strong> — 誰もが迷う場面で即座に方向を示す。「どうしましょう？」に対して必ず答えがある</li>
+          <li><strong>修羅場での安定感</strong> — 情動安定90%。プロジェクト炎上時にチームが最も頼りにする存在</li>
+          <li><strong>実行力</strong> — 口だけでなく自ら動く。Se主導が「背中で見せる」を自然にやる</li>
+          <li><strong>ビジョンの明確さ</strong> — Ni補助で「なぜこれをやるのか」「どこに向かうのか」を常に言語化できる</li>
+          <li><strong>外敵から守る力</strong> — 対外的な圧力・理不尽な要求に対して盾になる。部下を守るために上と戦える</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>反感を買いやすいポイント</summary>
+    <div class="acc-body">
+      <div class="card red">
+        <ul>
+          <li><strong>高すぎる基準</strong> — タイプ1の完璧主義が部下に伝染。「なんでこのレベルで出してきたの？」が口癖になりがち</li>
+          <li><strong>感情への無配慮</strong> — Fi劣等 + 協調性34%。「結果が全て」のロジックで人を追い詰める。本人に悪意はない</li>
+          <li><strong>主導権の独占</strong> — Se主導で場を支配するため、部下が「意見を言いづらい空気」を感じる</li>
+          <li><strong>ペースの押しつけ</strong> — 自分のスピードが速すぎて、ついてこれない人を「遅い」と切り捨てる</li>
+          <li><strong>称賛の少なさ</strong> — タイプ1の「当然」基準が高いため、部下の成果を「普通」と処理してしまう</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <h2>リーダーシップスタイルの強み・弱み</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>軸</th><th>強み</th><th>弱み</th></tr>
+      <tr><td>意思決定</td><td>速い・明確・ブレない</td><td>独断的になりやすい。合議を省略しがち</td></tr>
+      <tr><td>実行推進</td><td>決めたことを確実にやり切る</td><td>方向転換が遅い。「決めたからやる」に固執</td></tr>
+      <tr><td>人材育成</td><td>高い基準が部下を成長させる</td><td>ついてこれない人を切り捨てる傾向</td></tr>
+      <tr><td>チームの空気</td><td>緊張感があり成果が出る</td><td>心理的安全性が低くなりがち</td></tr>
+      <tr><td>対外交渉</td><td>クライアント・上層部に強い</td><td>社内政治に無関心で味方を作り損ねる</td></tr>
+    </table></div>
+  </div>
+
+  <h2>最も活きる役割</h2>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>順位</th><th>役割</th><th>理由</th></tr>
+      <tr><td>1</td><td><strong>プロジェクトリーダー / 部門長</strong></td><td>意思決定権 × 実行権限 × 対外折衝。Te+Se+Niが全て噛み合う</td></tr>
+      <tr><td>2</td><td><strong>創業メンバー / No.2</strong></td><td>ビジョンを実装する実行部隊長。CEOの構想を現実に変換する役割</td></tr>
+      <tr><td>3</td><td><strong>クライシスマネージャー</strong></td><td>炎上案件の火消し。情動安定90% × Se即断力が最大の武器</td></tr>
+    </table></div>
+  </div>
+
+  <h2>リーダーとしての成長課題</h2>
+  <div class="card gold">
+    <ol>
+      <li><strong>「任せる」を覚える</strong> — Se主導は「自分でやった方が早い」が本能。だが組織はレバレッジが全て。70点の委譲 > 100点の独占</li>
+      <li><strong>称賛を仕組み化する</strong> — 自然には出てこないなら、意識的にやる。週1の1on1で「何が良かったか」を必ず1つ伝えるルール化</li>
+      <li><strong>沈黙を恐れない</strong> — 会議で自分が先に答えを言うと部下は考えなくなる。「どう思う？」を先に聞く3秒ルール</li>
+    </ol>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    リーダーシップの本質は「指揮官型」。決断・実行・結果——この3つで信頼を勝ち取るスタイル。最大の武器は修羅場での冷静さと圧倒的な推進力。最大の課題は「人の感情」という自分の盲点。強さで引っ張るリーダーから、強さと優しさを両立するリーダーへの進化が、火星山羊座10Hが示すキャリアの頂点への道。
+  </blockquote>
+
+</div>
+
+<!-- =============== TAB: 仕事の地雷マップ =============== -->
+<div class="tab-content" id="work-stress">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>職場でのストレストリガーを危険度別にマッピングします。やる気が消える瞬間・燃え尽きるパターン・限界のサインを性格データから特定し、対処法まで提示します。</p>
+  </div>
+
+  <h2>職場ストレストリガー（危険度別）</h2>
+
+  <h3>危険度 ★★★★★（即死級）</h3>
+  <div class="card red">
+    <ul>
+      <li><strong>意思決定権の剥奪</strong> — Te主導にとって「決める権利」を奪われることは存在意義の否定。上から一方的に方針を変えられる、承認なしに何も動かせない環境は即死</li>
+      <li><strong>無能な上司の下で働く</strong> — タイプ1の「正しさ」×Se主導の「実力主義」。明らかに自分より判断力がない人間の指示に従うことは、全ての性格データが拒絶する</li>
+      <li><strong>成果を横取りされる</strong> — 火星山羊座10H（キャリアの頂点を目指す配置）×タイプ1（正しい努力が報われるべき）。自分の成果が別の人の手柄になる構造は、静かに致命傷を与える</li>
+    </ul>
+  </div>
+
+  <h3>危険度 ★★★★☆（蓄積型）</h3>
+  <div class="card" style="border-color: var(--orange);">
+    <ul>
+      <li><strong>スピード感のない意思決定</strong> — Se主導 + 外向性73%。「来週の会議で検討します」が毎週繰り返される環境。動けない焦りが内側で燃え続ける</li>
+      <li><strong>感情論で物事が決まる</strong> — Te主導 + 協調性34%。「みんながそう思ってるから」が意思決定の根拠になる環境はTe的に処理不能</li>
+      <li><strong>形だけの会議・報告業務</strong> — 創造性81% + タイプ7w（冒険心）。何も生まない時間を過ごすことは「退屈」という最大の敵に捕まること</li>
+      <li><strong>曖昧な評価基準</strong> — タイプ1（正しさ）+ 勤勉性77%。何を達成すれば評価されるのか不明確な環境は、完璧を目指す方向がわからず消耗する</li>
+    </ul>
+  </div>
+
+  <h3>危険度 ★★★☆☆（じわじわ型）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>変化のないルーティン</strong> — タイプ7w + 創造性81%。最初の3ヶ月は我慢できるが、同じ業務の繰り返しが6ヶ月を超えるとやる気が蒸発する</li>
+      <li><strong>チームの能力レベルが低い</strong> — Te主導は「全員が自分と同じ速度で動く」を無意識に期待する。毎回説明しないと動けないチームは精神的に重い</li>
+      <li><strong>プライベートの詮索</strong> — Fi劣等 + 月さそり座8H。内面を守りたい構造。飲み会での「彼女いるの？」的な距離感の詰め方はじわじわストレス</li>
+    </ul>
+  </div>
+
+  <h2>燃え尽きパターン</h2>
+  <div class="card gold">
+    <h4>ENTJ-A × SLE × タイプ1 の燃え尽き構造</h4>
+    <div class="table-wrap"><table>
+      <tr><th>フェーズ</th><th>状態</th><th>内側で起きていること</th></tr>
+      <tr><td><strong>Phase 1：過剰受注</strong></td><td>仕事が増えても断らない</td><td>Se主導の「できる」＋タイプ1の「やるべき」が止まらない。情動安定90%がストレスサインを隠蔽</td></tr>
+      <tr><td><strong>Phase 2：孤立化</strong></td><td>「自分でやった方が早い」</td><td>任せるより自分で処理を選び続ける。協調性34%が「助けて」を言わせない</td></tr>
+      <tr><td><strong>Phase 3：怒りの蓄積</strong></td><td>周囲への苛立ちが増す</td><td>タイプ1の批判性が強化。「なんで俺だけ」「なんでこの程度もできない」が内側で回り続ける</td></tr>
+      <tr><td><strong>Phase 4：突然の停止</strong></td><td>ある日突然、動けなくなる</td><td>Si脆弱（体のSOSに気づけない）が限界突破。情動安定90%が「大丈夫」と言い続けた結果の墜落</td></tr>
+    </table></div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);"><strong>最大の危険：</strong>情動安定90%は「ストレスに強い」のではなく「ストレスに気づけない」可能性がある。Phase 3までほぼ自覚症状がないまま進行する。</p>
+  </div>
+
+  <h2>やる気が消える条件</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>条件</th><th>メカニズム</th><th>やる気への影響</th></tr>
+      <tr><td>ゴールが見えない</td><td>Ni補助は「到達点」が見えないと機能しない</td><td>何のために走ってるかわからず、エンジンが止まる</td></tr>
+      <tr><td>正当に評価されない</td><td>タイプ1（正しい努力が報われるべき）の根幹が崩れる</td><td>「やっても無駄」という学習性無力感に陥る</td></tr>
+      <tr><td>裁量がない</td><td>Te主導の存在意義＝意思決定。それがないと「自分がいる意味がない」</td><td>やる気というより存在意義が消える</td></tr>
+      <tr><td>成長を感じない</td><td>MC射手座 + タイプ1の使命感。「高み」に向かっている実感がないと空虚</td><td>転職衝動に直結する</td></tr>
+    </table></div>
+  </div>
+
+  <h2>限界のサイン</h2>
+  <div class="card red">
+    <h4>周囲が気づくべきサイン（本人は気づかない）</h4>
+    <ul>
+      <li><strong>発言が減る</strong> — 普段は会議で真っ先に発言するのに、黙っている時間が増える。Se主導の「場を支配する」が消えている</li>
+      <li><strong>批判が増える</strong> — タイプ1の批判性がフィルターなしで出てくる。普段は抑えている辛辣さが表面化</li>
+      <li><strong>「別にいいよ」が増える</strong> — こだわりが消える。Te主導が「どうでもいい」になったら赤信号</li>
+      <li><strong>体調不良を無視する</strong> — Si脆弱の典型。頭痛・不眠・胃痛を「気のせい」「寝れば治る」で処理し続ける</li>
+      <li><strong>趣味・プライベートがゼロになる</strong> — 全てのリソースを仕事に投入している状態。タイプ7wの冒険心が完全に消えている</li>
+    </ul>
+  </div>
+
+  <h2>回復法</h2>
+  <div class="card highlight">
+    <ul>
+      <li><strong>意思決定の場を確保する</strong> — 小さくてもいい。「自分で決められること」を1つ持つ。副業・個人プロジェクト・投資判断——裁量がある場があればTe主導は回復する</li>
+      <li><strong>身体を動かす</strong> — Se主導は体を使うことで回復する。筋トレ・格闘技・ランニングなど、「考えなくていい身体活動」が最も効く</li>
+      <li><strong>知的刺激を入れる</strong> — タイプ5（8）+ 創造性81%。新しい知識・新しい分野・新しい人との対話が枯渇したエネルギーを補充する</li>
+      <li><strong>「大丈夫」を疑う習慣</strong> — 週1回、10段階で自分のストレスレベルを記録する。数値化すればTe的に処理できる</li>
+    </ul>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    ENTJ-A × SLE × タイプ1の仕事ストレスの本質は「強すぎるから壊れる」こと。情動安定90%がストレスを隠蔽し、Se主導が「まだできる」と突き進み、タイプ1が「やるべきだ」とブレーキを壊す。壊れる前に気づくことが最大の課題。「大丈夫？」に「大丈夫」と自動で答えている自分に気づいた瞬間が、回復の第一歩。
+  </blockquote>
+
+</div>
+
+<!-- =============== TAB: お金・稼ぎ方スタイル =============== -->
+<div class="tab-content" id="money">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>ホロスコープの2ハウス（収入）と8ハウス（投資・他者の資産）、MBTI・エニアグラムの意思決定スタイルから、あなたに最適な「お金との付き合い方」を分析します。</p>
+  </div>
+
+  <h2>お金の設計図</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>天体配置</th><th>意味</th><th>お金への影響</th></tr>
+      <tr><td>2H（収入）牡羊座</td><td>自力で切り拓く収入</td><td>誰かに雇われるより、自分の力で稼ぐことに本能的な快感がある</td></tr>
+      <tr><td>月さそり座 8H</td><td>他者の資産・投資の部屋に月</td><td>投資・M&A・他者のリソース活用に感情的な直感が働く。「嗅覚」がある</td></tr>
+      <tr><td>火星山羊座 10H</td><td>キャリアに全力投球</td><td>稼ぐ手段＝キャリアの延長。お金は「地位」と「実力の証明」</td></tr>
+      <tr><td>金星乙女座 6H</td><td>日常・労働の部屋に金星</td><td>派手な散財より、実用的・機能的なものにお金を使う。無駄が嫌い</td></tr>
+      <tr><td>MC射手座</td><td>社会的使命の方向</td><td>お金自体が目的ではなく、ビジョン実現のためのリソースとして捉える</td></tr>
+    </table></div>
+  </div>
+
+  <h2>稼ぎ方タイプ</h2>
+  <div class="card gold">
+    <h4>支配型 × 投資型 ハイブリッド</h4>
+    <p style="margin-top:8px;">Te主導 × 2H牡羊座 × 火星山羊座10H＝「自分の力で、大きく稼ぐ」が基本構造。さらに月さそり座8H＝「他者の資産を動かす嗅覚」が加わる。</p>
+  </div>
+
+  <div class="table-wrap"><table>
+    <tr><th>稼ぎ方</th><th>適性</th><th>根拠</th></tr>
+    <tr><td><strong>給与型（安定収入）</strong></td><td>★★★☆☆</td><td>2H牡羊座は「雇われる」に飽きやすい。ただし火星山羊座10Hで組織のトップなら十分機能する</td></tr>
+    <tr><td><strong>起業型（自力で稼ぐ）</strong></td><td>★★★★★</td><td>2H牡羊座 × Te主導 × Se実行力。「自分で決めて、自分で動かして、自分で結果を出す」が最もフィット</td></tr>
+    <tr><td><strong>投資型（資産運用）</strong></td><td>★★★★☆</td><td>月さそり座8H。他者の資産・市場の裏側を読む直感がある。長期×高リスク投資に適性</td></tr>
+    <tr><td><strong>権利収入型（仕組みで稼ぐ）</strong></td><td>★★★★☆</td><td>Ni補助の長期ビジョン × Te主導の仕組み構築。一度作ったシステムが自動で回る構造を好む</td></tr>
+  </table></div>
+
+  <h2>お金の価値観</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>価値観</th><th>根拠</th><th>具体的な傾向</th></tr>
+      <tr><td><strong>お金＝実力の証明</strong></td><td>火星山羊座10H × タイプ1</td><td>年収は「自分の市場価値」のスコアボード。同年代より稼いでいないと焦る</td></tr>
+      <tr><td><strong>お金＝自由の手段</strong></td><td>Se主導 × タイプ7w</td><td>お金があれば選択肢が増える。「やりたくないことをやらなくていい自由」に最も価値を感じる</td></tr>
+      <tr><td><strong>お金＝ビジョン実現のリソース</strong></td><td>MC射手座 × Ni補助</td><td>貯めること自体には興味がない。「何に使うか」にこだわる</td></tr>
+      <tr><td><strong>無駄な出費への嫌悪</strong></td><td>金星乙女座6H × タイプ1</td><td>機能性のない出費・非効率な支出に強い不快感。ブランドより実用性</td></tr>
+    </table></div>
+  </div>
+
+  <h2>浪費パターン</h2>
+  <div class="card red">
+    <h4>お金が漏れるポイント</h4>
+    <ul>
+      <li><strong>自己投資の過剰</strong> — タイプ1（成長すべき）× MC射手座（ビジョン追求）。セミナー・書籍・ツール・コンサルへの投資が「いつか役立つ」で膨らむ。回収計算なしの投資は浪費</li>
+      <li><strong>「体験」への衝動買い</strong> — タイプ7w + Se主導。旅行・食事・新しい体験には財布の紐が緩む。「退屈しのぎ」が出費に化ける</li>
+      <li><strong>時間を金で買う</strong> — Te主導は「自分の時間＝最も高価なリソース」と計算する。タクシー・外食・代行サービスへの支出が無意識に積み上がる</li>
+      <li><strong>ストレス時の散財</strong> — Phase 3（怒りの蓄積期）に入ると、Se主導の衝動性が解放される。普段は合理的な判断ができるのに、ストレス下では「今すぐ欲しい」に負ける</li>
+    </ul>
+  </div>
+
+  <h2>資産形成の適性</h2>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>戦略</th><th>適性</th><th>理由</th></tr>
+      <tr><td>個別株・成長株投資</td><td>★★★★★</td><td>月さそり座8H（市場の裏を読む直感）× Te主導（論理的分析）× 情動安定90%（暴落で狼狽しない）</td></tr>
+      <tr><td>不動産投資</td><td>★★★★☆</td><td>火星山羊座（地に足のついた資産）× Ni補助（長期ビジョン）。レバレッジを効かせた資産形成に適性</td></tr>
+      <tr><td>事業投資・M&A</td><td>★★★★★</td><td>8H月（他者の資産を動かす嗅覚）× Se主導（交渉力）× Te（ビジネス判断力）。最も輝く領域</td></tr>
+      <tr><td>インデックス積立</td><td>★★☆☆☆</td><td>合理的だと理解はするが、Se主導 + タイプ7wは「退屈」に耐えられない。途中で触りたくなる</td></tr>
+      <tr><td>暗号資産・ハイリスク</td><td>★★★☆☆</td><td>タイプ7wの冒険心が反応するが、タイプ1の「正しさ」が不確実性を嫌う。ポートフォリオの一部なら可</td></tr>
+    </table></div>
+  </div>
+
+  <h2>お金に対する無意識のブロック</h2>
+  <div class="card">
+    <details class="accordion">
+      <summary>「お金を稼ぐこと＝正しいことをすること」の罠</summary>
+      <div class="acc-body">
+        <p>タイプ1は「正しいことをすれば報われる」という信念を持つ。だがビジネスの世界では「正しいこと」と「稼げること」は必ずしも一致しない。</p>
+        <p><strong>ブロック：</strong>「儲かるけど本質的じゃない仕事」を無意識に避ける。「正しくない稼ぎ方」を自分に許可できない。</p>
+        <p><strong>解除の鍵：</strong>「正しさ」の定義を広げる。お金を稼ぐこと自体が、ビジョン実現の正しい手段。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>「助けを借りる＝弱さ」の罠</summary>
+      <div class="acc-body">
+        <p>2H牡羊座 × Se主導 × 協調性34%。「自力で稼ぐ」への強いこだわりが、他者のリソースを活用する機会を逃す。</p>
+        <p><strong>ブロック：</strong>投資家からの出資・パートナーとの共同事業・人に任せて稼ぐモデルに抵抗がある。</p>
+        <p><strong>解除の鍵：</strong>月さそり座8Hが示す通り、他者のリソースを動かす嗅覚は生まれ持っている。使わないのは才能の浪費。</p>
+      </div>
+    </details>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    お金との付き合い方の本質は「支配型×投資型ハイブリッド」。自分の力で稼ぎ、他者のリソースを動かして増やす。火星山羊座10Hが「キャリアの頂点」を示すように、収入はキャリアの成長と直結している。最大の資産形成戦略は「自分自身の市場価値を上げ続けること」。お金は目的ではなく、ビジョンを実現するための弾薬。
+  </blockquote>
+
+</div>
+
 <!-- =============== TAB: 運命の感受点 =============== -->
 <div class="tab-content" id="destiny-points">
 
@@ -2976,9 +3310,41 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     body.classList.toggle('open', !isOpen);
   }
 
+  const catBtns = document.querySelectorAll('.cat-btn');
   const tabs = document.querySelectorAll('.tab-btn');
   const contents = document.querySelectorAll('.tab-content');
 
+  // Category switching
+  catBtns.forEach(catBtn => {
+    catBtn.addEventListener('click', () => {
+      const cat = catBtn.dataset.cat;
+
+      // Update category buttons
+      catBtns.forEach(b => b.classList.remove('active'));
+      catBtn.classList.add('active');
+
+      // Show/hide tabs for this category
+      tabs.forEach(t => {
+        if (t.dataset.cat === cat) {
+          t.style.display = '';
+        } else {
+          t.style.display = 'none';
+        }
+      });
+
+      // Activate the first tab in this category
+      const firstTab = document.querySelector(`.tab-btn[data-cat="${cat}"]`);
+      if (firstTab) {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        firstTab.classList.add('active');
+        document.getElementById(firstTab.dataset.tab).classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  // Tab switching
   tabs.forEach(btn => {
     btn.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));

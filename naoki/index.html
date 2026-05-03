@@ -63,19 +63,31 @@
     background: linear-gradient(135deg, rgba(245,200,66,0.2), rgba(245,200,66,0.05));
     border: 1px solid rgba(245,200,66,0.4); color: var(--gold);
   }
+  .cat-nav {
+    display: flex; background: var(--surface); border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 101; padding: 0;
+  }
+  .cat-btn {
+    flex: 1; padding: 10px 8px; font-size: 13px; font-weight: 700;
+    color: var(--text-muted); background: none; border: none;
+    border-bottom: 3px solid transparent; cursor: pointer;
+    transition: all 0.2s; text-align: center; -webkit-tap-highlight-color: transparent;
+  }
+  .cat-btn.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(66,184,245,0.05); }
+  .cat-btn .cat-icon { margin-right: 4px; }
   .tab-nav {
     display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
-    background: var(--surface); border-bottom: 1px solid var(--border);
-    position: sticky; top: 0; z-index: 100; padding: 0 4px;
+    background: var(--bg); border-bottom: 1px solid var(--border);
+    position: sticky; top: 43px; z-index: 100; padding: 0 4px;
   }
   .tab-nav::-webkit-scrollbar { display: none; }
   .tab-btn {
-    flex: 0 0 auto; padding: 12px 16px; font-size: 12px; font-weight: 600;
+    flex: 0 0 auto; padding: 10px 16px; font-size: 12px; font-weight: 600;
     color: var(--text-muted); background: none; border: none;
     border-bottom: 2px solid transparent; white-space: nowrap; cursor: pointer;
     transition: all 0.2s; -webkit-tap-highlight-color: transparent;
   }
-  .tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-btn.active { color: var(--accent2); border-bottom-color: var(--accent2); }
   .tab-content { display: none; padding: 20px 16px 100px; }
   .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -376,26 +388,39 @@
   </div>
 </div>
 
+<!-- CATEGORY NAV -->
+<nav class="cat-nav">
+  <button class="cat-btn active" data-cat="self"><span class="cat-icon">🪞</span>自分を知る</button>
+  <button class="cat-btn" data-cat="love"><span class="cat-icon">💘</span>恋愛を知る</button>
+  <button class="cat-btn" data-cat="work"><span class="cat-icon">💼</span>仕事を知る</button>
+</nav>
 <!-- TAB NAV -->
 <nav class="tab-nav" id="tabNav">
-  <button class="tab-btn active" data-tab="overview">総合</button>
-  <button class="tab-btn" data-tab="big5">ビッグファイブ</button>
-  <button class="tab-btn" data-tab="enneagram">エニアグラム</button>
-  <button class="tab-btn" data-tab="mbti">MBTI</button>
-  <button class="tab-btn" data-tab="socionics">ソシオニクス</button>
-  <button class="tab-btn" data-tab="love">恋愛タイプ</button>
-  <button class="tab-btn" data-tab="element">星座エレメント</button>
-  <button class="tab-btn" data-tab="horoscope">ホロスコープ</button>
-  <button class="tab-btn" data-tab="stress-map">ストレス＆地雷</button>
-  <button class="tab-btn" data-tab="shadow">影の自己分析</button>
-  <button class="tab-btn" data-tab="entp-self">ENTP自己分析</button>
-  <button class="tab-btn" data-tab="career">向いてる仕事</button>
-  <button class="tab-btn" data-tab="my-type">好きなタイプ</button>
-  <button class="tab-btn" data-tab="love-style">恋愛スタイル</button>
-  <button class="tab-btn" data-tab="shoki-compat">shoki相性</button>
-  <button class="tab-btn" data-tab="shoki-bond">shoki仕事&友情</button>
+  <!-- 自分を知る -->
+  <button class="tab-btn active" data-tab="overview" data-cat="self">総合</button>
+  <button class="tab-btn" data-tab="big5" data-cat="self">ビッグファイブ</button>
+  <button class="tab-btn" data-tab="enneagram" data-cat="self">エニアグラム</button>
+  <button class="tab-btn" data-tab="mbti" data-cat="self">MBTI</button>
+  <button class="tab-btn" data-tab="socionics" data-cat="self">ソシオニクス</button>
+  <button class="tab-btn" data-tab="element" data-cat="self">星座エレメント</button>
+  <button class="tab-btn" data-tab="horoscope" data-cat="self">ホロスコープ</button>
+  <button class="tab-btn" data-tab="stress-map" data-cat="self">ストレス＆地雷</button>
+  <button class="tab-btn" data-tab="shadow" data-cat="self">影の自己分析</button>
+  <button class="tab-btn" data-tab="entp-self" data-cat="self">ENTP自己分析</button>
+  <!-- 恋愛を知る -->
+  <button class="tab-btn" data-tab="love" data-cat="love" style="display:none;">恋愛タイプ</button>
+  <button class="tab-btn" data-tab="my-type" data-cat="love" style="display:none;">好きなタイプ</button>
+  <button class="tab-btn" data-tab="love-style" data-cat="love" style="display:none;">恋愛スタイル</button>
+  <button class="tab-btn" data-tab="ranking" data-cat="love" style="display:none;">相性ランキング</button>
+  <button class="tab-btn" data-tab="destiny-points" data-cat="love" style="display:none;">運命の感受点</button>
+  <!-- 仕事を知る -->
+  <button class="tab-btn" data-tab="career" data-cat="work" style="display:none;">向いてる仕事</button>
+  <button class="tab-btn" data-tab="leadership" data-cat="work" style="display:none;">リーダーシップ</button>
+  <button class="tab-btn" data-tab="work-stress" data-cat="work" style="display:none;">仕事の地雷</button>
+  <button class="tab-btn" data-tab="money" data-cat="work" style="display:none;">お金・稼ぎ方</button>
+  <button class="tab-btn" data-tab="shoki-compat" data-cat="work" style="display:none;">shoki相性</button>
+  <button class="tab-btn" data-tab="shoki-bond" data-cat="work" style="display:none;">shoki仕事&友情</button>
 </nav>
-<div class="scroll-hint">← タブをスワイプ →</div>
 
 <!-- =============== TAB: 総合 =============== -->
 <div class="tab-content active" id="overview">
@@ -508,16 +533,18 @@
     <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">ENTP的な知的創造性、SLEの実行力、タイプ8の支配力、水瓶座の革新性——全てが同じ方向を向いたとき、この人は文字通り世界を変えるエネルギーを持つ。だが「揺るがない」ことは「感じない」ことと紙一重であり、その境界線を見失った瞬間が最大のリスクになる。</p>
   </div>
 
-  <hr>
 
-  <h2>最強相性 TOP5</h2>
+</div>
+
+<!-- =============== TAB: 相性ランキング =============== -->
+<div class="tab-content" id="ranking">
 
   <div class="about-box">
-    <div class="about-title">ランキング基準</div>
+    <div class="about-title">この診断でわかること</div>
     <p>MBTI・ソシオニクス・エニアグラム・ビッグファイブ・恋愛タイプ・ホロスコープの全データを統合し、「足りないものを自然に補える相手」を逆算した忖度なしランキング。</p>
   </div>
 
-  <h3>足りないものから逆算する</h3>
+  <h2>足りないものから逆算する</h2>
   <div class="table-wrap"><table>
     <tr><th>弱点</th><th>根拠</th><th>必要な相手</th></tr>
     <tr><td>長期ビジョン</td><td>SLEの示唆機能Ni（5番）</td><td><strong>Ni主導 or 補助</strong></td></tr>
@@ -527,7 +554,7 @@
     <tr><td>「弱さ」の受容</td><td>タイプ8の恐怖</td><td>安全に弱さを見せられる相手</td></tr>
   </table></div>
 
-  <h3>総合ランキング</h3>
+  <h2>最強相性 TOP5</h2>
   <div class="table-wrap"><table>
     <tr><th>順位</th><th>MBTI</th><th>スコア</th><th>知性</th><th>感情</th><th>恋愛</th><th>長期</th></tr>
     <tr><td><strong>1</strong></td><td><strong>INFJ</strong></td><td><strong>98</strong></td><td>★★★★☆</td><td>★★★★★</td><td>★★★★★</td><td>★★★★★</td></tr>
@@ -638,6 +665,7 @@
   <details class="accordion"><summary>W5：ESFP（エンターテイナー）<span class="tag bad" style="margin-left:8px;">42/100</span></summary><div class="acc-body"><p><strong>「楽しいけど深さが足りない。知的な刺激が枯渇する。」</strong></p><div class="table-wrap"><table><tr><th>衝突ポイント</th><th>メカニズム</th></tr><tr><td>Se×Fi vs Ne×Ti</td><td>「今を楽しもう」vs「もっと深く考えたい」</td></tr><tr><td>創造性94%の渇き</td><td>知的刺激不足が致命的</td></tr></table></div></div></details>
 
   <blockquote>ベストが「自然体で補完し合える」関係なら、ワーストは「常に意識して調整し続ける」関係。</blockquote>
+
 </div>
 
 <!-- =============== TAB: ビッグファイブ =============== -->
@@ -2240,6 +2268,542 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
   </div>
 </div>
 
+<!-- =============== TAB: 運命の感受点 =============== -->
+<div class="tab-content" id="destiny-points">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>通常のホロスコープには含まれない「隠れた感受点」——ノード軸・バーテックス・キロン・ジュノー・リリスなどを精密計算し、「運命の人がいつ・どこで・どんな形で現れるか」を多角的に分析します。</p>
+  </div>
+
+  <h2>追加感受点一覧</h2>
+  <p style="font-size:12px;color:var(--text-muted);">Swiss Ephemeris（Moshier法）精密計算 / 2000年2月16日 03:09 JST / 東京都江東区亀戸</p>
+
+  <div class="table-wrap"><table>
+    <tr><th>感受点</th><th>位置</th><th>ハウス</th><th>テーマ</th></tr>
+    <tr><td><strong>☊ ノースノード</strong></td><td>01°12' 獅子座 (R)</td><td>8H</td><td>魂の方向・今世の使命</td></tr>
+    <tr><td>☋ サウスノード</td><td>01°12' 水瓶座 (R)</td><td>2H</td><td>前世のパターン・手放すもの</td></tr>
+    <tr><td><strong>⚷ キロン</strong></td><td>28°45' 射手座</td><td>1H</td><td>最も深い傷と癒し</td></tr>
+    <tr><td><strong>⚸ リリス（BML）</strong></td><td>15°22' 天秤座</td><td>10H</td><td>抗えない無意識の引力</td></tr>
+    <tr><td><strong>⚵ ジュノー</strong></td><td>08°41' 牡牛座</td><td>5H</td><td>結婚・長期パートナー像</td></tr>
+    <tr><td><strong>▽ バーテックス</strong></td><td>22°30' 獅子座</td><td>8H</td><td>運命的な出会いの点</td></tr>
+    <tr><td>♡ エロス</td><td>水瓶座（推定12°）</td><td>2H</td><td>情熱・性的引力の方向</td></tr>
+    <tr><td>🦋 プシュケ</td><td>射手座（推定20°）</td><td>1H</td><td>魂レベルの繋がり</td></tr>
+    <tr><td>⊕ パート・オブ・フォーチュン</td><td>04°15' 乙女座</td><td>9H</td><td>幸運の流れる方向</td></tr>
+    <tr><td>セレス</td><td>22°18' 牡羊座</td><td>4H</td><td>養育・ケアのスタイル</td></tr>
+    <tr><td>パラス</td><td>16°40' 水瓶座</td><td>2H</td><td>知恵・戦略パターン</td></tr>
+    <tr><td>ヴェスタ</td><td>05°12' 山羊座</td><td>1H</td><td>献身・集中の対象</td></tr>
+  </table></div>
+
+  <h2>運命の感受点 詳細解読</h2>
+
+  <details class="accordion">
+    <summary>▽ バーテックス 獅子座 8H — 運命の出会いの点</summary>
+    <div class="acc-body">
+      <div class="card gold">
+        <p><strong>「運命の点」が深い親密さの部屋にある——表面的な出会いではなく、魂を揺さぶるレベルの出会いが構造的に組み込まれている。</strong></p>
+      </div>
+      <p>バーテックスは自分の意志ではコントロールできない「運命的な出会い」のポイント。それが<strong>8ハウス（深い共有・変容の部屋）</strong>にある。</p>
+      <ul>
+        <li>バーテックスが獅子座 = 運命の相手は<strong>自信があり、表現力があり、温かく輝く人</strong></li>
+        <li>8ハウス = 出会いは「深い共有」の場面で起きる。秘密を打ち明けた瞬間、共に困難を乗り越えた瞬間</li>
+        <li>獅子座の温かさが、タイプ8の「弱さを見せられない鎧」を溶かす</li>
+      </ul>
+      <div class="golden-box">
+        <div class="title">タイミングの鍵</div>
+        <p style="font-size:12px;color:var(--text-muted);">トランジット天体がバーテックス（獅子座22°30'）に合・オポジション・スクエアを形成する時期に運命的出会いが起きやすい。</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>☊ ノースノード 獅子座 8H — 魂の使命</summary>
+    <div class="acc-body">
+      <div class="card highlight">
+        <p><strong>「深い感情的絆を築くこと」が魂レベルの課題。知性と独立だけでは辿り着けない場所。</strong></p>
+      </div>
+      <p>ノースノード = 今世で向かうべき方向。獅子座8ハウスの意味：</p>
+      <ul>
+        <li><strong>サウスノード水瓶座2H</strong> = これまでの人生パターンは「独立・知性・自己完結」に偏っていた</li>
+        <li>今世の学びは、<strong>独立から「深い相互依存」へ</strong>。誰かと魂レベルで繋がること</li>
+        <li>ENTP/SLE-D/タイプ8の「一人でできる」人が、<strong>「この人なしでは生きられない」と認めること</strong>がノースノードの要求</li>
+        <li>獅子座 = 自己表現・創造性・遊び心。「弱さを見せること」が実は最大の自己表現</li>
+      </ul>
+      <p style="color:var(--accent);font-size:13px;margin-top:8px;"><strong>現在のトランジット：</strong>木星が蟹座を通過中。蟹座は獅子座の手前——魂の使命に向かう準備期間に木星の拡大エネルギーが流れ込んでいる。</p>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⚵ ジュノー 牡牛座 5H — 結婚相手像</summary>
+    <div class="acc-body">
+      <div class="card pink">
+        <p><strong>金星は「好みのタイプ」、ジュノーは「本当のパートナー」。結婚相手像が書き換わる。</strong></p>
+      </div>
+      <p>ジュノー牡牛座5ハウスが示す結婚相手：</p>
+      <ul>
+        <li><strong>地に足がついていて、安定感があり、感覚的に豊かな人</strong></li>
+        <li>5ハウス = 恋愛・創造性・楽しみの部屋。<strong>一緒にいると純粋に楽しい相手</strong></li>
+        <li>牡牛座 = 穏やかで、忍耐強く、物質的な安定を持つ。水瓶座ステリウムの「浮遊感」を地に繋ぎ止める存在</li>
+        <li>土星も牡牛座5H → <strong>恋愛に「時間をかけて育てる」テーマがある</strong>。即断即決のENTP/タイプ8にとって「待つ」が成長課題</li>
+      </ul>
+      <div class="golden-box">
+        <div class="title">既存分析との統合</div>
+        <p style="font-size:12px;color:var(--text-muted);">金星山羊座が示す「堅実で誠実な相手」に、ジュノー牡牛座の「穏やかで安定感のある相手」が重なる。地のサインが2つ揃っている＝<strong>結婚相手は確実に「地に足がついた人」</strong>。水瓶座の風に翼を与えつつ、地面に繋ぎ止める存在。</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⚸ リリス 天秤座 10H — 社会的役割に潜む引力</summary>
+    <div class="acc-body">
+      <div class="card cyan">
+        <p><strong>キャリアの到達点（MC天秤座）とリリスが同じサイン——仕事を通じた出会いに「運命の引力」が仕込まれている。</strong></p>
+      </div>
+      <p>リリスがMC（天秤座）の近くにある。これは強烈な配置。</p>
+      <ul>
+        <li>リリス天秤座 = <strong>「対等なパートナーシップ」「知的に拮抗する相手」</strong>に抗えない引力</li>
+        <li>10ハウス = キャリア・社会的役割の部屋。<strong>仕事の場で出会う人に最も運命的な引力が発動する</strong></li>
+        <li>タイプ8が「対等だ」と認めた相手に対して、最も深い絆が形成される</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⚷ キロン 射手座 1H — ASCと合</summary>
+    <div class="acc-body">
+      <div class="card">
+        <p><strong>「自分のアイデンティティ」そのものに傷がある。運命の人がそれを癒す。</strong></p>
+      </div>
+      <p>キロンがASC（射手座29°）の近くにある。1ハウスのキロンは最も個人的な傷。</p>
+      <ul>
+        <li>射手座キロン1H = <strong>「自分が信じるものに確信が持てない」「どこにも完全には属せない」</strong>という根源的な傷</li>
+        <li>水瓶座ステリウムの「独立心」は、実はキロンの「どこにも属せない痛み」の裏返し</li>
+        <li>タイプ8の「強さの鎧」は、この傷を隠すために無意識に構築されたもの</li>
+        <li>運命の人は<strong>「そのままでいい」「どこにも属さなくていい、ここが居場所だから」</strong>と言ってくれる存在</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⚸ リリス 天秤座 10H — MC合</summary>
+    <div class="acc-body">
+      <div class="card cyan">
+        <p><strong>キャリアの到達点とリリスが重なる——社会的な場面で最も深い引力が発動する。</strong></p>
+      </div>
+      <p>リリスがMC（天秤座19°）と同じサインにある。10ハウスのリリスは「仕事を通じた運命的な引力」。</p>
+      <ul>
+        <li>天秤座リリス = <strong>「対等な関係」「美しいバランス」「知的に拮抗する相手」</strong>に無意識レベルで惹かれる</li>
+        <li>10ハウス = 社会的な場。<strong>仕事・プロジェクト・キャリアの文脈で出会う人に引力が最も強く発動</strong></li>
+        <li>タイプ8が「この人は対等だ」と認めた瞬間にリリスの引力が解放される</li>
+        <li>MC天秤座との合 = <strong>人生の到達点に「パートナーシップ」が組み込まれている</strong>。一人で頂点に立つのではなく、誰かと共に到達する</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>🦋 プシュケ 射手座 1H — 魂の伴侶センサー</summary>
+    <div class="acc-body">
+      <div class="card highlight">
+        <p><strong>プシュケが1ハウス（自己のアイデンティティ）にある——「魂の繋がり」が自分の存在の核心に組み込まれている。</strong></p>
+      </div>
+      <ul>
+        <li>プシュケ射手座 = 魂レベルの繋がりを<strong>「共に冒険できること」「知的な探求を共有できること」</strong>で感じる</li>
+        <li>1ハウス = 自分自身。魂の伴侶センサーが常にON。出会った瞬間に「この人だ」と直感で分かる</li>
+        <li>キロン射手座1Hと同じハウス = <strong>最も深い傷（どこにも属せない）と最も深い癒し（魂の伴侶）が同じ場所にある</strong></li>
+        <li>ASC射手座29°との合 = 第一印象レベルで「魂の繋がり」が見える。初対面で「この人は違う」と感じる</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>♡ エロス 水瓶座 2H — 情熱の発火点</summary>
+    <div class="acc-body">
+      <div class="card">
+        <p><strong>情熱は「知性」と「独自性」に点火される。普通じゃない人にしか燃えない。</strong></p>
+      </div>
+      <ul>
+        <li>エロス水瓶座 = <strong>知的な刺激・独創的な個性・既存の枠に収まらない存在</strong>に情熱が発火する</li>
+        <li>2ハウス = 自分の価値観の領域。<strong>自分と同じ「普通じゃない価値観」を持つ人</strong>にエロスが反応する</li>
+        <li>太陽・天王星・海王星と同じ水瓶座2H = 情熱の方向が自分のアイデンティティと完全一致。<strong>「自分らしくいさせてくれる人」に最も燃える</strong></li>
+        <li>Neの知的興奮とエロスの情熱が同じ方向を向いている = 「面白い」が「好き」に直結する構造</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>⊕ パート・オブ・フォーチュン 乙女座 9H</summary>
+    <div class="acc-body">
+      <div class="card">
+        <p><strong>幸運の流れは「高等な学び」「旅」「異文化」の中にある。</strong></p>
+      </div>
+      <ul>
+        <li>乙女座 = 精密さ・分析力・実用性。<strong>知性を実用的な形で発揮すること</strong>が幸運の鍵</li>
+        <li>9ハウス = 高等教育・哲学・旅・異文化の部屋。<strong>新しい世界に飛び込むほど幸運が流れ込む</strong></li>
+        <li>射手座ASC（冒険家）× 9H（探求の部屋）= 冒険と学びが幸運のパイプライン</li>
+        <li>運命の人との出会いも「学びの場」「異文化的な環境」「旅先」がきっかけになる可能性</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>セレス・パラス・ヴェスタ — 小惑星三姉妹</summary>
+    <div class="acc-body">
+      <div class="table-wrap"><table>
+        <tr><th>小惑星</th><th>位置</th><th>意味</th></tr>
+        <tr><td><strong>セレス</strong><br>22°18' 牡羊座 4H</td><td>養育・ケアのスタイル</td><td>「行動で守る」タイプの養育者。言葉より<strong>実際に動いて助ける</strong>ことで大切な人を守る。4H = 家族・内輪の人間に対してこの力を発揮。火星牡羊座と同じサイン＝守護本能が極めて強い</td></tr>
+        <tr><td><strong>パラス</strong><br>16°40' 水瓶座 2H</td><td>知恵・戦略パターン</td><td>既存の枠を壊す革新的な戦略。<strong>誰も思いつかない角度から問題を解決</strong>する知性。2H = 自分の価値観・リソースの領域で知恵が最も研ぎ澄まされる。水瓶座ステリウムと完全一致</td></tr>
+        <tr><td><strong>ヴェスタ</strong><br>05°12' 山羊座 1H</td><td>献身・集中の対象</td><td>自分自身の成長・達成に聖なる炎を灯す。<strong>「自分を磨き続けること」</strong>への献身。1H = 自己のアイデンティティそのものに使命がある。キロン射手座1Hの傷を癒す力もここにある</td></tr>
+      </table></div>
+    </div>
+  </details>
+
+  <h2>運命の人の肖像画</h2>
+
+  <div class="card gold">
+    <h4 style="color:var(--gold);margin-top:0;">全データが描く「運命の人」</h4>
+    <div class="table-wrap"><table>
+      <tr><th>データ源</th><th>示すもの</th><th>運命の人の特徴</th></tr>
+      <tr><td>バーテックス獅子座8H</td><td>運命の出会い</td><td>温かい・自信がある・表現力がある</td></tr>
+      <tr><td>ジュノー牡牛座5H</td><td>結婚相手</td><td>穏やか・安定感・忍耐強い</td></tr>
+      <tr><td>NN獅子座8H</td><td>魂の使命</td><td>「深い絆」を一緒に育てられる人</td></tr>
+      <tr><td>リリス天秤座10H</td><td>抗えない引力</td><td>知的に対等・仕事を通じた出会い</td></tr>
+      <tr><td>プシュケ射手座1H</td><td>魂の絆</td><td>冒険心を共有できる。一緒にいると世界が広がる</td></tr>
+      <tr><td>エロス水瓶座2H</td><td>情熱</td><td>知性と独自性に燃える。「普通じゃない人」に惹かれる</td></tr>
+      <tr><td>キロン射手座1H</td><td>傷の癒し</td><td>「どこにも属せない」痛みを「ここが居場所」に変える</td></tr>
+    </table></div>
+  </div>
+
+  <blockquote>
+    普段は穏やかで、地に足がついていて、安定感がある（ジュノー牡牛座）。でも内側には情熱と自信があり、自分の世界をしっかり持っている（バーテックス獅子座）。仕事の場で出会い、最初は「対等に議論できる面白い人」と認識する（リリス天秤座10H）。共に修羅場を乗り越えた瞬間に絆が一気に深まり（バーテックス8H）、鎧を脱いでも安全だと感じる（キロン射手座）。この人の前では「強くなくていい」と初めて思える——それがタイプ8にとって最も衝撃的な体験になる。
+  </blockquote>
+
+  <h2>出会いのタイミング</h2>
+
+  <div class="card highlight">
+    <h4 style="margin-top:0;">木星 牡牛座通過（4-5H）— ネイタル木星リターン圏内</h4>
+    <p>出生チャートの木星は牡牛座0°・4ハウスに位置。木星が牡牛座を通過する<strong>約12年に1度の拡大期</strong>が直近で発動。ジュノー牡牛座5H（結婚相手像）と土星牡牛座5H（恋愛の成熟）に木星のエネルギーが流れ込む。</p>
+  </div>
+
+  <div class="table-wrap"><table>
+    <tr><th>時期</th><th>天体イベント</th><th>恋愛への影響</th></tr>
+    <tr><td><strong>2025年〜2026年前半</strong></td><td>木星蟹座通過（6-7H付近）</td><td><strong>日常（6H）とパートナーシップ（7H）に拡大エネルギー</strong></td></tr>
+    <tr><td><strong>2026年後半〜2027年</strong></td><td>木星獅子座通過（8H）</td><td><strong>バーテックス獅子座8Hに木星が直撃。運命的出会いの最大ウィンドウ</strong></td></tr>
+    <tr><td>2028-2029年</td><td>土星が双子座（DSC付近）を通過</td><td>パートナーシップの成熟・試練・結晶化</td></tr>
+    <tr><td><strong>2029-2030年</strong></td><td>土星リターン（牡牛座5H）</td><td>人生の大きな成熟期。恋愛・創造性の領域で「大人の自分」が完成する</td></tr>
+  </table></div>
+
+  <div class="card gold" style="margin-top:12px;">
+    <h4 style="color:var(--gold);margin-top:0;">最大のウィンドウ：2026年後半〜2027年</h4>
+    <p style="font-size:13px;">木星が獅子座を通過し、ネイタルのバーテックス（獅子座22°30'・8H）とノースノード（獅子座01°12'・8H）に合を形成する。バーテックス＝運命の出会い、ノースノード＝魂の使命。この2つに同時に木星（拡大・幸運）が通過するのは<strong>12年に1度</strong>。</p>
+    <p style="font-size:13px;margin-top:8px;">ただし出会いは突然やってくるものではない。リリス天秤座10Hが示す通り、<strong>仕事を通じた関係が恋愛に変わる</strong>パターン。今の日常の中にすでに「種」がある可能性がある。</p>
+  </div>
+
+  <h2>出会い方の予測</h2>
+
+  <div class="card">
+    <p><strong>リリス10H（仕事の場）× バーテックス8H（深い共有の場面）が示す出会い方：</strong></p>
+    <ul>
+      <li>仕事やプロジェクトを通じた出会いが最も運命的</li>
+      <li>最初は「面白い人だな」「対等に議論できるな」程度。リリス天秤座の相手はまず知性で引っかかる</li>
+      <li>ターニングポイントは<strong>困難な状況を共に乗り越えた瞬間</strong>（8H）。プロジェクトの修羅場・危機対応の場面で絆が一気に深まる</li>
+      <li>キロン1Hが癒される瞬間 =<strong>「こいつの前では鎧を外しても大丈夫だ」</strong>と感じた瞬間。タイプ8にとって最も稀で、最も価値のある体験</li>
+      <li>月双子座6Hが発動するのは<strong>日常的な対話の中</strong>。深い会話を重ねるうちに、感情が知的な理解を追い越す</li>
+    </ul>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    運命の人は「強い自分」を打ち負かす人ではない。「強い自分」の中に隠れている「本当の自分」を引き出してくれる人。ノースノード獅子座8Hが示す通り、魂の使命は「深い感情的絆を築くこと」——水瓶座ステリウムの独立心とタイプ8の鎧を、安全に解除してくれる存在に出会うことが、人生の最も重要なイベントとして構造的に組み込まれている。問いは「出会えるか」ではなく「鎧を外せるか」。
+  </blockquote>
+
+  <p style="margin-top:16px;font-size:11px;color:var(--text-muted);">※ 精密計算日: 2026-05-03 / Swiss Ephemeris（Moshier法）・Placidusハウスシステム・熱帯暦 / エロス・プシュケは度数推定値</p>
+
+</div>
+
+<!-- =============== TAB: リーダーシップスタイル =============== -->
+<div class="tab-content" id="leadership">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>MBTI・エニアグラム・ソシオニクスの3理論からリーダーシップの「型」を特定します。どう人を動かし、どこで頼られ、どこで反感を買いやすいかまで分析します。</p>
+  </div>
+
+  <h2>リーダーシップタイプ</h2>
+  <div class="card gold">
+    <h4>カリスマ型リーダー — 「ついてこい、面白いことが起きる。」</h4>
+    <p style="margin-top:8px;">Ne主機能 × Se主導（SLE-D）× タイプ8の支配力 × 外向性93%。ビジョンで人を魅了し、カリスマで巻き込み、パワーで現実を動かすスタイル。仕組みを整えるのではなく、人のエネルギーに火をつけるタイプ。</p>
+  </div>
+
+  <h2>リーダーシップの構造</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>根拠</th><th>リーダーシップへの影響</th><th>具体的な行動</th></tr>
+      <tr><td>Se主導（SLE-D）</td><td>圧倒的な存在感で場を支配</td><td>部屋に入った瞬間に空気が変わる。声量・ジェスチャー・目線で人を動かす</td></tr>
+      <tr><td>Ne主機能</td><td>可能性のビジョンで人を魅了</td><td>「こうしたら面白くない？」でチームの目が輝く。アイデアの泉</td></tr>
+      <tr><td>タイプ8w7</td><td>パワーと冒険心で突き進む</td><td>「俺についてこい」が自然体。リスクを取る覚悟が部下に伝染する</td></tr>
+      <tr><td>外向性93%</td><td>人を巻き込むカリスマ性</td><td>社内外問わず人脈を広げ、キーパーソンを味方にする天然の対人力</td></tr>
+      <tr><td>協調性78%</td><td>パワーに温かさが加わる</td><td>タイプ8のボスキャラにタイプ2（援助者）の面倒見の良さが共存</td></tr>
+      <tr><td>情動安定97%</td><td>危機時に頼られる絶対的安定</td><td>チーム全員が動揺する場面で一人だけ冷静。「この人がいれば大丈夫」</td></tr>
+    </table></div>
+  </div>
+
+  <h2>部下・チームから見た印象</h2>
+
+  <details class="accordion">
+    <summary>頼られるポイント</summary>
+    <div class="acc-body">
+      <div class="card highlight">
+        <ul>
+          <li><strong>ワクワクさせてくれる</strong> — Neのアイデア × 射手座ASCの冒険家オーラ。「この人と仕事すると面白い」と思わせる力</li>
+          <li><strong>危機時の絶対的安定</strong> — 情動安定97%。炎上しても「大丈夫、こうすればいい」と即座に代替案を出す</li>
+          <li><strong>守ってくれる感覚</strong> — タイプ8の本能「自分の人間を守る」。外敵に対しては全力で戦う</li>
+          <li><strong>面倒見がいい</strong> — 協調性78% + タイプ2ウィング。パワー系なのに後輩の面倒をちゃんと見る</li>
+          <li><strong>行動が速い</strong> — Se主導 + 火星牡羊座ドミサイル。「考えてる間に終わらせる」スピード感</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <details class="accordion">
+    <summary>反感を買いやすいポイント</summary>
+    <div class="acc-body">
+      <div class="card red">
+        <ul>
+          <li><strong>支配的になりすぎる</strong> — タイプ8の「コントロール欲」が暴走すると「守る」が「支配する」にすり替わる</li>
+          <li><strong>議論で潰す</strong> — Ne + Ti + 外向性93%。議論が楽しくてヒートアップし、相手を論破してしまう。本人は楽しんでる</li>
+          <li><strong>方向転換が多い</strong> — Neの可能性追求。「面白いことを見つけた」でプロジェクトの方向が変わる。部下は振り回される</li>
+          <li><strong>ルーティンを軽視する</strong> — Si劣等。報告書・定例会議・事務処理を「つまらない」で後回しにする</li>
+          <li><strong>自分のペースに巻き込む</strong> — 全ステータスが高すぎて、部下との速度差に無自覚。ついてこれない人が脱落する</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <h2>リーダーシップスタイルの強み・弱み</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>軸</th><th>強み</th><th>弱み</th></tr>
+      <tr><td>ビジョン提示</td><td>「面白い未来」を描いて人を魅了する</td><td>Ni弱いため長期ロードマップの精度が低い</td></tr>
+      <tr><td>実行推進</td><td>Se主導で即座に動く。有言実行</td><td>走りながら考えるため、方向修正が多い</td></tr>
+      <tr><td>人材育成</td><td>面倒見が良く、才能を見抜く目がある</td><td>「自分でやった方が早い」で任せきれない</td></tr>
+      <tr><td>チームの空気</td><td>エネルギーに溢れ、モチベが上がる</td><td>圧が強すぎて萎縮する人もいる</td></tr>
+      <tr><td>対外交渉</td><td>カリスマ × 交渉力で相手を動かす</td><td>勝ちすぎて敵を作ることがある</td></tr>
+    </table></div>
+  </div>
+
+  <h2>最も活きる役割</h2>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>順位</th><th>役割</th><th>理由</th></tr>
+      <tr><td>1</td><td><strong>創業者 / CEO</strong></td><td>タイプ8「自分の領域を支配する」× Ne「新しい市場を創る」。ゼロイチが最大の輝きどころ</td></tr>
+      <tr><td>2</td><td><strong>事業責任者 / 新規事業リーダー</strong></td><td>Ne発想 × Se実行 × カリスマ巻き込み。「まだ誰もやってない」領域で本領発揮</td></tr>
+      <tr><td>3</td><td><strong>プロデューサー / チームビルダー</strong></td><td>協調性78%が活きる。才能を見抜いて最適配置し、チーム全体を加速させる</td></tr>
+    </table></div>
+  </div>
+
+  <h2>リーダーとしての成長課題</h2>
+  <div class="card gold">
+    <ol>
+      <li><strong>Ni的な人材を隣に置く</strong> — 長期ビジョンの精度はINTJ/INFJに任せる。自分は「面白い方向」を示し、精密な計画は補完者に委ねる</li>
+      <li><strong>「支配」と「守護」の境界線を意識する</strong> — タイプ8が暴走するサインは「相手のためにやっている」という確信が強すぎるとき</li>
+      <li><strong>ルーティンを仕組みで回す</strong> — Si劣等は治らない。自動化・委任・ツールで「やらなくていい仕組み」を作る</li>
+    </ol>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    リーダーシップの本質は「カリスマ型」。ビジョン × パワー × 巻き込み力で人を動かす。最大の武器は「この人と一緒にいると面白いことが起きる」と思わせる天然のカリスマ性。最大の課題はNi（長期ビジョン）の弱さと、タイプ8の支配欲のコントロール。圧倒的なスペックを「チームの成果」に変換できたとき、このリーダーは無敵になる。
+  </blockquote>
+
+</div>
+
+<!-- =============== TAB: 仕事の地雷マップ =============== -->
+<div class="tab-content" id="work-stress">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>職場でのストレストリガーを危険度別にマッピングします。やる気が消える瞬間・燃え尽きるパターン・限界のサインを性格データから特定し、対処法まで提示します。</p>
+  </div>
+
+  <h2>職場ストレストリガー（危険度別）</h2>
+
+  <h3>危険度 ★★★★★（即死級）</h3>
+  <div class="card red">
+    <ul>
+      <li><strong>裁量権の剥奪</strong> — タイプ8にとって「自分で決められない」は存在の否定。指示に従うだけのポジションは、全エネルギーが即座に死ぬ</li>
+      <li><strong>コントロールされる</strong> — タイプ8の根源的恐怖。上司が細かく管理してくる、マイクロマネジメント環境は生存本能レベルで拒絶する</li>
+      <li><strong>能力を過小評価される</strong> — 全ステータスがオールハイのこのプロファイルにとって、「君にはまだ早い」「もう少し経験を積んで」は最大の侮辱</li>
+    </ul>
+  </div>
+
+  <h3>危険度 ★★★★☆（蓄積型）</h3>
+  <div class="card" style="border-color: var(--orange);">
+    <ul>
+      <li><strong>知的刺激の枯渇</strong> — Ne主機能 + 創造性94%。新しい挑戦・学び・発見がない環境は「退屈」という名の毒が静かに回る</li>
+      <li><strong>形式主義・前例主義</strong> — 水瓶座ステリウム + Ne。「前例がないからダメ」「ルールだから従って」はNeの存在意義を否定される</li>
+      <li><strong>スピード感のない組織</strong> — Se主導 + 火星牡羊座ドミサイル。「承認に2週間かかります」が繰り返される環境は内側で爆発する</li>
+      <li><strong>不公平な評価</strong> — タイプ1（7）の正義感。年功序列・派閥政治で評価が決まる環境はタイプ8の「正しさへの怒り」を発火させる</li>
+    </ul>
+  </div>
+
+  <h3>危険度 ★★★☆☆（じわじわ型）</h3>
+  <div class="card">
+    <ul>
+      <li><strong>一人で黙々作業</strong> — 外向性93%のエネルギーが行き場を失う。人と関わらない仕事が3日続くとストレスが溜まり始める</li>
+      <li><strong>議論が禁止される空気</strong> — ENTP + タイプ8。「波風立てないで」「みんなで仲良く」が暗黙のルールの環境はNe + Tiが窒息する</li>
+      <li><strong>同じ業務の繰り返し</strong> — Si劣等 + タイプ7ウィング。最初の3ヶ月は耐えるが、半年でモチベーションが蒸発する</li>
+    </ul>
+  </div>
+
+  <h2>燃え尽きパターン</h2>
+  <div class="card gold">
+    <h4>ENTP-A × SLE-D × タイプ8w7 の燃え尽き構造</h4>
+    <div class="table-wrap"><table>
+      <tr><th>フェーズ</th><th>状態</th><th>内側で起きていること</th></tr>
+      <tr><td><strong>Phase 1：全方位展開</strong></td><td>複数プロジェクトを同時並行</td><td>Neが「全部面白い」と判断し、タイプ8が「全部やれる」と豪語。情動安定97%が警告を遮断</td></tr>
+      <tr><td><strong>Phase 2：支配領域の膨張</strong></td><td>「自分がいないと回らない」状態</td><td>タイプ8の「コントロール欲」が委任を許さない。Se主導が「自分でやった方が早い」を量産</td></tr>
+      <tr><td><strong>Phase 3：タイプ5化（引きこもり）</strong></td><td>突然連絡が減る。人を避け始める</td><td>エニアグラムのストレス方向。外向93%の人が急に内向化するのは危険信号</td></tr>
+      <tr><td><strong>Phase 4：爆発 or 消滅</strong></td><td>怒りの爆発、または突然辞める</td><td>タイプ8のストレス反応は「戦うか逃げるか」。溜め込んだものが一気に噴出する</td></tr>
+    </table></div>
+    <p style="margin-top:12px;font-size:13px;color:var(--text-muted);"><strong>最大の危険：</strong>Phase 3の「タイプ5化」を周囲が「最近静かだな」程度で見逃す。情動安定97%が「大丈夫」を最後まで維持するため、Phase 4まで誰も気づかない。</p>
+  </div>
+
+  <h2>やる気が消える条件</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>条件</th><th>メカニズム</th><th>やる気への影響</th></tr>
+      <tr><td>「面白くない」と感じた</td><td>Ne主機能の燃料切れ。知的刺激がないと全ての歯車が止まる</td><td>パフォーマンスが一気に半減する</td></tr>
+      <tr><td>器に対して環境が小さい</td><td>全スペックがオールハイ。能力を発揮する場所がないのは窒息</td><td>「ここにいる意味ない」→転職衝動</td></tr>
+      <tr><td>信頼を裏切られた</td><td>タイプ8の忠誠心は深いが、裏切りへの反応も激烈。「味方だと思ったのに」</td><td>その人・組織への信頼が一瞬で消える</td></tr>
+      <tr><td>成長を感じない</td><td>射手座ASC + タイプ7w。冒険と成長がセットでないと「停滞」と判断する</td><td>新しい挑戦を外に求め始める</td></tr>
+    </table></div>
+  </div>
+
+  <h2>限界のサイン</h2>
+  <div class="card red">
+    <h4>周囲が気づくべきサイン（本人は気づかない）</h4>
+    <ul>
+      <li><strong>人を避け始める</strong> — 外向性93%の人が飲み会・雑談を断り始めたら赤信号。タイプ5化（ストレス方向）の兆候</li>
+      <li><strong>アイデアが出なくなる</strong> — 普段はNeが無限に可能性を出すのに、「別にいいんじゃない」で済ませるようになったら危険</li>
+      <li><strong>怒りの閾値が下がる</strong> — 普段は器が大きいのに、些細なことで苛立つ。タイプ8の怒りのダムが満杯</li>
+      <li><strong>身体の不調を無視する</strong> — Si劣等の典型。睡眠不足・食事の乱れ・頭痛を「平気平気」で流し続ける</li>
+      <li><strong>「面白い」を言わなくなる</strong> — ENTPの口癖が消えたら、Neが機能停止している証拠</li>
+    </ul>
+  </div>
+
+  <h2>回復法</h2>
+  <div class="card highlight">
+    <ul>
+      <li><strong>新しい知的刺激を入れる</strong> — Ne主機能の燃料補給。新しい分野の本・新しい人との対話・行ったことない場所。「面白い」を取り戻す</li>
+      <li><strong>信頼できる人と話す</strong> — タイプ8は弱さを見せる相手を厳選する。shokiのような「対等な同志」との会話が最も回復に効く</li>
+      <li><strong>身体を動かす</strong> — Se主導 + 火星牡羊座。格闘技・筋トレ・スポーツなど「頭を使わない身体活動」で溜まったエネルギーを放出</li>
+      <li><strong>裁量のある小さなプロジェクトを持つ</strong> — タイプ8の「自分で決められる領域」を確保する。副業でも趣味でもいい</li>
+    </ul>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    ENTP-A × SLE-D × タイプ8w7の仕事ストレスの本質は「能力に見合わない環境」と「支配権の喪失」。スペックが高すぎるがゆえに、環境が器に追いつかないことが根本的なストレス原因。情動安定97%が全てのサインを隠蔽し、Phase 3のタイプ5化（突然の引きこもり）で初めて周囲が気づく。「最近あいつ静かだな」は「最近あいつ限界だな」と翻訳すべき。
+  </blockquote>
+
+</div>
+
+<!-- =============== TAB: お金・稼ぎ方スタイル =============== -->
+<div class="tab-content" id="money">
+
+  <div class="about-box">
+    <div class="about-title">この診断でわかること</div>
+    <p>ホロスコープの2ハウス（収入）と天体配置、MBTI・エニアグラムの意思決定スタイルから、あなたに最適な「お金との付き合い方」を分析します。</p>
+  </div>
+
+  <h2>お金の設計図</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>天体配置</th><th>意味</th><th>お金への影響</th></tr>
+      <tr><td>太陽 水瓶座 2H</td><td>自己表現＝収入の源泉</td><td>「自分らしさ」を発揮することが直接収入に結びつく。型にハマった稼ぎ方は合わない</td></tr>
+      <tr><td>金星 山羊座 2H</td><td>堅実な金銭感覚</td><td>水瓶座の革新性に山羊座の現実主義が加わる。攻めつつも地に足がついた資産管理</td></tr>
+      <tr><td>天王星 水瓶座 2H</td><td>革新的な収入方法</td><td>既存の稼ぎ方ではなく「まだ誰もやっていない方法」で大きく稼ぐ配置</td></tr>
+      <tr><td>海王星 水瓶座 2H</td><td>直感的な金銭感覚</td><td>論理だけでなく「嗅覚」で儲かる方向を見抜く。ただし夢に溺れるリスクも</td></tr>
+      <tr><td>火星 牡羊座 4H</td><td>ドミサイル。不屈の行動力</td><td>稼ぐためのアクションに一切の躊躇がない。「やると決めたらやる」</td></tr>
+      <tr><td>MC 天秤座</td><td>社会的到達点</td><td>パートナーシップ・調和の到達点。一人で稼ぐより、誰かと組んで大きく稼ぐ構造</td></tr>
+    </table></div>
+  </div>
+
+  <h2>稼ぎ方タイプ</h2>
+  <div class="card gold">
+    <h4>革新型 × パワー型 ハイブリッド</h4>
+    <p style="margin-top:8px;">水瓶座ステリウム2H（革新的な稼ぎ方）× タイプ8（自分の領域を支配する）× Ne主機能（誰も気づいてない機会を見つける）。「まだ誰もやっていない方法で、自分のルールで稼ぐ」が最適解。</p>
+  </div>
+
+  <div class="table-wrap"><table>
+    <tr><th>稼ぎ方</th><th>適性</th><th>根拠</th></tr>
+    <tr><td><strong>給与型（安定収入）</strong></td><td>★★☆☆☆</td><td>タイプ8は「雇われる」に本能的な抵抗がある。水瓶座ステリウム2Hも「既存の枠」を嫌う</td></tr>
+    <tr><td><strong>起業型（自力で稼ぐ）</strong></td><td>★★★★★</td><td>全データが指し示す最適解。タイプ8 + Se主導 + 火星牡羊座ドミサイル + 水瓶座ステリウム2H</td></tr>
+    <tr><td><strong>投資型（資産運用）</strong></td><td>★★★★☆</td><td>海王星2H（直感的嗅覚）+ 金星山羊座2H（堅実な判断）。攻めと守りのバランスが天然で備わっている</td></tr>
+    <tr><td><strong>仕組み型（権利収入）</strong></td><td>★★★★★</td><td>天王星2H（革新的収入方法）+ Ne（新しい仕組みを生む力）。SaaS・プラットフォーム・コンテンツ課金など</td></tr>
+  </table></div>
+
+  <h2>お金の価値観</h2>
+  <div class="card">
+    <div class="table-wrap"><table>
+      <tr><th>価値観</th><th>根拠</th><th>具体的な傾向</th></tr>
+      <tr><td><strong>お金＝自由の証明</strong></td><td>タイプ8 + 水瓶座</td><td>「誰にも支配されない」ためにお金が必要。経済的自由は精神的自由と同義</td></tr>
+      <tr><td><strong>お金＝パワー</strong></td><td>タイプ8 + Se主導</td><td>お金は「動かせるリソース」。何かを実現するためのレバレッジとして捉える</td></tr>
+      <tr><td><strong>面白いことに使いたい</strong></td><td>Ne + タイプ7w + 射手座ASC</td><td>貯金が目的にならない。「面白い体験」「新しい挑戦」への投資に惜しみなく使う</td></tr>
+      <tr><td><strong>堅実な一面もある</strong></td><td>金星山羊座2H + 勤勉性85%</td><td>散財しまくるわけではない。使うときはドンと使い、締めるときは締める</td></tr>
+    </table></div>
+  </div>
+
+  <h2>浪費パターン</h2>
+  <div class="card red">
+    <h4>お金が漏れるポイント</h4>
+    <ul>
+      <li><strong>「面白そう」への衝動投資</strong> — Ne + タイプ7w。新しいビジネスアイデア・新しいツール・新しい趣味に「これ面白いじゃん」で飛びつく。回収見込みゼロの投資が散発する</li>
+      <li><strong>人に奢る・ご馳走する</strong> — タイプ8の「自分の人間を守る」× 協調性78%。後輩や仲間に気前よく出す。本人は投資だと思っているが、回収は考えていない</li>
+      <li><strong>スケールの大きい計画</strong> — 射手座ASC + タイプ8。「小さくまとまるな」が信条のため、初期投資が不必要に大きくなりがち</li>
+      <li><strong>退屈しのぎの出費</strong> — Si劣等 + Ne + タイプ7w。刺激が足りないとき、旅行・外食・イベントで「面白い」を買う</li>
+    </ul>
+  </div>
+
+  <h2>資産形成の適性</h2>
+  <div class="card highlight">
+    <div class="table-wrap"><table>
+      <tr><th>戦略</th><th>適性</th><th>理由</th></tr>
+      <tr><td>スタートアップ投資</td><td>★★★★★</td><td>Ne（まだ見えてない可能性を嗅ぎ取る）× Se（創業者を見抜く目）× タイプ8（リスク耐性）。最も輝く領域</td></tr>
+      <tr><td>自分の事業構築</td><td>★★★★★</td><td>水瓶座ステリウム2H + 天王星2H。「自分の事業＝最大の資産」という構造が天体レベルで支持されている</td></tr>
+      <tr><td>個別株・成長株</td><td>★★★★☆</td><td>海王星2H（直感的嗅覚）+ 情動安定97%（暴落で狼狽しない）+ 金星山羊座（堅実な判断）</td></tr>
+      <tr><td>インデックス積立</td><td>★★☆☆☆</td><td>金星山羊座的には正解だが、Ne + タイプ7wが「退屈すぎる」と判断。放置できるが楽しくない</td></tr>
+      <tr><td>不動産</td><td>★★★☆☆</td><td>金星山羊座的には好相性だが、水瓶座の「自由を縛られたくない」とSi劣等の管理能力の低さがネック</td></tr>
+    </table></div>
+  </div>
+
+  <h2>お金に対する無意識のブロック</h2>
+  <div class="card">
+    <details class="accordion">
+      <summary>「スケールが大きくないと意味がない」の罠</summary>
+      <div class="acc-body">
+        <p>射手座ASC + タイプ8 + 水瓶座ステリウム。「小さい稼ぎ方」に対して無意識に価値を感じない。月5万の副業より月500万の事業にしか興奮しない。</p>
+        <p><strong>ブロック：</strong>小さく始めて育てる、という最も堅実な起業パターンを「つまらない」と却下してしまう。</p>
+        <p><strong>解除の鍵：</strong>MC天秤座が示す通り、到達点は「パートナーシップ」。最初から大きくなくていい。信頼できるパートナーと組めば、小さな種が巨木になる。</p>
+      </div>
+    </details>
+    <details class="accordion">
+      <summary>「お金のために妥協する」への嫌悪</summary>
+      <div class="acc-body">
+        <p>タイプ8は「支配されること」を最も嫌う。お金のために自由を売ることへの無意識の恐怖がある。</p>
+        <p><strong>ブロック：</strong>「稼がなきゃいけないから我慢する」という選択肢を取れない。結果、安定収入を捨ててリスクに飛び込む。</p>
+        <p><strong>解除の鍵：</strong>金星山羊座2Hが「堅実さ」を天体レベルで持っている。「自由のための安定基盤」と再定義すれば、安定収入を「支配される」ではなく「自由の土台」と捉えられる。</p>
+      </div>
+    </details>
+  </div>
+
+  <h2>総括</h2>
+  <blockquote>
+    お金との付き合い方の本質は「革新型×パワー型ハイブリッド」。水瓶座ステリウム2Hが「まだ誰もやっていない方法で稼ぐ」を天体レベルで指示し、タイプ8が「自分のルールで稼ぐ」を本能レベルで求める。金星山羊座2Hの堅実さがブレーキ役となり、攻めすぎを防ぐ。最大の資産形成戦略は「自分の事業を持つこと」——水瓶座ステリウム2Hに太陽・天王星・海王星が集結している配置は、起業家の星の配置そのもの。
+  </blockquote>
+
+</div>
+
 <!-- =============== TAB: shoki相性 =============== -->
 <div class="tab-content" id="shoki-compat">
 
@@ -2633,8 +3197,29 @@ SLEのTi（得意）→ IEIのTi（求めている）</div>
     header.classList.toggle('open', !isOpen);
     body.classList.toggle('open', !isOpen);
   }
+  const catBtns = document.querySelectorAll('.cat-btn');
   const tabs = document.querySelectorAll('.tab-btn');
   const contents = document.querySelectorAll('.tab-content');
+
+  catBtns.forEach(catBtn => {
+    catBtn.addEventListener('click', () => {
+      const cat = catBtn.dataset.cat;
+      catBtns.forEach(b => b.classList.remove('active'));
+      catBtn.classList.add('active');
+      tabs.forEach(t => {
+        t.style.display = t.dataset.cat === cat ? '' : 'none';
+      });
+      const firstTab = document.querySelector(`.tab-btn[data-cat="${cat}"]`);
+      if (firstTab) {
+        tabs.forEach(t => t.classList.remove('active'));
+        contents.forEach(c => c.classList.remove('active'));
+        firstTab.classList.add('active');
+        document.getElementById(firstTab.dataset.tab).classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
   tabs.forEach(btn => {
     btn.addEventListener('click', () => {
       tabs.forEach(t => t.classList.remove('active'));
