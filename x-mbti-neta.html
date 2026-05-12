@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBTI別 Xネタ一覧</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #000;
+      color: #e7e9ea;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 1.4rem;
+      color: #1d9bf0;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #2f3336;
+    }
+
+    .post-card {
+      background: #16181c;
+      border: 1px solid #2f3336;
+      border-radius: 16px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    .post-card summary {
+      font-size: 1.15rem;
+      color: #fff;
+      padding: 16px 20px;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      user-select: none;
+    }
+
+    .post-card summary::-webkit-details-marker { display: none; }
+
+    .post-card summary::after {
+      content: '▶';
+      margin-left: auto;
+      font-size: 0.7rem;
+      color: #71767b;
+      transition: transform 0.2s;
+    }
+
+    .post-card[open] summary::after {
+      transform: rotate(90deg);
+    }
+
+    .post-card summary:hover {
+      background: rgba(255,255,255,0.03);
+    }
+
+    .post-card .card-body {
+      padding: 0 20px 20px;
+      border-top: 1px solid #2f3336;
+    }
+
+    .post-number {
+      color: #1d9bf0;
+      font-weight: bold;
+      margin-right: 6px;
+    }
+
+    .toggle-all {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .toggle-all button {
+      background: rgba(29, 155, 240, 0.1);
+      color: #1d9bf0;
+      border: 1px solid rgba(29, 155, 240, 0.3);
+      border-radius: 20px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .toggle-all button:hover {
+      background: rgba(29, 155, 240, 0.2);
+    }
+
+    .type-group-label {
+      font-size: 0.8rem;
+      color: #71767b;
+      margin: 10px 0 6px 0;
+      letter-spacing: 0.05em;
+    }
+
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(47, 51, 54, 0.4);
+    }
+
+    .type-row:last-child {
+      border-bottom: none;
+    }
+
+    .type-label {
+      font-weight: bold;
+      min-width: 52px;
+      color: #1d9bf0;
+      font-size: 0.92rem;
+    }
+
+    .type-label.analyst  { color: #a970ff; }
+    .type-label.diplomat { color: #00ba7c; }
+    .type-label.sentinel { color: #1d9bf0; }
+    .type-label.explorer { color: #f7b731; }
+
+    .type-sep {
+      color: #71767b;
+      margin: 0 6px;
+    }
+
+    .type-text {
+      font-size: 0.95rem;
+      color: #e7e9ea;
+    }
+
+    .copy-hint {
+      text-align: center;
+      color: #71767b;
+      font-size: 0.78rem;
+      margin-top: 30px;
+      padding-top: 15px;
+      border-top: 1px solid #2f3336;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(29, 155, 240, 0.1);
+      color: #1d9bf0;
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      border-radius: 12px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MBTI別 Xネタ一覧（35本）</h1>
+
+    <div class="toggle-all">
+      <button onclick="document.querySelectorAll('.post-card').forEach(d=>d.open=true)">すべて開く</button>
+      <button onclick="document.querySelectorAll('.post-card').forEach(d=>d.open=false)">すべて閉じる</button>
+    </div>
+
+    <!-- ネタ1 -->
+    <details class="post-card">
+      <summary><span class="post-number">01</span>MBTI別・仕事を辞める決定的瞬間<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">非効率な慣習が改善されず組織の限界を悟った瞬間</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">善意の無償労働が当たり前になり都合良く扱われた瞬間</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">会社の利益追求の裏にある卑しい欺瞞に気付いた時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">無能な上司が感情論で自分の合理的計画を阻む瞬間</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">くだらない社内政治や無意味な会議に拘束された時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">自分の感性や生活リズムが型にハメ殺されそうな時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">自分の信念を汚してまで働く価値がないと悟った時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">誰でもできる単純作業をやりがいで粉飾された瞬間</span></div>
+
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">自分より明らかに無能な人間が政治力で昇進した時</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">チームのために尽くしたのに手柄を横取りされた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">人を育てる努力を「余計なお世話」と切り捨てられた時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">意思決定が遅すぎて機会損失を繰り返す組織に絶望した時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">前例主義の上層部にスピード感を完全に殺された時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">職場の空気が暗すぎて自分のエネルギーが枯れた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">新しいアイデアが全部「前例がない」で潰された時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">議論が通じない思考停止集団に囲まれていると気づいた時</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ2 -->
+    <details class="post-card">
+      <summary><span class="post-number">02</span>MBTI別・恋人に一瞬で冷める瞬間<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">約束を何度も平気で破られた時</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">自分の献身を「重い」の一言で片付けられた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">相手の本性が自分の理想像と全く違うと確信した時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">同じ話を何度しても成長する気配がゼロだった時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">束縛や干渉で自分の自由時間を奪われ続けた時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">自分の好きなものを馬鹿にされた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">店員や弱い立場の人への態度が最悪だった時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">感情論だけで話が全く噛み合わないと悟った時</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">言い訳ばかりで責任を一切取らない姿を見た時</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">記念日やイベントを毎回忘れられ雑に扱われた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">自分ばかり気を遣い相手が一切歩み寄らなかった時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">向上心がなく現状維持で満足している姿に幻滅した時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">ノリが悪すぎて一緒にいてもつまらないと感じた時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">デートが毎回ワンパターンで刺激がゼロになった時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">自分の話に興味なさそうにスマホをいじられた時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">会話が浅すぎて知的好奇心が1ミリも刺激されない時</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ3 -->
+    <details class="post-card">
+      <summary><span class="post-number">03</span>MBTI別・深夜3時に考えてること<span class="tag">あるある</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">明日のタスクを脳内で完璧にスケジューリングしている</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">今日あの人にかけた言葉、傷つけてなかったかな…</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">人類の存在意義について壮大な結論に達しかけている</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">5年後の人生設計を第3案まで練り直している</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">YouTubeの分解動画を6時間ぶっ通しで見ている</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">急にインスピレーションが降りてきて創作を始めている</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">脳内の架空世界で壮大なストーリーが完結しかけている</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">Wikipediaのリンクを辿って量子力学にたどり着いている</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">寝てる。明日朝5時起きだから（規則正しい）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">友達のLINEグループの既読数が気になって眠れない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">後輩の悩み相談の返信を5回書き直している</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">副業の事業計画書をスプレッドシートで作っている</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">まだ飲んでる（3軒目のバーにいる）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">TikTokの「あと1本だけ」を200回繰り返している</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">来月の旅行プランを30タブ開いて比較している</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">起業アイデアが3つ浮かんでメモが止まらない</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ4 -->
+    <details class="post-card">
+      <summary><span class="post-number">04</span>MBTI別・LINEを既読スルーする理由<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">返信する価値のある内容じゃなかったから</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">完璧な返信を考えてたら3日経ってた（今更送れない）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">相手のエネルギーが重すぎて返信する気力がない</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">「了解」だけ送るのも冷たいし…と思って放置した</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">見た。理解した。返す必要ある？（本気で疑問）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">今の気分的に返信したくない。明日の自分に任せた</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">返信の文面に魂を込めたいから今は無理</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">調べ物に没頭してLINEの存在を忘れていた</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">業務時間外のくだらない連絡には対応しない主義</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">既読スルーしない。むしろ即レスしすぎて引かれる側</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">他の人の相談に乗ってたら返信を忘れてた（罪悪感）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">優先順位が低い。重要な用件なら電話してこい</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">今リアルで楽しいことしてるからスマホ見てない</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">返信しようとして別のアプリ開いたら忘れた</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">脳内で返信完了してた（実際には送ってない）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">面白い返しが思いつかなくて保留中</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ5 -->
+    <details class="post-card">
+      <summary><span class="post-number">05</span>MBTI別・ストレス限界のサイン<span class="tag">メンタル</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">いつものルーティンを放棄して無気力になる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">急に「もう誰の面倒も見ない」と宣言する</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">全員をシャットアウトして突然消える（ドアスラム）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">感情的な発言が増えて自分でも制御できなくなる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">普段は冷静なのに急にキレてモノに当たる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">好きだったことへの興味が一切なくなる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">自己否定ループに入り「自分なんか」が口癖になる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">何を聞いても「別にどうでもいい」しか出てこない</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">周囲への要求が異常に厳しくなり支配的になる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">「こんなにやってるのに」と被害者モードに入る</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">笑顔が貼り付いたまま目が笑ってない状態になる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">全てを一人で抱え込み周囲を信頼しなくなる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">酒・買い物・ギャンブルなど刺激に走りまくる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">急に部屋に引きこもり誰とも会わなくなる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">いつもの明るさが消えて皮肉っぽくなる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">議論じゃなくただの攻撃になっていることに気づかない</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ6 -->
+    <details class="post-card">
+      <summary><span class="post-number">06</span>MBTI別・飲み会での生存戦略<span class="tag">あるある</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">端の席を確保し隣の1人とだけ深い話をする</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">サラダ取り分け・注文係を自ら買って出て居場所を作る</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">聞き役に徹しつつ心の中で全員を分析している</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">2時間で帰る宣言を最初にして実際に帰る</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">黙々と飲んで気づいたらいなくなってる（フェードアウト）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">気の合う1人を見つけて2人だけの世界に入る</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">行く前は億劫だけど始まると意外と楽しんでる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">酔うと普段話さないマニアックな話が止まらなくなる</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">幹事として仕切り始め飲み会を最適化する</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">全員に話しかけて孤立者ゼロの空間を作り上げる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">話を振りまくって全員の良いところを引き出す司会者</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">飲み会をネットワーキングの場として戦略的に活用</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">一発芸・無茶振り対応で場の中心を完全に掌握する</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">飲み会そのものを企画した張本人（2次会も手配済み）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">テーブル全体を巻き込んだ大喜利大会を始める</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">酔った勢いで上司に正論ぶつけて翌日後悔する</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ7 -->
+    <details class="post-card">
+      <summary><span class="post-number">07</span>MBTI別・密かに見下してること<span class="tag">毒舌</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">計画性がなく場当たり的に生きてる人間</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">感謝の気持ちを言葉にできない人</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">自己理解が浅いのに他人を語ろうとする人</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">論理的に考える努力すら放棄している人全般</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">口だけで何も自分の手を動かさない評論家</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">流行を追うだけで自分の美学がない人</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">共感力がなく他人の痛みに鈍感な人</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">調べれば3秒でわかることを質問してくる人</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">締め切りを守れない人間は社会人として論外</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">場の空気を読まず周囲を不快にする人</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">自分のことしか考えずチームに貢献しない人</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">愚痴ばかりで現状を変える行動をしない人</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">リスクを恐れて何も挑戦しない臆病者</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">ノリが悪いのに付き合いだけは来る人</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">好奇心がなく新しいことを一切拒否する人</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">反論に感情でキレて議論を放棄する人</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ8 -->
+    <details class="post-card">
+      <summary><span class="post-number">08</span>MBTI別・本気で怒った時の破壊力<span class="tag">性格</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">証拠と事実を淡々と並べて相手を論理的に詰める</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">今まで我慢してきた全記録を時系列で叩きつける</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">怒らない。静かに関係を断ち二度と戻らない</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">相手の弱点を的確に突く一言で精神的に壊滅させる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">普段無口な分、一言の重さと冷たさが致命傷になる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">泣きながらも本音を全部ぶつけて相手を後悔させる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">普段優しい分「お前にだけは言われたくない」が刺さる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">感情を排した正論で相手の逃げ道を全部塞ぐ</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">声量MAXの正論で公開処刑。反論の余地なし</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">周囲を味方につけてから社会的に追い詰める</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「あなたには失望した」の一言で相手の心を折る</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">怒りを行動に変換し相手の立場を組織的に潰す</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">即座に面と向かって怒鳴る。瞬発力と圧が桁違い</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">感情爆発して全方位に本音をぶちまける</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">笑顔が消えた瞬間の温度差で相手を凍りつかせる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">相手の矛盾を全部暴いて公開ディベートで完封する</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ9 -->
+    <details class="post-card">
+      <summary><span class="post-number">09</span>MBTI別・友達と縁を切る決定打<span class="tag">人間関係</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">信頼を裏切る嘘をつかれた時。一度で終わり</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">自分の善意を利用されていたと気づいた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">「この人は変わらない」と確信した瞬間（静かに消える）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">時間を使う価値がないと判断した瞬間（損切り感覚）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">自分のパーソナルスペースに何度も土足で踏み込まれた時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">一緒にいて自分らしくいられないと感じた時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">価値観の根本が合わないと悟った時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">会話が退屈で会うメリットが見当たらなくなった時</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">約束を3回破られたら自動的にリストから消す</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">陰で悪口を言われていたと知った時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">自分の助けを何度も拒否して陰で馬鹿にしていた時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">足を引っ張る存在だと判断した瞬間にバッサリ切る</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">ノリが合わなくなったら自然消滅（深く考えない）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">楽しくなくなったらフェードアウト。恨みはない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">自分の大切な人を傷つけられた時だけは絶対に許さない</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">知的に尊敬できなくなったら興味が消えて自然消滅</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ10 -->
+    <details class="post-card">
+      <summary><span class="post-number">10</span>MBTI別・「こいつデキる」と思う瞬間<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">誰よりも正確なデータを静かに準備してきた時</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">誰も気づかない細部まで配慮が行き届いている時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">他人が言語化できない本質を一言で言い当てた時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">3手先まで読んだ戦略を既に実行に移していた時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">トラブル発生時に誰よりも早く冷静に解決した時</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">センスだけで正解を出してくる天然の直感力を見た時</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">チームの空気を一変させる言葉を自然に選べる時</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">全員が見逃した構造的欠陥を一瞬で指摘した時</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">カオスな状況を5分で整理して全員に指示を出した時</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">チーム全員のモチベを自然と上げてる姿を見た時</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">対立する2人を同時に立てて問題を解決した時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">反対意見を全部論破した上で全員を納得させた時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">プレッシャーの中で即断即決して結果を出した時</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">プレゼンで聴衆を完全に引き込んだ時のカリスマ性</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">既存の枠を壊して誰も思いつかない発想を出した時</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">全員が行き詰まった問題を別角度から一撃で解いた時</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ11 -->
+    <details class="post-card">
+      <summary><span class="post-number">11</span>MBTI別・片思い中のバレバレな行動<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">その人の予定だけ異常に正確に把握している</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">さりげなく好物を差し入れする頻度が明らかにおかしい</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">相手のSNSを全遡りして趣味を完全に把握済み</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">好きな人の前だけ不自然に優しくなって周囲にバレる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">困ってる時だけ無言で助けに現れる（ヒーロー気取り）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">目が合うと逸らすのに、目で追ってるのはバレてる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">相手をモデルにした小説や詩を密かに書いている</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">好きな人の話題が出ると急に饒舌になる</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">仕事で関わる口実を自分から作りに行く</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">好きな人の周囲の人間関係まで把握して根回し開始</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手の悩みを聞く役を独占しようとする</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">デートプランを3パターン用意してから誘う</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">ボディタッチとからかいの頻度が露骨に増える</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">好きな人の前だけテンションが3倍になる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">「2人で○○行かない？」をカジュアルに連発する</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">わざと反対意見をぶつけて会話の時間を引き延ばす</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ12 -->
+    <details class="post-card">
+      <summary><span class="post-number">12</span>MBTI別・好きな人の前でだけ出るギャップ<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">普段は堅いのに好きな人には冗談を言おうとする（滑る）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">普段は控えめなのに好きな人の前では積極的に話しかける</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">ミステリアスなのに好きな人には自分の弱さを見せる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">冷徹なのに好きな人の些細な変化に異常に気づく</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">無口なのに好きな人の趣味の話だけ止まらなくなる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">クールなのに好きな人には声のトーンが1オクターブ上がる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">夢見がちなのに好きな人の前では現実的にカッコつける</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">人に興味なさそうなのに好きな人の発言は全部覚えてる</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">厳格なのに好きな人のミスだけ異様に許す</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">みんなに優しいのに好きな人だけ特別扱いが露骨</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">リーダー気質なのに好きな人の前では甘えたがる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">支配的なのに好きな人の意見だけ素直に聞く</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">チャラいのに好きな人には真面目なLINEを送る</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">パリピなのに好きな人と2人の時は静かに寄り添う</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">誰にでもフレンドリーなのに好きな人には逆に緊張する</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">皮肉屋なのに好きな人だけストレートに褒める</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ13 -->
+    <details class="post-card">
+      <summary><span class="post-number">13</span>MBTI別・告白の仕方<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">「ずっと考えてたんだけど、付き合ってほしい」（直球）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">手紙に想いを全部書いて渡す（目を見て言えない）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">深夜の長電話で自然な流れを装って核心に触れる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">成功率を分析した上で最適なタイミングを計算して実行</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">「俺でよければ」とボソッと言う（かっこよすぎる）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">夕焼けとか夜景とか雰囲気に全振りして勝負する</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">脳内で100回リハーサルして本番で全部飛ぶ</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">告白しようとして気づいたら宇宙の話をしている</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">「来月から付き合おう」とスケジュール調整込みで提案</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">友達に根回しして完璧なシチュエーションを用意する</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「あなたの全部を受け止めたい」と包容力で勝負</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">「俺と付き合うメリットを説明する」（プレゼン形式）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">飲みの帰りに「好きだわ」とサラッと言う</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">サプライズ演出で盛大にぶちかます</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">テンション上がりすぎて告白が早口すぎて伝わらない</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「仮説なんだけど俺たち付き合ったら最強じゃない？」</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ14 -->
+    <details class="post-card">
+      <summary><span class="post-number">14</span>MBTI別・失恋からの立ち直り方<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">仕事に没頭して強制的に思考を上書きする</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">思い出の品を箱に詰めて泣いてから前を向く</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">「なぜ失敗したか」を哲学レベルで分析し尽くす</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">感情を論理で処理し「次に活かすデータ」に変換する</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">バイクか筋トレで物理的に疲れて忘れる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">失恋ソングを100曲聴いて感情を全部出し切る</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">3ヶ月引きずった後ポエムにして昇華する</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">恋愛心理学の本を5冊読んで理論武装する</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">「はい次」と切り替えて翌週にはマッチングアプリ登録</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">友達に全部話して泣いてスッキリして復活</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「相手の幸せを願える自分」に酔って乗り越える</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">自分磨きに全振りして「見返す」をモチベにする</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">その夜に飲みに行って3日後には新しい出会い</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">友達と遊びまくって楽しい記憶で上書きする</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">髪切って服変えて「新しい自分」になろうとする</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「そもそも恋愛とは何か」を語り始めて哲学に逃げる</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ15 -->
+    <details class="post-card">
+      <summary><span class="post-number">15</span>MBTI別・浮気を見抜く能力<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">スケジュールの矛盾を自動検知。帳簿のように記録済み</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">LINEの返信速度の微妙な変化で察する（精度99%）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">証拠がなくても直感で確信する。そしてだいたい当たる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">行動パターンの変化を統計的に分析して証拠を固める</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">気づいてるけど泳がせて決定的証拠が出るまで待つ</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">空気の変化で察するけど信じたくなくて目を逸らす</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">「そんなはずない」と理想に縋って気づくのが最後</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">デジタルの痕跡から論理的に特定（フォレンジック調査）</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">怪しいと思ったら直接問い詰める。逃げ道は与えない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">共通の友人ネットワークから情報が勝手に集まってくる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手の表情と声のトーンで嘘を即座に見破る</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">探偵を雇うか自分で証拠を揃えるか冷静に判断する</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">勘で気づいてその場で「浮気してるだろ」と直球</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">友達から聞いて初めて知る（本人は全く気づいてない）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">直感で怪しいと思うけど確認するのが怖くて放置</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">わざと罠を仕掛けて自白させるゲームを楽しむ</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ16 -->
+    <details class="post-card">
+      <summary><span class="post-number">16</span>MBTI別・付き合って3ヶ月で出る本性<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">デートのパターンが完全にルーティン化する</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">世話焼きが加速して母親みたいになる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">急に「1人の時間が欲しい」と距離を置き始める</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">恋人の人生設計にまで口を出し始める</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">連絡頻度が激減して自分の世界に戻る</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">急にわがままになって甘えモード全開になる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">理想と現実のギャップに悩み始めて情緒不安定になる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">デート中にスマホで調べ物を始める（悪気はない）</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">「もっとこうした方がいい」と恋人を管理し始める</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">「なんで連絡くれないの？」が増える</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手を「もっといい人間にしたい」と改造計画が始まる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">恋愛にもKPIを設定し始める</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">マンネリを感じて刺激を求め始める</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">友達との予定を優先し始める（悪気はない）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">急に新しい趣味にハマって恋人の存在を忘れがち</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">恋人の意見に全部反論して「議論してるだけ」と言う</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ17 -->
+    <details class="post-card">
+      <summary><span class="post-number">17</span>MBTI別・理想のデートプラン<span class="tag">恋愛</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">予約済みのレストラン→映画→予定通りに帰宅</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">手料理を作って家でまったり映画鑑賞</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">静かなカフェで深い話を何時間もする</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">美術館か博物館→考察を語り合う知的な時間</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">バイクで海沿い走って気が向いたら寄り道</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">雑貨屋巡り→雰囲気のいいカフェ→夕日を見る</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">本屋でお互いに本を選び合う→公園で読書</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">プラネタリウム→帰りに星の話を延々とする</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">話題の新店を効率よく回るグルメツアー</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">テーマパークで写真撮りまくってSNSに上げる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手がやりたいことを全部叶えるプランを組む</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">高級ディナー→夜景→将来の話をする</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">ノープランでドライブ。行き先は走りながら決める</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">フェス→屋台→2次会→朝まで（体力勝負）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">「面白そう」で決めた謎の体験型イベント</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">脱出ゲーム→お互いの戦略を振り返る反省会</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ18 -->
+    <details class="post-card">
+      <summary><span class="post-number">18</span>MBTI別・上司にしたら最強/最悪なところ<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">最強：公平で一貫性がある ／ 最悪：融通が利かない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">最強：部下の体調に一番に気づく ／ 最悪：変化を嫌う</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">最強：一人一人に合った指導 ／ 最悪：理想が高すぎる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">最強：戦略が天才的 ／ 最悪：感情に寄り添えない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">最強：自由にやらせてくれる ／ 最悪：報連相が皆無</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">最強：否定しない ／ 最悪：方向性を示してくれない</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">最強：個性を尊重してくれる ／ 最悪：決断が遅すぎる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">最強：技術的に超頼れる ／ 最悪：マネジメントに興味ゼロ</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">最強：仕事が圧倒的に早い ／ 最悪：威圧的すぎる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">最強：チームの雰囲気が最高 ／ 最悪：えこひいきする</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">最強：モチベ管理の天才 ／ 最悪：おせっかいが過ぎる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">最強：結果を出す力が異次元 ／ 最悪：人を駒扱いする</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">最強：トラブル対応が神 ／ 最悪：計画性がゼロ</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">最強：職場が楽しい ／ 最悪：締め切りの概念がない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">最強：ビジョンが魅力的 ／ 最悪：言ってることが毎回変わる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">最強：革新的なアイデア ／ 最悪：既存ルールを全無視</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ19 -->
+    <details class="post-card">
+      <summary><span class="post-number">19</span>MBTI別・会議中に実はやってること<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">議事録を完璧に取っている（唯一真面目）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">発言できない人がいないかを常に気にしている</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">各参加者の本音を表情から読み取っている</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">「この会議メールで済んだな」と計算している</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">ペンを分解して組み立て直している</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">手元のノートに議題と無関係な絵を描いている</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">窓の外を見ながら完全に別世界にトリップしている</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">議題と全く関係ない仮説を頭の中で検証している</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">「結論は？」と3回目の催促をしようとしている</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">会議後のお茶菓子の発注を裏でしている</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">対立しそうな2人の仲裁タイミングを見計らっている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">発言者のロジックの穴を見つけて反論を準備している</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">スマホの下でスポーツの試合経過をチェックしている</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">隣の人とこっそりチャットで別の話をしている</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">議題から派生した新アイデアでワクワクしている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">わざと挑発的な質問をして場を荒らそうとしている</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ20 -->
+    <details class="post-card">
+      <summary><span class="post-number">20</span>MBTI別・後輩への指導スタイル<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">マニュアルを作成して「これ読んで」と渡す</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">横に座って一つ一つ丁寧に教える（過保護気味）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">後輩のタイプを見抜いてカスタマイズした指導をする</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">全体像と目的を説明して「あとは自分で考えて」</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">「見て覚えて」と背中で語る（説明が下手）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">「自分のやり方でいいよ」と自由にやらせる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">後輩の気持ちに寄り添いすぎて指導が進まない</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">質問されたら詳しすぎる解説が始まって脱線する</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">スパルタ式。期限と基準を明確にして追い込む</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">褒めて伸ばす。ランチも一緒に行って距離を縮める</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">後輩の可能性を信じて期待をかけすぎる（プレッシャー）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">いきなり難題を投げて成長速度を試す</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">「とりあえずやってみ」と実践から入る</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">飲みに連れて行って仕事の話はそこでする</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">一緒にブレストして「この仕事面白くない！？」と巻き込む</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「なんでそう思った？」と質問攻めにして思考力を鍛える</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ21 -->
+    <details class="post-card">
+      <summary><span class="post-number">21</span>MBTI別・メールの書き方の癖<span class="tag">仕事</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">定型文完璧。句読点もインデントも美しい</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">「お忙しいところ恐れ入りますが」が3回出てくる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">相手に合わせて文体を完全に変える（カメレオン）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">結論→理由→補足。3行で終わる。無駄がない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">「了解です」「承知しました」だけ（必要最低限）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">絵文字を使うか30分悩んで結局使わない</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">1通のメールに40分かけて送信前に5回見直す</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">技術的な補足が長すぎて本題が埋もれる</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">箇条書き＋期限明記。「○日までに返信ください」</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">季節の挨拶と気遣いの言葉が本文より長い</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「いつもありがとうございます」が毎回入る（本心）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">件名だけで内容がわかる。本文は指示のみ</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">メール書くくらいなら直接言いに行く</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">「！」の数がテンションに比例して増える</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">追伸が本文より長くなりがち</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">送信後に誤字に気づいて訂正メールが毎回セット</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ22 -->
+    <details class="post-card">
+      <summary><span class="post-number">22</span>MBTI別・休日の過ごし方（理想vs現実）<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">理想：計画通りの充実した1日 ／ 現実：計画通り（本当にやる）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">理想：家族とのんびり ／ 現実：家事で1日が終わる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">理想：読書と瞑想 ／ 現実：SNSで人間観察して疲弊</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">理想：スキルアップの勉強 ／ 現実：気づいたら12時間調べ物</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">理想：ツーリング ／ 現実：ガレージで工具を磨いてたら夕方</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">理想：カフェ巡り ／ 現実：ベッドでNetflixを5時間</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">理想：創作活動 ／ 現実：布団の中で空想して1日終了</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">理想：新しい技術を学ぶ ／ 現実：Redditのスレッドを巡回</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">理想：アクティブに外出 ／ 現実：結局仕事のメールを見てる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">理想：友達とランチ ／ 現実：予定を詰めすぎて疲弊</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">理想：自分の時間 ／ 現実：誰かの相談に乗っている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">理想：リフレッシュ ／ 現実：副業の作業をしている</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">理想：アウトドア ／ 現実：二日酔いで午後まで寝てる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">理想：友達と遊ぶ ／ 現実：友達と遊んでる（理想通り）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">理想：新しい場所を探検 ／ 現実：計画倒れで家にいる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">理想：知的な趣味 ／ 現実：3つ同時に始めて全部中途半端</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ23 -->
+    <details class="post-card">
+      <summary><span class="post-number">23</span>MBTI別・お金の使い方の闇<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">家計簿が完璧すぎて1円単位で管理している</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">自分には使わないのに人へのプレゼントは惜しまない</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">本と自己投資に消える。物欲はないのに知識欲が高い</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">投資に全振り。生活費は最低限だがポートフォリオは攻める</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">趣味の道具だけ謎に高い。工具10万ガジェット15万</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">美容と推し活に月収の半分が消える</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">衝動買いした後に罪悪感で3日落ち込む</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">課金ゲーか技術書に消える。服は3年同じ</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">コスパ最強を追求。比較検討に使う時間のほうが高い</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">交際費が家賃を超えている月がある</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">後輩の奢り代が固定費になっている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">「金で時間を買う」思考で便利サービス課金しまくり</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">「今が楽しければいい」で貯金残高がいつもギリギリ</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">給料日に散財して月末はカップ麺生活</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">旅行とサブスクで口座が静かに死んでいく</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「これは投資」と言いながら趣味に散財する天才</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ24 -->
+    <details class="post-card">
+      <summary><span class="post-number">24</span>MBTI別・一人暮らしの部屋の特徴<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">整理整頓完璧。モデルルームかと思うレベル</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">生活感があって温かい。観葉植物が元気</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">本棚だけ異常に充実している。照明が暗め</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">機能的でミニマル。無駄なものが一切ない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">工具・ガジェット・パーツが謎の秩序で並んでいる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">インテリアのセンスだけは抜群。SNS映えする部屋</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">好きなものに囲まれた秘密基地。他人には見せない</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">デスク周りだけ要塞。それ以外は荒野</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">実用的な家電が充実。ルンバとドラム式は必須</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">いつ人が来ても大丈夫なように常にキレイ</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">来客用のスリッパとお茶セットが常備されている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">ホームオフィスに全振り。書斎がメインルーム</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">トレーニング器具がリビングを占領している</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">服が床に散乱しているがおしゃれだけは完璧</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">途中まで片付けた形跡が3箇所ある（全部未完成）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">ホワイトボードにアイデアが書きなぐってある</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ25 -->
+    <details class="post-card">
+      <summary><span class="post-number">25</span>MBTI別・SNSの使い方と裏アカの有無<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">本アカのみ。投稿頻度は月1。見る専がメイン</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">裏アカで日常の愚痴を吐いている（フォロワー3人）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">裏アカで本音を詩的に綴っている。特定不可能</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">情報収集用。フォローは多いがフォロワーは少ない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">アカウントはあるが最終ログイン3ヶ月前</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">写真投稿だけ。文字は最小限。世界観を統一</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">裏アカ3つ。創作用・愚痴用・推し活用</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">匿名で専門的な知識を投下して一部界隈で有名</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">実名でビジネス発信。裏アカという概念がない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">友達の投稿に必ずいいね。ストーリーは毎日更新</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">ポジティブな投稿しかしない。裏の闇は裏アカへ</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">LinkedInがメイン。SNSもセルフブランディングの場</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">リアルタイム実況多め。今何してるか全部バレる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">自撮りとストーリーで1日10投稿。承認欲求全開</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">複数のSNSを全部やってるけど全部更新がまばら</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">炎上しそうな意見をわざと投げてリプ欄を観察する</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ26 -->
+    <details class="post-card">
+      <summary><span class="post-number">26</span>MBTI別・酔った時に出る本性<span class="tag">あるある</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">普段言わない仕事の不満が堰を切ったように溢れる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">「実は私さ…」と普段隠してる本音を全部話し始める</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">急にスキンシップが増えて甘えモードになる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">「人類の未来」について熱く語り始めて止まらない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">無口→急に饒舌。趣味の話を3時間する</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">感情が溢れて泣いたり笑ったり情緒が忙しい</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">全員に「大好き」と言い始める（翌日記憶なし）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">早口が加速して何言ってるか誰にもわからなくなる</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">説教が始まる。「お前のためを思って言うけど」</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">全員のグラスを管理しながら自分が一番酔ってる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「みんな愛してる」モード全開で全員をハグする</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">起業の野望を熱弁。翌日のプレゼン資料ができている</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">テーブルの上に立つ。武勇伝のスケールが3倍になる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">全員のカラオケのマイクを奪って離さない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">知らない隣の席の人と友達になって連絡先を交換</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">政治と宗教の話を始めて出禁になりかける</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ27 -->
+    <details class="post-card">
+      <summary><span class="post-number">27</span>MBTI別・旅行の計画の立て方<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">分刻みのスケジュール表をExcelで作成済み</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">全員の食の好みとアレルギーを事前調査して店を予約</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">穴場スポットだけ調べて有名観光地はスルー</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">交通費・移動時間・満足度を最適化した完璧なルート</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">宿だけ取ってあとはノープラン。現地で判断する</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">「映えスポット」をPinterestで50個保存している</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">その土地の歴史と文化を調べてから行く（ガイドより詳しい）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">行き先の気候データと混雑予測をグラフ化して分析</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">幹事として全員分の航空券とホテルを一括手配</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">LINEグループで投票取って全員の希望を反映しようとする</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">メンバーの体力差を考慮してプランA/B/Cを用意</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">旅行の目的を明確にしてROIが最大になるプランを組む</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">「明日行こうぜ」前日の夜に言い出す</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">「楽しそう」だけで全部決める。予算？知らない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">30タブ開いて比較して結局決まらず前日になる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">計画を立てるのは好きだが当日プラン通りに動かない</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ28 -->
+    <details class="post-card">
+      <summary><span class="post-number">28</span>MBTI別・買い物の仕方<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">リストに書いたものだけ買う。衝動買いの概念がない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">家族の分を先に買って自分のは後回し</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">買う前にレビューを50件読んで悩み抜く</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">スペック比較表を作って最適解を導いてから購入</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">必要になった瞬間に買う。事前リサーチはしない</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">「ビビッときた」で即決。直感が全て</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">迷いすぎて結局何も買わずに帰る（翌日ネットで買う）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">Amazonのカートに3ヶ月放置して結局買わない</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">セール時期を把握して最安値で買う（価格.com常連）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">友達と一緒に買い物して「どっちがいい？」を50回聞く</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">店員と仲良くなって「あなたならどれ選びます？」</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">「最上位モデルください」即決。時間が一番高い</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">「かっこいい」で即購入。帰ってから使い道を考える</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">試着室から出てこない。全色試す</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">目的のもの以外を大量に買って帰る</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「いつか使うかも」で謎のアイテムを衝動買い</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ29 -->
+    <details class="post-card">
+      <summary><span class="post-number">29</span>MBTI別・嫌いな人への態度の出方<span class="tag">人間関係</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">必要最低限の業務連絡のみ。私情は一切出さない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">表面上は普通に接するが目が笑っていない</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">存在ごと認識から消す。視界に入っても反応しない</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">敬語が急に丁寧になる（距離を置いている合図）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">話しかけられても返事が「あぁ」「うん」だけになる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">物理的に距離を取る。同じ空間にいることを避ける</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">嫌いな人の前だけ別人のように無表情になる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">話を聞いているフリをして完全にシャットアウト</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">態度に露骨に出る。声のトーンが明らかに変わる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">その人の話題を振られても「へぇ〜」で流す</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">笑顔で接するが二人きりの状況を絶対に作らない</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">利用価値があるうちは普通に接する（合理的）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">嫌いなことを本人に直接言う（オブラートなし）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">あからさまに他の人との態度と差がつく</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">普段のテンションとの落差で周囲が先に気づく</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">皮肉と正論で精神的に追い詰める（無自覚）</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ30 -->
+    <details class="post-card">
+      <summary><span class="post-number">30</span>MBTI別・言われたら一番嬉しい褒め言葉<span class="tag">性格</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">「あなたがいるから安心できる」</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">「いつもありがとう、気づいてるよ」</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">「あなただけが本質をわかってくれる」</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">「その発想は天才的だと思う」</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">「マジで頼りになる」</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">「あなたのセンス本当に好き」</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">「あなたといると自分らしくいられる」</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">「その知識量ほんとにすごい」</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">「あなたのおかげで成功しました」</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">「あなたがいないとこのチームは回らない」</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">「あなたに出会えて人生が変わった」</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">「あなたについていきたい」</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">「一緒にいると退屈しない」</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">「あなたといると元気になれる」</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">「あなたの発想が世界を面白くしてる」</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">「お前と話してると頭良くなる気がする」</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ31 -->
+    <details class="post-card">
+      <summary><span class="post-number">31</span>MBTI別・実は寂しがりやランキング<span class="tag">性格</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">寂しいと思わないフリが上手すぎて本人も気づいてない</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">誰かの世話をしていないと存在意義を見失う</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">一人が好きだけど「理解者」がいないと壊れる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">寂しさを認めたら負けだと思っている（本当は寂しい）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">一人で全然平気。マジで平気。（16タイプ中最強）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">一人の時間は好きだけど「好きな人」には常に会いたい</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">脳内に友達がいるから平気（現実では寂しい）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">知的刺激さえあれば人がいなくても生きていける</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">チームを率いていないと落ち着かない（実は寂しがり）</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">一人の夜が耐えられない。既読つかないだけで不安</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">誰かに必要とされてないと不安で眠れない</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">孤独に強いフリをしてるが信頼できる右腕がいないとキツい</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">常に誰かと一緒にいたい。静かな夜が苦手</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">一人でいると充電が切れて動けなくなる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">社交的に見えて夜は急に寂しくなる（ギャップがえぐい）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">議論相手がいないと生きてる意味を見失う</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ32 -->
+    <details class="post-card">
+      <summary><span class="post-number">32</span>MBTI別・第一印象と本性のギャップ<span class="tag">性格</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">第一印象：堅そう → 本性：意外とユーモアがある</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">第一印象：おとなしい → 本性：芯が鋼より硬い</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">第一印象：穏やか → 本性：人間を常に分析している</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">第一印象：怖い → 本性：好きな話題では子供みたいにはしゃぐ</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">第一印象：冷たい → 本性：困ってる人を黙って助ける</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">第一印象：ふわふわ → 本性：こだわりが異常に強い</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">第一印象：天然 → 本性：実は全部わかってて黙ってる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">第一印象：無関心 → 本性：好きな人には異常に尽くす</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">第一印象：威圧的 → 本性：部下想いで面倒見がいい</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">第一印象：社交的 → 本性：人の評価をめちゃくちゃ気にしてる</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">第一印象：聖人 → 本性：裏で人一倍疲弊している</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">第一印象：独裁者 → 本性：認めた人には甘い</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">第一印象：チャラい → 本性：義理人情に超厚い</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">第一印象：お調子者 → 本性：空気を読む天才</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">第一印象：能天気 → 本性：深夜に人生を深く考えている</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">第一印象：口だけ → 本性：やると決めたら鬼の集中力</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ33 -->
+    <details class="post-card">
+      <summary><span class="post-number">33</span>MBTI別・嘘が下手なタイプランキング<span class="tag">あるある</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">嘘をつく必要がない。事実だけを述べる主義</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">優しい嘘はつけるが、罪悪感で3日寝込む</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">嘘が上手すぎて本人も何が本音かわからなくなる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">必要なら嘘もつくが表情管理が完璧すぎて怖い</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">嘘をつくのが面倒だから黙る（沈黙という選択肢）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">顔に全部出る。隠せてると思ってるのは本人だけ</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">嘘をつくと目が泳ぎすぎて即バレる</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">設定が複雑すぎて自分で矛盾を生んで自滅する</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">嘘つく暇あったら事実を突きつける派</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">空気を読んだ嘘は上手いが秘密を守れない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手のためなら完璧な嘘をつける（善意の嘘の天才）</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">戦略的に情報を操作する（嘘ではなく「選択的事実」）</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">嘘がバレてもノリで乗り切る天才</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">テンション上がると盛りすぎて後で辻褄が合わない</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">嘘ついたこと自体を忘れて正直に話してしまう</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">嘘と冗談の境界が曖昧すぎて周囲が混乱する</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ34 -->
+    <details class="post-card">
+      <summary><span class="post-number">34</span>MBTI別・沈黙が気まずいvs全然平気<span class="tag">あるある</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">平気。むしろ沈黙は効率的だと思っている</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">気まずい。「何か話さなきゃ」で天気の話を始める</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">相手による。心許した人との沈黙は最高に心地いい</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">完全に平気。無駄な会話のほうがストレス</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">平気を超えて好き。沈黙こそ最高のコミュニケーション</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">平気だけど相手が気まずそうだと気になる</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">沈黙中に脳内で会話のシミュレーションを回している</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">沈黙に気づいてない。自分の思考に没頭中</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">沈黙は非生産的。議題を持ち出して埋めにかかる</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">3秒で耐えられなくなる。沈黙＝自分のせいだと思う</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">相手の沈黙を「何か悩んでる？」と心配し始める</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">平気だが沈黙が長いと「で、結論は？」と切り出す</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">2秒で限界。「てかさ〜」で強制的に話題転換</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">沈黙が怖すぎてスマホの動画を見せ始める</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">沈黙になった瞬間「あ、そういえば！」が発動する</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">沈黙を壊すためにわざと挑発的な話題を投下する</span></div>
+      </div>
+    </details>
+
+    <!-- ネタ35 -->
+    <details class="post-card">
+      <summary><span class="post-number">35</span>MBTI別・朝起きて最初にすること<span class="tag">日常</span></summary>
+      <div class="card-body">
+      <p class="type-group-label">■ I型（内向）</p>
+      <div class="type-row"><span class="type-label sentinel">ISTJ</span><span class="type-sep">：</span><span class="type-text">アラーム1回で起床→洗面→朝食。毎日同じ時間同じ順番</span></div>
+      <div class="type-row"><span class="type-label sentinel">ISFJ</span><span class="type-sep">：</span><span class="type-text">家族のために朝食を準備する（自分は後回し）</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFJ</span><span class="type-sep">：</span><span class="type-text">布団の中で今日の気力を確認する（起動に10分かかる）</span></div>
+      <div class="type-row"><span class="type-label analyst">INTJ</span><span class="type-sep">：</span><span class="type-text">今日のToDoを脳内で組み立ててから起き上がる</span></div>
+      <div class="type-row"><span class="type-label explorer">ISTP</span><span class="type-sep">：</span><span class="type-text">無言でコーヒーを淹れる。話しかけるな（起動中）</span></div>
+      <div class="type-row"><span class="type-label explorer">ISFP</span><span class="type-sep">：</span><span class="type-text">天気を確認して今日のコーデを考え始める</span></div>
+      <div class="type-row"><span class="type-label diplomat">INFP</span><span class="type-sep">：</span><span class="type-text">夢の内容を思い出そうとして二度寝する</span></div>
+      <div class="type-row"><span class="type-label analyst">INTP</span><span class="type-sep">：</span><span class="type-text">スマホでニュースを30分読んで遅刻する</span></div>
+      <p class="type-group-label">■ E型（外向）</p>
+      <div class="type-row"><span class="type-label sentinel">ESTJ</span><span class="type-sep">：</span><span class="type-text">5時起床。ニュースチェック→筋トレ→シャワー</span></div>
+      <div class="type-row"><span class="type-label sentinel">ESFJ</span><span class="type-sep">：</span><span class="type-text">LINEの通知を全部チェック→返信→身支度</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFJ</span><span class="type-sep">：</span><span class="type-text">今日会う人のことを考えて気持ちを準備する</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTJ</span><span class="type-sep">：</span><span class="type-text">メールチェック。誰よりも早く1通目を返している</span></div>
+      <div class="type-row"><span class="type-label explorer">ESTP</span><span class="type-sep">：</span><span class="type-text">アラーム5回スヌーズしてギリギリで飛び起きる</span></div>
+      <div class="type-row"><span class="type-label explorer">ESFP</span><span class="type-sep">：</span><span class="type-text">Instagramのストーリーを全部チェック（30分経過）</span></div>
+      <div class="type-row"><span class="type-label diplomat">ENFP</span><span class="type-sep">：</span><span class="type-text">「今日こそ早起き！」と言って昼に起きる</span></div>
+      <div class="type-row"><span class="type-label analyst">ENTP</span><span class="type-sep">：</span><span class="type-text">昨日寝る前に思いついたアイデアをメモから確認する</span></div>
+      </div>
+    </details>
+
+    <p class="copy-hint">※ 各ネタはそのままXに投稿できるフォーマットです。I型とE型を分けて前編・後編に分割投稿するとエンゲージメントが上がります。</p>
+  </div>
+</body>
+</html>
