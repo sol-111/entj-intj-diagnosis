@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>血液型 取扱説明書 — スクショ用</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #000; color: #e7e9ea; font-family: "Noto Sans JP", "Inter", -apple-system, sans-serif; padding: 20px; }
+    .container { max-width: 540px; margin: 0 auto; }
+    .tab-nav { display: flex; gap: 0; margin-bottom: 24px; border-bottom: 2px solid #2f3336; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn { flex: 0 0 auto; min-width: 50px; background: none; border: none; color: #71767b; font-size: 0.78rem; font-weight: 700; font-family: inherit; padding: 8px 8px; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; white-space: nowrap; text-align: center; }
+    .tab-btn:hover { color: #e7e9ea; }
+    .tab-btn.active { color: #fff; border-bottom-color: var(--tab-color); color: var(--tab-color); }
+    .tab-count { display: block; font-size: 0.6rem; color: #555; font-weight: 400; margin-top: 1px; }
+    .tab-btn.active .tab-count { color: inherit; opacity: 0.7; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .slide { border-radius: 20px; padding: 28px 24px 20px; margin-bottom: 24px; position: relative; overflow: hidden; }
+    .slide::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 20px; border: 1px solid var(--slide-border); pointer-events: none; }
+    .slide-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid var(--slide-border); }
+    .slide-icon { font-size: 1.6rem; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; background: var(--slide-accent); border-radius: 12px; flex-shrink: 0; }
+    .slide-title-area { flex: 1; }
+    .slide-type { font-size: 1.1rem; font-weight: 900; color: var(--slide-color); letter-spacing: 0.02em; }
+    .slide-type .desc { font-weight: 500; font-size: 0.8rem; color: #71767b; margin-left: 6px; }
+    .slide-cat { font-size: 0.78rem; color: #71767b; font-weight: 500; margin-top: 2px; }
+    .slide-page { font-size: 0.7rem; color: #555; font-weight: 600; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+    .slide-items { list-style: none; }
+    .slide-item { display: flex; align-items: baseline; padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04); gap: 10px; }
+    .slide-item:last-child { border-bottom: none; }
+    .item-num { font-size: 0.72rem; font-weight: 800; color: var(--slide-color); opacity: 0.6; min-width: 22px; text-align: right; flex-shrink: 0; }
+    .item-body { flex: 1; }
+    .item-q { font-size: 0.88rem; color: var(--slide-color); font-weight: 700; opacity: 0.7; margin-bottom: 8px; line-height: 1.5; }
+    .item-a { font-size: 0.88rem; color: #e7e9ea; font-weight: 500; line-height: 1.5; }
+    .slide-footer { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--slide-border); display: flex; justify-content: space-between; align-items: center; }
+    .slide-footer .credit { font-size: 0.65rem; color: #555; font-weight: 500; }
+    .slide-footer .handle { font-size: 0.7rem; color: var(--slide-color); font-weight: 700; opacity: 0.7; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="tab-nav">
+      <button class="tab-btn active" data-tab="a" style="--tab-color:#ef5350">A型<span class="tab-count">全35項</span></button>
+      <button class="tab-btn" data-tab="b" style="--tab-color:#42a5f5">B型<span class="tab-count">全35項</span></button>
+      <button class="tab-btn" data-tab="o" style="--tab-color:#66bb6a">O型<span class="tab-count">全35項</span></button>
+      <button class="tab-btn" data-tab="ab" style="--tab-color:#ab47bc">AB型<span class="tab-count">全35項</span></button>
+    </div>
+
+    <div class="tab-content active" id="tab-a">
+      <div class="slide" style="background:linear-gradient(135deg, #1f0a0a 0%, #0d0d0d 100%);--slide-color:#ef5350;--slide-accent:rgba(239,83,80,0.15);--slide-border:rgba(239,83,80,0.3)">
+        <div class="slide-header"><div class="slide-icon">💼</div><div class="slide-title-area"><div class="slide-type">A型</div><div class="slide-cat">取扱説明書 — 仕事</div></div><div class="slide-page">1/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">「この会社、マニュアルが存在しない」と気づいた瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">資料の細部まで完璧に仕上げてくる人。同志認定即決</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：フォローが神。最悪：チェックが細かすぎて息できない</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">議事録を完璧に取りながら「この会議無駄だな」と思ってる</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">手順書を作って渡す。「まずこれ読んで」から始まる</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">敬語と句読点が完璧。送信前に5回は見直してる</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">A型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f0a0a 0%, #0d0d0d 100%);--slide-color:#ef5350;--slide-accent:rgba(239,83,80,0.15);--slide-border:rgba(239,83,80,0.3)">
+        <div class="slide-header"><div class="slide-icon">💕</div><div class="slide-title-area"><div class="slide-type">A型</div><div class="slide-cat">取扱説明書 — 恋愛</div></div><div class="slide-page">2/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">店員への態度が雑だった瞬間、心のシャッター閉店ガラガラ</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人の前だけ異常に気が利く。周りにはバレバレ</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">普段しっかり者なのに急にポンコツになる。可愛いが渋滞</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">タイミングと場所を完璧に計算。シミュレーション50回済み</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">反省会を1人で開催。原因分析レポートが脳内で完成する</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">LINEの通知音の変化まで気づく。FBI超えの観察力</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">急に細かいことを注意し始める。洗い物の置き方とか</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">予約済みのレストラン→映画→カフェ。分刻みスケジュール</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">A型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f0a0a 0%, #0d0d0d 100%);--slide-color:#ef5350;--slide-accent:rgba(239,83,80,0.15);--slide-border:rgba(239,83,80,0.3)">
+        <div class="slide-header"><div class="slide-icon">🎭</div><div class="slide-title-area"><div class="slide-type">A型</div><div class="slide-cat">取扱説明書 — 性格・あるある</div></div><div class="slide-page">3/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">溜めに溜めた怒りが爆発。過去の全案件を時系列で詰める</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたがいると安心する」。努力が報われた瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">寂しいけど自分からは言えない。察してほしいオーラだけ出す</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象「真面目」→本性「意外と毒舌でブラックジョーク好き」</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">段取りが悪い人間。「なぜ準備しないの？」が口癖</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">5年前のあの発言、相手は傷ついてなかったかな…</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">全員のグラス残量を監視しつつ空気を読む仕事に徹する</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">普段言えない本音が溢れ出す。翌朝の後悔がエグい</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘つく時に設定を作り込みすぎて逆に怪しくなるタイプ</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙が怖くて必死に話題を探す。気遣いが止まらない</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">A型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f0a0a 0%, #0d0d0d 100%);--slide-color:#ef5350;--slide-accent:rgba(239,83,80,0.15);--slide-border:rgba(239,83,80,0.3)">
+        <div class="slide-header"><div class="slide-icon">🌙</div><div class="slide-title-area"><div class="slide-type">A型</div><div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div></div><div class="slide-page">4/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">急に部屋の掃除を始める。しかも無言で。これ末期です</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">完璧な返信を考えてたら3日経ってて返せなくなった</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：計画通りの充実した1日。現実：掃除で終わる</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">家計簿つけてるのにストレスで衝動買い。矛盾の塊</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">収納が完璧。ラベリングまでしてる。モデルルームか？</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">表アカは当たり障りなく、裏アカで本音ダダ漏れ</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">しおり作成。移動時間まで計算済み。旅行前が一番楽しい説</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">レビュー100件読んで比較表作ってからやっと買う</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">アラーム5分前に起きてる。今日のスケジュールを脳内確認</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">約束を3回ドタキャンされたら心のリストから静かに削除</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">表面上は完璧に対応。でも敬語が1段階丁寧になってたら黄信号</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">A型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-b">
+      <div class="slide" style="background:linear-gradient(135deg, #0a151f 0%, #0d0d0d 100%);--slide-color:#42a5f5;--slide-accent:rgba(66,165,245,0.15);--slide-border:rgba(66,165,245,0.3)">
+        <div class="slide-header"><div class="slide-icon">💼</div><div class="slide-title-area"><div class="slide-type">B型</div><div class="slide-cat">取扱説明書 — 仕事</div></div><div class="slide-page">1/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">やりたくない仕事を3日連続で振られた時点でアウト</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">誰も思いつかないアイデアをサラッと出す人。天才か？</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：自由にやらせてくれる。最悪：指示がフワッとしすぎ</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">全然関係ないアイデアを思いついてメモしてる</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">「自分で考えてみて」スタイル。放任と自由の紙一重</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">要件だけ3行。「以上です」で終わるスピード重視</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">B型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a151f 0%, #0d0d0d 100%);--slide-color:#42a5f5;--slide-accent:rgba(66,165,245,0.15);--slide-border:rgba(66,165,245,0.3)">
+        <div class="slide-header"><div class="slide-icon">💕</div><div class="slide-title-area"><div class="slide-type">B型</div><div class="slide-cat">取扱説明書 — 恋愛</div></div><div class="slide-page">2/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">「もっとこうした方がいいよ」って指図してきた瞬間に終了</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">急にその人の趣味に詳しくなる。昨日まで興味ゼロだったのに</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">マイペースなのに相手の予定に全力で合わせにいく</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">思い立った瞬間に「好きなんだけど」って言っちゃう</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">新しい趣味に没頭して上書き保存。切り替え早すぎ</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">そもそも相手に興味が薄くて浮気に気づかない説</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">1人の時間がないと不機嫌になる本性が出る</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">ノープランで散歩。面白い店見つけたら即入る</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">B型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a151f 0%, #0d0d0d 100%);--slide-color:#42a5f5;--slide-accent:rgba(66,165,245,0.15);--slide-border:rgba(66,165,245,0.3)">
+        <div class="slide-header"><div class="slide-icon">🎭</div><div class="slide-title-area"><div class="slide-type">B型</div><div class="slide-cat">取扱説明書 — 性格・あるある</div></div><div class="slide-page">3/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">突然キレて突然許す。周囲が感情のジェットコースターに酔う</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたって唯一無二だよね」。個性を認められると嬉しい</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">1人好きに見えて急に「誰かいない？」って連絡してくる</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象「チャラい」→本性「めちゃくちゃ一途で情が深い」</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">流行に乗ってるだけで自分の意見がない人、興味ゼロ</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">突然「よし、模様替えしよう」と家具を動かし始める</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">気の合う1人とだけ盛り上がり、残りは完全スルー</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">テンション振り切れて誰にでも絡みにいく。止められない</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘つく必要がないと思ってるから基本正直。裏表なし</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">全然平気。むしろ無理に喋る方がストレス</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">B型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a151f 0%, #0d0d0d 100%);--slide-color:#42a5f5;--slide-accent:rgba(66,165,245,0.15);--slide-border:rgba(66,165,245,0.3)">
+        <div class="slide-header"><div class="slide-icon">🌙</div><div class="slide-title-area"><div class="slide-type">B型</div><div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div></div><div class="slide-page">4/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">好きだったことに一切興味がなくなる。趣味が全部消える</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">読んだ。理解した。返す必要ある？って本気で思ってる</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：好きなことに没頭。現実：本当に没頭して1日溶ける</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">こだわりのモノには青天井。それ以外はケチ。極端すぎ</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">趣味のグッズだけ異様に整理されてて他はカオス</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">好きなことだけ発信。フォロワー数に興味なし。我が道</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">行き先だけ決めて「あとは現地で」。それ計画じゃない</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">「ビビッときた」で即購入。直感が全て。後悔はしない</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">スマホ見ながらダラダラ。気づいたら30分溶けてて焦る</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">自分の世界観を否定された瞬間「あ、もう無理」って悟る</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">態度に出すぎ。興味ない人への塩対応が露骨すぎる</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">B型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-o">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f0e 0%, #0d0d0d 100%);--slide-color:#66bb6a;--slide-accent:rgba(102,187,106,0.15);--slide-border:rgba(102,187,106,0.3)">
+        <div class="slide-header"><div class="slide-icon">💼</div><div class="slide-title-area"><div class="slide-type">O型</div><div class="slide-cat">取扱説明書 — 仕事</div></div><div class="slide-page">1/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">自分より無能な奴が先に昇進した瞬間、心が無になる</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">決断が早くて即行動する人。「話が早い」は最高の褒め言葉</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：決断力が爆速。最悪：「いいからやれ」の圧がすごい</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">「これ俺が仕切った方が早くね？」って考えてる</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">背中を見せて「ついてこい」型。体育会系の匂いがする</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">「！」多め。テンション高めで勢いで送信しがち</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">O型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f0e 0%, #0d0d0d 100%);--slide-color:#66bb6a;--slide-accent:rgba(102,187,106,0.15);--slide-border:rgba(102,187,106,0.3)">
+        <div class="slide-header"><div class="slide-icon">💕</div><div class="slide-title-area"><div class="slide-type">O型</div><div class="slide-cat">取扱説明書 — 恋愛</div></div><div class="slide-page">2/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">自分の話に全然興味なさそうにされたら秒で気持ち消える</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">距離感バグって話しかけすぎ。好きが態度に全部出る</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">リーダー気質が消えて急に甘えん坊になる破壊力</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">ストレートに目を見て「付き合って」。潔さがカッコいい</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">号泣→爆食→「次いこ次！」。回復力だけはバケモン</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">直感で「なんか怪しい」→問い詰めたら当たってる</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">独占欲が急に爆発。「誰と遊ぶの？」が口癖化</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">テーマパークで1日中はしゃぎたい。全力で楽しむ派</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">O型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f0e 0%, #0d0d0d 100%);--slide-color:#66bb6a;--slide-accent:rgba(102,187,106,0.15);--slide-border:rgba(102,187,106,0.3)">
+        <div class="slide-header"><div class="slide-icon">🎭</div><div class="slide-title-area"><div class="slide-type">O型</div><div class="slide-cat">取扱説明書 — 性格・あるある</div></div><div class="slide-page">3/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">声がデカくなる。威圧感だけで相手が謝り始めるレベル</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「頼りになるね」。存在価値を認められると無敵モード</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">堂々の1位。常に誰かと一緒にいたい。1人が本当に無理</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象「明るくて社交的」→本性「家では1人で充電必須」</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">行動しないで文句だけ言う人。「じゃあやれば？」案件</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">将来の壮大な夢を妄想して1人でニヤニヤしてる</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">気づいたら場の中心にいてMC化してる。天性のスキル</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">「お前のこと好きだわ！」を全員に言い始める。安売り</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">堂々の1位。顔に出すぎ。嘘つくと目が泳ぐからすぐバレる</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙が3秒続いたら自分から喋り出す。間が持たないタイプ</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">O型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f0e 0%, #0d0d0d 100%);--slide-color:#66bb6a;--slide-accent:rgba(102,187,106,0.15);--slide-border:rgba(102,187,106,0.3)">
+        <div class="slide-header"><div class="slide-icon">🌙</div><div class="slide-title-area"><div class="slide-type">O型</div><div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div></div><div class="slide-page">4/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">いつも明るいのに急に黙る。周囲が「え？」ってなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">他の楽しいことに夢中で存在ごと忘れてた。悪気はゼロ</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：仲間とBBQ。現実：ソファで動画見て寝落ち</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">人に奢るのは好きだけど自分の通帳は見ない主義</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">見える場所だけキレイ。クローゼット開けたら雪崩が起きる</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">リア充アピール全開。裏アカ？そんなの作る必要ないでしょ</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">幹事を自ら買って出る。仕切りたい欲が旅行でも発動</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">目的のもの以外も大量に買って帰る。カゴの中パンパン</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">二度寝の誘惑と本気で戦ってる。勝率は低い</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">裏で悪口言ってたのを知った時。信頼への裏切りは絶対NG</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">嫌いな人の話題が出ると急にテンション下がるからバレる</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">O型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-ab">
+      <div class="slide" style="background:linear-gradient(135deg, #1a0a20 0%, #0d0d0d 100%);--slide-color:#ab47bc;--slide-accent:rgba(171,71,188,0.15);--slide-border:rgba(171,71,188,0.3)">
+        <div class="slide-header"><div class="slide-icon">💼</div><div class="slide-title-area"><div class="slide-type">AB型</div><div class="slide-cat">取扱説明書 — 仕事</div></div><div class="slide-page">1/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">辞めると決めた日から急に元気になって周囲が困惑</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">論理的に話を組み立てられる人。感情論ゼロなの最高</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：的確すぎる分析。最悪：何考えてるか読めなくて怖い</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">参加者の発言を心の中で論理チェックしてる</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">相手のタイプを見抜いて教え方を変える。観察力おばけ</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">相手によって文体が変わる。カメレオン型メール術</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">AB型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a0a20 0%, #0d0d0d 100%);--slide-color:#ab47bc;--slide-accent:rgba(171,71,188,0.15);--slide-border:rgba(171,71,188,0.3)">
+        <div class="slide-header"><div class="slide-icon">💕</div><div class="slide-title-area"><div class="slide-type">AB型</div><div class="slide-cat">取扱説明書 — 恋愛</div></div><div class="slide-page">2/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">「なんか違うな」の直感。理由は本人にもわからない</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人にだけ冷たくなる。好き避けの天才すぎて伝わらない</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">クールな仮面が外れて笑顔が増える。レアキャラ出現</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">告白しない。相手から言わせる空気を作る天才</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">表面上は平気なフリ。3ヶ月後に突然メンタル崩壊する</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">全部気づいてるけど泳がせて証拠を集めてる。怖すぎ</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">急に連絡頻度が減る。冷めたんじゃなくて素なだけ</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">美術館→隠れ家カフェ。「人が少ない場所」が絶対条件</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">AB型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a0a20 0%, #0d0d0d 100%);--slide-color:#ab47bc;--slide-accent:rgba(171,71,188,0.15);--slide-border:rgba(171,71,188,0.3)">
+        <div class="slide-header"><div class="slide-icon">🎭</div><div class="slide-title-area"><div class="slide-type">AB型</div><div class="slide-cat">取扱説明書 — 性格・あるある</div></div><div class="slide-page">3/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">怒らない。ただ静かに存在を消す。これが一番怖い</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたの考え方が好き」。内面を理解されるのが一番刺さる</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">1人が好きなはずなのに、ふと孤独感に襲われる矛盾体質</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象「冷たそう」→本性「心許した人にはデレデレ」</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">感情論で議論してくる人。もう会話のレベルが合わない</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">宇宙の果てについて調べ始めて気づいたら朝5時</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">楽しそうに見えて頭の中で帰宅後の予定を組んでる</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">急に哲学語り出す。「人生とは何か」が始まったら末期</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘が上手すぎて逆に怖い。表情変えずにサラッと言える</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">相手による。心許してる人なら沈黙が心地いいまである</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">AB型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a0a20 0%, #0d0d0d 100%);--slide-color:#ab47bc;--slide-accent:rgba(171,71,188,0.15);--slide-border:rgba(171,71,188,0.3)">
+        <div class="slide-header"><div class="slide-icon">🌙</div><div class="slide-title-area"><div class="slide-type">AB型</div><div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div></div><div class="slide-page">4/4</div></div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">笑顔のまま人間関係を静かにリセットし始める</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">返すかどうかを相手との関係値で冷静に判定してる</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：カフェで読書。現実：布団から出られず虚無</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">普段は倹約家なのに突然謎の高額アイテムを買う</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">生活感がない。友達に「本当にここ住んでる？」って聞かれる</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">アカウント5個持ち。用途別に完全管理。プロの諜報員</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">穴場スポットだけ調べてくる。メジャー観光地には興味なし</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">欲しいものリストだけ作って満足。買わない日もある</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">目は覚めてるけど動かない。宇宙と交信する時間が必要</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">距離感がおかしい人。急に馴れ馴れしくなると引く</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">存在ごと認識から消す。同じ空間にいても透明人間扱い</div></div></li>
+        </ul>
+        <div class="slide-footer"><span class="credit">AB型 取扱説明書 全35項</span><span class="handle">@solanthus_shoki</span></div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

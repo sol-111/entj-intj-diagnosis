@@ -1,0 +1,1832 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MBTI 取扱説明書 — スクショ用</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      color: #e7e9ea;
+      font-family: "Noto Sans JP", "Inter", -apple-system, sans-serif;
+      padding: 20px;
+    }
+    .container { max-width: 540px; margin: 0 auto; }
+
+    /* Tab nav */
+    .tab-nav {
+      display: flex; gap: 0; margin-bottom: 24px;
+      border-bottom: 2px solid #2f3336;
+      overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex: 0 0 auto; min-width: 50px;
+      background: none; border: none; color: #71767b;
+      font-size: 0.78rem; font-weight: 700; font-family: inherit;
+      padding: 8px 8px; cursor: pointer;
+      border-bottom: 3px solid transparent; margin-bottom: -2px;
+      transition: all 0.2s; white-space: nowrap; text-align: center;
+    }
+    .tab-btn:hover { color: #e7e9ea; }
+    .tab-btn.active { color: #fff; }
+    .tab-btn.analyst.active  { border-bottom-color: #a970ff; color: #a970ff; }
+    .tab-btn.diplomat.active { border-bottom-color: #00ba7c; color: #00ba7c; }
+    .tab-btn.sentinel.active { border-bottom-color: #1d9bf0; color: #1d9bf0; }
+    .tab-btn.explorer.active { border-bottom-color: #f7b731; color: #f7b731; }
+    .tab-count { display: block; font-size: 0.6rem; color: #555; font-weight: 400; margin-top: 1px; }
+    .tab-btn.active .tab-count { color: inherit; opacity: 0.7; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ===== SLIDE CARD ===== */
+    .slide {
+      border-radius: 20px;
+      padding: 28px 24px 20px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      border-radius: 20px;
+      border: 1px solid var(--slide-border);
+      pointer-events: none;
+    }
+
+    /* Header */
+    .slide-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--slide-border);
+    }
+    .slide-icon {
+      font-size: 1.6rem;
+      width: 44px; height: 44px;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--slide-accent);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .slide-title-area { flex: 1; }
+    .slide-type {
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--slide-color);
+      letter-spacing: 0.02em;
+    }
+    .slide-type .desc {
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #71767b;
+      margin-left: 6px;
+    }
+    .slide-cat {
+      font-size: 0.78rem;
+      color: #71767b;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .slide-page {
+      font-size: 0.7rem;
+      color: #555;
+      font-weight: 600;
+      background: rgba(255,255,255,0.05);
+      padding: 3px 10px;
+      border-radius: 20px;
+      flex-shrink: 0;
+    }
+
+    /* Items */
+    .slide-items { list-style: none; }
+    .slide-item {
+      display: flex;
+      align-items: baseline;
+      padding: 9px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      gap: 10px;
+    }
+    .slide-item:last-child { border-bottom: none; }
+
+    .item-num {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--slide-color);
+      opacity: 0.6;
+      min-width: 22px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .item-body { flex: 1; }
+    .item-q {
+      font-size: 0.88rem;
+      color: var(--slide-color);
+      font-weight: 700;
+      opacity: 0.7;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .item-a {
+      font-size: 0.88rem;
+      color: #e7e9ea;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    /* Footer */
+    .slide-footer {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--slide-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .slide-footer .credit {
+      font-size: 0.65rem;
+      color: #555;
+      font-weight: 500;
+    }
+    .slide-footer .handle {
+      font-size: 0.7rem;
+      color: var(--slide-color);
+      font-weight: 700;
+      opacity: 0.7;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="tab-nav">
+      <button class="tab-btn sentinel active" data-tab="isfj">ISFJ<span class="tab-count">擁護者</span></button>
+      <button class="tab-btn sentinel" data-tab="esfj">ESFJ<span class="tab-count">領事</span></button>
+      <button class="tab-btn sentinel" data-tab="istj">ISTJ<span class="tab-count">管理者</span></button>
+      <button class="tab-btn sentinel" data-tab="estj">ESTJ<span class="tab-count">幹部</span></button>
+      <button class="tab-btn explorer" data-tab="isfp">ISFP<span class="tab-count">冒険家</span></button>
+      <button class="tab-btn explorer" data-tab="esfp">ESFP<span class="tab-count">エンターテイナー</span></button>
+      <button class="tab-btn explorer" data-tab="istp">ISTP<span class="tab-count">巨匠</span></button>
+      <button class="tab-btn explorer" data-tab="estp">ESTP<span class="tab-count">起業家</span></button>
+      <button class="tab-btn diplomat" data-tab="infp">INFP<span class="tab-count">仲介者</span></button>
+      <button class="tab-btn diplomat" data-tab="enfp">ENFP<span class="tab-count">運動家</span></button>
+      <button class="tab-btn diplomat" data-tab="infj">INFJ<span class="tab-count">提唱者</span></button>
+      <button class="tab-btn diplomat" data-tab="enfj">ENFJ<span class="tab-count">主人公</span></button>
+      <button class="tab-btn analyst" data-tab="intp">INTP<span class="tab-count">論理学者</span></button>
+      <button class="tab-btn analyst" data-tab="entp">ENTP<span class="tab-count">討論者</span></button>
+      <button class="tab-btn analyst" data-tab="intj">INTJ<span class="tab-count">建築家</span></button>
+      <button class="tab-btn analyst" data-tab="entj">ENTJ<span class="tab-count">指揮官</span></button>
+    </div>
+
+    <div class="tab-content active" id="tab-isfj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFJ<span class="desc">擁護者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">善意の無償労働が当たり前になり都合良く扱われた瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">誰も気づかない細部まで配慮が行き届いている時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：部下の体調に一番に気づく ／ 最悪：変化を嫌う</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">発言できない人がいないかを常に気にしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">横に座って一つ一つ丁寧に教える（過保護気味）</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">「お忙しいところ恐れ入りますが」が3回出てくる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFJ<span class="desc">擁護者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">自分の献身を「重い」の一言で片付けられた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">さりげなく好物を差し入れする頻度が明らかにおかしい</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">普段は控えめなのに好きな人の前では積極的に話しかける</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">手紙に想いを全部書いて渡す（目を見て言えない）</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">思い出の品を箱に詰めて泣いてから前を向く</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">LINEの返信速度の微妙な変化で察する（精度99%）</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">世話焼きが加速して母親みたいになる</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">手料理を作って家でまったり映画鑑賞</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFJ<span class="desc">擁護者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">今まで我慢してきた全記録を時系列で叩きつける</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「いつもありがとう、気づいてるよ」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">誰かの世話をしていないと存在意義を見失う</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：おとなしい → 本性：芯が鋼より硬い</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">感謝の気持ちを言葉にできない人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">今日あの人にかけた言葉、傷つけてなかったかな…</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">サラダ取り分け・注文係を自ら買って出て居場所を作る</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">「実は私さ…」と普段隠してる本音を全部話し始める</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">優しい嘘はつけるが、罪悪感で3日寝込む</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">気まずい。「何か話さなきゃ」で天気の話を始める</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFJ<span class="desc">擁護者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">急に「もう誰の面倒も見ない」と宣言する</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">完璧な返信を考えてたら3日経ってた（今更送れない）</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：家族とのんびり ／ 現実：家事で1日が終わる</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">自分には使わないのに人へのプレゼントは惜しまない</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">生活感があって温かい。観葉植物が元気</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">裏アカで日常の愚痴を吐いている（フォロワー3人）</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">全員の食の好みとアレルギーを事前調査して店を予約</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">家族の分を先に買って自分のは後回し</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">家族のために朝食を準備する（自分は後回し）</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">自分の善意を利用されていたと気づいた時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">表面上は普通に接するが目が笑っていない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-esfj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFJ<span class="desc">領事</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">チームのために尽くしたのに手柄を横取りされた時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">チーム全員のモチベを自然と上げてる姿を見た時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：チームの雰囲気が最高 ／ 最悪：えこひいきする</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">会議後のお茶菓子の発注を裏でしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">褒めて伸ばす。ランチも一緒に行って距離を縮める</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">季節の挨拶と気遣いの言葉が本文より長い</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFJ<span class="desc">領事</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">記念日やイベントを毎回忘れられ雑に扱われた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人の周囲の人間関係まで把握して根回し開始</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">みんなに優しいのに好きな人だけ特別扱いが露骨</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">友達に根回しして完璧なシチュエーションを用意する</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">友達に全部話して泣いてスッキリして復活</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">共通の友人ネットワークから情報が勝手に集まってくる</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">「なんで連絡くれないの？」が増える</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">テーマパークで写真撮りまくってSNSに上げる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFJ<span class="desc">領事</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">周囲を味方につけてから社会的に追い詰める</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたがいないとこのチームは回らない」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">一人の夜が耐えられない。既読つかないだけで不安</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：社交的 → 本性：人の評価をめちゃくちゃ気にしてる</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">場の空気を読まず周囲を不快にする人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">友達のLINEグループの既読数が気になって眠れない</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">全員に話しかけて孤立者ゼロの空間を作り上げる</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">全員のグラスを管理しながら自分が一番酔ってる</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">空気を読んだ嘘は上手いが秘密を守れない</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">3秒で耐えられなくなる。沈黙＝自分のせいだと思う</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFJ<span class="desc">領事</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">「こんなにやってるのに」と被害者モードに入る</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">既読スルーしない。むしろ即レスしすぎて引かれる側</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：友達とランチ ／ 現実：予定を詰めすぎて疲弊</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">交際費が家賃を超えている月がある</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">いつ人が来ても大丈夫なように常にキレイ</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">友達の投稿に必ずいいね。ストーリーは毎日更新</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">LINEグループで投票取って全員の希望を反映しようとする</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">友達と一緒に買い物して「どっちがいい？」を50回聞く</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">LINEの通知を全部チェック→返信→身支度</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">陰で悪口を言われていたと知った時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">その人の話題を振られても「へぇ〜」で流す</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-istj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTJ<span class="desc">管理者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">非効率な慣習が改善されず組織の限界を悟った瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">誰よりも正確なデータを静かに準備してきた時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：公平で一貫性がある ／ 最悪：融通が利かない</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">議事録を完璧に取っている（唯一真面目）</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">マニュアルを作成して「これ読んで」と渡す</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">定型文完璧。句読点もインデントも美しい</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTJ<span class="desc">管理者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">約束を何度も平気で破られた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">その人の予定だけ異常に正確に把握している</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">普段は堅いのに好きな人には冗談を言おうとする（滑る）</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「ずっと考えてたんだけど、付き合ってほしい」（直球）</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">仕事に没頭して強制的に思考を上書きする</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">スケジュールの矛盾を自動検知。帳簿のように記録済み</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">デートのパターンが完全にルーティン化する</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">予約済みのレストラン→映画→予定通りに帰宅</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTJ<span class="desc">管理者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">証拠と事実を淡々と並べて相手を論理的に詰める</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたがいるから安心できる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">寂しいと思わないフリが上手すぎて本人も気づいてない</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：堅そう → 本性：意外とユーモアがある</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">計画性がなく場当たり的に生きてる人間</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">明日のタスクを脳内で完璧にスケジューリングしている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">端の席を確保し隣の1人とだけ深い話をする</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">普段言わない仕事の不満が堰を切ったように溢れる</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘をつく必要がない。事実だけを述べる主義</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">平気。むしろ沈黙は効率的だと思っている</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTJ<span class="desc">管理者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">いつものルーティンを放棄して無気力になる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">返信する価値のある内容じゃなかったから</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：計画通りの充実した1日 ／ 現実：計画通り（本当にやる）</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">家計簿が完璧すぎて1円単位で管理している</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">整理整頓完璧。モデルルームかと思うレベル</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">本アカのみ。投稿頻度は月1。見る専がメイン</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">分刻みのスケジュール表をExcelで作成済み</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">リストに書いたものだけ買う。衝動買いの概念がない</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">アラーム1回で起床→洗面→朝食。毎日同じ時間同じ順番</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">信頼を裏切る嘘をつかれた時。一度で終わり</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">必要最低限の業務連絡のみ。私情は一切出さない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-estj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTJ<span class="desc">幹部</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">自分より明らかに無能な人間が政治力で昇進した時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">カオスな状況を5分で整理して全員に指示を出した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：仕事が圧倒的に早い ／ 最悪：威圧的すぎる</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">「結論は？」と3回目の催促をしようとしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">スパルタ式。期限と基準を明確にして追い込む</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">箇条書き＋期限明記。「○日までに返信ください」</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTJ<span class="desc">幹部</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">言い訳ばかりで責任を一切取らない姿を見た時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">仕事で関わる口実を自分から作りに行く</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">厳格なのに好きな人のミスだけ異様に許す</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「来月から付き合おう」とスケジュール調整込みで提案</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">「はい次」と切り替えて翌週にはマッチングアプリ登録</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">怪しいと思ったら直接問い詰める。逃げ道は与えない</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">「もっとこうした方がいい」と恋人を管理し始める</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">話題の新店を効率よく回るグルメツアー</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTJ<span class="desc">幹部</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">声量MAXの正論で公開処刑。反論の余地なし</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたのおかげで成功しました」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">チームを率いていないと落ち着かない（実は寂しがり）</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：威圧的 → 本性：部下想いで面倒見がいい</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">締め切りを守れない人間は社会人として論外</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">寝てる。明日朝5時起きだから（規則正しい）</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">幹事として仕切り始め飲み会を最適化する</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">説教が始まる。「お前のためを思って言うけど」</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘つく暇あったら事実を突きつける派</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙は非生産的。議題を持ち出して埋めにかかる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1929 0%, #0d0d0d 100%);--slide-color:#1d9bf0;--slide-accent:rgba(29,155,240,0.15);--slide-border:rgba(29,155,240,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTJ<span class="desc">幹部</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">周囲への要求が異常に厳しくなり支配的になる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">業務時間外のくだらない連絡には対応しない主義</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：アクティブに外出 ／ 現実：結局仕事のメールを見てる</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">コスパ最強を追求。比較検討に使う時間のほうが高い</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">実用的な家電が充実。ルンバとドラム式は必須</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">実名でビジネス発信。裏アカという概念がない</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">幹事として全員分の航空券とホテルを一括手配</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">セール時期を把握して最安値で買う（価格.com常連）</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">5時起床。ニュースチェック→筋トレ→シャワー</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">約束を3回破られたら自動的にリストから消す</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">態度に露骨に出る。声のトーンが明らかに変わる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-isfp">
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFP<span class="desc">冒険家</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">自分の感性や生活リズムが型にハメ殺されそうな時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">センスだけで正解を出してくる天然の直感力を見た時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：否定しない ／ 最悪：方向性を示してくれない</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">手元のノートに議題と無関係な絵を描いている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">「自分のやり方でいいよ」と自由にやらせる</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">絵文字を使うか30分悩んで結局使わない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFP<span class="desc">冒険家</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">自分の好きなものを馬鹿にされた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">目が合うと逸らすのに、目で追ってるのはバレてる</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">クールなのに好きな人には声のトーンが1オクターブ上がる</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">夕焼けとか夜景とか雰囲気に全振りして勝負する</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">失恋ソングを100曲聴いて感情を全部出し切る</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">空気の変化で察するけど信じたくなくて目を逸らす</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">急にわがままになって甘えモード全開になる</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">雑貨屋巡り→雰囲気のいいカフェ→夕日を見る</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFP<span class="desc">冒険家</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">泣きながらも本音を全部ぶつけて相手を後悔させる</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたのセンス本当に好き」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">一人の時間は好きだけど「好きな人」には常に会いたい</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：ふわふわ → 本性：こだわりが異常に強い</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">流行を追うだけで自分の美学がない人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">急にインスピレーションが降りてきて創作を始めている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">気の合う1人を見つけて2人だけの世界に入る</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">感情が溢れて泣いたり笑ったり情緒が忙しい</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">顔に全部出る。隠せてると思ってるのは本人だけ</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">平気だけど相手が気まずそうだと気になる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISFP<span class="desc">冒険家</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">好きだったことへの興味が一切なくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">今の気分的に返信したくない。明日の自分に任せた</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：カフェ巡り ／ 現実：ベッドでNetflixを5時間</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">美容と推し活に月収の半分が消える</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">インテリアのセンスだけは抜群。SNS映えする部屋</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">写真投稿だけ。文字は最小限。世界観を統一</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">「映えスポット」をPinterestで50個保存している</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">「ビビッときた」で即決。直感が全て</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">天気を確認して今日のコーデを考え始める</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">一緒にいて自分らしくいられないと感じた時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">物理的に距離を取る。同じ空間にいることを避ける</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-esfp">
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFP<span class="desc">エンターテイナー</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">職場の空気が暗すぎて自分のエネルギーが枯れた時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">プレゼンで聴衆を完全に引き込んだ時のカリスマ性</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：職場が楽しい ／ 最悪：締め切りの概念がない</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">隣の人とこっそりチャットで別の話をしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">飲みに連れて行って仕事の話はそこでする</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">「！」の数がテンションに比例して増える</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFP<span class="desc">エンターテイナー</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">デートが毎回ワンパターンで刺激がゼロになった時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人の前だけテンションが3倍になる</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">パリピなのに好きな人と2人の時は静かに寄り添う</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">サプライズ演出で盛大にぶちかます</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">友達と遊びまくって楽しい記憶で上書きする</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">友達から聞いて初めて知る（本人は全く気づいてない）</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">友達との予定を優先し始める（悪気はない）</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">フェス→屋台→2次会→朝まで（体力勝負）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFP<span class="desc">エンターテイナー</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">感情爆発して全方位に本音をぶちまける</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたといると元気になれる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">一人でいると充電が切れて動けなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：お調子者 → 本性：空気を読む天才</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">ノリが悪いのに付き合いだけは来る人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">TikTokの「あと1本だけ」を200回繰り返している</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">飲み会そのものを企画した張本人（2次会も手配済み）</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">全員のカラオケのマイクを奪って離さない</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">テンション上がると盛りすぎて後で辻褄が合わない</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙が怖すぎてスマホの動画を見せ始める</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESFP<span class="desc">エンターテイナー</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">急に部屋に引きこもり誰とも会わなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">返信しようとして別のアプリ開いたら忘れた</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：友達と遊ぶ ／ 現実：友達と遊んでる（理想通り）</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">給料日に散財して月末はカップ麺生活</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">服が床に散乱しているがおしゃれだけは完璧</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">自撮りとストーリーで1日10投稿。承認欲求全開</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">「楽しそう」だけで全部決める。予算？知らない</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">試着室から出てこない。全色試す</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">Instagramのストーリーを全部チェック（30分経過）</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">楽しくなくなったらフェードアウト。恨みはない</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">あからさまに他の人との態度と差がつく</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-istp">
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTP<span class="desc">巨匠</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">くだらない社内政治や無意味な会議に拘束された時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">トラブル発生時に誰よりも早く冷静に解決した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：自由にやらせてくれる ／ 最悪：報連相が皆無</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">ペンを分解して組み立て直している</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">「見て覚えて」と背中で語る（説明が下手）</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">「了解です」「承知しました」だけ（必要最低限）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTP<span class="desc">巨匠</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">束縛や干渉で自分の自由時間を奪われ続けた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">困ってる時だけ無言で助けに現れる（ヒーロー気取り）</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">無口なのに好きな人の趣味の話だけ止まらなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「俺でよければ」とボソッと言う（かっこよすぎる）</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">バイクか筋トレで物理的に疲れて忘れる</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">気づいてるけど泳がせて決定的証拠が出るまで待つ</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">連絡頻度が激減して自分の世界に戻る</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">バイクで海沿い走って気が向いたら寄り道</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTP<span class="desc">巨匠</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">普段無口な分、一言の重さと冷たさが致命傷になる</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「マジで頼りになる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">一人で全然平気。マジで平気。（16タイプ中最強）</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：冷たい → 本性：困ってる人を黙って助ける</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">口だけで何も自分の手を動かさない評論家</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">YouTubeの分解動画を6時間ぶっ通しで見ている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">黙々と飲んで気づいたらいなくなってる（フェードアウト）</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">無口→急に饒舌。趣味の話を3時間する</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘をつくのが面倒だから黙る（沈黙という選択肢）</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">平気を超えて好き。沈黙こそ最高のコミュニケーション</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ISTP<span class="desc">巨匠</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">普段は冷静なのに急にキレてモノに当たる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">見た。理解した。返す必要ある？（本気で疑問）</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：ツーリング ／ 現実：ガレージで工具を磨いてたら夕方</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">趣味の道具だけ謎に高い。工具10万ガジェット15万</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">工具・ガジェット・パーツが謎の秩序で並んでいる</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">アカウントはあるが最終ログイン3ヶ月前</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">宿だけ取ってあとはノープラン。現地で判断する</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">必要になった瞬間に買う。事前リサーチはしない</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">無言でコーヒーを淹れる。話しかけるな（起動中）</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">自分のパーソナルスペースに何度も土足で踏み込まれた時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">話しかけられても返事が「あぁ」「うん」だけになる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ISTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-estp">
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTP<span class="desc">起業家</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">前例主義の上層部にスピード感を完全に殺された時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">プレッシャーの中で即断即決して結果を出した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：トラブル対応が神 ／ 最悪：計画性がゼロ</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">スマホの下でスポーツの試合経過をチェックしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">「とりあえずやってみ」と実践から入る</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">メール書くくらいなら直接言いに行く</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTP<span class="desc">起業家</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">ノリが悪すぎて一緒にいてもつまらないと感じた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">ボディタッチとからかいの頻度が露骨に増える</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">チャラいのに好きな人には真面目なLINEを送る</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">飲みの帰りに「好きだわ」とサラッと言う</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">その夜に飲みに行って3日後には新しい出会い</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">勘で気づいてその場で「浮気してるだろ」と直球</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">マンネリを感じて刺激を求め始める</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">ノープランでドライブ。行き先は走りながら決める</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTP<span class="desc">起業家</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">即座に面と向かって怒鳴る。瞬発力と圧が桁違い</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「一緒にいると退屈しない」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">常に誰かと一緒にいたい。静かな夜が苦手</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：チャラい → 本性：義理人情に超厚い</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">リスクを恐れて何も挑戦しない臆病者</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">まだ飲んでる（3軒目のバーにいる）</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">一発芸・無茶振り対応で場の中心を完全に掌握する</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">テーブルの上に立つ。武勇伝のスケールが3倍になる</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘がバレてもノリで乗り切る天才</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">2秒で限界。「てかさ〜」で強制的に話題転換</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1f1a0a 0%, #0d0d0d 100%);--slide-color:#f7b731;--slide-accent:rgba(247,183,49,0.15);--slide-border:rgba(247,183,49,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ESTP<span class="desc">起業家</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">酒・買い物・ギャンブルなど刺激に走りまくる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">今リアルで楽しいことしてるからスマホ見てない</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：アウトドア ／ 現実：二日酔いで午後まで寝てる</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">「今が楽しければいい」で貯金残高がいつもギリギリ</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">トレーニング器具がリビングを占領している</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">リアルタイム実況多め。今何してるか全部バレる</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">「明日行こうぜ」前日の夜に言い出す</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">「かっこいい」で即購入。帰ってから使い道を考える</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">アラーム5回スヌーズしてギリギリで飛び起きる</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">ノリが合わなくなったら自然消滅（深く考えない）</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">嫌いなことを本人に直接言う（オブラートなし）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ESTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-infp">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFP<span class="desc">仲介者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">自分の信念を汚してまで働く価値がないと悟った時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">チームの空気を一変させる言葉を自然に選べる時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：個性を尊重してくれる ／ 最悪：決断が遅すぎる</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">窓の外を見ながら完全に別世界にトリップしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">後輩の気持ちに寄り添いすぎて指導が進まない</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">1通のメールに40分かけて送信前に5回見直す</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFP<span class="desc">仲介者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">店員や弱い立場の人への態度が最悪だった時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">相手をモデルにした小説や詩を密かに書いている</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">夢見がちなのに好きな人の前では現実的にカッコつける</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">脳内で100回リハーサルして本番で全部飛ぶ</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">3ヶ月引きずった後ポエムにして昇華する</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">「そんなはずない」と理想に縋って気づくのが最後</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">理想と現実のギャップに悩み始めて情緒不安定になる</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">本屋でお互いに本を選び合う→公園で読書</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFP<span class="desc">仲介者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">普段優しい分「お前にだけは言われたくない」が刺さる</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたといると自分らしくいられる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">脳内に友達がいるから平気（現実では寂しい）</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：天然 → 本性：実は全部わかってて黙ってる</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">共感力がなく他人の痛みに鈍感な人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">脳内の架空世界で壮大なストーリーが完結しかけている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">行く前は億劫だけど始まると意外と楽しんでる</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">全員に「大好き」と言い始める（翌日記憶なし）</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘をつくと目が泳ぎすぎて即バレる</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙中に脳内で会話のシミュレーションを回している</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFP<span class="desc">仲介者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">自己否定ループに入り「自分なんか」が口癖になる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">返信の文面に魂を込めたいから今は無理</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：創作活動 ／ 現実：布団の中で空想して1日終了</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">衝動買いした後に罪悪感で3日落ち込む</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">好きなものに囲まれた秘密基地。他人には見せない</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">裏アカ3つ。創作用・愚痴用・推し活用</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">その土地の歴史と文化を調べてから行く（ガイドより詳しい）</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">迷いすぎて結局何も買わずに帰る（翌日ネットで買う）</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">夢の内容を思い出そうとして二度寝する</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">価値観の根本が合わないと悟った時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">嫌いな人の前だけ別人のように無表情になる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-enfp">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFP<span class="desc">運動家</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">新しいアイデアが全部「前例がない」で潰された時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">既存の枠を壊して誰も思いつかない発想を出した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：ビジョンが魅力的 ／ 最悪：言ってることが毎回変わる</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">議題から派生した新アイデアでワクワクしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">一緒にブレストして「この仕事面白くない！？」と巻き込む</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">追伸が本文より長くなりがち</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFP<span class="desc">運動家</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">自分の話に興味なさそうにスマホをいじられた時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">「2人で○○行かない？」をカジュアルに連発する</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">誰にでもフレンドリーなのに好きな人には逆に緊張する</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">テンション上がりすぎて告白が早口すぎて伝わらない</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">髪切って服変えて「新しい自分」になろうとする</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">直感で怪しいと思うけど確認するのが怖くて放置</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">急に新しい趣味にハマって恋人の存在を忘れがち</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">「面白そう」で決めた謎の体験型イベント</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFP<span class="desc">運動家</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">笑顔が消えた瞬間の温度差で相手を凍りつかせる</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたの発想が世界を面白くしてる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">社交的に見えて夜は急に寂しくなる（ギャップがえぐい）</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：能天気 → 本性：深夜に人生を深く考えている</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">好奇心がなく新しいことを一切拒否する人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">来月の旅行プランを30タブ開いて比較している</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">テーブル全体を巻き込んだ大喜利大会を始める</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">知らない隣の席の人と友達になって連絡先を交換</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘ついたこと自体を忘れて正直に話してしまう</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙になった瞬間「あ、そういえば！」が発動する</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFP<span class="desc">運動家</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">いつもの明るさが消えて皮肉っぽくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">脳内で返信完了してた（実際には送ってない）</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：新しい場所を探検 ／ 現実：計画倒れで家にいる</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">旅行とサブスクで口座が静かに死んでいく</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">途中まで片付けた形跡が3箇所ある（全部未完成）</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">複数のSNSを全部やってるけど全部更新がまばら</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">30タブ開いて比較して結局決まらず前日になる</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">目的のもの以外を大量に買って帰る</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">「今日こそ早起き！」と言って昼に起きる</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">自分の大切な人を傷つけられた時だけは絶対に許さない</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">普段のテンションとの落差で周囲が先に気づく</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-infj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFJ<span class="desc">提唱者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">会社の利益追求の裏にある卑しい欺瞞に気付いた時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">他人が言語化できない本質を一言で言い当てた時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：一人一人に合った指導 ／ 最悪：理想が高すぎる</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">各参加者の本音を表情から読み取っている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">後輩のタイプを見抜いてカスタマイズした指導をする</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">相手に合わせて文体を完全に変える（カメレオン）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFJ<span class="desc">提唱者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">相手の本性が自分の理想像と全く違うと確信した時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">相手のSNSを全遡りして趣味を完全に把握済み</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">ミステリアスなのに好きな人には自分の弱さを見せる</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">深夜の長電話で自然な流れを装って核心に触れる</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">「なぜ失敗したか」を哲学レベルで分析し尽くす</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">証拠がなくても直感で確信する。そしてだいたい当たる</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">急に「1人の時間が欲しい」と距離を置き始める</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">静かなカフェで深い話を何時間もする</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFJ<span class="desc">提唱者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">怒らない。静かに関係を断ち二度と戻らない</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなただけが本質をわかってくれる」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">一人が好きだけど「理解者」がいないと壊れる</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：穏やか → 本性：人間を常に分析している</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">自己理解が浅いのに他人を語ろうとする人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">人類の存在意義について壮大な結論に達しかけている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">聞き役に徹しつつ心の中で全員を分析している</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">急にスキンシップが増えて甘えモードになる</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘が上手すぎて本人も何が本音かわからなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">相手による。心許した人との沈黙は最高に心地いい</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INFJ<span class="desc">提唱者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">全員をシャットアウトして突然消える（ドアスラム）</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">相手のエネルギーが重すぎて返信する気力がない</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：読書と瞑想 ／ 現実：SNSで人間観察して疲弊</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">本と自己投資に消える。物欲はないのに知識欲が高い</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">本棚だけ異常に充実している。照明が暗め</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">裏アカで本音を詩的に綴っている。特定不可能</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">穴場スポットだけ調べて有名観光地はスルー</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">買う前にレビューを50件読んで悩み抜く</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">布団の中で今日の気力を確認する（起動に10分かかる）</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">「この人は変わらない」と確信した瞬間（静かに消える）</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">存在ごと認識から消す。視界に入っても反応しない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-enfj">
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFJ<span class="desc">主人公</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">人を育てる努力を「余計なお世話」と切り捨てられた時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">対立する2人を同時に立てて問題を解決した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：モチベ管理の天才 ／ 最悪：おせっかいが過ぎる</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">対立しそうな2人の仲裁タイミングを見計らっている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">後輩の可能性を信じて期待をかけすぎる（プレッシャー）</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">「いつもありがとうございます」が毎回入る（本心）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFJ<span class="desc">主人公</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">自分ばかり気を遣い相手が一切歩み寄らなかった時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">相手の悩みを聞く役を独占しようとする</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">リーダー気質なのに好きな人の前では甘えたがる</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「あなたの全部を受け止めたい」と包容力で勝負</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">「相手の幸せを願える自分」に酔って乗り越える</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">相手の表情と声のトーンで嘘を即座に見破る</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">相手を「もっといい人間にしたい」と改造計画が始まる</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">相手がやりたいことを全部叶えるプランを組む</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFJ<span class="desc">主人公</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">「あなたには失望した」の一言で相手の心を折る</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたに出会えて人生が変わった」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">誰かに必要とされてないと不安で眠れない</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：聖人 → 本性：裏で人一倍疲弊している</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">自分のことしか考えずチームに貢献しない人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">後輩の悩み相談の返信を5回書き直している</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">話を振りまくって全員の良いところを引き出す司会者</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">「みんな愛してる」モード全開で全員をハグする</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">相手のためなら完璧な嘘をつける（善意の嘘の天才）</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">相手の沈黙を「何か悩んでる？」と心配し始める</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #0a1f17 0%, #0d0d0d 100%);--slide-color:#00ba7c;--slide-accent:rgba(0,186,124,0.15);--slide-border:rgba(0,186,124,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENFJ<span class="desc">主人公</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">笑顔が貼り付いたまま目が笑ってない状態になる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">他の人の相談に乗ってたら返信を忘れてた（罪悪感）</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：自分の時間 ／ 現実：誰かの相談に乗っている</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">後輩の奢り代が固定費になっている</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">来客用のスリッパとお茶セットが常備されている</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">ポジティブな投稿しかしない。裏の闇は裏アカへ</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">メンバーの体力差を考慮してプランA/B/Cを用意</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">店員と仲良くなって「あなたならどれ選びます？」</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">今日会う人のことを考えて気持ちを準備する</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">自分の助けを何度も拒否して陰で馬鹿にしていた時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">笑顔で接するが二人きりの状況を絶対に作らない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENFJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-intp">
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTP<span class="desc">論理学者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">誰でもできる単純作業をやりがいで粉飾された瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">全員が見逃した構造的欠陥を一瞬で指摘した時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：技術的に超頼れる ／ 最悪：マネジメントに興味ゼロ</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">議題と全く関係ない仮説を頭の中で検証している</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">質問されたら詳しすぎる解説が始まって脱線する</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">技術的な補足が長すぎて本題が埋もれる</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTP<span class="desc">論理学者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">感情論だけで話が全く噛み合わないと悟った時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人の話題が出ると急に饒舌になる</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">人に興味なさそうなのに好きな人の発言は全部覚えてる</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">告白しようとして気づいたら宇宙の話をしている</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">恋愛心理学の本を5冊読んで理論武装する</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">デジタルの痕跡から論理的に特定（フォレンジック調査）</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">デート中にスマホで調べ物を始める（悪気はない）</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">プラネタリウム→帰りに星の話を延々とする</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTP<span class="desc">論理学者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">感情を排した正論で相手の逃げ道を全部塞ぐ</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「その知識量ほんとにすごい」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">知的刺激さえあれば人がいなくても生きていける</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：無関心 → 本性：好きな人には異常に尽くす</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">調べれば3秒でわかることを質問してくる人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">Wikipediaのリンクを辿って量子力学にたどり着いている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">酔うと普段話さないマニアックな話が止まらなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">早口が加速して何言ってるか誰にもわからなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">設定が複雑すぎて自分で矛盾を生んで自滅する</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙に気づいてない。自分の思考に没頭中</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTP<span class="desc">論理学者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">何を聞いても「別にどうでもいい」しか出てこない</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">調べ物に没頭してLINEの存在を忘れていた</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：新しい技術を学ぶ ／ 現実：Redditのスレッドを巡回</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">課金ゲーか技術書に消える。服は3年同じ</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">デスク周りだけ要塞。それ以外は荒野</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">匿名で専門的な知識を投下して一部界隈で有名</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">行き先の気候データと混雑予測をグラフ化して分析</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">Amazonのカートに3ヶ月放置して結局買わない</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">スマホでニュースを30分読んで遅刻する</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">会話が退屈で会うメリットが見当たらなくなった時</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">話を聞いているフリをして完全にシャットアウト</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-entp">
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTP<span class="desc">討論者</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">議論が通じない思考停止集団に囲まれていると気づいた時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">全員が行き詰まった問題を別角度から一撃で解いた時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：革新的なアイデア ／ 最悪：既存ルールを全無視</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">わざと挑発的な質問をして場を荒らそうとしている</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">「なんでそう思った？」と質問攻めにして思考力を鍛える</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">送信後に誤字に気づいて訂正メールが毎回セット</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTP<span class="desc">討論者</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">会話が浅すぎて知的好奇心が1ミリも刺激されない時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">わざと反対意見をぶつけて会話の時間を引き延ばす</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">皮肉屋なのに好きな人だけストレートに褒める</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「仮説なんだけど俺たち付き合ったら最強じゃない？」</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">「そもそも恋愛とは何か」を語り始めて哲学に逃げる</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">わざと罠を仕掛けて自白させるゲームを楽しむ</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">恋人の意見に全部反論して「議論してるだけ」と言う</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">脱出ゲーム→お互いの戦略を振り返る反省会</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTP<span class="desc">討論者</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">相手の矛盾を全部暴いて公開ディベートで完封する</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「お前と話してると頭良くなる気がする」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">議論相手がいないと生きてる意味を見失う</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：口だけ → 本性：やると決めたら鬼の集中力</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">反論に感情でキレて議論を放棄する人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">起業アイデアが3つ浮かんでメモが止まらない</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">酔った勢いで上司に正論ぶつけて翌日後悔する</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">政治と宗教の話を始めて出禁になりかける</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">嘘と冗談の境界が曖昧すぎて周囲が混乱する</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">沈黙を壊すためにわざと挑発的な話題を投下する</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTP<span class="desc">討論者</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">議論じゃなくただの攻撃になっていることに気づかない</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">面白い返しが思いつかなくて保留中</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：知的な趣味 ／ 現実：3つ同時に始めて全部中途半端</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">「これは投資」と言いながら趣味に散財する天才</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">ホワイトボードにアイデアが書きなぐってある</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">炎上しそうな意見をわざと投げてリプ欄を観察する</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">計画を立てるのは好きだが当日プラン通りに動かない</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">「いつか使うかも」で謎のアイテムを衝動買い</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">昨日寝る前に思いついたアイデアをメモから確認する</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">知的に尊敬できなくなったら興味が消えて自然消滅</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">皮肉と正論で精神的に追い詰める（無自覚）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTP 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-intj">
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTJ<span class="desc">建築家</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">無能な上司が感情論で自分の合理的計画を阻む瞬間</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">3手先まで読んだ戦略を既に実行に移していた時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：戦略が天才的 ／ 最悪：感情に寄り添えない</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">「この会議メールで済んだな」と計算している</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">全体像と目的を説明して「あとは自分で考えて」</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">結論→理由→補足。3行で終わる。無駄がない</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTJ<span class="desc">建築家</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">同じ話を何度しても成長する気配がゼロだった時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">好きな人の前だけ不自然に優しくなって周囲にバレる</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">冷徹なのに好きな人の些細な変化に異常に気づく</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">成功率を分析した上で最適なタイミングを計算して実行</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">感情を論理で処理し「次に活かすデータ」に変換する</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">行動パターンの変化を統計的に分析して証拠を固める</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">恋人の人生設計にまで口を出し始める</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">美術館か博物館→考察を語り合う知的な時間</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTJ<span class="desc">建築家</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">相手の弱点を的確に突く一言で精神的に壊滅させる</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「その発想は天才的だと思う」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">寂しさを認めたら負けだと思っている（本当は寂しい）</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：怖い → 本性：好きな話題では子供みたいにはしゃぐ</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">論理的に考える努力すら放棄している人全般</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">5年後の人生設計を第3案まで練り直している</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">2時間で帰る宣言を最初にして実際に帰る</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">「人類の未来」について熱く語り始めて止まらない</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">必要なら嘘もつくが表情管理が完璧すぎて怖い</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">完全に平気。無駄な会話のほうがストレス</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">INTJ<span class="desc">建築家</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">感情的な発言が増えて自分でも制御できなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">「了解」だけ送るのも冷たいし…と思って放置した</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：スキルアップの勉強 ／ 現実：気づいたら12時間調べ物</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">投資に全振り。生活費は最低限だがポートフォリオは攻める</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">機能的でミニマル。無駄なものが一切ない</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">情報収集用。フォローは多いがフォロワーは少ない</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">交通費・移動時間・満足度を最適化した完璧なルート</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">スペック比較表を作って最適解を導いてから購入</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">今日のToDoを脳内で組み立ててから起き上がる</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">時間を使う価値がないと判断した瞬間（損切り感覚）</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">敬語が急に丁寧になる（距離を置いている合図）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">INTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-entj">
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💼</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTJ<span class="desc">指揮官</span></div>
+            <div class="slide-cat">取扱説明書 — 仕事</div>
+          </div>
+          <div class="slide-page">1/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">01</span><div class="item-body"><div class="item-q">仕事を辞める決定的瞬間</div><div class="item-a">意思決定が遅すぎて機会損失を繰り返す組織に絶望した時</div></div></li>
+          <li class="slide-item"><span class="item-num">02</span><div class="item-body"><div class="item-q">「こいつデキる」と思う瞬間</div><div class="item-a">反対意見を全部論破した上で全員を納得させた時</div></div></li>
+          <li class="slide-item"><span class="item-num">03</span><div class="item-body"><div class="item-q">上司にしたら最強/最悪なところ</div><div class="item-a">最強：結果を出す力が異次元 ／ 最悪：人を駒扱いする</div></div></li>
+          <li class="slide-item"><span class="item-num">04</span><div class="item-body"><div class="item-q">会議中に実はやってること</div><div class="item-a">発言者のロジックの穴を見つけて反論を準備している</div></div></li>
+          <li class="slide-item"><span class="item-num">05</span><div class="item-body"><div class="item-q">後輩への指導スタイル</div><div class="item-a">いきなり難題を投げて成長速度を試す</div></div></li>
+          <li class="slide-item"><span class="item-num">06</span><div class="item-body"><div class="item-q">メールの書き方の癖</div><div class="item-a">件名だけで内容がわかる。本文は指示のみ</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">💕</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTJ<span class="desc">指揮官</span></div>
+            <div class="slide-cat">取扱説明書 — 恋愛</div>
+          </div>
+          <div class="slide-page">2/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">07</span><div class="item-body"><div class="item-q">恋人に一瞬で冷める瞬間</div><div class="item-a">向上心がなく現状維持で満足している姿に幻滅した時</div></div></li>
+          <li class="slide-item"><span class="item-num">08</span><div class="item-body"><div class="item-q">片思い中のバレバレな行動</div><div class="item-a">デートプランを3パターン用意してから誘う</div></div></li>
+          <li class="slide-item"><span class="item-num">09</span><div class="item-body"><div class="item-q">好きな人の前でだけ出るギャップ</div><div class="item-a">支配的なのに好きな人の意見だけ素直に聞く</div></div></li>
+          <li class="slide-item"><span class="item-num">10</span><div class="item-body"><div class="item-q">告白の仕方</div><div class="item-a">「俺と付き合うメリットを説明する」（プレゼン形式）</div></div></li>
+          <li class="slide-item"><span class="item-num">11</span><div class="item-body"><div class="item-q">失恋からの立ち直り方</div><div class="item-a">自分磨きに全振りして「見返す」をモチベにする</div></div></li>
+          <li class="slide-item"><span class="item-num">12</span><div class="item-body"><div class="item-q">浮気を見抜く能力</div><div class="item-a">探偵を雇うか自分で証拠を揃えるか冷静に判断する</div></div></li>
+          <li class="slide-item"><span class="item-num">13</span><div class="item-body"><div class="item-q">付き合って3ヶ月で出る本性</div><div class="item-a">恋愛にもKPIを設定し始める</div></div></li>
+          <li class="slide-item"><span class="item-num">14</span><div class="item-body"><div class="item-q">理想のデートプラン</div><div class="item-a">高級ディナー→夜景→将来の話をする</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🎭</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTJ<span class="desc">指揮官</span></div>
+            <div class="slide-cat">取扱説明書 — 性格・あるある</div>
+          </div>
+          <div class="slide-page">3/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">15</span><div class="item-body"><div class="item-q">本気で怒った時の破壊力</div><div class="item-a">怒りを行動に変換し相手の立場を組織的に潰す</div></div></li>
+          <li class="slide-item"><span class="item-num">16</span><div class="item-body"><div class="item-q">言われたら一番嬉しい褒め言葉</div><div class="item-a">「あなたについていきたい」</div></div></li>
+          <li class="slide-item"><span class="item-num">17</span><div class="item-body"><div class="item-q">実は寂しがりやランキング</div><div class="item-a">孤独に強いフリをしてるが信頼できる右腕がいないとキツい</div></div></li>
+          <li class="slide-item"><span class="item-num">18</span><div class="item-body"><div class="item-q">第一印象と本性のギャップ</div><div class="item-a">第一印象：独裁者 → 本性：認めた人には甘い</div></div></li>
+          <li class="slide-item"><span class="item-num">19</span><div class="item-body"><div class="item-q">密かに見下してること</div><div class="item-a">愚痴ばかりで現状を変える行動をしない人</div></div></li>
+          <li class="slide-item"><span class="item-num">20</span><div class="item-body"><div class="item-q">深夜3時に考えてること</div><div class="item-a">副業の事業計画書をスプレッドシートで作っている</div></div></li>
+          <li class="slide-item"><span class="item-num">21</span><div class="item-body"><div class="item-q">飲み会での生存戦略</div><div class="item-a">飲み会をネットワーキングの場として戦略的に活用</div></div></li>
+          <li class="slide-item"><span class="item-num">22</span><div class="item-body"><div class="item-q">酔った時に出る本性</div><div class="item-a">起業の野望を熱弁。翌日のプレゼン資料ができている</div></div></li>
+          <li class="slide-item"><span class="item-num">23</span><div class="item-body"><div class="item-q">嘘が下手なタイプランキング</div><div class="item-a">戦略的に情報を操作する（嘘ではなく「選択的事実」）</div></div></li>
+          <li class="slide-item"><span class="item-num">24</span><div class="item-body"><div class="item-q">沈黙が気まずいvs全然平気</div><div class="item-a">平気だが沈黙が長いと「で、結論は？」と切り出す</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+      <div class="slide" style="background:linear-gradient(135deg, #1a1025 0%, #0d0d0d 100%);--slide-color:#a970ff;--slide-accent:rgba(169,112,255,0.15);--slide-border:rgba(169,112,255,0.3)">
+        <div class="slide-header">
+          <div class="slide-icon">🌙</div>
+          <div class="slide-title-area">
+            <div class="slide-type">ENTJ<span class="desc">指揮官</span></div>
+            <div class="slide-cat">取扱説明書 — メンタル・日常・人間関係</div>
+          </div>
+          <div class="slide-page">4/4</div>
+        </div>
+        <ul class="slide-items">
+          <li class="slide-item"><span class="item-num">25</span><div class="item-body"><div class="item-q">ストレス限界のサイン</div><div class="item-a">全てを一人で抱え込み周囲を信頼しなくなる</div></div></li>
+          <li class="slide-item"><span class="item-num">26</span><div class="item-body"><div class="item-q">LINEを既読スルーする理由</div><div class="item-a">優先順位が低い。重要な用件なら電話してこい</div></div></li>
+          <li class="slide-item"><span class="item-num">27</span><div class="item-body"><div class="item-q">休日の過ごし方（理想vs現実）</div><div class="item-a">理想：リフレッシュ ／ 現実：副業の作業をしている</div></div></li>
+          <li class="slide-item"><span class="item-num">28</span><div class="item-body"><div class="item-q">お金の使い方の闇</div><div class="item-a">「金で時間を買う」思考で便利サービス課金しまくり</div></div></li>
+          <li class="slide-item"><span class="item-num">29</span><div class="item-body"><div class="item-q">一人暮らしの部屋の特徴</div><div class="item-a">ホームオフィスに全振り。書斎がメインルーム</div></div></li>
+          <li class="slide-item"><span class="item-num">30</span><div class="item-body"><div class="item-q">SNSの使い方と裏アカの有無</div><div class="item-a">LinkedInがメイン。SNSもセルフブランディングの場</div></div></li>
+          <li class="slide-item"><span class="item-num">31</span><div class="item-body"><div class="item-q">旅行の計画の立て方</div><div class="item-a">旅行の目的を明確にしてROIが最大になるプランを組む</div></div></li>
+          <li class="slide-item"><span class="item-num">32</span><div class="item-body"><div class="item-q">買い物の仕方</div><div class="item-a">「最上位モデルください」即決。時間が一番高い</div></div></li>
+          <li class="slide-item"><span class="item-num">33</span><div class="item-body"><div class="item-q">朝起きて最初にすること</div><div class="item-a">メールチェック。誰よりも早く1通目を返している</div></div></li>
+          <li class="slide-item"><span class="item-num">34</span><div class="item-body"><div class="item-q">友達と縁を切る決定打</div><div class="item-a">足を引っ張る存在だと判断した瞬間にバッサリ切る</div></div></li>
+          <li class="slide-item"><span class="item-num">35</span><div class="item-body"><div class="item-q">嫌いな人への態度の出方</div><div class="item-a">利用価値があるうちは普通に接する（合理的）</div></div></li>
+        </ul>
+        <div class="slide-footer">
+          <span class="credit">ENTJ 取扱説明書 全35項</span>
+          <span class="handle">@solanthus_shoki</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script>
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
